@@ -309,5 +309,5 @@ Sorun yaşarsanız:
 **Başarılar! 🚀**
 
 Hazırlayan: İslam ERGÜN  
-Tarih: 14 Kasım 2024
+Tarih: 14 Kasım 2025
 

@@ -260,8 +260,8 @@ Yeni bir ders eklemek istiyorsanız:
 ## ❓ Sorular?
 
 - 💬 [GitHub Discussions](https://github.com/devnanotek/ders/discussions)
-- 📧 Email: devnanotek@gmail.com
 - 🐛 [Issues](https://github.com/devnanotek/ders/issues)
+- 🐙 [GitHub Profile](https://github.com/devnanotek)
 
 ---
 

@@ -17,7 +17,7 @@ Bu dosya, projenizin GitHub'daki durumu ve önemli bilgileri içerir.
 - 🐛 **Issue Bildirimi**: https://github.com/devnanotek/ders/issues
 - 💬 **Tartışmalar**: https://github.com/devnanotek/ders/discussions
 - 🤝 **Pull Requests**: https://github.com/devnanotek/ders/pulls
-- 📧 **Email**: devnanotek@gmail.com
+- 🐙 **GitHub Profile**: https://github.com/devnanotek
 
 ### Dokümantasyon
 - 📋 **Katkıda Bulunma**: https://github.com/devnanotek/ders/blob/main/CONTRIBUTING.md
@@ -30,8 +30,8 @@ Bu dosya, projenizin GitHub'daki durumu ve önemli bilgileri içerir.
 
 ### Genel Bilgiler
 - **Proje Adı**: Mardin Artuklu Üniversitesi - Ders Notları
-- **Oluşturma Tarihi**: 14 Kasım 2024
-- **Son Güncelleme**: 14 Kasım 2024
+- **Oluşturma Tarihi**: 14 Kasım 2025
+- **Son Güncelleme**: 14 Kasım 2025
 - **Durum**: 🟢 Aktif
 - **Lisans**: MIT License
 - **Dil**: HTML, CSS, JavaScript
@@ -211,7 +211,6 @@ README.md dosyanızda zaten bu badge'ler var:
 
 ### Geliştirici İletişim
 - **GitHub**: [@devnanotek](https://github.com/devnanotek)
-- **Email**: devnanotek@gmail.com
 - **Repository**: [github.com/devnanotek/ders](https://github.com/devnanotek/ders)
 
 ### Nasıl Yardımcı Olabilirsiniz?
@@ -288,10 +287,10 @@ Repository sayfanızdan şu istatistikleri takip edebilirsiniz:
 
 ## 🏆 Başarılar ve Kilometre Taşları
 
-- ✅ **14 Kasım 2024**: Proje başlatıldı
-- ✅ **14 Kasım 2024**: GitHub'a ilk commit
-- ✅ **14 Kasım 2024**: GitHub Pages ile yayına alındı
-- ✅ **14 Kasım 2024**: README ve dokümantasyon tamamlandı
+- ✅ **14 Kasım 2025**: Proje başlatıldı
+- ✅ **14 Kasım 2025**: GitHub'a ilk commit
+- ✅ **14 Kasım 2025**: GitHub Pages ile yayına alındı
+- ✅ **14 Kasım 2025**: README ve dokümantasyon tamamlandı
 
 ### Hedeflenen Kilometre Taşları
 - 🎯 10 yıldız
@@ -327,13 +326,13 @@ cd ders
 
 ---
 
-**Son Güncelleme**: 14 Kasım 2024  
+**Son Güncelleme**: 14 Kasım 2025  
 **Versiyon**: 1.0.0  
 **Durum**: 🟢 Aktif
 
 ---
 
-**© 2024 İslam ERGÜN - Mardin Artuklu Üniversitesi**
+**© 2025 İslam ERGÜN - Mardin Artuklu Üniversitesi**
 
 Made with ❤️ in Turkey 🇹🇷
 

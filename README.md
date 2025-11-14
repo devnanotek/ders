@@ -234,8 +234,6 @@ Bu proje **MIT Lisansı** altında lisanslanmıştır. Detaylar için [LICENSE](
 ### İletişim
 
 - 🐙 GitHub: [@devnanotek](https://github.com/devnanotek)
-- 📧 Email: [devnanotek@gmail.com](mailto:devnanotek@gmail.com)
-- 💻 Repository: [github.com/devnanotek/ders](https://github.com/devnanotek/ders)
 
 ---
 
@@ -308,7 +306,6 @@ Sorularınız veya önerileriniz için:
 
 1. **Issue Açın**: [GitHub Issues](https://github.com/devnanotek/ders/issues)
 2. **Tartışma Başlatın**: [GitHub Discussions](https://github.com/devnanotek/ders/discussions)
-3. **Email Gönderin**: devnanotek@gmail.com
 
 ---
 
@@ -328,7 +325,7 @@ Made with ❤️ by [İslam ERGÜN](https://github.com/devnanotek)
 
 ## 📄 Değişiklik Geçmişi
 
-### v1.0.0 (2024-11-14)
+### v1.0.0 (2025-11-14)
 - 🎉 İlk sürüm yayınlandı
 - ✅ Programlama Temelleri dersi eklendi
 - ✅ Web Tasarım dersi eklendi
@@ -338,5 +335,5 @@ Made with ❤️ by [İslam ERGÜN](https://github.com/devnanotek)
 
 ---
 
-**© 2024 İslam ERGÜN - Mardin Artuklu Üniversitesi | Tüm Hakları Saklıdır**
+**© 2025 İslam ERGÜN - Mardin Artuklu Üniversitesi | Tüm Hakları Saklıdır**
 
