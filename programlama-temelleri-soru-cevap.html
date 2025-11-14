@@ -596,6 +596,265 @@
 			</div>
 		</div>
 
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-5-circle"></i> Döngüler (Loops)</h1>
+
+		<h2>Döngü Nedir?</h2>
+		<p>Birbiriyle ilişkili kodları arka arkaya çalıştırmak için kullanılan yapılardır.</p>
+
+		<div class="info-box">
+			<h3><i class="bi bi-info-circle"></i> Neden Döngü Kullanırız?</h3>
+			<p>Belirli işlemleri üst üste bir problemi çözmek için yüz defa veya belirli kriterleri sağlayana kadar gerekebilir. Eğer döngü yapısı olmasaydı alt alta aynı işlemi yüz defa yazmak gerekirdi.</p>
+		</div>
+
+		<h2>for Döngüsü</h2>
+		<p>C#'ta en çok kullanılan döngü türüdür. Belli koşulları sağladığı sürece birden fazla çalıştırılmasını istediğimiz kodlar için kullanılır.</p>
+
+		<h3>Sözdizimi:</h3>
+		<div class="code-block">
+			<code><span class="syntax-keyword">for</span>(ifade1; koşul; ifade2)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Çalıştırılacak komutlar</span><br>
+}</code>
+		</div>
+
+		<div class="info-box">
+			<h3><i class="bi bi-gear"></i> for Döngüsünün Çalışma Prensibi</h3>
+			<ol>
+				<li><strong>ifade1</strong> çalıştırılır (ilk değer atama)</li>
+				<li><strong>Koşul</strong> kontrol edilir</li>
+				<li>Koşul sağlanıyorsa:
+					<ul>
+						<li>Küme parantezleri içindeki komutlar çalıştırılır</li>
+						<li><strong>ifade2</strong> çalıştırılır (artırma/azaltma)</li>
+						<li>2. adıma dönülür</li>
+					</ul>
+				</li>
+				<li>Koşul sağlanmıyorsa döngüden çıkılır</li>
+			</ol>
+		</div>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek 1: 1'den 10'a Kadar Sayıları Yazdırma</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">i</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">for</span>(<span class="syntax-variable">i</span> = <span class="syntax-number">1</span>; <span class="syntax-variable">i</span> <= <span class="syntax-number">10</span>; <span class="syntax-variable">i</span>++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">i</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
+}</code>
+			</div>
+			<p><strong>Çıktı:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
+		</div>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek 2: 1'den 10'a Kadar Toplama</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">i</span>, <span class="syntax-variable">toplam</span> = <span class="syntax-number">0</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">for</span>(<span class="syntax-variable">i</span> = <span class="syntax-number">1</span>; <span class="syntax-variable">i</span> <= <span class="syntax-number">10</span>; <span class="syntax-variable">i</span>++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">toplam</span> = <span class="syntax-variable">toplam</span> + <span class="syntax-variable">i</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">toplam</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
+}</code>
+			</div>
+			<p><strong>Çıktı:</strong> 55</p>
+		</div>
+
+		<div class="warning-box">
+			<h3><i class="bi bi-exclamation-triangle"></i> for Döngüsü Kuralları</h3>
+			<ul>
+				<li>İki ifade ve bir koşulün istenirse bir tanesi, istenirse bazıları, istenirse de tamamı boş bırakılabilir; ancak <strong>noktalı virgüller mutlaka yazılmalıdır</strong></li>
+				<li>Döngünün içinde tanımlanan değişkenler <code>for(int i=0; i&lt;5; i++)</code> döngünün dışında kullanılamaz</li>
+				<li>Değişkeni döngü dışında kullanabilmek için döngüden önce tanımlanmalıdır</li>
+			</ul>
+		</div>
+
+		<h2>while Döngüsü</h2>
+		<p>Komut ya da komutların bir koşul sağlandığı sürece çalıştırılmasını sağlar.</p>
+
+		<h3>Sözdizimi:</h3>
+		<div class="code-block">
+			<code><span class="syntax-keyword">while</span>(koşul)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Çalıştırılacak komutlar</span><br>
+}</code>
+		</div>
+
+		<div class="info-box">
+			<h3><i class="bi bi-gear"></i> while Döngüsünün Çalışma Prensibi</h3>
+			<ol>
+				<li><strong>Koşul</strong> kontrol edilir</li>
+				<li>Eğer koşul sağlanıyorsa:
+					<ul>
+						<li>Küme parantezleri içindeki komutlar çalıştırılır</li>
+						<li>1. adıma dönülür</li>
+					</ul>
+				</li>
+				<li>Koşul sağlanmıyorsa döngüden çıkılır</li>
+			</ol>
+			<p><strong>Not:</strong> <code>while</code> döngüsü, <code>for</code> döngüsünün yalnızca koşuldan oluşan halidir.<br>
+			Yani <code>for(;i&lt;10;)</code> ile <code>while(i&lt;10)</code> aynı döngüdür.</p>
+		</div>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek: 1'den 10'a Kadar while ile Yazdırma</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">i</span> = <span class="syntax-number">1</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">while</span>(<span class="syntax-variable">i</span> <= <span class="syntax-number">10</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">i</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">i</span>++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
+}</code>
+			</div>
+			<p><strong>Çıktı:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
+		</div>
+
+		<h2>do-while Döngüsü</h2>
+		<p>Şimdiye kadar gördüğümüz döngülerde önce koşula bakılıyor, sonra komutlar çalıştırılıyordu. Ancak bazen döngüdeki komutların <strong>koşul sağlanmasa da en az bir kez çalıştırılmasını</strong> isteyebiliriz. Bu durumlar için <code>do-while</code> döngüsü kullanılır.</p>
+
+		<h3>Sözdizimi:</h3>
+		<div class="code-block">
+			<code><span class="syntax-keyword">do</span><br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Çalıştırılacak komutlar</span><br>
+}<br>
+<span class="syntax-keyword">while</span>(koşul);</code>
+		</div>
+
+		<div class="info-box">
+			<h3><i class="bi bi-gear"></i> do-while Döngüsünün Çalışma Prensibi</h3>
+			<ol>
+				<li>Döngüdeki komutlar <strong>bir kez çalıştırılır</strong></li>
+				<li><strong>Koşul</strong> kontrol edilir:
+					<ul>
+						<li>Eğer koşul sağlanıyorsa 1. adıma dönülür</li>
+						<li>Eğer koşul sağlanmıyorsa döngüden çıkılır</li>
+					</ul>
+				</li>
+			</ol>
+			<p><strong>Fark:</strong> <code>do-while</code> döngüsü, koşul yanlış olsa bile en az bir kez çalışır!</p>
+		</div>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek: do-while Kullanımı</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">i</span> = <span class="syntax-number">1</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">do</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">i</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">i</span>++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">while</span>(<span class="syntax-variable">i</span> <= <span class="syntax-number">10</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
+}</code>
+			</div>
+		</div>
+
+		<h2>Döngülerde Kullanılan Anahtar Kelimeler</h2>
+
+		<h3>1. break - Döngüden Çıkış</h3>
+		<p><code>break</code> komutu, döngüden tamamen çıkmak için kullanılır. Hatırlarsanız <code>switch-case</code>'de de kullanmıştık.</p>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek: break Kullanımı</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">for</span>(<span class="syntax-type">char</span> <span class="syntax-variable">a</span> = <span class="syntax-string">'a'</span>; ; )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">a</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToChar</span>(<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">if</span>(<span class="syntax-variable">a</span> == <span class="syntax-string">'q'</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">break</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}</code>
+			</div>
+			<p><strong>Açıklama:</strong> Bu program, kullanıcı "q" harfini girene kadar döngüde kalmaktadır.</p>
+		</div>
+
+		<h3>2. continue - İterasyonu Atla</h3>
+		<p><code>continue</code> komutu, döngüden çıkmaz, sadece o anki iterasyonu sonlandırır ve bir sonraki iterasyona geçer.</p>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek: continue ile Çift Sayıları Yazdırma</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">for</span>(<span class="syntax-type">int</span> <span class="syntax-variable">a</span> = <span class="syntax-number">0</span>; <span class="syntax-variable">a</span> < <span class="syntax-number">51</span>; <span class="syntax-variable">a</span>++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">if</span>(<span class="syntax-variable">a</span> % <span class="syntax-number">2</span> == <span class="syntax-number">1</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">continue</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">a</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}</code>
+			</div>
+			<p><strong>Açıklama:</strong> Bu program 0'dan 50'ye kadar (0 ve 50 dahil) olan çift sayıları ekrana alt alta yazmaktadır.</p>
+		</div>
+
+		<h3>3. goto - Belirli Bir Etikete Atlama</h3>
+		<p><code>goto</code> komutu, program akışını belirli bir etikete yönlendirir.</p>
+
+		<div class="warning-box">
+			<h3><i class="bi bi-exclamation-triangle"></i> Uyarı</h3>
+			<p><code>goto</code> kullanımı genellikle önerilmez çünkü kod okunabilirliğini azaltır. Sadece özel durumlar için kullanılmalıdır.</p>
+		</div>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek: goto Kullanımı</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;birinci: <span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Birinci bölüm"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">goto</span> ucuncu;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ikinci: <span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"İkinci bölüm"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ucuncu: <span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Üçüncü bölüm"</span>);<br>
+}</code>
+			</div>
+			<p><strong>Çıktı:</strong> Birinci bölüm, Üçüncü bölüm (İkinci bölüm çalıştırılmaz)</p>
+		</div>
+
+		<h2>Döngü Türleri Karşılaştırması</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Döngü Türü</th>
+					<th>Kullanım Durumu</th>
+					<th>İlk Kontrol</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>for</code></td>
+					<td>Döngü sayısı biliniyorsa</td>
+					<td>Koşul önce kontrol edilir</td>
+				</tr>
+				<tr>
+					<td><code>while</code></td>
+					<td>Döngü sayısı bilinmiyorsa</td>
+					<td>Koşul önce kontrol edilir</td>
+				</tr>
+				<tr>
+					<td><code>do-while</code></td>
+					<td>En az bir kez çalışmalıysa</td>
+					<td>Koşul sonra kontrol edilir</td>
+				</tr>
+			</tbody>
+		</table>
+
 		<div class="warning-box">
 			<h3><i class="bi bi-exclamation-triangle"></i> SINAV BİLGİLERİ</h3>
 			<ul>
@@ -612,6 +871,8 @@
 			<li style="margin:10px 0">✅ Algoritma yazmayı öğrenmek programlamanın temelidir</li>
 			<li style="margin:10px 0">✅ Akış diyagramları algoritmaları görselleştirir</li>
 			<li style="margin:10px 0">✅ Değişken isimlendirmede kurallara dikkat edin</li>
+			<li style="margin:10px 0">✅ Döngülerde sonsuz döngüye düşmemeye dikkat edin</li>
+			<li style="margin:10px 0">✅ for, while ve do-while arasındaki farkları iyi öğrenin</li>
 			<li style="margin:10px 0">✅ Her zaman test edin ve hata kontrolü yapın</li>
 			<li style="margin:10px 0">✅ Pratik yaparak öğrenin - kod yazın!</li>
 		</ul>
