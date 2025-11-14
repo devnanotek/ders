@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="İslam ERGÜN">
+	<meta name="description" content="Web Tasarım dersi HTML ve CSS soru-cevap koleksiyonu. Öğrenciler için interaktif kod örnekleri ve çıktıları.">
+	<meta name="keywords" content="HTML, CSS, Web Tasarım, Eğitim, Soru Cevap, Kodlama">
+	<meta name="robots" content="index, follow">
+	<meta property="og:title" content="Web Tasarım Soru & Cevap Koleksiyonu">
+	<meta property="og:description" content="Web Tasarım dersi için hazırlanmış interaktif soru-cevap platformu">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+	<title>Web Tasarım Soru & Cevap | HTML & CSS Eğitimi</title>
+	
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<!-- Prism.js CSS for syntax highlighting -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	
+	<style>
+		/* Global Styles */
+		*{margin:0;padding:0;box-sizing:border-box}
+		body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px 0}
+		
+		/* Header Styles */
+		.main-header{background:#fff;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);padding:40px;margin-bottom:30px;text-align:center}
+		.main-header h1{color:#764ba2;font-weight:700;margin-bottom:10px;font-size:2.5rem}
+		.main-header p{color:#6c757d;font-size:1.1rem}
+		.author-badge{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 20px;border-radius:50px;margin-top:15px;font-size:0.9rem}
+		
+		/* Category Header */
+		.category-header{background:#fff;border-radius:15px;padding:25px;margin:40px 0 25px 0;box-shadow:0 5px 15px rgba(0,0,0,0.1);text-align:center}
+		.category-header h2{color:#764ba2;font-weight:600;margin:0;font-size:2rem}
+		.category-header i{margin-right:10px;font-size:1.8rem}
+		
+		/* Question Card Styles */
+		.question-card{background:#fff;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);margin-bottom:30px;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s}
+		.question-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+		.question-header{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:20px 25px;font-size:1.2rem;font-weight:600;display:flex;align-items:center}
+		.question-header i{margin-right:12px;font-size:1.4rem}
+		.question-number{background:rgba(255,255,255,0.2);padding:5px 15px;border-radius:20px;margin-right:15px;font-size:0.9rem}
+		
+		/* Tab Navigation */
+		.nav-tabs{border:none;padding:0 25px;padding-top:15px;background:#f8f9fa}
+		.nav-tabs .nav-link{border:none;color:#6c757d;font-weight:500;padding:12px 25px;border-radius:10px 10px 0 0;transition:all 0.3s}
+		.nav-tabs .nav-link:hover{background:#e9ecef;color:#495057}
+		.nav-tabs .nav-link.active{background:#fff;color:#764ba2;border-bottom:3px solid #764ba2}
+		.nav-tabs .nav-link i{margin-right:8px}
+		
+		/* Tab Content */
+		.tab-content{padding:25px;background:#fff}
+		
+		/* Code Block Styles */
+		.code-container{background:#2d2d2d;border-radius:10px;overflow:hidden;margin:15px 0}
+		.code-header{background:#1e1e1e;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #444}
+		.code-header span{color:#a8a8a8;font-size:0.85rem;font-family:'Courier New',monospace}
+		.copy-btn{background:#667eea;color:#fff;border:none;padding:5px 15px;border-radius:5px;font-size:0.8rem;cursor:pointer;transition:background 0.3s}
+		.copy-btn:hover{background:#764ba2}
+		.copy-btn i{margin-right:5px}
+		pre[class*="language-"]{margin:0!important;border-radius:0}
+		code[class*="language-"]{font-size:0.9rem;line-height:1.6}
+		
+		/* Output/Preview Styles */
+		.output-container{background:#f8f9fa;border:2px dashed #dee2e6;border-radius:10px;padding:25px;min-height:150px}
+		.output-label{color:#764ba2;font-weight:600;margin-bottom:15px;font-size:1.1rem;display:flex;align-items:center}
+		.output-label i{margin-right:8px}
+		
+		/* Responsive */
+		@media (max-width:768px){
+			.main-header h1{font-size:1.8rem}
+			.question-header{font-size:1rem;flex-wrap:wrap}
+			.nav-tabs{padding:0 15px;padding-top:10px}
+			.nav-tabs .nav-link{padding:10px 15px;font-size:0.9rem}
+		}
+		
+		/* Accessibility */
+		:focus-visible{outline:3px solid #667eea;outline-offset:2px}
+		
+		/* Animation */
+		@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+		.question-card{animation:fadeIn 0.5s ease-out}
+		
+		/* Scroll Progress Bar */
+		.progress-container{position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(255,255,255,0.2);z-index:9999}
+		.progress-bar-custom{height:4px;background:linear-gradient(90deg,#667eea,#764ba2);width:0%;transition:width 0.3s}
+		
+		/* Back Button */
+		.btn-back{position:fixed;top:20px;left:20px;background:#fff;color:#764ba2;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;z-index:1000;font-weight:600}
+		.btn-back:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3);color:#667eea}
+	</style>
+</head>
+<body>
+
+<!-- Scroll Progress Bar -->
+<div class="progress-container"><div class="progress-bar-custom" id="progressBar"></div></div>
+
+<a href="index.html" class="btn-back"><i class="bi bi-arrow-left-circle"></i> Ana Sayfa</a>
+
+<div class="container">
+	<!-- Main Header -->
+	<header class="main-header" role="banner">
+		<h1><i class="bi bi-code-square"></i> Web Tasarım Soru & Cevap</h1>
+		<p>HTML ve CSS Dersi - İnteraktif Soru Çözümleri</p>
+		<span class="author-badge" role="contentinfo"><i class="bi bi-person-circle"></i> İslam ERGÜN</span>
+	</header>
+
+	<!-- HTML SORULARI -->
+	<section aria-labelledby="html-section">
+		<div class="category-header">
+			<h2 id="html-section"><i class="bi bi-file-code"></i> HTML Soruları</h2>
+		</div>
+
+		<!-- SORU 1 -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 1</span>
+				<span>H₂SO₄ ifadesini oluşturun</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#q1-code" type="button" role="tab" aria-selected="true"><i class="bi bi-code-slash"></i> Kod</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#q1-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="q1-code" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;SO&lt;sub&gt;4&lt;/sub&gt;&lt;/p&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="q1-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<p>H<sub>2</sub>SO<sub>4</sub></p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<!-- SORU 2 -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 2</span>
+				<span>"Burada sigara içmek yasaktır" yazısını oluşturun</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#q2-code" type="button" role="tab" aria-selected="true"><i class="bi bi-code-slash"></i> Kod</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#q2-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="q2-code" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;p&gt;Burada sigara içmek &lt;mark&gt;yasaktır&lt;/mark&gt;&lt;/p&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="q2-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<p>Burada sigara içmek <mark>yasaktır</mark></p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<!-- SORU 3 -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 3</span>
+				<span>(x+y)² = x² + 2xy + y² formülünü oluşturun</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#q3-code" type="button" role="tab" aria-selected="true"><i class="bi bi-code-slash"></i> Kod</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#q3-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="q3-code" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;p&gt;(x+y)&lt;sup&gt;2&lt;/sup&gt; = x&lt;sup&gt;2&lt;/sup&gt; + 2xy + y&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="q3-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<p style="font-size:1.2rem">(x+y)<sup>2</sup> = x<sup>2</sup> + 2xy + y<sup>2</sup></p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<!-- SORU 4 -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 4</span>
+				<span>İstanbul kelimesinin harflerini farklı renklerde göster</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#q4-code" type="button" role="tab" aria-selected="true"><i class="bi bi-code-slash"></i> Kod</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#q4-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="q4-code" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;span style="color:red"&gt;İ&lt;/span&gt;
+&lt;span style="color:blue"&gt;s&lt;/span&gt;
+&lt;span style="color:green"&gt;t&lt;/span&gt;
+&lt;span style="color:black"&gt;a&lt;/span&gt;
+&lt;span style="color:grey"&gt;n&lt;/span&gt;
+&lt;span style="color:pink"&gt;b&lt;/span&gt;
+&lt;span style="color:orange"&gt;u&lt;/span&gt;
+&lt;span style="color:purple"&gt;l&lt;/span&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="q4-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<p style="font-size:2rem;font-weight:600">
+							<span style="color:red">İ</span><span style="color:blue">s</span><span style="color:green">t</span><span style="color:black">a</span><span style="color:grey">n</span><span style="color:pink">b</span><span style="color:orange">u</span><span style="color:purple">l</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<!-- SORU 5 -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 5</span>
+				<span>Sıralı liste sorusu (A-F arası şehirler)</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#q5-code" type="button" role="tab" aria-selected="true"><i class="bi bi-code-slash"></i> Kod</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#q5-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="q5-code" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;h4&gt;Türkiye'nin Bazı Şehirleri&lt;/h4&gt;
+&lt;ol type="A"&gt;
+    &lt;li&gt;Ankara&lt;/li&gt;
+    &lt;li&gt;İstanbul&lt;/li&gt;
+    &lt;li&gt;İzmir&lt;/li&gt;
+    &lt;li&gt;Bursa&lt;/li&gt;
+    &lt;li&gt;Antalya&lt;/li&gt;
+    &lt;li&gt;Adana&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="q5-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<h4>Türkiye'nin Bazı Şehirleri</h4>
+						<ol type="A">
+							<li>Ankara</li>
+							<li>İstanbul</li>
+							<li>İzmir</li>
+							<li>Bursa</li>
+							<li>Antalya</li>
+							<li>Adana</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<!-- SORU 6 -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 6</span>
+				<span>Asal, Tek, Çift sayılar tablosu</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#q6-code" type="button" role="tab" aria-selected="true"><i class="bi bi-code-slash"></i> Kod</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#q6-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="q6-code" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Asal&lt;/th&gt;
+        &lt;th&gt;Tek&lt;/th&gt;
+        &lt;th&gt;Çift&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;13&lt;/td&gt;
+        &lt;td&gt;21&lt;/td&gt;
+        &lt;td&gt;24&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;7&lt;/td&gt;
+        &lt;td&gt;33&lt;/td&gt;
+        &lt;td&gt;10&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="q6-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<table class="table table-bordered table-striped">
+							<thead class="table-dark">
+								<tr>
+									<th>Asal</th>
+									<th>Tek</th>
+									<th>Çift</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>13</td>
+									<td>21</td>
+									<td>24</td>
+								</tr>
+								<tr>
+									<td>7</td>
+									<td>33</td>
+									<td>10</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</article>
+	</section>
+
+	<!-- CSS SORULARI -->
+	<section aria-labelledby="css-section">
+		<div class="category-header">
+			<h2 id="css-section"><i class="bi bi-palette"></i> CSS Soruları</h2>
+		</div>
+
+		<!-- CSS SORU 1 -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 1</span>
+				<span>ID kullanarak stil oluşturma</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#css1-html" type="button" role="tab" aria-selected="true"><i class="bi bi-file-code"></i> HTML</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#css1-css" type="button" role="tab" aria-selected="false"><i class="bi bi-palette"></i> CSS</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#css1-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="css1-html" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;h1 id="baslik1"&gt;Başlık 1&lt;/h1&gt;
+&lt;h2 id="baslik2"&gt;Başlık 2&lt;/h2&gt;
+&lt;p id="icerik"&gt;Bu bir içerik paragrafıdır. ID kullanarak stillendirme yapıyoruz.&lt;/p&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="css1-css" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>CSS</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-css">#baslik1 {
+    color: blue;
+    font-size: 24px;
+    text-align: center;
+}
+
+#baslik2 {
+    color: red;
+    font-size: 20px;
+    text-align: center;
+}
+
+#icerik {
+    color: green;
+    font-size: 16px;
+    text-align: justify;
+    padding: 20px;
+}</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="css1-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<h1 style="color:blue;font-size:24px;text-align:center">Başlık 1</h1>
+						<h2 style="color:red;font-size:20px;text-align:center">Başlık 2</h2>
+						<p style="color:green;font-size:16px;text-align:justify;padding:20px">Bu bir içerik paragrafıdır. ID kullanarak stillendirme yapıyoruz. Her ID sadece bir kez kullanılabilir ve benzersiz olmalıdır.</p>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<!-- CSS SORU 2 -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 2</span>
+				<span>Class kullanarak kutu düzeni</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#css2-html" type="button" role="tab" aria-selected="true"><i class="bi bi-file-code"></i> HTML</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#css2-css" type="button" role="tab" aria-selected="false"><i class="bi bi-palette"></i> CSS</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#css2-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="css2-html" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;div class="container"&gt;
+    &lt;div class="kutu1"&gt;
+        &lt;h3&gt;Birinci Kutu&lt;/h3&gt;
+        &lt;p&gt;Bu yeşil renkli bir kutudur.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="kutu2"&gt;
+        &lt;h3&gt;İkinci Kutu&lt;/h3&gt;
+        &lt;p&gt;Bu sarı renkli bir kutudur.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="kutu3"&gt;
+        &lt;h3&gt;Üçüncü Kutu&lt;/h3&gt;
+        &lt;p&gt;Bu kırmızı renkli bir kutudur.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="css2-css" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>CSS</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-css">.container {
+    width: 100%;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.kutu1 {
+    background-color: #66FF33;
+    padding: 15px;
+    margin: 10px;
+    border: 1px solid #000;
+}
+
+.kutu2 {
+    background-color: #F5B800;
+    padding: 15px;
+    margin: 10px;
+    border: 1px solid #000;
+}
+
+.kutu3 {
+    background-color: #FF6B6B;
+    padding: 15px;
+    margin: 10px;
+    border: 1px solid #000;
+    color: white;
+}</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="css2-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<div style="width:100%;border:2px solid black;padding:10px">
+							<div style="background-color:#66FF33;padding:15px;margin:10px;border:1px solid #000">
+								<h3>Birinci Kutu</h3>
+								<p>Bu yeşil renkli bir kutudur.</p>
+							</div>
+							<div style="background-color:#F5B800;padding:15px;margin:10px;border:1px solid #000">
+								<h3>İkinci Kutu</h3>
+								<p>Bu sarı renkli bir kutudur.</p>
+							</div>
+							<div style="background-color:#FF6B6B;padding:15px;margin:10px;border:1px solid #000;color:white">
+								<h3>Üçüncü Kutu</h3>
+								<p>Bu kırmızı renkli bir kutudur.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<!-- CSS SORU 3 -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 3</span>
+				<span>Menü Oluşturma</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#css3-html" type="button" role="tab" aria-selected="true"><i class="bi bi-file-code"></i> HTML</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#css3-css" type="button" role="tab" aria-selected="false"><i class="bi bi-palette"></i> CSS</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#css3-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="css3-html" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;ul class="menu"&gt;
+    &lt;li&gt;&lt;a href="#anasayfa"&gt;Ana Sayfa&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#hakkimizda"&gt;Hakkımızda&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#hizmetler"&gt;Hizmetler&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#iletisim"&gt;İletişim&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="css3-css" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>CSS</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-css">ul.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    overflow: hidden;
+}
+
+ul.menu li {
+    float: left;
+}
+
+ul.menu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+ul.menu li a:hover {
+    background-color: #111;
+}</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="css3-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<ul style="list-style-type:none;margin:0;padding:0;background-color:#333;overflow:hidden">
+							<li style="float:left"><a href="#anasayfa" style="display:block;color:white;text-align:center;padding:14px 20px;text-decoration:none">Ana Sayfa</a></li>
+							<li style="float:left"><a href="#hakkimizda" style="display:block;color:white;text-align:center;padding:14px 20px;text-decoration:none">Hakkımızda</a></li>
+							<li style="float:left"><a href="#hizmetler" style="display:block;color:white;text-align:center;padding:14px 20px;text-decoration:none">Hizmetler</a></li>
+							<li style="float:left"><a href="#iletisim" style="display:block;color:white;text-align:center;padding:14px 20px;text-decoration:none">İletişim</a></li>
+						</ul>
+						<div style="clear:both;padding:20px;background:#fff">
+							<h4>Hoş Geldiniz</h4>
+							<p>Bu bir menü örneğidir.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<!-- CSS SORU 4 - FORM -->
+		<article class="question-card">
+			<div class="question-header" role="heading" aria-level="3">
+				<span class="question-number">Soru 4</span>
+				<span>Form Oluşturma ve Stillendirme</span>
+			</div>
+			<ul class="nav nav-tabs" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#css4-html" type="button" role="tab" aria-selected="true"><i class="bi bi-file-code"></i> HTML</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#css4-css" type="button" role="tab" aria-selected="false"><i class="bi bi-palette"></i> CSS</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" data-bs-target="#css4-output" type="button" role="tab" aria-selected="false"><i class="bi bi-eye"></i> Çıktı</button>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane fade show active" id="css4-html" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>HTML</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-markup">&lt;div class="form-container"&gt;
+    &lt;h2&gt;Kayıt Formu&lt;/h2&gt;
+    &lt;form&gt;
+        &lt;label for="adsoyad"&gt;Ad Soyad:&lt;/label&gt;
+        &lt;input type="text" id="adsoyad" name="adsoyad" required&gt;
+        
+        &lt;label for="email"&gt;E-posta:&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required&gt;
+        
+        &lt;label for="sifre"&gt;Şifre:&lt;/label&gt;
+        &lt;input type="password" id="sifre" name="sifre" required&gt;
+        
+        &lt;div class="radio-group"&gt;
+            &lt;label&gt;Cinsiyet:&lt;/label&gt;
+            &lt;input type="radio" id="erkek" name="cinsiyet" value="erkek"&gt;
+            &lt;label for="erkek"&gt;Erkek&lt;/label&gt;
+            &lt;input type="radio" id="kadin" name="cinsiyet" value="kadin"&gt;
+            &lt;label for="kadin"&gt;Kadın&lt;/label&gt;
+        &lt;/div&gt;
+        
+        &lt;input type="submit" value="Gönder"&gt;
+        &lt;input type="reset" value="Temizle"&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="css4-css" role="tabpanel">
+					<div class="code-container">
+						<div class="code-header">
+							<span>CSS</span>
+							<button class="copy-btn" onclick="copyCode(this)" aria-label="Kodu kopyala"><i class="bi bi-clipboard"></i> Kopyala</button>
+						</div>
+						<pre><code class="language-css">.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+input[type="reset"] {
+    background-color: #f44336;
+}</code></pre>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="css4-output" role="tabpanel">
+					<div class="output-container">
+						<div class="output-label"><i class="bi bi-play-circle"></i> Önizleme:</div>
+						<div style="background-color:white;padding:30px;border-radius:5px;max-width:500px;margin:0 auto;box-shadow:0 0 10px rgba(0,0,0,0.1)">
+							<h2 style="color:#333;text-align:center">Kayıt Formu</h2>
+							<form>
+								<label style="display:block;margin-top:15px;color:#555;font-weight:bold">Ad Soyad:</label>
+								<input type="text" style="width:100%;padding:10px;margin-top:5px;border:1px solid #ddd;border-radius:4px" required>
+								<label style="display:block;margin-top:15px;color:#555;font-weight:bold">E-posta:</label>
+								<input type="email" style="width:100%;padding:10px;margin-top:5px;border:1px solid #ddd;border-radius:4px" required>
+								<label style="display:block;margin-top:15px;color:#555;font-weight:bold">Şifre:</label>
+								<input type="password" style="width:100%;padding:10px;margin-top:5px;border:1px solid #ddd;border-radius:4px" required>
+								<div style="margin-top:15px">
+									<label style="display:inline;margin-right:15px">Cinsiyet:</label>
+									<input type="radio" name="cinsiyet" value="erkek"> Erkek
+									<input type="radio" name="cinsiyet" value="kadin" style="margin-left:15px"> Kadın
+								</div>
+								<div style="margin-top:20px">
+									<input type="submit" value="Gönder" style="background-color:#4CAF50;color:white;padding:12px 20px;border:none;border-radius:4px;cursor:pointer;margin-right:10px">
+									<input type="reset" value="Temizle" style="background-color:#f44336;color:white;padding:12px 20px;border:none;border-radius:4px;cursor:pointer">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+	</section>
+
+	<!-- Footer -->
+	<footer class="main-header mt-5" role="contentinfo">
+		<p style="margin:0;color:#6c757d"><i class="bi bi-mortarboard"></i> Web Tasarım Dersi - HTML & CSS Uygulamaları</p>
+		<p style="margin:5px 0 0 0;font-size:0.9rem;color:#9ca3af">&copy; 2025 İslam ERGÜN - Tüm Hakları Saklıdır</p>
+	</footer>
+</div>
+
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- Prism.js for syntax highlighting -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+<script>
+// Copy Code Function
+function copyCode(button) {
+	const codeBlock = button.closest('.code-container').querySelector('code');
+	const textToCopy = codeBlock.textContent;
+	
+	navigator.clipboard.writeText(textToCopy).then(() => {
+		const originalText = button.innerHTML;
+		button.innerHTML = '<i class="bi bi-check-circle"></i> Kopyalandı!';
+		button.style.background = '#28a745';
+		
+		setTimeout(() => {
+			button.innerHTML = originalText;
+			button.style.background = '#667eea';
+		}, 2000);
+	}).catch(err => {
+		alert('Kopyalama başarısız: ' + err);
+	});
+}
+
+// Scroll Progress Bar
+window.addEventListener('scroll', () => {
+	const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+	const scrolled = (window.scrollY / windowHeight) * 100;
+	document.getElementById('progressBar').style.width = scrolled + '%';
+});
+
+// Smooth Scroll for Anchors
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+	anchor.addEventListener('click', function(e) {
+		e.preventDefault();
+		const target = document.querySelector(this.getAttribute('href'));
+		if(target) {
+			target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		}
+	});
+});
+
+// Focus Management for Accessibility
+document.addEventListener('DOMContentLoaded', () => {
+	const tabs = document.querySelectorAll('[data-bs-toggle="tab"]');
+	tabs.forEach(tab => {
+		tab.addEventListener('shown.bs.tab', (event) => {
+			const targetPane = document.querySelector(event.target.dataset.bsTarget);
+			if(targetPane) {
+				targetPane.setAttribute('tabindex', '-1');
+				targetPane.focus();
+			}
+		});
+	});
+});
+</script>
+
+</body>
+</html>

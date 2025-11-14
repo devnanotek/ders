@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="İslam ERGÜN">
+	<meta name="description" content="Programlama Temelleri dersi özeti. C# programlama, algoritma ve akış diyagramları.">
+	<meta name="keywords" content="Programlama, C#, Algoritma, Akış Diyagramı, Eğitim">
+	<meta name="robots" content="index, follow">
+	<meta property="og:title" content="Programlama Temelleri Ders Özeti">
+	<meta property="og:description" content="Programlama temelleri dersi için hazırlanmış kapsamlı ders özeti">
+	<meta property="og:type" content="website">
+	<title>Programlama Temelleri Ders Özeti | C# & Algoritma</title>
+	
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box}
+		body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px 0}
+		.main-header{background:#fff;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);padding:40px;margin-bottom:30px;text-align:center}
+		.main-header h1{color:#764ba2;font-weight:700;margin-bottom:10px;font-size:2.5rem}
+		.author-badge{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 20px;border-radius:50px;margin-top:15px;font-size:0.9rem}
+		.content-card{background:#fff;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);padding:40px;margin-bottom:30px}
+		.content-card h1{color:#764ba2;border-bottom:3px solid #667eea;padding-bottom:15px;margin-bottom:25px}
+		.content-card h2{color:#667eea;margin-top:30px;margin-bottom:20px;border-left:4px solid #764ba2;padding-left:15px}
+		.content-card h3{color:#555;margin-top:20px;margin-bottom:15px}
+		.info-box{background:linear-gradient(135deg,#e3f2fd,#f3e5f5);border-left:4px solid #667eea;padding:20px;margin:20px 0;border-radius:10px}
+		.example-box{background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-left:4px solid #4caf50;padding:20px;margin:20px 0;border-radius:10px}
+		.warning-box{background:linear-gradient(135deg,#fff3e0,#ffe0b2);border-left:4px solid #ff9800;padding:20px;margin:20px 0;border-radius:10px}
+		.code-block{background:#272822;color:#f8f8f2;padding:20px;border-radius:10px;overflow-x:auto;margin:15px 0;border-left:4px solid #61dafb;font-family:'Consolas','Courier New',monospace;line-height:1.6}
+		.code-block code{color:#f8f8f2;font-family:'Consolas','Courier New',monospace}
+		.syntax-keyword{color:#f92672;font-weight:600}
+		.syntax-type{color:#66d9ef;font-style:italic}
+		.syntax-method{color:#a6e22e}
+		.syntax-string{color:#e6db74}
+		.syntax-number{color:#ae81ff}
+		.syntax-comment{color:#75715e;font-style:italic}
+		.syntax-operator{color:#f92672}
+		.syntax-variable{color:#f8f8f2}
+		code{padding:3px 8px;border-radius:4px;font-family:'Courier New',monospace;font-size:0.9em;color:#e83e8c}
+		table{width:100%;border-collapse:collapse;margin:20px 0;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+		th{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:15px;text-align:left}
+		td{padding:12px 15px;border-bottom:1px solid #e0e0e0}
+		tr:hover{background:#f5f5f5}
+		ul,ol{margin-left:25px;line-height:1.8}
+		li{margin:10px 0}
+		.btn-back{position:fixed;top:20px;left:20px;background:#fff;color:#764ba2;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;z-index:1000;font-weight:600}
+		.btn-back:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3);color:#667eea}
+		.btn-print{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:12px 24px;border-radius:50px;cursor:pointer;font-size:1rem;transition:all 0.3s;margin:20px 0}
+		.btn-print:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(102,126,234,0.4)}
+		@media print{body{background:#fff;padding:0}.btn-back,.btn-print,.no-print{display:none}.content-card{box-shadow:none}}
+		@media (max-width:768px){.main-header h1{font-size:1.8rem}.btn-back{font-size:0.8rem;padding:8px 15px}}
+	</style>
+</head>
+<body>
+
+<a href="index.html" class="btn-back no-print"><i class="bi bi-arrow-left-circle"></i> Ana Sayfa</a>
+
+<div class="container">
+	<header class="main-header" role="banner">
+		<h1><i class="bi bi-code-square"></i> Programlama Temelleri</h1>
+		<p>Bilgisayar Programcılığı 1. Sınıf - Ders Özeti</p>
+		<span class="author-badge"><i class="bi bi-person-circle"></i> İslam ERGÜN</span>
+		<div class="mt-3">
+			<button class="btn-print" onclick="window.print()"><i class="bi bi-printer"></i> PDF Olarak İndir</button>
+		</div>
+	</header>
+
+	<article class="content-card">
+		<h1><i class="bi bi-1-circle"></i> Bilgisayar ve Programlama Temelleri</h1>
+		
+		<h2>Bilgisayar Nedir?</h2>
+		<p>Bilgisayar, kullanıcıdan aldığı verilerle mantıksal ve aritmetiksel işlemleri yapan, sonuçları saklayan elektronik bir makinedir.</p>
+		
+		<div class="info-box">
+			<h3><i class="bi bi-info-circle"></i> İki Temel Özelliği:</h3>
+			<ol>
+				<li>Veri işlemek için sembolleri (harf, sayı, noktalama) kullanır</li>
+				<li>Tüm işleri adım adım detaylandırılmış komut listesine (program) göre yapar</li>
+			</ol>
+		</div>
+
+		<h2>Temel Kavramlar</h2>
+		<ul>
+			<li><strong>Bilgi:</strong> Soyut kavram, gerçekler ve düşünceler</li>
+			<li><strong>Semboller:</strong> Bilginin iletilmesinde kullanılan araçlar</li>
+			<li><strong>Veri:</strong> Sembollerle ifade edilen işlenmemiş bilgi</li>
+		</ul>
+
+		<h2>Bilgisayarın Bileşenleri</h2>
+		<ol>
+			<li><strong>Donanım (Hardware):</strong> Fiziksel parçalar (ekran, klavye, disk, fare, yazıcı)</li>
+			<li><strong>Yazılım (Software):</strong> Programlar
+				<ul>
+					<li>İşletim Sistemleri</li>
+					<li>Uygulama Yazılımları</li>
+					<li>Programlama Dilleri</li>
+				</ul>
+			</li>
+		</ol>
+
+		<h2>İkili Sayı Sistemi</h2>
+		<p>Bilgisayarlar 0 ve 1'lerden oluşan ikili sistemi kullanır</p>
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Birim</th>
+					<th>Değer</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1 Bit</td>
+					<td>En küçük bellek birimi (0 veya 1)</td>
+				</tr>
+				<tr>
+					<td>1 Byte</td>
+					<td>8 Bit</td>
+				</tr>
+				<tr>
+					<td>1 KB</td>
+					<td>1024 Byte</td>
+				</tr>
+				<tr>
+					<td>1 MB</td>
+					<td>1024 KB</td>
+				</tr>
+				<tr>
+					<td>1 GB</td>
+					<td>1024 MB</td>
+				</tr>
+				<tr>
+					<td>1 TB</td>
+					<td>1024 GB</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="example-box">
+			<h3><i class="bi bi-lightbulb"></i> Örnek Dönüşümler:</h3>
+			<ul>
+				<li>(175)₁₀ = (10101111)₂</li>
+				<li>(10110100)₂ = 128 + 32 + 16 + 4 = (180)₁₀</li>
+			</ul>
+		</div>
+
+		<h2>Programlama Dilleri Sınıflandırması</h2>
+		<div class="info-box">
+			<h3>Seviyelerine Göre:</h3>
+			<ul>
+				<li><strong>Makine Dili:</strong> 0 ve 1'ler</li>
+				<li><strong>Assembly:</strong> Düşük seviyeli</li>
+				<li><strong>C, C++, Java:</strong> Orta seviyeli</li>
+				<li><strong>Pascal, Basic:</strong> Yüksek seviyeli</li>
+				<li><strong>Visual Basic, Python:</strong> Çok yüksek seviyeli</li>
+			</ul>
+		</div>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-2-circle"></i> Programlama Aşamaları ve Algoritma</h1>
+
+		<h2>Programlama Aşamaları</h2>
+		<ol>
+			<li>Problemin tanınması</li>
+			<li>Çözüm yönteminin belirlenmesi</li>
+			<li>Algoritmanın geliştirilmesi</li>
+			<li>Akış şemasının düzenlenmesi</li>
+			<li>Programın el ile çalıştırılıp denenmesi</li>
+			<li>Uygun programlama dilinin seçilmesi</li>
+			<li>Programın kodlanması</li>
+			<li>Programın bilgisayar ile çalıştırılıp sınanması</li>
+		</ol>
+
+		<h2>Algoritma Nedir?</h2>
+		<p>Bir problemi çözmek için gerekli olan sıralı mantıksal adımların tümüdür.</p>
+
+		<div class="info-box">
+			<h3><i class="bi bi-check2-circle"></i> Algoritmanın Temel Özellikleri:</h3>
+			<ol>
+				<li><strong>Kesinlik:</strong> Anlatım satırları kesin olmalı</li>
+				<li><strong>Etkinlik:</strong> Tekrar anlatımlar olmamalı</li>
+				<li><strong>Sonluluk:</strong> Mutlaka bitiş noktası olmalı</li>
+				<li><strong>Giriş-Çıkış:</strong> Çıkış bilgisi kesinlikle olmalı</li>
+			</ol>
+		</div>
+
+		<h2>İşlemler</h2>
+		
+		<h3>1. Aritmetik İşlemler (Öncelik Sırası):</h3>
+		<ol>
+			<li><code>^</code> (Üs alma)</li>
+			<li><code>*</code> (Çarpma)</li>
+			<li><code>/</code> (Bölme)</li>
+			<li><code>+</code> (Toplama)</li>
+			<li><code>-</code> (Çıkarma)</li>
+		</ol>
+
+		<h3>2. İlişkisel İşlemler:</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Operatör</th>
+					<th>Anlamı</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>&gt;</code></td>
+					<td>Büyüktür</td>
+				</tr>
+				<tr>
+					<td><code>&lt;</code></td>
+					<td>Küçüktür</td>
+				</tr>
+				<tr>
+					<td><code>=</code></td>
+					<td>Eşittir</td>
+				</tr>
+				<tr>
+					<td><code>&gt;=</code></td>
+					<td>Büyük veya eşit</td>
+				</tr>
+				<tr>
+					<td><code>&lt;=</code></td>
+					<td>Küçük veya eşit</td>
+				</tr>
+				<tr>
+					<td><code>^=</code></td>
+					<td>Eşit değil</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>3. Mantıksal İşlemler:</h3>
+		<ul>
+			<li><strong>AND (VE):</strong> Her iki koşul da doğru olmalı</li>
+			<li><strong>OR (VEYA):</strong> Koşullardan biri doğru olmalı</li>
+			<li><strong>NOT (DEĞİL):</strong> Koşulun tersi</li>
+		</ul>
+
+		<h2>Yazılım Geliştirme Araçları</h2>
+		<ul>
+			<li><strong>Editörler:</strong> Kod yazmak için (Notepad, Wordpad)</li>
+			<li><strong>Derleyiciler (Compiler):</strong> Tüm kodu bir kerede makine diline çevirir</li>
+			<li><strong>Yorumlayıcılar (Interpreter):</strong> Kodu satır satır çalıştırır</li>
+			<li><strong>Bağlayıcılar (Linker):</strong> Kodları birleştirip çalıştırılabilir dosya oluşturur</li>
+		</ul>
+
+		<h2>Hata Türleri</h2>
+		<ol>
+			<li><strong>Syntax Error (Sözdizimi):</strong> Programlama dili kurallarına aykırılık</li>
+			<li><strong>Run-time Error:</strong> Program çalışırken oluşan hatalar</li>
+			<li><strong>Logic Error (Mantık Hatası):</strong> Yanlış düşünülmüş mantık</li>
+		</ol>
+
+		<h2>Algoritma Örnekleri</h2>
+		
+		<div class="example-box">
+			<h3><i class="bi bi-calculator"></i> Örnek 1: İki Sayının Toplamı</h3>
+			<ol>
+				<li>BAŞLA</li>
+				<li>A sayısını oku</li>
+				<li>B sayısını oku</li>
+				<li>TOPLAM = A + B</li>
+				<li>TOPLAM değerini ekrana yaz</li>
+				<li>SON</li>
+			</ol>
+		</div>
+
+		<div class="example-box">
+			<h3><i class="bi bi-calculator"></i> Örnek 2: Büyük Sayıdan Küçüğü Çıkarma</h3>
+			<ol>
+				<li>BAŞLA</li>
+				<li>A sayısını oku</li>
+				<li>B sayısını oku</li>
+				<li>Eğer A > B ise
+					<ul>
+						<li>SONUC = A - B</li>
+					</ul>
+					Değilse
+					<ul>
+						<li>SONUC = B - A</li>
+					</ul>
+				</li>
+				<li>SONUC'u yaz</li>
+				<li>SON</li>
+			</ol>
+		</div>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-3-circle"></i> Akış Diyagramları</h1>
+
+		<h2>Akış Diyagramı Nedir?</h2>
+		<p>Algoritmanın şekillerle görsel gösterimidir. Standart semboller kullanılır.</p>
+
+		<h2>Temel Akış Diyagramı Sembolleri</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Sembol</th>
+					<th>Kullanımı</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Terminal (Oval)</td>
+					<td>Başla/Son</td>
+				</tr>
+				<tr>
+					<td>Paralel Kenar</td>
+					<td>Giriş/Çıkış işlemleri</td>
+				</tr>
+				<tr>
+					<td>Dikdörtgen</td>
+					<td>İşlem adımları</td>
+				</tr>
+				<tr>
+					<td>Eşkenar Dörtgen</td>
+					<td>Karar verme (Evet/Hayır)</td>
+				</tr>
+				<tr>
+					<td>Ok</td>
+					<td>Program akış yönü</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="example-box">
+			<h3><i class="bi bi-diagram-3"></i> Akış Diyagramı Örneği: 1'den 100'e Kadar Toplamı</h3>
+			<ol>
+				<li>Başla</li>
+				<li>S = 1, T = 0</li>
+				<li>T = T + S</li>
+				<li>S = S + 1</li>
+				<li>S &lt;= 100 ise 3'e git</li>
+				<li>T'yi göster</li>
+				<li>Son</li>
+			</ol>
+		</div>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-4-circle"></i> C# Programlama</h1>
+
+		<h2>Değişkenler (Variables)</h2>
+		<p>Değişken, hafızada değer tutan alanlardır. Her değişkenin bir türü vardır.</p>
+
+		<h2>Veri Tipleri</h2>
+
+		<h3>Tam Sayı Tipleri:</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Tip</th>
+					<th>Aralık</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>byte</code></td>
+					<td>0-255</td>
+				</tr>
+				<tr>
+					<td><code>sbyte</code></td>
+					<td>-128 ile 127</td>
+				</tr>
+				<tr>
+					<td><code>short</code></td>
+					<td>-32,768 ile 32,767</td>
+				</tr>
+				<tr>
+					<td><code>int</code></td>
+					<td>-2 milyar ile +2 milyar</td>
+				</tr>
+				<tr>
+					<td><code>long</code></td>
+					<td>Çok büyük sayılar</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>Ondalık Sayı Tipleri:</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Tip</th>
+					<th>Hassasiyet</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>float</code></td>
+					<td>7 basamak</td>
+				</tr>
+				<tr>
+					<td><code>double</code></td>
+					<td>15 basamak</td>
+				</tr>
+				<tr>
+					<td><code>decimal</code></td>
+					<td>28 basamak</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>Diğer Tipler:</h3>
+		<ul>
+			<li><strong><code>char</code>:</strong> Tek karakter ('a', 'B', '5')</li>
+			<li><strong><code>string</code>:</strong> Metin ("Merhaba", "C# programlama")</li>
+			<li><strong><code>bool</code>:</strong> true/false</li>
+		</ul>
+
+		<h2>Değişken Tanımlama Kuralları</h2>
+		<div class="info-box">
+			<ol>
+				<li>Harf ile başlamalı: <code>string Ad1;</code> ✓</li>
+				<li>Boşluk olamaz: <code>string Ad_Soyad;</code> ✓</li>
+				<li>Sadece harf, rakam, alt çizgi: <code>string ali_veli;</code> ✓</li>
+				<li>C# komutu olmamalı: <code>string true;</code> ✗</li>
+			</ol>
+		</div>
+
+		<h2>Temel C# Komutları</h2>
+
+		<h3>Ekrana Yazma:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">Console</span>.<span class="syntax-method">Write</span>(<span class="syntax-string">"Merhaba"</span>);      <span class="syntax-comment">// Yan yana yazar</span><br>
+<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Merhaba"</span>);  <span class="syntax-comment">// Alt satıra geçer</span></code>
+		</div>
+
+		<h3>Klavyeden Okuma:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">string</span> <span class="syntax-variable">isim</span> = <span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();</code>
+		</div>
+
+		<h3>Ekranı Bekletme:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">Console</span>.<span class="syntax-method">ReadKey</span>();</code>
+		</div>
+
+		<h2>Tür Dönüşümü</h2>
+
+		<h3>Convert Sınıfı:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">int</span> <span class="syntax-variable">sayi</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToInt32</span>(<span class="syntax-string">"123"</span>);<br>
+<span class="syntax-type">double</span> <span class="syntax-variable">ondalik</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToDouble</span>(<span class="syntax-string">"12.5"</span>);<br>
+<span class="syntax-type">string</span> <span class="syntax-variable">metin</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToString</span>(<span class="syntax-number">45</span>);</code>
+		</div>
+
+		<h3>Parse Metodu:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">int</span> <span class="syntax-variable">a</span> = <span class="syntax-type">int</span>.<span class="syntax-method">Parse</span>(<span class="syntax-string">"100"</span>);<br>
+<span class="syntax-type">double</span> <span class="syntax-variable">b</span> = <span class="syntax-type">double</span>.<span class="syntax-method">Parse</span>(<span class="syntax-string">"3.14"</span>);</code>
+		</div>
+
+		<h2>Operatörler</h2>
+
+		<h3>Aritmetik:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">int</span> <span class="syntax-variable">toplam</span> = <span class="syntax-number">5</span> + <span class="syntax-number">3</span>;  <span class="syntax-comment">// 8</span><br>
+<span class="syntax-type">int</span> <span class="syntax-variable">carpim</span> = <span class="syntax-number">4</span> * <span class="syntax-number">2</span>;  <span class="syntax-comment">// 8</span><br>
+<span class="syntax-type">int</span> <span class="syntax-variable">bolum</span> = <span class="syntax-number">10</span> / <span class="syntax-number">2</span>;  <span class="syntax-comment">// 5</span><br>
+<span class="syntax-type">int</span> <span class="syntax-variable">mod</span> = <span class="syntax-number">10</span> % <span class="syntax-number">3</span>;    <span class="syntax-comment">// 1 (kalan)</span></code>
+		</div>
+
+		<h3>Artırma/Azaltma:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">int</span> <span class="syntax-variable">a</span> = <span class="syntax-number">5</span>;<br>
+<span class="syntax-variable">a</span>++;   <span class="syntax-comment">// a = 6 (sonra arttır)</span><br>
+++<span class="syntax-variable">a</span>;   <span class="syntax-comment">// a = 7 (önce arttır)</span></code>
+		</div>
+
+		<h3>Karşılaştırma:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">bool</span> <span class="syntax-variable">sonuc1</span> = <span class="syntax-number">5</span> > <span class="syntax-number">3</span>;      <span class="syntax-comment">// true</span><br>
+<span class="syntax-type">bool</span> <span class="syntax-variable">sonuc2</span> = <span class="syntax-number">10</span> == <span class="syntax-number">10</span>;   <span class="syntax-comment">// true</span><br>
+<span class="syntax-type">bool</span> <span class="syntax-variable">sonuc3</span> = <span class="syntax-number">7</span> != <span class="syntax-number">5</span>;     <span class="syntax-comment">// true</span></code>
+		</div>
+
+		<h3>Mantıksal:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">bool</span> <span class="syntax-variable">sonuc</span> = (<span class="syntax-number">5</span> > <span class="syntax-number">3</span>) <span class="syntax-operator">&&</span> (<span class="syntax-number">10</span> < <span class="syntax-number">20</span>);   <span class="syntax-comment">// true (VE)</span><br>
+<span class="syntax-type">bool</span> <span class="syntax-variable">sonuc2</span> = (<span class="syntax-number">5</span> > <span class="syntax-number">3</span>) <span class="syntax-operator">||</span> (<span class="syntax-number">10</span> > <span class="syntax-number">20</span>);  <span class="syntax-comment">// true (VEYA)</span><br>
+<span class="syntax-type">bool</span> <span class="syntax-variable">sonuc3</span> = <span class="syntax-operator">!</span>(<span class="syntax-number">5</span> > <span class="syntax-number">3</span>);              <span class="syntax-comment">// false (DEĞİL)</span></code>
+		</div>
+
+		<h2>Kontrol Yapıları</h2>
+
+		<h3>if-else:</h3>
+		<div class="code-block">
+			<code><span class="syntax-keyword">if</span> (koşul)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Koşul doğruysa çalışır</span><br>
+}<br>
+<span class="syntax-keyword">else</span><br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Koşul yanlışsa çalışır</span><br>
+}</code>
+		</div>
+
+		<div class="example-box">
+			<h4>Örnek:</h4>
+			<div class="code-block">
+				<code><span class="syntax-type">int</span> <span class="syntax-variable">yas</span> = <span class="syntax-number">18</span>;<br>
+<span class="syntax-keyword">if</span> (<span class="syntax-variable">yas</span> >= <span class="syntax-number">18</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Reşitsiniz"</span>);<br>
+}<br>
+<span class="syntax-keyword">else</span><br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Reşit değilsiniz"</span>);<br>
+}</code>
+			</div>
+		</div>
+
+		<h3>switch-case:</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">int</span> <span class="syntax-variable">gun</span> = <span class="syntax-number">3</span>;<br>
+<span class="syntax-keyword">switch</span> (<span class="syntax-variable">gun</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">case</span> <span class="syntax-number">1</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Pazartesi"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">break</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">case</span> <span class="syntax-number">2</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Salı"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">break</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">case</span> <span class="syntax-number">3</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Çarşamba"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">break</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">default</span>:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Geçersiz gün"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">break</span>;<br>
+}</code>
+		</div>
+
+		<h3>Ternary Operatör (?:):</h3>
+		<div class="code-block">
+			<code><span class="syntax-type">string</span> <span class="syntax-variable">mesaj</span> = (<span class="syntax-variable">yas</span> >= <span class="syntax-number">18</span>) <span class="syntax-operator">?</span> <span class="syntax-string">"Reşit"</span> <span class="syntax-operator">:</span> <span class="syntax-string">"Reşit değil"</span>;</code>
+		</div>
+
+		<h2>Pratik Örnekler</h2>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek 1: İki Sayıyı Toplama</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">Write</span>(<span class="syntax-string">"Birinci sayı: "</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">sayi1</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToInt32</span>(<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">Write</span>(<span class="syntax-string">"İkinci sayı: "</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">sayi2</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToInt32</span>(<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>());<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">toplam</span> = <span class="syntax-variable">sayi1</span> + <span class="syntax-variable">sayi2</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Toplam: "</span> + <span class="syntax-variable">toplam</span>);<br>
+}</code>
+			</div>
+		</div>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek 2: Selamlaşma</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">selamla</span>(<span class="syntax-type">string</span> <span class="syntax-variable">kullanici</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Hoşgeldin "</span> + <span class="syntax-variable">kullanici</span>);<br>
+}<br>
+<br>
+<span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">Write</span>(<span class="syntax-string">"Adınız: "</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">string</span> <span class="syntax-variable">isim</span> = <span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-method">selamla</span>(<span class="syntax-variable">isim</span>);<br>
+}</code>
+			</div>
+		</div>
+
+		<div class="example-box">
+			<h3><i class="bi bi-code"></i> Örnek 3: Programlama Sever misin?</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Programlamayı seviyor musun? (Y/N)"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">string</span> <span class="syntax-variable">cevap</span> = <span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">cevap</span> == <span class="syntax-string">"Y"</span> <span class="syntax-operator">?</span> <span class="syntax-string">"Harika!"</span> <span class="syntax-operator">:</span> <span class="syntax-string">"Oh yazık..."</span>);<br>
+}</code>
+			</div>
+		</div>
+
+		<div class="warning-box">
+			<h3><i class="bi bi-exclamation-triangle"></i> SINAV BİLGİLERİ</h3>
+			<ul>
+				<li><strong>Vize:</strong> %20</li>
+				<li><strong>Final:</strong> %80</li>
+				<li><strong>Geçme Notu:</strong> 60</li>
+			</ul>
+		</div>
+	</article>
+
+	<footer class="main-header mt-5">
+		<h3 style="color:#764ba2;margin-bottom:20px"><i class="bi bi-lightbulb"></i> Önemli Notlar</h3>
+		<ul style="list-style:none;padding:0;text-align:left;max-width:600px;margin:0 auto">
+			<li style="margin:10px 0">✅ Algoritma yazmayı öğrenmek programlamanın temelidir</li>
+			<li style="margin:10px 0">✅ Akış diyagramları algoritmaları görselleştirir</li>
+			<li style="margin:10px 0">✅ Değişken isimlendirmede kurallara dikkat edin</li>
+			<li style="margin:10px 0">✅ Her zaman test edin ve hata kontrolü yapın</li>
+			<li style="margin:10px 0">✅ Pratik yaparak öğrenin - kod yazın!</li>
+		</ul>
+		<p style="margin-top:30px;color:#6c757d">&copy; 2025 İslam ERGÜN - Tüm Hakları Saklıdır</p>
+	</footer>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
