@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="İslam ERGÜN">
+	<meta name="description" content="Ağ Temelleri dersi kapsamlı özeti. Ağ topolojileri, OSI modeli, TCP/IP, IP adresleme, subnetting ve ağ protokolleri.">
+	<meta name="keywords" content="Ağ Temelleri, Network, TCP/IP, OSI Model, IP Adresleme, Subnetting, Router, Switch">
+	<meta name="robots" content="index, follow">
+	<meta property="og:title" content="Ağ Temelleri Ders Özeti">
+	<meta property="og:description" content="Bilgisayar Ağları için hazırlanmış kapsamlı ders özeti">
+	<meta property="og:type" content="website">
+	<title>Ağ Temelleri Ders Özeti | Network Fundamentals</title>
+	
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box}
+		body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px 0}
+		.main-header{background:#fff;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);padding:40px;margin-bottom:30px;text-align:center}
+		.main-header h1{color:#764ba2;font-weight:700;margin-bottom:10px;font-size:2.5rem}
+		.author-badge{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 20px;border-radius:50px;margin-top:15px;font-size:0.9rem}
+		.content-card{background:#fff;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);padding:40px;margin-bottom:30px}
+		.content-card h1{color:#764ba2;border-bottom:3px solid #667eea;padding-bottom:15px;margin-bottom:25px}
+		.content-card h2{color:#667eea;margin-top:30px;margin-bottom:20px;border-left:4px solid #764ba2;padding-left:15px}
+		.content-card h3{color:#555;margin-top:20px;margin-bottom:15px}
+		.info-box{background:linear-gradient(135deg,#e3f2fd,#f3e5f5);border-left:4px solid #667eea;padding:20px;margin:20px 0;border-radius:10px}
+		.example-box{background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-left:4px solid #4caf50;padding:20px;margin:20px 0;border-radius:10px}
+		.warning-box{background:linear-gradient(135deg,#fff3e0,#ffe0b2);border-left:4px solid #ff9800;padding:20px;margin:20px 0;border-radius:10px}
+		.topology-box{background:#f8f9fa;border:2px solid #dee2e6;border-radius:10px;padding:25px;margin:20px 0;text-align:center}
+		.device-card{background:#fff;border:2px solid #667eea;border-radius:10px;padding:20px;margin:15px 0;transition:all 0.3s}
+		.device-card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(102,126,234,0.3)}
+		.device-card h4{color:#764ba2;margin-bottom:10px}
+		.protocol-badge{display:inline-block;background:#667eea;color:#fff;padding:5px 15px;border-radius:20px;margin:5px;font-size:0.9rem}
+		code{background:#f8f9fa;padding:3px 8px;border-radius:4px;font-family:'Courier New',monospace;font-size:0.9em;color:#e83e8c;border:1px solid #dee2e6}
+		.ip-example{background:#2d2d2d;color:#f8f8f2;padding:20px;border-radius:10px;font-family:'Courier New',monospace;margin:15px 0;border-left:4px solid #61dafb}
+		table{width:100%;border-collapse:collapse;margin:20px 0;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+		th{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:15px;text-align:left}
+		td{padding:12px 15px;border-bottom:1px solid #e0e0e0;background:#fff}
+		tr:hover td{background:#f5f5f5}
+		ul,ol{margin-left:25px;line-height:1.8}
+		li{margin:10px 0}
+		.btn-back{position:fixed;top:20px;left:20px;background:#fff;color:#764ba2;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;z-index:1000;font-weight:600}
+		.btn-back:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3);color:#667eea}
+		.btn-print{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:12px 24px;border-radius:50px;cursor:pointer;font-size:1rem;transition:all 0.3s;margin:20px 0}
+		.btn-print:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(102,126,234,0.4)}
+		.layer-stack{display:flex;flex-direction:column;margin:20px 0}
+		.layer{padding:15px;margin:5px 0;border-radius:8px;font-weight:600;text-align:center;color:#fff;transition:all 0.3s}
+		.layer:hover{transform:translateX(10px)}
+		.layer-7{background:linear-gradient(135deg,#e91e63,#c2185b)}
+		.layer-6{background:linear-gradient(135deg,#9c27b0,#7b1fa2)}
+		.layer-5{background:linear-gradient(135deg,#673ab7,#512da8)}
+		.layer-4{background:linear-gradient(135deg,#3f51b5,#303f9f)}
+		.layer-3{background:linear-gradient(135deg,#2196f3,#1976d2)}
+		.layer-2{background:linear-gradient(135deg,#00bcd4,#0097a7)}
+		.layer-1{background:linear-gradient(135deg,#009688,#00796b)}
+		@media print{body{background:#fff;padding:0}.btn-back,.btn-print,.no-print{display:none}.content-card{box-shadow:none}}
+		@media (max-width:768px){.main-header h1{font-size:1.8rem}.btn-back{font-size:0.8rem;padding:8px 15px}.layer-stack{font-size:0.9rem}}
+		:focus-visible{outline:3px solid #667eea;outline-offset:2px}
+	</style>
+</head>
+<body>
+
+<a href="index.html" class="btn-back no-print"><i class="bi bi-arrow-left-circle"></i> Ana Sayfa</a>
+
+<a href="ag-temelleri-sinav-hazirlik.html" style="position:fixed;top:20px;right:20px;background:#4caf50;color:#fff;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 5px 15px rgba(76,175,80,0.3);transition:all 0.3s;z-index:1000;font-weight:600" class="no-print"><i class="bi bi-journal-check"></i> Sınav Hazırlık</a>
+
+<div class="container">
+	<header class="main-header" role="banner">
+		<h1><i class="bi bi-router"></i> Ağ Temelleri</h1>
+		<p>Bilgisayar Ağları - Kapsamlı Ders Özeti</p>
+		<span class="author-badge"><i class="bi bi-person-circle"></i> İslam ERGÜN</span>
+		<div class="mt-3">
+			<button class="btn-print" onclick="window.print()"><i class="bi bi-printer"></i> PDF Olarak İndir</button>
+		</div>
+	</header>
+
+	<article class="content-card">
+		<h1><i class="bi bi-1-circle"></i> Bilgisayar Ağı Nedir?</h1>
+		
+		<h2>Tanım</h2>
+		<p>Bilgisayar ağı, iki veya daha fazla bilgisayarın ve diğer cihazların veri paylaşımı ve kaynak kullanımı amacıyla birbirine bağlandığı sistemdir.</p>
+		
+		<div class="info-box">
+			<h3><i class="bi bi-info-circle"></i> Ağın Temel Amaçları:</h3>
+			<ul>
+				<li><strong>Kaynak Paylaşımı:</strong> Yazıcı, dosya sunucusu, internet bağlantısı gibi kaynakların ortak kullanımı</li>
+				<li><strong>Veri İletişimi:</strong> Kullanıcılar arası hızlı ve güvenli veri aktarımı</li>
+				<li><strong>Merkezileştirilmiş Yönetim:</strong> Tek noktadan sistem yönetimi ve güvenlik kontrolü</li>
+				<li><strong>Yedekleme:</strong> Merkezi yedekleme sistemleri ile veri güvenliği</li>
+			</ul>
+		</div>
+
+		<h2>Ağ Türleri (Coğrafi Kapsamına Göre)</h2>
+
+		<div class="device-card">
+			<h4><i class="bi bi-house-door"></i> PAN (Personal Area Network)</h4>
+			<p><strong>Kapsam:</strong> 1-10 metre</p>
+			<p><strong>Açıklama:</strong> Kişisel cihazlar arası ağ (Bluetooth, USB bağlantıları)</p>
+			<p><strong>Örnekler:</strong> Telefon-kulaklık, bilgisayar-fare bağlantısı</p>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-building"></i> LAN (Local Area Network)</h4>
+			<p><strong>Kapsam:</strong> Bir bina veya kampüs</p>
+			<p><strong>Açıklama:</strong> Sınırlı bir coğrafi alanda kurulmuş yerel ağ</p>
+			<p><strong>Örnekler:</strong> Ofis ağı, okul laboratuvarı, ev ağı</p>
+			<p><strong>Teknolojiler:</strong> Ethernet, Wi-Fi</p>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-buildings"></i> MAN (Metropolitan Area Network)</h4>
+			<p><strong>Kapsam:</strong> Bir şehir veya büyük kampüs</p>
+			<p><strong>Açıklama:</strong> Şehir çapında birden fazla LAN'ı birbirine bağlar</p>
+			<p><strong>Örnekler:</strong> Üniversite kampüsleri arası bağlantı, şehir içi kurumsal ağlar</p>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-globe"></i> WAN (Wide Area Network)</h4>
+			<p><strong>Kapsam:</strong> Ülke, kıta veya dünya çapında</p>
+			<p><strong>Açıklama:</strong> Geniş coğrafi alanlardaki ağları birbirine bağlar</p>
+			<p><strong>Örnekler:</strong> İnternet, bankacılık ağları, kurumsal WAN'lar</p>
+			<p><strong>Teknolojiler:</strong> Fiber optik, uydu bağlantıları, kiralık hatlar</p>
+		</div>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-2-circle"></i> Ağ Topolojileri</h1>
+		
+		<p>Topoloji, ağdaki cihazların fiziksel veya mantıksal olarak nasıl bağlandığını gösteren yapıdır.</p>
+
+		<h2>1. Bus (Yol) Topolojisi</h2>
+		<div class="topology-box">
+			<p><strong>Yapı:</strong> Tüm cihazlar tek bir ana kabloya (backbone) bağlanır</p>
+			<p><strong>Avantajlar:</strong> ✓ Kurulumu kolay ✓ Az kablo gerektirir ✓ Ekonomik</p>
+			<p><strong>Dezavantajlar:</strong> ✗ Ana kablo arızasında tüm ağ çöker ✗ Arıza tespiti zor ✗ Hız sınırlı</p>
+			<p><strong>Kullanım:</strong> Artık kullanılmıyor (Eski Ethernet 10Base2)</p>
+		</div>
+
+		<h2>2. Star (Yıldız) Topolojisi</h2>
+		<div class="topology-box">
+			<p><strong>Yapı:</strong> Tüm cihazlar merkezi bir hub/switch'e bağlanır</p>
+			<p><strong>Avantajlar:</strong> ✓ Bir cihaz arızası diğerlerini etkilemez ✓ Arıza tespiti kolay ✓ Yüksek hız ✓ Yönetimi kolay</p>
+			<p><strong>Dezavantajlar:</strong> ✗ Merkezi cihaz arızası tüm ağı durdurur ✗ Daha fazla kablo gerektirir ✗ Hub/switch maliyeti</p>
+			<p><strong>Kullanım:</strong> En yaygın kullanılan topoloji (Modern Ethernet)</p>
+		</div>
+
+		<h2>3. Ring (Halka) Topolojisi</h2>
+		<div class="topology-box">
+			<p><strong>Yapı:</strong> Cihazlar halka şeklinde birbirine bağlanır, veri tek yönde dolaşır</p>
+			<p><strong>Avantajlar:</strong> ✓ Çarpışma (collision) olmaz ✓ Her cihaz eşit erişim hakkına sahip</p>
+			<p><strong>Dezavantajlar:</strong> ✗ Bir cihaz arızasında tüm ağ etkilenebilir ✗ Arıza tespiti zor ✗ Yeni cihaz eklemek zor</p>
+			<p><strong>Kullanım:</strong> Token Ring (Artık kullanılmıyor)</p>
+		</div>
+
+		<h2>4. Mesh (Örgü) Topolojisi</h2>
+		<div class="topology-box">
+			<p><strong>Yapı:</strong> Her cihaz birden fazla cihaza bağlanır</p>
+			<p><strong>Tam Örgü:</strong> Her cihaz diğer tüm cihazlara bağlı</p>
+			<p><strong>Kısmi Örgü:</strong> Sadece bazı cihazlar birden fazla bağlantıya sahip</p>
+			<p><strong>Avantajlar:</strong> ✓ Yüksek güvenilirlik ✓ Alternatif yollar var ✓ Yük dengeleme</p>
+			<p><strong>Dezavantajlar:</strong> ✗ Çok fazla kablo ve port gerekir ✗ Pahalı ✗ Karmaşık kurulum</p>
+			<p><strong>Kullanım:</strong> Kritik sistemler, İnternet omurgası</p>
+		</div>
+
+		<h2>5. Tree (Ağaç) Topolojisi</h2>
+		<div class="topology-box">
+			<p><strong>Yapı:</strong> Hiyerarşik yapı, birden fazla yıldız topolojisinin birleşimi</p>
+			<p><strong>Avantajlar:</strong> ✓ Genişletilebilir ✓ Hata izolasyonu kolay ✓ Yönetimi merkezi</p>
+			<p><strong>Dezavantajlar:</strong> ✗ Ana omurga arızasında alt ağlar etkilenir ✗ Daha fazla kablo gerekir</p>
+			<p><strong>Kullanım:</strong> Büyük kuruluşlar, kampüs ağları</p>
+		</div>
+
+		<h2>6. Hybrid (Karma) Topolojisi</h2>
+		<div class="topology-box">
+			<p><strong>Yapı:</strong> İki veya daha fazla topolojinin birleşimi</p>
+			<p><strong>Avantajlar:</strong> ✓ Esneklik ✓ Ölçeklenebilir ✓ İhtiyaca göre optimize edilebilir</p>
+			<p><strong>Dezavantajlar:</strong> ✗ Karmaşık tasarım ✗ Pahalı ✗ Yönetimi zor</p>
+			<p><strong>Kullanım:</strong> Büyük kurumsal ağlar</p>
+		</div>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-3-circle"></i> OSI Referans Modeli</h1>
+		
+		<p>OSI (Open Systems Interconnection) modeli, ağ iletişimini 7 katmana ayıran standart bir referans modelidir.</p>
+
+		<div class="info-box">
+			<h3><i class="bi bi-lightbulb"></i> Hatırlama Tekniği:</h3>
+			<p><strong>Yukarıdan Aşağıya:</strong> "All People Seem To Need Data Processing"</p>
+			<p><strong>Aşağıdan Yukarıya:</strong> "Please Do Not Throw Sausage Pizza Away"</p>
+		</div>
+
+		<div class="layer-stack">
+			<div class="layer layer-7">
+				<strong>7. Katman - Application (Uygulama)</strong>
+				<p style="font-weight:400;margin:5px 0">Kullanıcı uygulamaları ile ağ arasında arayüz sağlar</p>
+				<p style="font-weight:400;margin:5px 0">Protokoller: HTTP, HTTPS, FTP, SMTP, DNS, DHCP, Telnet, SSH</p>
+			</div>
+			<div class="layer layer-6">
+				<strong>6. Katman - Presentation (Sunum)</strong>
+				<p style="font-weight:400;margin:5px 0">Veri formatı dönüşümü, şifreleme, sıkıştırma</p>
+				<p style="font-weight:400;margin:5px 0">Örnekler: JPEG, MPEG, ASCII, EBCDIC, SSL/TLS</p>
+			</div>
+			<div class="layer layer-5">
+				<strong>5. Katman - Session (Oturum)</strong>
+				<p style="font-weight:400;margin:5px 0">Uygulamalar arası oturum yönetimi, bağlantı başlatma/sonlandırma</p>
+				<p style="font-weight:400;margin:5px 0">Protokoller: NetBIOS, RPC, PPTP</p>
+			</div>
+			<div class="layer layer-4">
+				<strong>4. Katman - Transport (Taşıma)</strong>
+				<p style="font-weight:400;margin:5px 0">Uçtan uca güvenilir veri iletimi, segmentasyon, hata kontrolü</p>
+				<p style="font-weight:400;margin:5px 0">Protokoller: TCP (güvenilir), UDP (hızlı)</p>
+				<p style="font-weight:400;margin:5px 0">Veri Birimi: Segment (TCP) / Datagram (UDP)</p>
+			</div>
+			<div class="layer layer-3">
+				<strong>3. Katman - Network (Ağ)</strong>
+				<p style="font-weight:400;margin:5px 0">Mantıksal adresleme (IP), yönlendirme (routing)</p>
+				<p style="font-weight:400;margin:5px 0">Protokoller: IP, ICMP, ARP, IGMP</p>
+				<p style="font-weight:400;margin:5px 0">Cihazlar: Router, Layer 3 Switch</p>
+				<p style="font-weight:400;margin:5px 0">Veri Birimi: Packet (Paket)</p>
+			</div>
+			<div class="layer layer-2">
+				<strong>2. Katman - Data Link (Veri Bağlantısı)</strong>
+				<p style="font-weight:400;margin:5px 0">Fiziksel adresleme (MAC), çerçeveleme, hata tespiti</p>
+				<p style="font-weight:400;margin:5px 0">Alt Katmanlar: LLC (Logical Link Control), MAC (Media Access Control)</p>
+				<p style="font-weight:400;margin:5px 0">Protokoller: Ethernet, Wi-Fi (802.11), PPP</p>
+				<p style="font-weight:400;margin:5px 0">Cihazlar: Switch, Bridge, NIC</p>
+				<p style="font-weight:400;margin:5px 0">Veri Birimi: Frame (Çerçeve)</p>
+			</div>
+			<div class="layer layer-1">
+				<strong>1. Katman - Physical (Fiziksel)</strong>
+				<p style="font-weight:400;margin:5px 0">Fiziksel bağlantı, bit iletimi, elektrik sinyalleri</p>
+				<p style="font-weight:400;margin:5px 0">Bileşenler: Kablolar, konektörler, voltaj seviyeleri, sinyal zamanlaması</p>
+				<p style="font-weight:400;margin:5px 0">Cihazlar: Hub, Repeater, Kablolar (UTP, Fiber)</p>
+				<p style="font-weight:400;margin:5px 0">Veri Birimi: Bit</p>
+			</div>
+		</div>
+
+		<div class="warning-box">
+			<h3><i class="bi bi-exclamation-triangle"></i> Önemli Notlar:</h3>
+			<ul>
+				<li>Her katman sadece kendi altındaki ve üstündeki katmanla iletişim kurar</li>
+				<li>Her katman kendi başlık (header) bilgisini ekler (Encapsulation)</li>
+				<li>Alıcı tarafta başlıklar sırayla çıkarılır (Decapsulation)</li>
+				<li>OSI teorik bir modeldir, pratikte TCP/IP modeli kullanılır</li>
+			</ul>
+		</div>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-4-circle"></i> TCP/IP Modeli</h1>
+		
+		<p>TCP/IP modeli, İnternet'in temelini oluşturan pratik bir protokol ailesidir. OSI modelinin basitleştirilmiş 4 katmanlı versiyonudur.</p>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>TCP/IP Katmanı</th>
+					<th>OSI Karşılığı</th>
+					<th>Protokoller</th>
+					<th>Görev</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><strong>4. Application</strong></td>
+					<td>Application, Presentation, Session</td>
+					<td>HTTP, HTTPS, FTP, SMTP, DNS, DHCP, Telnet, SSH</td>
+					<td>Kullanıcı uygulamaları ve servisleri</td>
+				</tr>
+				<tr>
+					<td><strong>3. Transport</strong></td>
+					<td>Transport</td>
+					<td>TCP, UDP</td>
+					<td>Uçtan uca veri iletimi ve güvenilirlik</td>
+				</tr>
+				<tr>
+					<td><strong>2. Internet</strong></td>
+					<td>Network</td>
+					<td>IP, ICMP, ARP, IGMP</td>
+					<td>Mantıksal adresleme ve yönlendirme</td>
+				</tr>
+				<tr>
+					<td><strong>1. Network Access</strong></td>
+					<td>Data Link, Physical</td>
+					<td>Ethernet, Wi-Fi, PPP</td>
+					<td>Fiziksel ağa erişim</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2>TCP vs UDP Karşılaştırması</h2>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="device-card" style="border-color:#4caf50">
+					<h4><i class="bi bi-check-circle"></i> TCP (Transmission Control Protocol)</h4>
+					<p><strong>Özellikler:</strong></p>
+					<ul>
+						<li>Bağlantı odaklı (Connection-oriented)</li>
+						<li>Güvenilir veri iletimi</li>
+						<li>Paket sıralaması garanti edilir</li>
+						<li>Hata kontrolü ve düzeltme</li>
+						<li>Akış kontrolü (Flow Control)</li>
+						<li>3-Way Handshake ile bağlantı kurulur</li>
+					</ul>
+					<p><strong>Kullanım Alanları:</strong></p>
+					<p>Web (HTTP/HTTPS), E-posta (SMTP), Dosya Transferi (FTP), Uzak Erişim (SSH)</p>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="device-card" style="border-color:#ff9800">
+					<h4><i class="bi bi-lightning"></i> UDP (User Datagram Protocol)</h4>
+					<p><strong>Özellikler:</strong></p>
+					<ul>
+						<li>Bağlantısız (Connectionless)</li>
+						<li>Güvenilir DEĞİL</li>
+						<li>Paket sıralaması garanti edilmez</li>
+						<li>Hata kontrolü minimal</li>
+						<li>Daha hızlı</li>
+						<li>Daha az overhead</li>
+					</ul>
+					<p><strong>Kullanım Alanları:</strong></p>
+					<p>Video/Ses Streaming, Online Oyunlar, VoIP, DNS sorguları, DHCP</p>
+				</div>
+			</div>
+		</div>
+
+		<h2>TCP 3-Way Handshake</h2>
+		<div class="example-box">
+			<ol>
+				<li><strong>SYN:</strong> İstemci → Sunucu (Bağlantı isteği)</li>
+				<li><strong>SYN-ACK:</strong> Sunucu → İstemci (Kabul ve kendi isteği)</li>
+				<li><strong>ACK:</strong> İstemci → Sunucu (Onay, bağlantı kuruldu)</li>
+			</ol>
+			<p><strong>Bağlantı Sonlandırma (4-Way Handshake):</strong></p>
+			<ol>
+				<li><strong>FIN:</strong> A → B (Bağlantıyı kapatmak istiyorum)</li>
+				<li><strong>ACK:</strong> B → A (Tamam, anladım)</li>
+				<li><strong>FIN:</strong> B → A (Ben de kapatıyorum)</li>
+				<li><strong>ACK:</strong> A → B (Tamam, kapandı)</li>
+			</ol>
+		</div>
+
+		<h2>Port Numaraları</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Port Aralığı</th>
+					<th>Adı</th>
+					<th>Açıklama</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>0 - 1023</td>
+					<td>Well-Known Ports</td>
+					<td>Standart servisler için ayrılmış</td>
+				</tr>
+				<tr>
+					<td>1024 - 49151</td>
+					<td>Registered Ports</td>
+					<td>Kayıtlı uygulamalar için</td>
+				</tr>
+				<tr>
+					<td>49152 - 65535</td>
+					<td>Dynamic/Private Ports</td>
+					<td>Geçici bağlantılar için</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3>Önemli Port Numaraları</h3>
+		<div class="row">
+			<div class="col-md-6">
+				<ul>
+					<li><code>20/21</code> - FTP (Dosya Transferi)</li>
+					<li><code>22</code> - SSH (Güvenli Uzak Erişim)</li>
+					<li><code>23</code> - Telnet (Güvensiz Uzak Erişim)</li>
+					<li><code>25</code> - SMTP (E-posta Gönderme)</li>
+					<li><code>53</code> - DNS (Alan Adı Çözümleme)</li>
+					<li><code>67/68</code> - DHCP (IP Adresi Dağıtımı)</li>
+					<li><code>80</code> - HTTP (Web)</li>
+					<li><code>110</code> - POP3 (E-posta Alma)</li>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<ul>
+					<li><code>143</code> - IMAP (E-posta Alma)</li>
+					<li><code>443</code> - HTTPS (Güvenli Web)</li>
+					<li><code>445</code> - SMB (Dosya Paylaşımı)</li>
+					<li><code>3306</code> - MySQL Veritabanı</li>
+					<li><code>3389</code> - RDP (Uzak Masaüstü)</li>
+					<li><code>5432</code> - PostgreSQL Veritabanı</li>
+					<li><code>8080</code> - Alternatif HTTP</li>
+				</ul>
+			</div>
+		</div>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-5-circle"></i> IP Adresleme</h1>
+		
+		<h2>IPv4 Adresi</h2>
+		<p>IPv4 adresi 32 bit uzunluğundadır ve 4 oktet (byte) olarak noktalı ondalık formatta yazılır.</p>
+
+		<div class="ip-example">
+			<strong>Örnek IPv4 Adresi:</strong> 192.168.1.100
+			<br><br>
+			<strong>İkili (Binary) Gösterim:</strong>
+			<br>11000000.10101000.00000001.01100100
+			<br><br>
+			<strong>Her oktet:</strong> 0-255 arası değer alabilir (2^8 = 256 değer)
+			<br><strong>Toplam adres sayısı:</strong> 2^32 = 4,294,967,296 (≈ 4.3 milyar)
+		</div>
+
+		<h2>IP Adresi Sınıfları (Classful Addressing)</h2>
+		
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Sınıf</th>
+					<th>İlk Oktet</th>
+					<th>Varsayılan Subnet Mask</th>
+					<th>Ağ/Host Bitleri</th>
+					<th>Kullanım</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="background:#e3f2fd">
+					<td><strong>A</strong></td>
+					<td>1 - 126</td>
+					<td>255.0.0.0 (/8)</td>
+					<td>N.H.H.H</td>
+					<td>Çok büyük ağlar (16 milyon host)</td>
+				</tr>
+				<tr style="background:#e8f5e9">
+					<td><strong>B</strong></td>
+					<td>128 - 191</td>
+					<td>255.255.0.0 (/16)</td>
+					<td>N.N.H.H</td>
+					<td>Orta büyüklükte ağlar (65,536 host)</td>
+				</tr>
+				<tr style="background:#fff3e0">
+					<td><strong>C</strong></td>
+					<td>192 - 223</td>
+					<td>255.255.255.0 (/24)</td>
+					<td>N.N.N.H</td>
+					<td>Küçük ağlar (254 host)</td>
+				</tr>
+				<tr style="background:#fce4ec">
+					<td><strong>D</strong></td>
+					<td>224 - 239</td>
+					<td>-</td>
+					<td>-</td>
+					<td>Multicast (Çok noktaya yayın)</td>
+				</tr>
+				<tr style="background:#f3e5f5">
+					<td><strong>E</strong></td>
+					<td>240 - 255</td>
+					<td>-</td>
+					<td>-</td>
+					<td>Deneysel (Araştırma amaçlı)</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="warning-box">
+			<h3><i class="bi bi-exclamation-triangle"></i> Özel IP Adresleri:</h3>
+			<ul>
+				<li><strong>127.0.0.0 - 127.255.255.255:</strong> Loopback (127.0.0.1 = localhost)</li>
+				<li><strong>0.0.0.0:</strong> Varsayılan route veya tüm IP'ler</li>
+				<li><strong>255.255.255.255:</strong> Broadcast (Herkese gönder)</li>
+			</ul>
+		</div>
+
+		<h2>Özel (Private) IP Adresleri</h2>
+		<p>İnternet üzerinden yönlendirilemez, sadece yerel ağlarda kullanılır:</p>
+		
+		<div class="info-box">
+			<ul>
+				<li><strong>Sınıf A:</strong> 10.0.0.0 - 10.255.255.255 (10.0.0.0/8)</li>
+				<li><strong>Sınıf B:</strong> 172.16.0.0 - 172.31.255.255 (172.16.0.0/12)</li>
+				<li><strong>Sınıf C:</strong> 192.168.0.0 - 192.168.255.255 (192.168.0.0/16)</li>
+				<li><strong>APIPA:</strong> 169.254.0.0 - 169.254.255.255 (169.254.0.0/16) - DHCP başarısız olduğunda otomatik atanan</li>
+			</ul>
+		</div>
+
+		<h2>Subnet Mask (Alt Ağ Maskesi)</h2>
+		<p>IP adresinin hangi kısmının ağ (network), hangi kısmının host olduğunu belirler.</p>
+
+		<div class="example-box">
+			<h4>Örnek Hesaplama:</h4>
+			<p><strong>IP Adresi:</strong> 192.168.1.100</p>
+			<p><strong>Subnet Mask:</strong> 255.255.255.0</p>
+			<br>
+			<p><strong>AND İşlemi:</strong></p>
+			<pre style="background:#fff;padding:10px;border-radius:5px">
+IP:      11000000.10101000.00000001.01100100
+Mask:    11111111.11111111.11111111.00000000
+         ----------------------------------------
+Network: 11000000.10101000.00000001.00000000 = 192.168.1.0
+			</pre>
+			<p><strong>Ağ Adresi:</strong> 192.168.1.0 (İlk adres - ağı temsil eder)</p>
+			<p><strong>Broadcast Adresi:</strong> 192.168.1.255 (Son adres - tüm hostlara gönderim)</p>
+			<p><strong>Kullanılabilir Host Adresleri:</strong> 192.168.1.1 - 192.168.1.254 (254 adet)</p>
+		</div>
+
+		<h2>CIDR Notasyonu</h2>
+		<p>CIDR (Classless Inter-Domain Routing), IP adresinin sonuna "/" işareti ile kaç bitin ağ kısmı olduğunu belirtir.</p>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>CIDR</th>
+					<th>Subnet Mask</th>
+					<th>Kullanılabilir Host</th>
+					<th>Toplam IP</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td>/8</td><td>255.0.0.0</td><td>16,777,214</td><td>16,777,216</td></tr>
+				<tr><td>/16</td><td>255.255.0.0</td><td>65,534</td><td>65,536</td></tr>
+				<tr><td>/24</td><td>255.255.255.0</td><td>254</td><td>256</td></tr>
+				<tr><td>/25</td><td>255.255.255.128</td><td>126</td><td>128</td></tr>
+				<tr><td>/26</td><td>255.255.255.192</td><td>62</td><td>64</td></tr>
+				<tr><td>/27</td><td>255.255.255.224</td><td>30</td><td>32</td></tr>
+				<tr><td>/28</td><td>255.255.255.240</td><td>14</td><td>16</td></tr>
+				<tr><td>/29</td><td>255.255.255.248</td><td>6</td><td>8</td></tr>
+				<tr><td>/30</td><td>255.255.255.252</td><td>2</td><td>4</td></tr>
+				<tr><td>/32</td><td>255.255.255.255</td><td>1 (Tek host)</td><td>1</td></tr>
+			</tbody>
+		</table>
+
+		<div class="warning-box">
+			<h3><i class="bi bi-calculator"></i> Host Sayısı Formülü:</h3>
+			<p><strong>Kullanılabilir Host Sayısı = 2^(host bit sayısı) - 2</strong></p>
+			<p>(-2 çünkü: 1 tanesi ağ adresi, 1 tanesi broadcast adresi)</p>
+			<br>
+			<p><strong>Örnek:</strong> /24 ağda → 32 - 24 = 8 bit host kısmı</p>
+			<p>2^8 - 2 = 256 - 2 = 254 kullanılabilir host</p>
+		</div>
+
+		<h2>Subnetting (Alt Ağlara Bölme)</h2>
+		<p>Büyük bir ağı daha küçük alt ağlara bölme işlemidir. Amaçları:</p>
+		<ul>
+			<li>IP adreslerinin verimli kullanımı</li>
+			<li>Broadcast trafiğinin azaltılması</li>
+			<li>Güvenlik (ağları izole etme)</li>
+			<li>Daha iyi ağ yönetimi</li>
+		</ul>
+
+		<div class="example-box">
+			<h4><i class="bi bi-calculator"></i> Subnetting Örneği:</h4>
+			<p><strong>Verilen:</strong> 192.168.1.0/24 ağını 4 eşit alt ağa bölün</p>
+			<br>
+			<p><strong>Çözüm:</strong></p>
+			<p>4 alt ağ için 2 bit gerekir (2^2 = 4)</p>
+			<p>Yeni subnet mask: /24 + 2 = /26 (255.255.255.192)</p>
+			<p>Her alt ağda: 2^6 - 2 = 62 kullanılabilir host</p>
+			<br>
+			<p><strong>Alt Ağlar:</strong></p>
+			<ol>
+				<li>192.168.1.0/26 → Hostlar: 192.168.1.1 - 192.168.1.62</li>
+				<li>192.168.1.64/26 → Hostlar: 192.168.1.65 - 192.168.1.126</li>
+				<li>192.168.1.128/26 → Hostlar: 192.168.1.129 - 192.168.1.190</li>
+				<li>192.168.1.192/26 → Hostlar: 192.168.1.193 - 192.168.1.254</li>
+			</ol>
+		</div>
+
+		<h2>IPv6</h2>
+		<p>IPv4 adreslerinin tükenmesi nedeniyle geliştirilmiş yeni nesil IP protokolü.</p>
+
+		<div class="info-box">
+			<h3><i class="bi bi-info-circle"></i> IPv6 Özellikleri:</h3>
+			<ul>
+				<li><strong>Uzunluk:</strong> 128 bit (IPv4: 32 bit)</li>
+				<li><strong>Adres Sayısı:</strong> 2^128 ≈ 340 undecillion (340 trilyon trilyon trilyon)</li>
+				<li><strong>Gösterim:</strong> 8 grup, 16'lık tabanda, iki nokta üst üste ile ayrılır</li>
+				<li><strong>Örnek:</strong> 2001:0db8:85a3:0000:0000:8a2e:0370:7334</li>
+				<li><strong>Kısaltma:</strong> 2001:db8:85a3::8a2e:370:7334</li>
+				<li><strong>Avantajlar:</strong> Daha fazla adres, daha iyi güvenlik (IPSec), basitleştirilmiş başlık</li>
+			</ul>
+		</div>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-6-circle"></i> Ağ Cihazları</h1>
+
+		<div class="device-card">
+			<h4><i class="bi bi-hdd-network"></i> Hub (Çoklayıcı)</h4>
+			<p><strong>OSI Katmanı:</strong> Layer 1 (Physical)</p>
+			<p><strong>Çalışma Prensibi:</strong> Bir porttan gelen veriyi tüm portlara gönderir (broadcast)</p>
+			<p><strong>Özellikler:</strong></p>
+			<ul>
+				<li>Akıllı değildir, sadece sinyal tekrarlar</li>
+				<li>Çarpışma (collision) oluşur</li>
+				<li>Tüm cihazlar aynı collision domain'de</li>
+				<li>Güvenlik zayıftır (herkes herkesi dinleyebilir)</li>
+			</ul>
+			<p><strong>Durum:</strong> Artık kullanılmıyor, yerini switch'lere bıraktı</p>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-hdd-network-fill"></i> Switch (Anahtar)</h4>
+			<p><strong>OSI Katmanı:</strong> Layer 2 (Data Link)</p>
+			<p><strong>Çalışma Prensibi:</strong> MAC adres tablosunu kullanarak veriyi sadece hedef porta gönderir</p>
+			<p><strong>Özellikler:</strong></p>
+			<ul>
+				<li>MAC adres öğrenir (MAC Address Table)</li>
+				<li>Her port ayrı collision domain</li>
+				<li>Full-duplex iletişim (aynı anda gönder/al)</li>
+				<li>VLAN desteği (sanal ağlar)</li>
+				<li>Daha hızlı ve güvenli</li>
+			</ul>
+			<p><strong>Switch Türleri:</strong></p>
+			<ul>
+				<li><strong>Unmanaged:</strong> Otomatik çalışır, yapılandırılamaz</li>
+				<li><strong>Managed:</strong> Yapılandırılabilir, VLAN, QoS, güvenlik özellikleri</li>
+				<li><strong>Layer 3 Switch:</strong> Routing yapabilir</li>
+			</ul>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-router"></i> Router (Yönlendirici)</h4>
+			<p><strong>OSI Katmanı:</strong> Layer 3 (Network)</p>
+			<p><strong>Çalışma Prensibi:</strong> IP adreslerine göre paketleri farklı ağlar arasında yönlendirir</p>
+			<p><strong>Özellikler:</strong></p>
+			<ul>
+				<li>Farklı ağları birbirine bağlar</li>
+				<li>Routing table (yönlendirme tablosu) kullanır</li>
+				<li>Her port farklı broadcast domain</li>
+				<li>NAT (Network Address Translation) yapabilir</li>
+				<li>Firewall özelliği olabilir</li>
+				<li>DHCP sunucusu olabilir</li>
+			</ul>
+			<p><strong>Routing Türleri:</strong></p>
+			<ul>
+				<li><strong>Static Routing:</strong> Manuel yapılandırma</li>
+				<li><strong>Dynamic Routing:</strong> Protokoller ile otomatik (RIP, OSPF, EIGRP, BGP)</li>
+			</ul>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-wifi"></i> Access Point (Erişim Noktası)</h4>
+			<p><strong>OSI Katmanı:</strong> Layer 2 (Data Link)</p>
+			<p><strong>Çalışma Prensibi:</strong> Kablosuz cihazları kablolu ağa bağlar</p>
+			<p><strong>Özellikler:</strong></p>
+			<ul>
+				<li>Wi-Fi sinyali yayar (802.11 standartları)</li>
+				<li>SSID (ağ adı) broadcast eder</li>
+				<li>Güvenlik: WPA2, WPA3</li>
+				<li>Multiple SSID desteği</li>
+			</ul>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-shield-check"></i> Firewall (Güvenlik Duvarı)</h4>
+			<p><strong>OSI Katmanı:</strong> Layer 3-7 (uygulama tipine göre)</p>
+			<p><strong>Çalışma Prensibi:</strong> Ağ trafiğini kurallar ile filtreler</p>
+			<p><strong>Özellikler:</strong></p>
+			<ul>
+				<li>Gelen ve giden trafiği kontrol eder</li>
+				<li>Port bazlı erişim kontrolü</li>
+				<li>Saldırı tespit ve önleme (IDS/IPS)</li>
+				<li>VPN desteği</li>
+			</ul>
+			<p><strong>Türleri:</strong> Packet Filtering, Stateful, Application Layer, Next-Gen Firewall</p>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-modem"></i> Modem (Modülatör-Demodülatör)</h4>
+			<p><strong>OSI Katmanı:</strong> Layer 1 (Physical)</p>
+			<p><strong>Çalışma Prensibi:</strong> Dijital sinyalleri analog sinyallere (ve tersine) dönüştürür</p>
+			<p><strong>Özellikler:</strong></p>
+			<ul>
+				<li>İnternet servis sağlayıcısına (ISP) bağlantı</li>
+				<li>DSL, Cable, Fiber modem türleri</li>
+				<li>Genellikle router ile birlikte kullanılır</li>
+			</ul>
+		</div>
+
+		<h2>Collision Domain vs Broadcast Domain</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Kavram</th>
+					<th>Tanım</th>
+					<th>Hangi Cihaz Böler?</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><strong>Collision Domain</strong></td>
+					<td>Paket çarpışmasının olabileceği ağ segmenti</td>
+					<td>Switch, Bridge her portu ayırır</td>
+				</tr>
+				<tr>
+					<td><strong>Broadcast Domain</strong></td>
+					<td>Broadcast paketlerinin ulaşabildiği ağ alanı</td>
+					<td>Router, Layer 3 Switch her portu ayırır</td>
+				</tr>
+			</tbody>
+		</table>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-7-circle"></i> Ağ Protokolleri</h1>
+
+		<h2>Uygulama Katmanı Protokolleri</h2>
+
+		<div class="row">
+			<div class="col-md-6 mb-3">
+				<div class="protocol-badge" style="display:block;text-align:left;padding:15px">
+					<strong>HTTP (HyperText Transfer Protocol)</strong>
+					<p style="font-size:0.85rem;margin:5px 0;font-weight:400">Port: 80 | Güvensiz web iletişimi</p>
+				</div>
+			</div>
+			<div class="col-md-6 mb-3">
+				<div class="protocol-badge" style="display:block;text-align:left;padding:15px">
+					<strong>HTTPS (HTTP Secure)</strong>
+					<p style="font-size:0.85rem;margin:5px 0;font-weight:400">Port: 443 | SSL/TLS ile şifrelenmiş web</p>
+				</div>
+			</div>
+			<div class="col-md-6 mb-3">
+				<div class="protocol-badge" style="display:block;text-align:left;padding:15px">
+					<strong>FTP (File Transfer Protocol)</strong>
+					<p style="font-size:0.85rem;margin:5px 0;font-weight:400">Port: 20/21 | Dosya transferi</p>
+				</div>
+			</div>
+			<div class="col-md-6 mb-3">
+				<div class="protocol-badge" style="display:block;text-align:left;padding:15px">
+					<strong>SMTP (Simple Mail Transfer Protocol)</strong>
+					<p style="font-size:0.85rem;margin:5px 0;font-weight:400">Port: 25 | E-posta gönderme</p>
+				</div>
+			</div>
+			<div class="col-md-6 mb-3">
+				<div class="protocol-badge" style="display:block;text-align:left;padding:15px">
+					<strong>POP3 (Post Office Protocol v3)</strong>
+					<p style="font-size:0.85rem;margin:5px 0;font-weight:400">Port: 110 | E-posta alma (indir ve sil)</p>
+				</div>
+			</div>
+			<div class="col-md-6 mb-3">
+				<div class="protocol-badge" style="display:block;text-align:left;padding:15px">
+					<strong>IMAP (Internet Message Access Protocol)</strong>
+					<p style="font-size:0.85rem;margin:5px 0;font-weight:400">Port: 143 | E-posta alma (sunucuda kal)</p>
+				</div>
+			</div>
+		</div>
+
+		<h2>DNS (Domain Name System)</h2>
+		<div class="info-box">
+			<p><strong>Port:</strong> 53 (UDP/TCP)</p>
+			<p><strong>Görev:</strong> Alan adlarını (domain) IP adreslerine çevirir</p>
+			<p><strong>Örnek:</strong> www.google.com → 172.217.169.164</p>
+			<br>
+			<p><strong>DNS Kayıt Türleri:</strong></p>
+			<ul>
+				<li><strong>A:</strong> IPv4 adresi</li>
+				<li><strong>AAAA:</strong> IPv6 adresi</li>
+				<li><strong>CNAME:</strong> Alias (takma ad)</li>
+				<li><strong>MX:</strong> Mail exchange (e-posta sunucusu)</li>
+				<li><strong>NS:</strong> Name server (isim sunucusu)</li>
+				<li><strong>PTR:</strong> Reverse DNS (IP'den domain)</li>
+				<li><strong>TXT:</strong> Metin bilgisi</li>
+			</ul>
+		</div>
+
+		<h2>DHCP (Dynamic Host Configuration Protocol)</h2>
+		<div class="info-box">
+			<p><strong>Port:</strong> 67 (Server), 68 (Client) - UDP</p>
+			<p><strong>Görev:</strong> IP adreslerini otomatik olarak dağıtır</p>
+			<br>
+			<p><strong>DHCP DORA Süreci:</strong></p>
+			<ol>
+				<li><strong>Discover:</strong> İstemci → Broadcast (DHCP sunucusu arıyor)</li>
+				<li><strong>Offer:</strong> Sunucu → İstemci (Bu IP'yi kullanabilirsin)</li>
+				<li><strong>Request:</strong> İstemci → Sunucu (Bu IP'yi istiyorum)</li>
+				<li><strong>Acknowledge:</strong> Sunucu → İstemci (Tamam, senin olsun)</li>
+			</ol>
+			<br>
+			<p><strong>DHCP Verdiği Bilgiler:</strong></p>
+			<ul>
+				<li>IP Adresi</li>
+				<li>Subnet Mask</li>
+				<li>Default Gateway</li>
+				<li>DNS Sunucusu</li>
+				<li>Lease Time (Kiralama süresi)</li>
+			</ul>
+		</div>
+
+		<h2>ARP (Address Resolution Protocol)</h2>
+		<div class="example-box">
+			<p><strong>Görev:</strong> IP adresinden MAC adresini bulur (Layer 3 → Layer 2 dönüşümü)</p>
+			<p><strong>Çalışma:</strong></p>
+			<ol>
+				<li>Cihaz A, B'nin IP'sini biliyor ama MAC'ini bilmiyor</li>
+				<li>A broadcast ARP Request gönderir: "192.168.1.5'in MAC'i kim?"</li>
+				<li>B, unicast ARP Reply gönderir: "Benim, MAC'im: AA:BB:CC:DD:EE:FF"</li>
+				<li>A, bu bilgiyi ARP cache'ine kaydeder</li>
+			</ol>
+			<p><strong>ARP Tablosu Görme:</strong> <code>arp -a</code> (Windows/Linux)</p>
+		</div>
+
+		<h2>ICMP (Internet Control Message Protocol)</h2>
+		<div class="example-box">
+			<p><strong>Görev:</strong> Hata mesajları ve ağ diagnostik</p>
+			<p><strong>Kullanım Alanları:</strong></p>
+			<ul>
+				<li><strong>Ping:</strong> Hedefin ulaşılabilir olup olmadığını test eder (Echo Request/Reply)</li>
+				<li><strong>Traceroute:</strong> Hedefe giden yolu gösterir</li>
+				<li><strong>Destination Unreachable:</strong> Hedefe ulaşılamıyor</li>
+				<li><strong>Time Exceeded:</strong> TTL süresi doldu</li>
+			</ul>
+			<p><strong>Komutlar:</strong></p>
+			<p><code>ping 8.8.8.8</code> - Google DNS'e ping at</p>
+			<p><code>tracert google.com</code> (Windows) / <code>traceroute google.com</code> (Linux)</p>
+		</div>
+
+		<h2>NAT (Network Address Translation)</h2>
+		<div class="info-box">
+			<p><strong>Görev:</strong> Özel IP adreslerini genel IP adresine çevirir</p>
+			<p><strong>Amaç:</strong> IPv4 adreslerini korumak, güvenlik</p>
+			<br>
+			<p><strong>NAT Türleri:</strong></p>
+			<ul>
+				<li><strong>Static NAT:</strong> 1 özel IP → 1 genel IP (bire bir eşleme)</li>
+				<li><strong>Dynamic NAT:</strong> N özel IP → M genel IP (havuzdan)</li>
+				<li><strong>PAT (Port Address Translation / NAT Overload):</strong> N özel IP → 1 genel IP (port numaralarıyla ayrım)</li>
+			</ul>
+			<br>
+			<p><strong>Örnek:</strong> Evdeki tüm cihazlar (192.168.1.x) → İnternet'e tek bir genel IP ile çıkar</p>
+		</div>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-8-circle"></i> Kablolama ve Bağlantı Standartları</h1>
+
+		<h2>Kablo Türleri</h2>
+
+		<div class="device-card">
+			<h4><i class="bi bi-bezier"></i> UTP (Unshielded Twisted Pair) Kablo</h4>
+			<p><strong>En yaygın kullanılan kablo türü (Ethernet kablosu)</strong></p>
+			<p><strong>Kategoriler:</strong></p>
+			<ul>
+				<li><strong>Cat5e:</strong> 1 Gbps, 100 MHz, 100 metre</li>
+				<li><strong>Cat6:</strong> 1-10 Gbps, 250 MHz, 100 metre</li>
+				<li><strong>Cat6a:</strong> 10 Gbps, 500 MHz, 100 metre</li>
+				<li><strong>Cat7:</strong> 10 Gbps, 600 MHz, korumalı</li>
+				<li><strong>Cat8:</strong> 40 Gbps, 2000 MHz, 30 metre</li>
+			</ul>
+			<p><strong>Konektör:</strong> RJ-45 (8P8C)</p>
+		</div>
+
+		<h2>UTP Kablo Bağlantı Şemaları</h2>
+
+		<div class="row">
+			<div class="col-md-6">
+				<div class="example-box">
+					<h4>T568A Standardı</h4>
+					<ol>
+						<li style="color:#00ff00">Beyaz-Yeşil</li>
+						<li style="color:#008000">Yeşil</li>
+						<li style="color:#ffa500">Beyaz-Turuncu</li>
+						<li style="color:#0000ff">Mavi</li>
+						<li style="color:#add8e6">Beyaz-Mavi</li>
+						<li style="color:#ff8c00">Turuncu</li>
+						<li style="color:#8b4513">Beyaz-Kahverengi</li>
+						<li style="color:#654321">Kahverengi</li>
+					</ol>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="example-box">
+					<h4>T568B Standardı</h4>
+					<ol>
+						<li style="color:#ffa500">Beyaz-Turuncu</li>
+						<li style="color:#ff8c00">Turuncu</li>
+						<li style="color:#00ff00">Beyaz-Yeşil</li>
+						<li style="color:#0000ff">Mavi</li>
+						<li style="color:#add8e6">Beyaz-Mavi</li>
+						<li style="color:#008000">Yeşil</li>
+						<li style="color:#8b4513">Beyaz-Kahverengi</li>
+						<li style="color:#654321">Kahverengi</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+		<div class="warning-box">
+			<h3><i class="bi bi-info-circle"></i> Kablo Tipleri:</h3>
+			<ul>
+				<li><strong>Straight-Through (Düz Kablo):</strong> İki uç aynı standartta (T568B-T568B veya T568A-T568A)
+					<br><strong>Kullanım:</strong> Bilgisayar-Switch, Router-Switch</li>
+				<li><strong>Crossover (Çapraz Kablo):</strong> Bir uç T568A, diğer uç T568B
+					<br><strong>Kullanım:</strong> Bilgisayar-Bilgisayar, Switch-Switch, Router-Router
+					<br><strong>Not:</strong> Modern cihazlarda Auto-MDIX özelliği sayesinde gerek kalmadı</li>
+				<li><strong>Rollover (Konsol Kablosu):</strong> Tamamen ters (1↔8, 2↔7, 3↔6, 4↔5)
+					<br><strong>Kullanım:</strong> Bilgisayar-Router/Switch konsol portu</li>
+			</ul>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-lightning"></i> Fiber Optik Kablo</h4>
+			<p><strong>Işık sinyalleri ile veri iletir (elektrik değil)</strong></p>
+			<p><strong>Avantajlar:</strong></p>
+			<ul>
+				<li>Çok yüksek hız (100 Gbps+)</li>
+				<li>Uzun mesafe (kilometrelerce)</li>
+				<li>Elektromanyetik parazite karşı bağışık</li>
+				<li>Güvenli (dinleme zor)</li>
+				<li>İnce ve hafif</li>
+			</ul>
+			<p><strong>Türleri:</strong></p>
+			<ul>
+				<li><strong>Single-Mode (SMF):</strong> Tek ışık modu, uzun mesafe (40+ km), pahalı, sarı renk</li>
+				<li><strong>Multi-Mode (MMF):</strong> Çoklu ışık modu, kısa mesafe (550m), ucuz, turuncu/aqua renk</li>
+			</ul>
+			<p><strong>Konektörler:</strong> LC, SC, ST, MTP/MPO</p>
+		</div>
+
+		<div class="device-card">
+			<h4><i class="bi bi-subtract"></i> Koaksiyel Kablo</h4>
+			<p><strong>Kullanım:</strong> Kablo TV, eski ağlar (10Base2, 10Base5)</p>
+			<p><strong>Avantajlar:</strong> Parazite karşı korumalı</p>
+			<p><strong>Durum:</strong> Ağ iletişiminde artık kullanılmıyor</p>
+		</div>
+
+		<h2>Kablosuz Standartlar (Wi-Fi)</h2>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Standart</th>
+					<th>Frekans</th>
+					<th>Maksimum Hız</th>
+					<th>Menzil</th>
+					<th>Yıl</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>802.11b</td>
+					<td>2.4 GHz</td>
+					<td>11 Mbps</td>
+					<td>35 m</td>
+					<td>1999</td>
+				</tr>
+				<tr>
+					<td>802.11g</td>
+					<td>2.4 GHz</td>
+					<td>54 Mbps</td>
+					<td>38 m</td>
+					<td>2003</td>
+				</tr>
+				<tr>
+					<td>802.11n (Wi-Fi 4)</td>
+					<td>2.4/5 GHz</td>
+					<td>600 Mbps</td>
+					<td>70 m</td>
+					<td>2009</td>
+				</tr>
+				<tr>
+					<td>802.11ac (Wi-Fi 5)</td>
+					<td>5 GHz</td>
+					<td>1.3 Gbps</td>
+					<td>35 m</td>
+					<td>2013</td>
+				</tr>
+				<tr>
+					<td>802.11ax (Wi-Fi 6)</td>
+					<td>2.4/5 GHz</td>
+					<td>9.6 Gbps</td>
+					<td>30-50 m</td>
+					<td>2019</td>
+				</tr>
+				<tr>
+					<td>802.11be (Wi-Fi 7)</td>
+					<td>2.4/5/6 GHz</td>
+					<td>46 Gbps</td>
+					<td>-</td>
+					<td>2024</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h2>Ethernet Standartları</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Standart</th>
+					<th>Hız</th>
+					<th>Kablo</th>
+					<th>Maksimum Mesafe</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>10Base-T</td>
+					<td>10 Mbps</td>
+					<td>Cat3 UTP</td>
+					<td>100 m</td>
+				</tr>
+				<tr>
+					<td>100Base-TX (Fast Ethernet)</td>
+					<td>100 Mbps</td>
+					<td>Cat5 UTP</td>
+					<td>100 m</td>
+				</tr>
+				<tr>
+					<td>1000Base-T (Gigabit Ethernet)</td>
+					<td>1 Gbps</td>
+					<td>Cat5e/Cat6 UTP</td>
+					<td>100 m</td>
+				</tr>
+				<tr>
+					<td>10GBase-T (10 Gigabit Ethernet)</td>
+					<td>10 Gbps</td>
+					<td>Cat6a/Cat7 UTP</td>
+					<td>100 m</td>
+				</tr>
+				<tr>
+					<td>1000Base-SX</td>
+					<td>1 Gbps</td>
+					<td>Multi-Mode Fiber</td>
+					<td>550 m</td>
+				</tr>
+				<tr>
+					<td>1000Base-LX</td>
+					<td>1 Gbps</td>
+					<td>Single-Mode Fiber</td>
+					<td>5-10 km</td>
+				</tr>
+			</tbody>
+		</table>
+	</article>
+
+	<article class="content-card">
+		<h1><i class="bi bi-9-circle"></i> Temel Ağ Komutları</h1>
+
+		<div class="example-box">
+			<h3><i class="bi bi-terminal"></i> Windows/Linux Komutları:</h3>
+			
+			<h4>1. ipconfig / ifconfig</h4>
+			<p><strong>Windows:</strong> <code>ipconfig</code> - IP yapılandırmasını gösterir</p>
+			<p><strong>Linux:</strong> <code>ifconfig</code> veya <code>ip addr</code></p>
+			<p><strong>Detaylı:</strong> <code>ipconfig /all</code></p>
+			
+			<h4>2. ping</h4>
+			<p><code>ping 8.8.8.8</code> - Hedefe ulaşılabilirlik testi</p>
+			<p><code>ping -t google.com</code> - Sürekli ping (Windows)</p>
+			<p><code>ping -c 4 google.com</code> - 4 paket gönder (Linux)</p>
+			
+			<h4>3. tracert / traceroute</h4>
+			<p><code>tracert google.com</code> (Windows) - Hedefe giden yolu gösterir</p>
+			<p><code>traceroute google.com</code> (Linux)</p>
+			
+			<h4>4. nslookup</h4>
+			<p><code>nslookup google.com</code> - DNS sorgusu yapar</p>
+			<p><code>nslookup google.com 8.8.8.8</code> - Belirli DNS sunucusunu kullan</p>
+			
+			<h4>5. netstat</h4>
+			<p><code>netstat -an</code> - Aktif bağlantıları ve dinlenen portları gösterir</p>
+			<p><code>netstat -r</code> - Routing tablosunu gösterir</p>
+			
+			<h4>6. arp</h4>
+			<p><code>arp -a</code> - ARP önbelleğini gösterir</p>
+			<p><code>arp -d</code> - ARP önbelleğini temizler</p>
+			
+			<h4>7. route</h4>
+			<p><code>route print</code> (Windows) - Routing tablosunu gösterir</p>
+			<p><code>route -n</code> (Linux)</p>
+			
+			<h4>8. hostname</h4>
+			<p><code>hostname</code> - Bilgisayar adını gösterir</p>
+			
+			<h4>9. getmac</h4>
+			<p><code>getmac</code> (Windows) - MAC adresini gösterir</p>
+			<p><code>ifconfig | grep ether</code> (Linux)</p>
+			
+			<h4>10. pathping (Windows)</h4>
+			<p><code>pathping google.com</code> - Detaylı yol analizi ve paket kaybı</p>
+		</div>
+	</article>
+
+	<footer class="main-header mt-5">
+		<h3 style="color:#764ba2;margin-bottom:20px"><i class="bi bi-lightbulb"></i> Önemli Hatırlatmalar</h3>
+		<ul style="list-style:none;padding:0;text-align:left;max-width:800px;margin:0 auto">
+			<li style="margin:10px 0">✅ OSI modelinin 7 katmanını ve her katmanın görevini iyi öğrenin</li>
+			<li style="margin:10px 0">✅ TCP ve UDP arasındaki farkları bilin</li>
+			<li style="margin:10px 0">✅ Subnetting hesaplamaları yapabilmelisiniz</li>
+			<li style="margin:10px 0">✅ Switch ve Router arasındaki farkı kavrayın</li>
+			<li style="margin:10px 0">✅ Temel ağ komutlarını pratik yapın</li>
+			<li style="margin:10px 0">✅ IP adresleme ve özel IP aralıklarını ezberleyin</li>
+			<li style="margin:10px 0">✅ Port numaralarını ve protokolleri öğrenin</li>
+			<li style="margin:10px 0">✅ Kablo standartlarını ve bağlantı şemalarını bilin</li>
+		</ul>
+		<p style="margin-top:30px;color:#6c757d">&copy; 2025 İslam ERGÜN - Tüm Hakları Saklıdır</p>
+	</footer>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
+

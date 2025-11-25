@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="İslam ERGÜN">
+	<meta name="description" content="Ağ Temelleri Sınav Hazırlık - Soru cevaplar, test soruları ve konu anlatımları">
+	<meta name="keywords" content="Ağ Temelleri, Sınav, Test, Network, OSI, IP, Topoloji">
+	<meta name="robots" content="index, follow">
+	<meta property="og:title" content="Ağ Temelleri Sınav Hazırlık">
+	<meta property="og:description" content="Ağ Temelleri dersi için hazırlanmış sınav hazırlık sayfası">
+	<meta property="og:type" content="website">
+	<title>Ağ Temelleri Sınav Hazırlık | Soru & Cevap</title>
+	
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box}
+		body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px 0}
+		.main-header{background:#fff;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);padding:40px;margin-bottom:30px;text-align:center}
+		.main-header h1{color:#764ba2;font-weight:700;margin-bottom:10px;font-size:2.5rem}
+		.author-badge{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 20px;border-radius:50px;margin-top:15px;font-size:0.9rem}
+		.content-card{background:#fff;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);padding:40px;margin-bottom:30px}
+		.content-card h2{color:#764ba2;border-bottom:3px solid #667eea;padding-bottom:15px;margin-bottom:25px}
+		.content-card h3{color:#667eea;margin-top:30px;margin-bottom:20px;border-left:4px solid #764ba2;padding-left:15px}
+		.content-card h4{color:#555;margin-top:20px;margin-bottom:15px}
+		.question-box{background:linear-gradient(135deg,#e3f2fd,#f3e5f5);border-left:4px solid #667eea;padding:25px;margin:20px 0;border-radius:10px;transition:all 0.3s}
+		.question-box:hover{transform:translateX(5px);box-shadow:0 5px 15px rgba(102,126,234,0.3)}
+		.question-title{color:#764ba2;font-weight:600;font-size:1.2rem;margin-bottom:15px}
+		.answer-box{background:#fff;border:2px solid #4caf50;border-radius:10px;padding:20px;margin-top:15px}
+		.answer-title{color:#4caf50;font-weight:600;margin-bottom:10px}
+		.test-question{background:#fff;border:2px solid #667eea;border-radius:10px;padding:25px;margin:20px 0;transition:all 0.3s}
+		.test-question:hover{box-shadow:0 8px 20px rgba(102,126,234,0.2)}
+		.test-number{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-right:15px}
+		.option{background:#f8f9fa;padding:12px 20px;margin:10px 0;border-radius:8px;cursor:pointer;transition:all 0.3s;border:2px solid transparent}
+		.option:hover{background:#e3f2fd;border-color:#667eea}
+		.option.correct{background:#e8f5e9;border-color:#4caf50;cursor:default}
+		.option.wrong{background:#ffebee;border-color:#f44336;cursor:default}
+		.show-answer-btn{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;margin-top:15px;transition:all 0.3s}
+		.show-answer-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(102,126,234,0.4)}
+		.correct-answer{display:none;background:#e8f5e9;border:2px solid #4caf50;border-radius:8px;padding:15px;margin-top:15px}
+		.correct-answer.show{display:block}
+		.highlight{background:#fff3cd;padding:3px 8px;border-radius:4px;font-weight:600}
+		.vs-table{margin:20px 0}
+		.vs-table td{padding:15px}
+		.vs-header{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-weight:600;text-align:center}
+		code{background:#f8f9fa;padding:3px 8px;border-radius:4px;font-family:'Courier New',monospace;font-size:0.9em;color:#e83e8c;border:1px solid #dee2e6}
+		table{width:100%;border-collapse:collapse;margin:20px 0;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+		th{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:15px;text-align:left}
+		td{padding:12px 15px;border-bottom:1px solid #e0e0e0;background:#fff}
+		tr:hover td{background:#f5f5f5}
+		ul,ol{margin-left:25px;line-height:1.8}
+		li{margin:10px 0}
+		.btn-back{position:fixed;top:20px;left:20px;background:#fff;color:#764ba2;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;z-index:1000;font-weight:600}
+		.btn-back:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3);color:#667eea}
+		.score-box{background:linear-gradient(135deg,#4caf50,#45a049);color:#fff;padding:20px;border-radius:15px;text-align:center;margin:20px 0;font-size:1.5rem;font-weight:700;display:none}
+		.score-box.show{display:block}
+		@media (max-width:768px){.main-header h1{font-size:1.8rem}.btn-back{font-size:0.8rem;padding:8px 15px}}
+		:focus-visible{outline:3px solid #667eea;outline-offset:2px}
+	</style>
+</head>
+<body>
+
+<a href="ag-temelleri-dersi.html" class="btn-back"><i class="bi bi-arrow-left-circle"></i> Ders Notları</a>
+
+<div class="container">
+	<header class="main-header" role="banner">
+		<h1><i class="bi bi-journal-check"></i> Ağ Temelleri Sınav Hazırlık</h1>
+		<p>Konu Özeti, Soru-Cevap & Test Soruları</p>
+		<span class="author-badge"><i class="bi bi-person-circle"></i> İslam ERGÜN</span>
+	</header>
+
+	<!-- SORU CEVAP BÖLÜMÜ -->
+	<article class="content-card">
+		<h2><i class="bi bi-question-circle"></i> Sınav Soruları ve Cevapları</h2>
+
+		<!-- SORU 1: Hub vs Switch -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-1-circle"></i> Hub ile Switch arasındaki fark nedir?</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				<table class="vs-table table table-bordered">
+					<thead>
+						<tr>
+							<th class="vs-header">Özellik</th>
+							<th class="vs-header">Hub</th>
+							<th class="vs-header">Switch</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>OSI Katmanı</strong></td>
+							<td>Layer 1 (Physical)</td>
+							<td>Layer 2 (Data Link)</td>
+						</tr>
+						<tr>
+							<td><strong>Akıllı mı?</strong></td>
+							<td>Hayır, sadece tekrarlar</td>
+							<td>Evet, MAC adresi öğrenir</td>
+						</tr>
+						<tr>
+							<td><strong>Veri Gönderimi</strong></td>
+							<td>Tüm portlara (Broadcast)</td>
+							<td>Sadece hedef porta (Unicast)</td>
+						</tr>
+						<tr>
+							<td><strong>Collision Domain</strong></td>
+							<td>Tüm cihazlar aynı collision domain'de</td>
+							<td>Her port ayrı collision domain</td>
+						</tr>
+						<tr>
+							<td><strong>Güvenlik</strong></td>
+							<td>Zayıf (herkes herkesi dinleyebilir)</td>
+							<td>Güçlü (sadece hedef alır)</td>
+						</tr>
+						<tr>
+							<td><strong>Hız</strong></td>
+							<td>Yavaş (çarpışmalar nedeniyle)</td>
+							<td>Hızlı (full-duplex)</td>
+						</tr>
+						<tr>
+							<td><strong>Fiyat</strong></td>
+							<td>Ucuz</td>
+							<td>Daha pahalı</td>
+						</tr>
+						<tr>
+							<td><strong>Kullanım</strong></td>
+							<td>Artık kullanılmıyor</td>
+							<td>Yaygın olarak kullanılıyor</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- SORU 2: 3 Topoloji -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-2-circle"></i> Üç farklı ağ topolojisi ve özelliklerini açıklayın</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				
+				<h4>1. <span class="highlight">Star (Yıldız) Topolojisi</span></h4>
+				<ul>
+					<li><strong>Yapı:</strong> Tüm cihazlar merkezi bir hub/switch'e bağlanır</li>
+					<li><strong>Avantajlar:</strong>
+						<ul>
+							<li>Bir cihaz arızası diğerlerini etkilemez</li>
+							<li>Arıza tespiti kolay</li>
+							<li>Yüksek performans</li>
+							<li>Yönetimi kolay</li>
+							<li>Kolayca genişletilebilir</li>
+						</ul>
+					</li>
+					<li><strong>Dezavantajlar:</strong>
+						<ul>
+							<li>Merkezi cihaz arızasında tüm ağ durur</li>
+							<li>Daha fazla kablo gerektirir</li>
+							<li>Hub/Switch maliyeti</li>
+						</ul>
+					</li>
+					<li><strong>Kullanım:</strong> En yaygın topoloji - Modern Ethernet ağları</li>
+				</ul>
+
+				<h4>2. <span class="highlight">Bus (Yol) Topolojisi</span></h4>
+				<ul>
+					<li><strong>Yapı:</strong> Tüm cihazlar tek bir ana kabloya (backbone) bağlanır</li>
+					<li><strong>Avantajlar:</strong>
+						<ul>
+							<li>Kurulumu basit</li>
+							<li>Az kablo gerektirir</li>
+							<li>Ekonomik</li>
+						</ul>
+					</li>
+					<li><strong>Dezavantajlar:</strong>
+						<ul>
+							<li>Ana kablo arızasında tüm ağ çöker</li>
+							<li>Arıza tespiti zor</li>
+							<li>Performans cihaz sayısı arttıkça düşer</li>
+							<li>Güvenlik zayıf</li>
+						</ul>
+					</li>
+					<li><strong>Kullanım:</strong> Eski Ethernet (10Base2) - Artık kullanılmıyor</li>
+				</ul>
+
+				<h4>3. <span class="highlight">Ring (Halka) Topolojisi</span></h4>
+				<ul>
+					<li><strong>Yapı:</strong> Cihazlar halka şeklinde birbirine bağlanır</li>
+					<li><strong>Avantajlar:</strong>
+						<ul>
+							<li>Çarpışma (collision) olmaz</li>
+							<li>Her cihaz eşit erişim hakkına sahip</li>
+							<li>Öngörülebilir performans</li>
+						</ul>
+					</li>
+					<li><strong>Dezavantajlar:</strong>
+						<ul>
+							<li>Bir cihaz arızasında tüm ağ etkilenebilir</li>
+							<li>Arıza tespiti zor</li>
+							<li>Yeni cihaz eklemek zordur</li>
+						</ul>
+					</li>
+					<li><strong>Kullanım:</strong> Token Ring - Artık kullanılmıyor</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SORU 3: Topoloji Avantajları -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-3-circle"></i> Star (Yıldız) Topolojisinin avantajları nelerdir?</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				<ul>
+					<li>✅ <strong>Hata İzolasyonu:</strong> Bir bilgisayar veya kablo arızalandığında sadece o bilgisayar etkilenir, diğer bilgisayarlar çalışmaya devam eder</li>
+					<li>✅ <strong>Kolay Arıza Tespiti:</strong> Problem olan cihaz veya kablo kolayca tespit edilip değiştirilebilir</li>
+					<li>✅ <strong>Yüksek Performans:</strong> Merkezi cihaz (switch) paketleri akıllıca yönlendirdiği için yüksek performans sağlar</li>
+					<li>✅ <strong>Kolay Genişletme:</strong> Yeni cihaz eklemek kolaydır, sadece merkezi cihaza bağlanır</li>
+					<li>✅ <strong>Merkezi Yönetim:</strong> Tüm ağ tek bir noktadan (switch) yönetilebilir</li>
+					<li>✅ <strong>Esneklik:</strong> Farklı tipteki cihazlar kolayca ağa eklenebilir</li>
+					<li>✅ <strong>Güvenlik:</strong> Switch kullanıldığında veri sadece hedef cihaza gider</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SORU 4: 568B Standardı -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-4-circle"></i> T568B kablo standardını açıklayın</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				<p>T568B, UTP (Unshielded Twisted Pair) Ethernet kablolarının RJ-45 konektöre takılma standardıdır.</p>
+				
+				<h4>T568B Pin Dizilimi (1'den 8'e):</h4>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Pin No</th>
+							<th>Renk</th>
+							<th>Sinyal</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="background:#fff3cd">
+							<td><strong>1</strong></td>
+							<td><span style="color:#ff8c00;font-weight:600">Beyaz-Turuncu</span></td>
+							<td>TX+ (Gönderme +)</td>
+						</tr>
+						<tr style="background:#fff3cd">
+							<td><strong>2</strong></td>
+							<td><span style="color:#ff6600;font-weight:600">Turuncu</span></td>
+							<td>TX- (Gönderme -)</td>
+						</tr>
+						<tr>
+							<td><strong>3</strong></td>
+							<td><span style="color:#90ee90;font-weight:600">Beyaz-Yeşil</span></td>
+							<td>RX+ (Alma +)</td>
+						</tr>
+						<tr style="background:#e3f2fd">
+							<td><strong>4</strong></td>
+							<td><span style="color:#0066cc;font-weight:600">Mavi</span></td>
+							<td>Yedek (Phone/PoE)</td>
+						</tr>
+						<tr style="background:#e3f2fd">
+							<td><strong>5</strong></td>
+							<td><span style="color:#99ccff;font-weight:600">Beyaz-Mavi</span></td>
+							<td>Yedek (Phone/PoE)</td>
+						</tr>
+						<tr>
+							<td><strong>6</strong></td>
+							<td><span style="color:#006400;font-weight:600">Yeşil</span></td>
+							<td>RX- (Alma -)</td>
+						</tr>
+						<tr style="background:#f0e68c">
+							<td><strong>7</strong></td>
+							<td><span style="color:#d2b48c;font-weight:600">Beyaz-Kahverengi</span></td>
+							<td>Yedek (Phone/PoE)</td>
+						</tr>
+						<tr style="background:#f0e68c">
+							<td><strong>8</strong></td>
+							<td><span style="color:#8b4513;font-weight:600">Kahverengi</span></td>
+							<td>Yedek (Phone/PoE)</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4>Önemli Notlar:</h4>
+				<ul>
+					<li>T568B en yaygın kullanılan standarttır</li>
+					<li>10/100 Mbps Ethernet için sadece 1, 2, 3, 6 pinleri kullanılır</li>
+					<li>Gigabit Ethernet için 8 pinin hepsi kullanılır</li>
+					<li>Straight-through kablo için her iki uç T568B olmalıdır</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SORU 5: Konektör -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-5-circle"></i> Ağ kablolarında kullanılan konektör türlerini açıklayın</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				
+				<h4>1. <span class="highlight">RJ-45 (Registered Jack-45)</span></h4>
+				<ul>
+					<li><strong>Kullanım:</strong> UTP/STP Ethernet kabloları için</li>
+					<li><strong>Pin Sayısı:</strong> 8 pin (8P8C)</li>
+					<li><strong>Bağlantı:</strong> Bilgisayar, Switch, Router Ethernet portları</li>
+					<li><strong>Standartlar:</strong> T568A, T568B</li>
+					<li><strong>En Yaygın:</strong> Bilgisayar ağlarında kullanılan ana konektör</li>
+				</ul>
+
+				<h4>2. <span class="highlight">RJ-11</span></h4>
+				<ul>
+					<li><strong>Kullanım:</strong> Telefon kabloları</li>
+					<li><strong>Pin Sayısı:</strong> 4 veya 6 pin</li>
+					<li><strong>Bağlantı:</strong> Telefon, Modem DSL bağlantıları</li>
+					<li><strong>Not:</strong> RJ-45'ten daha küçük</li>
+				</ul>
+
+				<h4>3. <span class="highlight">Fiber Optik Konektörler</span></h4>
+				<ul>
+					<li><strong>LC (Lucent Connector):</strong> Küçük, çok kullanılan, push-pull mekanizma</li>
+					<li><strong>SC (Subscriber Connector):</strong> Kare şekilli, push-pull mekanizma</li>
+					<li><strong>ST (Straight Tip):</strong> Yuvarlak, bayonet kilit mekanizması</li>
+					<li><strong>MTP/MPO:</strong> Çoklu fiber (12-24 fiber)</li>
+				</ul>
+
+				<h4>4. <span class="highlight">BNC (Bayonet Neill-Concelman)</span></h4>
+				<ul>
+					<li><strong>Kullanım:</strong> Koaksiyel kablolar (10Base2)</li>
+					<li><strong>Bağlantı:</strong> Twist-lock mekanizması</li>
+					<li><strong>Durum:</strong> Artık ağ iletişiminde kullanılmıyor</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SORU 6: Kablo Türleri -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-6-circle"></i> Kablo türlerini (UTP, STP, Fiber, Koaksiyel) karşılaştırın</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Özellik</th>
+							<th>UTP</th>
+							<th>STP</th>
+							<th>Fiber Optik</th>
+							<th>Koaksiyel</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Tam Adı</strong></td>
+							<td>Unshielded Twisted Pair</td>
+							<td>Shielded Twisted Pair</td>
+							<td>Fiber Optic</td>
+							<td>Coaxial Cable</td>
+						</tr>
+						<tr>
+							<td><strong>Yapı</strong></td>
+							<td>Koruyucusuz burulmuş bakır teller</td>
+							<td>Korumalı burulmuş bakır teller</td>
+							<td>Cam/plastik fiber, ışık sinyali</td>
+							<td>Merkezi iletken, yalıtkan, örgü</td>
+						</tr>
+						<tr>
+							<td><strong>Hız</strong></td>
+							<td>1-10 Gbps</td>
+							<td>1-10 Gbps</td>
+							<td>100+ Gbps</td>
+							<td>10 Mbps</td>
+						</tr>
+						<tr>
+							<td><strong>Mesafe</strong></td>
+							<td>100 metre</td>
+							<td>100 metre</td>
+							<td>40+ km</td>
+							<td>185-500 metre</td>
+						</tr>
+						<tr>
+							<td><strong>Parazit</strong></td>
+							<td>Orta düzeyde etkilenir</td>
+							<td>Az etkilenir</td>
+							<td>Hiç etkilenmez</td>
+							<td>Az etkilenir</td>
+						</tr>
+						<tr>
+							<td><strong>Maliyet</strong></td>
+							<td>Ucuz</td>
+							<td>Orta</td>
+							<td>Pahalı</td>
+							<td>Orta</td>
+						</tr>
+						<tr>
+							<td><strong>Kurulum</strong></td>
+							<td>Kolay</td>
+							<td>Kolay</td>
+							<td>Zor, özel ekipman</td>
+							<td>Orta</td>
+						</tr>
+						<tr>
+							<td><strong>Kullanım</strong></td>
+							<td>LAN, ev/ofis ağları</td>
+							<td>Endüstriyel ortamlar</td>
+							<td>WAN, veri merkezleri</td>
+							<td>Kablo TV (ağda artık yok)</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- SORU 7: UTP Kablo Yapısı -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-7-circle"></i> UTP kablo yapısını detaylı açıklayın</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				
+				<h4>UTP (Unshielded Twisted Pair) Kablo Yapısı:</h4>
+				
+				<div style="background:#f8f9fa;padding:20px;border-radius:10px;margin:15px 0">
+					<h5>Katmanlar (Dıştan İçe):</h5>
+					<ol>
+						<li><strong>Dış Kılıf (Jacket):</strong>
+							<ul>
+								<li>PVC veya LSZH (Düşük Duman) malzemeden</li>
+								<li>Kabloyu korur</li>
+								<li>Genellikle mavi, gri veya sarı renkte</li>
+							</ul>
+						</li>
+						<li><strong>4 Çift Burulmuş Tel (4 Pairs):</strong>
+							<ul>
+								<li>Her çift farklı renkte (Turuncu, Yeşil, Mavi, Kahverengi)</li>
+								<li>Her çift: 1 düz renk + 1 beyaz-renkli tel</li>
+								<li>Burulma nedeni: Elektromanyetik paraziti azaltmak</li>
+							</ul>
+						</li>
+						<li><strong>Bakır İletkenler:</strong>
+							<ul>
+								<li>24 AWG (American Wire Gauge) kalınlığında</li>
+								<li>Katı veya esnek tel olabilir</li>
+							</ul>
+						</li>
+					</ol>
+				</div>
+
+				<h4>UTP Kategorileri:</h4>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Kategori</th>
+							<th>Hız</th>
+							<th>Frekans</th>
+							<th>Kullanım</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Cat5</strong></td>
+							<td>100 Mbps</td>
+							<td>100 MHz</td>
+							<td>Eski (artık kullanılmıyor)</td>
+						</tr>
+						<tr style="background:#e8f5e9">
+							<td><strong>Cat5e</strong></td>
+							<td>1 Gbps</td>
+							<td>100 MHz</td>
+							<td>Yaygın (ev/ofis)</td>
+						</tr>
+						<tr style="background:#e8f5e9">
+							<td><strong>Cat6</strong></td>
+							<td>1-10 Gbps</td>
+							<td>250 MHz</td>
+							<td>Yaygın (ofis/kurumsal)</td>
+						</tr>
+						<tr>
+							<td><strong>Cat6a</strong></td>
+							<td>10 Gbps</td>
+							<td>500 MHz</td>
+							<td>Kurumsal ağlar</td>
+						</tr>
+						<tr>
+							<td><strong>Cat7</strong></td>
+							<td>10 Gbps</td>
+							<td>600 MHz</td>
+							<td>Veri merkezleri (STP)</td>
+						</tr>
+						<tr>
+							<td><strong>Cat8</strong></td>
+							<td>40 Gbps</td>
+							<td>2000 MHz</td>
+							<td>Veri merkezleri (30m)</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4>UTP vs STP Farkı:</h4>
+				<ul>
+					<li><strong>UTP:</strong> Metal koruma (shield) YOK - Daha ucuz, esnek</li>
+					<li><strong>STP:</strong> Metal koruma (shield) VAR - Parazite karşı daha korumalı</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SORU 8: OSI Katmanları -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-8-circle"></i> OSI modelinin 7 katmanını sıralayın ve her katmanın görevini açıklayın</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				
+				<div style="background:#f8f9fa;padding:20px;border-radius:10px;margin:15px 0">
+					<h5>Hatırlama Tekniği:</h5>
+					<p><strong>Yukarıdan Aşağıya:</strong> "All People Seem To Need Data Processing"</p>
+					<p><strong>Aşağıdan Yukarıya:</strong> "Please Do Not Throw Sausage Pizza Away"</p>
+				</div>
+
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Katman</th>
+							<th>İsim</th>
+							<th>Görev</th>
+							<th>Protokol/Cihaz</th>
+							<th>Veri Birimi</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="background:#ffebee">
+							<td><strong>7</strong></td>
+							<td><strong>Application</strong><br>(Uygulama)</td>
+							<td>Kullanıcı uygulamaları ile ağ arasında arayüz</td>
+							<td>HTTP, FTP, SMTP, DNS</td>
+							<td>Data</td>
+						</tr>
+						<tr style="background:#f3e5f5">
+							<td><strong>6</strong></td>
+							<td><strong>Presentation</strong><br>(Sunum)</td>
+							<td>Veri formatı dönüşümü, şifreleme, sıkıştırma</td>
+							<td>JPEG, MPEG, SSL/TLS</td>
+							<td>Data</td>
+						</tr>
+						<tr style="background:#e8eaf6">
+							<td><strong>5</strong></td>
+							<td><strong>Session</strong><br>(Oturum)</td>
+							<td>Oturum yönetimi, bağlantı kurma/sonlandırma</td>
+							<td>NetBIOS, RPC</td>
+							<td>Data</td>
+						</tr>
+						<tr style="background:#e3f2fd">
+							<td><strong>4</strong></td>
+							<td><strong>Transport</strong><br>(Taşıma)</td>
+							<td>Uçtan uca güvenilir iletim, segmentasyon</td>
+							<td>TCP, UDP</td>
+							<td>Segment</td>
+						</tr>
+						<tr style="background:#e0f7fa">
+							<td><strong>3</strong></td>
+							<td><strong>Network</strong><br>(Ağ)</td>
+							<td>Mantıksal adresleme (IP), yönlendirme</td>
+							<td>IP, Router</td>
+							<td>Packet</td>
+						</tr>
+						<tr style="background:#e0f2f1">
+							<td><strong>2</strong></td>
+							<td><strong>Data Link</strong><br>(Veri Bağlantısı)</td>
+							<td>Fiziksel adresleme (MAC), çerçeveleme</td>
+							<td>Ethernet, Switch</td>
+							<td>Frame</td>
+						</tr>
+						<tr style="background:#e8f5e9">
+							<td><strong>1</strong></td>
+							<td><strong>Physical</strong><br>(Fiziksel)</td>
+							<td>Bit iletimi, fiziksel bağlantı</td>
+							<td>Kablolar, Hub</td>
+							<td>Bit</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4>Önemli Notlar:</h4>
+				<ul>
+					<li>Her katman kendi başlık (header) bilgisini ekler → <strong>Encapsulation</strong></li>
+					<li>Alıcı tarafta başlıklar çıkarılır → <strong>Decapsulation</strong></li>
+					<li>Her katman sadece alt ve üst katmanla iletişim kurar</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SORU 9: IP Sınıfları -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-9-circle"></i> IP adres sınıflarını açıklayın</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Sınıf</th>
+							<th>İlk Oktet Aralığı</th>
+							<th>Varsayılan Subnet Mask</th>
+							<th>CIDR</th>
+							<th>Ağ/Host</th>
+							<th>Kullanım</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="background:#e3f2fd">
+							<td><strong>A</strong></td>
+							<td>1 - 126</td>
+							<td>255.0.0.0</td>
+							<td>/8</td>
+							<td>N.H.H.H</td>
+							<td>Çok büyük ağlar (16,777,214 host)</td>
+						</tr>
+						<tr style="background:#e8f5e9">
+							<td><strong>B</strong></td>
+							<td>128 - 191</td>
+							<td>255.255.0.0</td>
+							<td>/16</td>
+							<td>N.N.H.H</td>
+							<td>Orta ağlar (65,534 host)</td>
+						</tr>
+						<tr style="background:#fff3e0">
+							<td><strong>C</strong></td>
+							<td>192 - 223</td>
+							<td>255.255.255.0</td>
+							<td>/24</td>
+							<td>N.N.N.H</td>
+							<td>Küçük ağlar (254 host)</td>
+						</tr>
+						<tr style="background:#fce4ec">
+							<td><strong>D</strong></td>
+							<td>224 - 239</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>Multicast (Çok noktaya yayın)</td>
+						</tr>
+						<tr style="background:#f3e5f5">
+							<td><strong>E</strong></td>
+							<td>240 - 255</td>
+							<td>-</td>
+							<td>-</td>
+							<td>-</td>
+							<td>Deneysel (Araştırma)</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4>Özel (Private) IP Adresleri:</h4>
+				<ul>
+					<li><strong>Sınıf A:</strong> <code>10.0.0.0 - 10.255.255.255</code> (10.0.0.0/8)</li>
+					<li><strong>Sınıf B:</strong> <code>172.16.0.0 - 172.31.255.255</code> (172.16.0.0/12)</li>
+					<li><strong>Sınıf C:</strong> <code>192.168.0.0 - 192.168.255.255</code> (192.168.0.0/16)</li>
+				</ul>
+
+				<h4>Özel IP Adresleri:</h4>
+				<ul>
+					<li><strong>127.0.0.0 - 127.255.255.255:</strong> Loopback (127.0.0.1 = localhost)</li>
+					<li><strong>169.254.0.0 - 169.254.255.255:</strong> APIPA (DHCP başarısız)</li>
+					<li><strong>0.0.0.0:</strong> Varsayılan route</li>
+					<li><strong>255.255.255.255:</strong> Broadcast</li>
+				</ul>
+
+				<h4>Örnekler:</h4>
+				<ul>
+					<li><code>10.20.30.40</code> → <strong>Sınıf A</strong> (İlk oktet: 10)</li>
+					<li><code>172.16.5.100</code> → <strong>Sınıf B</strong> (İlk oktet: 172)</li>
+					<li><code>192.168.1.1</code> → <strong>Sınıf C</strong> (İlk oktet: 192)</li>
+					<li><code>224.0.0.1</code> → <strong>Sınıf D</strong> (Multicast)</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SORU 10: Alt Ağ Maskesi -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-1-circle"></i><i class="bi bi-0-circle"></i> Alt ağ maskesi nedir? Nasıl çalışır?</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				
+				<h4>Alt Ağ Maskesi (Subnet Mask) Nedir?</h4>
+				<p>IP adresinin hangi kısmının <strong>ağ (network)</strong> kısmı, hangi kısmının <strong>host</strong> kısmı olduğunu belirleyen 32 bitlik sayıdır.</p>
+
+				<h4>Çalışma Prensibi:</h4>
+				<ul>
+					<li>Subnet mask ile IP adresi arasında <strong>AND</strong> işlemi yapılır</li>
+					<li>Sonuç <strong>ağ adresi (network address)</strong> olur</li>
+					<li>1'ler → Ağ kısmı</li>
+					<li>0'lar → Host kısmı</li>
+				</ul>
+
+				<h4>Örnek Hesaplama:</h4>
+				<div style="background:#2d2d2d;color:#f8f8f2;padding:20px;border-radius:10px;font-family:monospace">
+					<strong>IP Adresi:</strong> 192.168.1.100<br>
+					<strong>Subnet Mask:</strong> 255.255.255.0<br><br>
+					
+					<strong>İkili Gösterim:</strong><br>
+					IP:   11000000.10101000.00000001.01100100<br>
+					Mask: 11111111.11111111.11111111.00000000<br>
+					----------------------------------------<br>
+					AND:  11000000.10101000.00000001.00000000<br><br>
+					
+					<strong>Network Adresi:</strong> 192.168.1.0
+				</div>
+
+				<h4>Yaygın Subnet Maskler:</h4>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>CIDR</th>
+							<th>Subnet Mask</th>
+							<th>İkili Gösterim</th>
+							<th>Kullanılabilir Host</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>/8</td>
+							<td>255.0.0.0</td>
+							<td>11111111.00000000.00000000.00000000</td>
+							<td>16,777,214</td>
+						</tr>
+						<tr>
+							<td>/16</td>
+							<td>255.255.0.0</td>
+							<td>11111111.11111111.00000000.00000000</td>
+							<td>65,534</td>
+						</tr>
+						<tr>
+							<td>/24</td>
+							<td>255.255.255.0</td>
+							<td>11111111.11111111.11111111.00000000</td>
+							<td>254</td>
+						</tr>
+						<tr>
+							<td>/30</td>
+							<td>255.255.255.252</td>
+							<td>11111111.11111111.11111111.11111100</td>
+							<td>2</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4>Özel Adresler:</h4>
+				<ul>
+					<li><strong>Network Adresi:</strong> İlk adres (örn: 192.168.1.0) - Ağı temsil eder</li>
+					<li><strong>Broadcast Adresi:</strong> Son adres (örn: 192.168.1.255) - Tüm hostlara gönderim</li>
+					<li><strong>Kullanılabilir Hostlar:</strong> İki uç hariç (192.168.1.1 - 192.168.1.254)</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SORU 11: C Sınıfı IP -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-1-circle"></i><i class="bi bi-1-circle"></i> Aynı ağda bulunan bilgisayarların C sınıfı IP numaraları nasıl olmalı?</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				
+				<h4>C Sınıfı IP Adresleme Kuralları:</h4>
+				
+				<div style="background:#e8f5e9;padding:20px;border-radius:10px;margin:15px 0">
+					<h5>Temel Kural:</h5>
+					<p>Aynı ağda bulunan bilgisayarların <strong>ilk 3 okteti (N.N.N) aynı</strong> olmalıdır, <strong>son oktet (H) farklı</strong> olmalıdır.</p>
+				</div>
+
+				<h4>C Sınıfı Özellikleri:</h4>
+				<ul>
+					<li><strong>İlk Oktet:</strong> 192 - 223 arası</li>
+					<li><strong>Varsayılan Subnet Mask:</strong> 255.255.255.0 (/24)</li>
+					<li><strong>Format:</strong> N.N.N.H (N=Network, H=Host)</li>
+					<li><strong>Kullanılabilir Host:</strong> 254 adet (1-254)</li>
+				</ul>
+
+				<h4>Örnek 1: Aynı Ağ (Doğru)</h4>
+				<div style="background:#d4edda;padding:15px;border-left:4px solid #4caf50;border-radius:5px;margin:10px 0">
+					<p><strong>Ağ Adresi:</strong> 192.168.1.0/24</p>
+					<ul style="margin:10px 0">
+						<li>Bilgisayar 1: <code>192.168.1.10</code> ✅</li>
+						<li>Bilgisayar 2: <code>192.168.1.20</code> ✅</li>
+						<li>Bilgisayar 3: <code>192.168.1.100</code> ✅</li>
+						<li>Bilgisayar 4: <code>192.168.1.254</code> ✅</li>
+					</ul>
+					<p><strong>Sonuç:</strong> Hepsi aynı ağda, birbirleriyle direkt haberleşebilir</p>
+				</div>
+
+				<h4>Örnek 2: Farklı Ağ (Yanlış)</h4>
+				<div style="background:#f8d7da;padding:15px;border-left:4px solid #f44336;border-radius:5px;margin:10px 0">
+					<p><strong>Ağ 1:</strong> 192.168.1.0/24</p>
+					<ul style="margin:10px 0">
+						<li>Bilgisayar 1: <code>192.168.1.10</code> ✅</li>
+						<li>Bilgisayar 2: <code>192.168.1.20</code> ✅</li>
+					</ul>
+					<p><strong>Ağ 2:</strong> 192.168.2.0/24</p>
+					<ul style="margin:10px 0">
+						<li>Bilgisayar 3: <code>192.168.2.10</code> ❌</li>
+						<li>Bilgisayar 4: <code>192.168.2.20</code> ❌</li>
+					</ul>
+					<p><strong>Sonuç:</strong> Farklı ağlarda, router gerekir</p>
+				</div>
+
+				<h4>Kullanılamaz IP'ler:</h4>
+				<ul>
+					<li><code>192.168.1.0</code> → Network Adresi (ağı temsil eder)</li>
+					<li><code>192.168.1.255</code> → Broadcast Adresi (herkese gönderim)</li>
+				</ul>
+
+				<h4>Gerçek Hayat Örneği:</h4>
+				<div style="background:#fff3cd;padding:15px;border-radius:5px;margin:10px 0">
+					<p><strong>Ev/Ofis Ağı:</strong></p>
+					<ul>
+						<li>Router (Gateway): <code>192.168.1.1</code></li>
+						<li>Bilgisayar 1: <code>192.168.1.100</code></li>
+						<li>Bilgisayar 2: <code>192.168.1.101</code></li>
+						<li>Yazıcı: <code>192.168.1.50</code></li>
+						<li>Telefon: <code>192.168.1.102</code></li>
+					</ul>
+					<p>Tüm cihazlar aynı ağda (192.168.1.0/24), birbirleriyle haberleşebilir</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- SORU 12: VPN -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-1-circle"></i><i class="bi bi-2-circle"></i> VPN nedir? Nasıl çalışır?</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				
+				<h4>VPN (Virtual Private Network - Sanal Özel Ağ) Nedir?</h4>
+				<p>VPN, açık bir ağ (internet) üzerinden güvenli ve şifreli bir bağlantı tüneli oluşturarak, uzaktaki ağa güvenli erişim sağlayan teknolojidir.</p>
+
+				<h4>Temel Özellikler:</h4>
+				<ul>
+					<li><strong>Şifreleme:</strong> Tüm veri şifrelenir (AES-256)</li>
+					<li><strong>Güvenlik:</strong> Veriler korumalı tünel içinde gider</li>
+					<li><strong>Gizlilik:</strong> IP adresi gizlenir</li>
+					<li><strong>Uzaktan Erişim:</strong> Evden ofis ağına bağlanma</li>
+				</ul>
+
+				<h4>Nasıl Çalışır?</h4>
+				<ol>
+					<li><strong>Bağlantı Kurulumu:</strong> Kullanıcı VPN sunucusuna bağlanır</li>
+					<li><strong>Şifreleme:</strong> Veriler şifrelenir</li>
+					<li><strong>Tünel:</strong> Şifreli veriler güvenli tünel içinde gider</li>
+					<li><strong>VPN Sunucusu:</strong> Sunucu veriyi çözer ve hedefe gönderir</li>
+					<li><strong>Yanıt:</strong> Cevap aynı tünelden şifreli olarak döner</li>
+				</ol>
+
+				<h4>VPN Türleri:</h4>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Tür</th>
+							<th>Açıklama</th>
+							<th>Kullanım</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Remote Access VPN</strong></td>
+							<td>Bireysel kullanıcı → Şirket ağı</td>
+							<td>Evden çalışma</td>
+						</tr>
+						<tr>
+							<td><strong>Site-to-Site VPN</strong></td>
+							<td>Ağ → Ağ bağlantısı</td>
+							<td>Şube ofisler arası</td>
+						</tr>
+						<tr>
+							<td><strong>SSL/TLS VPN</strong></td>
+							<td>Web tarayıcı üzerinden</td>
+							<td>Kolay erişim</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4>VPN Protokolleri:</h4>
+				<ul>
+					<li><strong>PPTP:</strong> Eski, hızlı ama güvensiz</li>
+					<li><strong>L2TP/IPSec:</strong> Güvenli, yaygın</li>
+					<li><strong>OpenVPN:</strong> Açık kaynak, çok güvenli</li>
+					<li><strong>IKEv2/IPSec:</strong> Mobil cihazlar için ideal</li>
+					<li><strong>WireGuard:</strong> Yeni, hızlı ve güvenli</li>
+				</ul>
+
+				<h4>Kullanım Alanları:</h4>
+				<ul>
+					<li>🏢 <strong>Kurumsal:</strong> Uzaktan çalışma, şubeler arası bağlantı</li>
+					<li>🔒 <strong>Gizlilik:</strong> İnternet trafiğini gizleme</li>
+					<li>🌍 <strong>Coğrafi Kısıtlamalar:</strong> Engellenen sitelere erişim</li>
+					<li>📱 <strong>Güvenli WiFi:</strong> Halka açık WiFi'lerde güvenlik</li>
+				</ul>
+
+				<h4>Avantajlar:</h4>
+				<ul>
+					<li>✅ Güvenli uzaktan erişim</li>
+					<li>✅ Veri şifreleme</li>
+					<li>✅ IP gizleme</li>
+					<li>✅ Maliyet tasarrufu (kiralık hat yerine)</li>
+				</ul>
+
+				<h4>Dezavantajlar:</h4>
+				<ul>
+					<li>❌ Hız düşüşü (şifreleme nedeniyle)</li>
+					<li>❌ Kurulum ve yapılandırma gerekir</li>
+					<li>❌ Sunucu maliyeti</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- SORU 13: LAN-MAN-WAN -->
+		<div class="question-box">
+			<div class="question-title"><i class="bi bi-1-circle"></i><i class="bi bi-3-circle"></i> LAN, MAN ve WAN arasındaki farkları açıklayın</div>
+			<div class="answer-box">
+				<div class="answer-title"><i class="bi bi-check-circle"></i> Cevap:</div>
+				
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Özellik</th>
+							<th>LAN</th>
+							<th>MAN</th>
+							<th>WAN</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><strong>Tam Adı</strong></td>
+							<td>Local Area Network</td>
+							<td>Metropolitan Area Network</td>
+							<td>Wide Area Network</td>
+						</tr>
+						<tr>
+							<td><strong>Coğrafi Kapsam</strong></td>
+							<td>Bir bina veya kampüs<br>(1-2 km)</td>
+							<td>Bir şehir<br>(5-50 km)</td>
+							<td>Ülke, kıta veya dünya<br>(100+ km)</td>
+						</tr>
+						<tr>
+							<td><strong>Hız</strong></td>
+							<td>Çok Yüksek<br>(1-100 Gbps)</td>
+							<td>Yüksek<br>(100 Mbps - 10 Gbps)</td>
+							<td>Değişken<br>(1 Mbps - 10 Gbps)</td>
+						</tr>
+						<tr>
+							<td><strong>Sahiplik</strong></td>
+							<td>Özel (tek kuruluş)</td>
+							<td>Özel/Kamu</td>
+							<td>ISP sağlayıcısı</td>
+						</tr>
+						<tr>
+							<td><strong>Maliyet</strong></td>
+							<td>Düşük</td>
+							<td>Orta</td>
+							<td>Yüksek</td>
+						</tr>
+						<tr>
+							<td><strong>Hata Oranı</strong></td>
+							<td>Çok düşük</td>
+							<td>Düşük</td>
+							<td>Yüksek</td>
+						</tr>
+						<tr>
+							<td><strong>Gecikme (Latency)</strong></td>
+							<td>Çok düşük (1-5 ms)</td>
+							<td>Düşük (5-20 ms)</td>
+							<td>Yüksek (50-500 ms)</td>
+						</tr>
+						<tr>
+							<td><strong>Teknoloji</strong></td>
+							<td>Ethernet, Wi-Fi</td>
+							<td>Fiber optik, Metro Ethernet</td>
+							<td>MPLS, Satellite, Fiber, Leased Line</td>
+						</tr>
+						<tr>
+							<td><strong>Cihazlar</strong></td>
+							<td>Switch, Access Point</td>
+							<td>Router, Switch</td>
+							<td>Router, Modem</td>
+						</tr>
+						<tr>
+							<td><strong>Örnekler</strong></td>
+							<td>
+								• Ev ağı<br>
+								• Ofis ağı<br>
+								• Okul laboratuvarı<br>
+								• Bina içi ağ
+							</td>
+							<td>
+								• Şehir içi kampüsler<br>
+								• Kamu binalar arası<br>
+								• Şehir WiFi<br>
+								• Kablo TV ağı
+							</td>
+							<td>
+								• İnternet<br>
+								• Banka ağları<br>
+								• Uluslararası şirket ağları<br>
+								• Telekom ağları
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4>Görsel Karşılaştırma:</h4>
+				<div style="background:#f8f9fa;padding:20px;border-radius:10px;margin:15px 0">
+					<p><strong>LAN:</strong> 🏢 Ofis/Ev → Tek bina</p>
+					<p><strong>MAN:</strong> 🏙️ Şehir → Birden fazla bina/kampüs</p>
+					<p><strong>WAN:</strong> 🌍 Dünya → Şehirler, ülkeler arası</p>
+				</div>
+
+				<h4>Hangisi Hangi Durumda Kullanılır?</h4>
+				<ul>
+					<li><strong>LAN:</strong> Bir ofisin tüm bilgisayarlarını bağlamak</li>
+					<li><strong>MAN:</strong> Bir üniversitenin farklı kampüslerini bağlamak</li>
+					<li><strong>WAN:</strong> Farklı şehirlerdeki şubeleri bağlamak</li>
+				</ul>
+			</div>
+		</div>
+	</article>
+
+	<!-- TEST SORULARI BÖLÜMÜ -->
+	<article class="content-card">
+		<h2><i class="bi bi-pencil-square"></i> Test Soruları</h2>
+		<p style="color:#666;margin-bottom:30px">Cevapları görmek için "Cevabı Göster" butonuna tıklayın</p>
+
+		<!-- Test 1 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">1</span>
+				<h4 style="margin:0">Aşağıdakilerden hangisi Hub'ın özelliği değildir?</h4>
+			</div>
+			<div class="option">A) OSI Layer 1'de çalışır</div>
+			<div class="option">B) Gelen veriyi tüm portlara gönderir</div>
+			<div class="option">C) MAC adres tablosu tutar</div>
+			<div class="option">D) Collision domain oluşturur</div>
+			<button class="show-answer-btn" onclick="showAnswer(1)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer1">
+				<strong>Doğru Cevap: C) MAC adres tablosu tutar</strong><br>
+				<p><strong>Açıklama:</strong> Hub akıllı değildir, MAC adresi öğrenmez. MAC adres tablosu sadece Switch'lerde bulunur. Hub sadece sinyal tekrarlayıcısıdır.</p>
+			</div>
+		</div>
+
+		<!-- Test 2 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">2</span>
+				<h4 style="margin:0">Star topolojisinin en büyük dezavantajı nedir?</h4>
+			</div>
+			<div class="option">A) Kurulumu zordur</div>
+			<div class="option">B) Merkezi cihaz arızalandığında tüm ağ durur</div>
+			<div class="option">C) Hız çok düşüktür</div>
+			<div class="option">D) Güvenlik zayıftır</div>
+			<button class="show-answer-btn" onclick="showAnswer(2)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer2">
+				<strong>Doğru Cevap: B) Merkezi cihaz arızalandığında tüm ağ durur</strong><br>
+				<p><strong>Açıklama:</strong> Star topolojisinde tüm cihazlar merkezi switch/hub'a bağlıdır. Merkezi cihaz arızalanırsa tüm ağ çalışmaz. Bu tek noktadan arıza (single point of failure) durumudur.</p>
+			</div>
+		</div>
+
+		<!-- Test 3 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">3</span>
+				<h4 style="margin:0">T568B standardında 1. pin hangi renktedir?</h4>
+			</div>
+			<div class="option">A) Beyaz-Yeşil</div>
+			<div class="option">B) Beyaz-Turuncu</div>
+			<div class="option">C) Beyaz-Mavi</div>
+			<div class="option">D) Turuncu</div>
+			<button class="show-answer-btn" onclick="showAnswer(3)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer3">
+				<strong>Doğru Cevap: B) Beyaz-Turuncu</strong><br>
+				<p><strong>Açıklama:</strong> T568B standardında pin sırası: 1-Beyaz-Turuncu, 2-Turuncu, 3-Beyaz-Yeşil, 4-Mavi, 5-Beyaz-Mavi, 6-Yeşil, 7-Beyaz-Kahverengi, 8-Kahverengi</p>
+			</div>
+		</div>
+
+		<!-- Test 4 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">4</span>
+				<h4 style="margin:0">UTP kablosunda kaç çift tel bulunur?</h4>
+			</div>
+			<div class="option">A) 2 çift</div>
+			<div class="option">B) 4 çift</div>
+			<div class="option">C) 6 çift</div>
+			<div class="option">D) 8 çift</div>
+			<button class="show-answer-btn" onclick="showAnswer(4)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer4">
+				<strong>Doğru Cevap: B) 4 çift</strong><br>
+				<p><strong>Açıklama:</strong> UTP (Unshielded Twisted Pair) kablosu 4 çift, yani toplam 8 tel içerir. Her çift farklı renktedir: Turuncu, Yeşil, Mavi, Kahverengi.</p>
+			</div>
+		</div>
+
+		<!-- Test 5 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">5</span>
+				<h4 style="margin:0">OSI modelinin 3. katmanı hangisidir?</h4>
+			</div>
+			<div class="option">A) Transport</div>
+			<div class="option">B) Network</div>
+			<div class="option">C) Data Link</div>
+			<div class="option">D) Session</div>
+			<button class="show-answer-btn" onclick="showAnswer(5)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer5">
+				<strong>Doğru Cevap: B) Network</strong><br>
+				<p><strong>Açıklama:</strong> OSI Layer 3 = Network katmanı. IP adresleme ve routing bu katmanda yapılır. Router bu katmanda çalışır.</p>
+			</div>
+		</div>
+
+		<!-- Test 6 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">6</span>
+				<h4 style="margin:0">192.168.1.50 IP adresi hangi sınıftandır?</h4>
+			</div>
+			<div class="option">A) Sınıf A</div>
+			<div class="option">B) Sınıf B</div>
+			<div class="option">C) Sınıf C</div>
+			<div class="option">D) Sınıf D</div>
+			<button class="show-answer-btn" onclick="showAnswer(6)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer6">
+				<strong>Doğru Cevap: C) Sınıf C</strong><br>
+				<p><strong>Açıklama:</strong> İlk oktet 192'dir. Sınıf C: 192-223 arası. Ayrıca 192.168.x.x özel (private) IP aralığıdır.</p>
+			</div>
+		</div>
+
+		<!-- Test 7 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">7</span>
+				<h4 style="margin:0">255.255.255.0 subnet maskesi CIDR notasyonunda nasıl yazılır?</h4>
+			</div>
+			<div class="option">A) /8</div>
+			<div class="option">B) /16</div>
+			<div class="option">C) /24</div>
+			<div class="option">D) /32</div>
+			<button class="show-answer-btn" onclick="showAnswer(7)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer7">
+				<strong>Doğru Cevap: C) /24</strong><br>
+				<p><strong>Açıklama:</strong> 255.255.255.0 = 11111111.11111111.11111111.00000000 → İlk 24 bit 1, son 8 bit 0 → /24</p>
+			</div>
+		</div>
+
+		<!-- Test 8 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">8</span>
+				<h4 style="margin:0">192.168.1.0/24 ağında kaç tane kullanılabilir host adresi vardır?</h4>
+			</div>
+			<div class="option">A) 254</div>
+			<div class="option">B) 256</div>
+			<div class="option">C) 255</div>
+			<div class="option">D) 252</div>
+			<button class="show-answer-btn" onclick="showAnswer(8)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer8">
+				<strong>Doğru Cevap: A) 254</strong><br>
+				<p><strong>Açıklama:</strong> /24 = 8 bit host kısmı → 2^8 = 256 adres. İlk adres (network) ve son adres (broadcast) kullanılamaz → 256 - 2 = 254</p>
+			</div>
+		</div>
+
+		<!-- Test 9 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">9</span>
+				<h4 style="margin:0">VPN'in temel amacı nedir?</h4>
+			</div>
+			<div class="option">A) İnternet hızını artırmak</div>
+			<div class="option">B) Güvenli ve şifreli bağlantı sağlamak</div>
+			<div class="option">C) Daha fazla IP adresi elde etmek</div>
+			<div class="option">D) Ağ maliyetini artırmak</div>
+			<button class="show-answer-btn" onclick="showAnswer(9)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer9">
+				<strong>Doğru Cevap: B) Güvenli ve şifreli bağlantı sağlamak</strong><br>
+				<p><strong>Açıklama:</strong> VPN (Virtual Private Network), açık ağlar (internet) üzerinden güvenli ve şifreli tünel oluşturarak uzaktan güvenli erişim sağlar.</p>
+			</div>
+		</div>
+
+		<!-- Test 10 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">10</span>
+				<h4 style="margin:0">Aşağıdakilerden hangisi WAN özelliği değildir?</h4>
+			</div>
+			<div class="option">A) Geniş coğrafi alan kapsar</div>
+			<div class="option">B) Genellikle ISP sağlar</div>
+			<div class="option">C) Tek bina içinde kullanılır</div>
+			<div class="option">D) İnternet örnek verilebilir</div>
+			<button class="show-answer-btn" onclick="showAnswer(10)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer10">
+				<strong>Doğru Cevap: C) Tek bina içinde kullanılır</strong><br>
+				<p><strong>Açıklama:</strong> WAN (Wide Area Network) geniş coğrafi alanları kapsar (ülkeler, kıtalar). Tek bina içinde kullanılan LAN'dır.</p>
+			</div>
+		</div>
+
+		<!-- Test 11 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">11</span>
+				<h4 style="margin:0">Switch hangi OSI katmanında çalışır?</h4>
+			</div>
+			<div class="option">A) Layer 1 (Physical)</div>
+			<div class="option">B) Layer 2 (Data Link)</div>
+			<div class="option">C) Layer 3 (Network)</div>
+			<div class="option">D) Layer 4 (Transport)</div>
+			<button class="show-answer-btn" onclick="showAnswer(11)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer11">
+				<strong>Doğru Cevap: B) Layer 2 (Data Link)</strong><br>
+				<p><strong>Açıklama:</strong> Switch Layer 2'de çalışır ve MAC adreslerini kullanarak veri iletir. (Not: Layer 3 Switch'ler de vardır ve routing yapabilir)</p>
+			</div>
+		</div>
+
+		<!-- Test 12 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">12</span>
+				<h4 style="margin:0">Fiber optik kabloların en büyük avantajı nedir?</h4>
+			</div>
+			<div class="option">A) Çok ucuzdur</div>
+			<div class="option">B) Kurulumu çok kolaydır</div>
+			<div class="option">C) Çok yüksek hız ve uzun mesafe</div>
+			<div class="option">D) Parazite karşı çok hassastır</div>
+			<button class="show-answer-btn" onclick="showAnswer(12)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer12">
+				<strong>Doğru Cevap: C) Çok yüksek hız ve uzun mesafe</strong><br>
+				<p><strong>Açıklama:</strong> Fiber optik kablolar 100+ Gbps hız ve 40+ km mesafe sağlar. Ayrıca elektromanyetik parazite karşı tamamen bağışıktır.</p>
+			</div>
+		</div>
+
+		<!-- Test 13 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">13</span>
+				<h4 style="margin:0">Aşağıdaki IP adreslerinden hangisi geçersizdir?</h4>
+			</div>
+			<div class="option">A) 192.168.1.1</div>
+			<div class="option">B) 10.0.0.1</div>
+			<div class="option">C) 172.16.5.100</div>
+			<div class="option">D) 256.100.50.25</div>
+			<button class="show-answer-btn" onclick="showAnswer(13)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer13">
+				<strong>Doğru Cevap: D) 256.100.50.25</strong><br>
+				<p><strong>Açıklama:</strong> Her oktet 0-255 arası olmalıdır. 256 geçerli bir oktet değildir. (2^8 = 256, ancak 0'dan başladığı için 0-255)</p>
+			</div>
+		</div>
+
+		<!-- Test 14 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">14</span>
+				<h4 style="margin:0">Cat6 UTP kablosu maksimum kaç metre kullanılabilir?</h4>
+			</div>
+			<div class="option">A) 50 metre</div>
+			<div class="option">B) 100 metre</div>
+			<div class="option">C) 200 metre</div>
+			<div class="option">D) 500 metre</div>
+			<button class="show-answer-btn" onclick="showAnswer(14)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer14">
+				<strong>Doğru Cevap: B) 100 metre</strong><br>
+				<p><strong>Açıklama:</strong> Ethernet standartlarında UTP kablo (Cat5e, Cat6, Cat6a) maksimum 100 metre mesafede kullanılabilir. Daha uzun mesafe için fiber optik veya repeater gerekir.</p>
+			</div>
+		</div>
+
+		<!-- Test 15 -->
+		<div class="test-question">
+			<div style="display:flex;align-items:center;margin-bottom:20px">
+				<span class="test-number">15</span>
+				<h4 style="margin:0">LAN ve WAN arasındaki en önemli fark nedir?</h4>
+			</div>
+			<div class="option">A) Kullanılan kablo türü</div>
+			<div class="option">B) Coğrafi kapsam alanı</div>
+			<div class="option">C) Kullanılan protokol</div>
+			<div class="option">D) Güvenlik seviyesi</div>
+			<button class="show-answer-btn" onclick="showAnswer(15)">Cevabı Göster</button>
+			<div class="correct-answer" id="answer15">
+				<strong>Doğru Cevap: B) Coğrafi kapsam alanı</strong><br>
+				<p><strong>Açıklama:</strong> LAN sınırlı alanda (bina/kampüs), WAN geniş coğrafi alanda (şehirler, ülkeler) kullanılır. Bu temel sınıflandırma kriteridir.</p>
+			</div>
+		</div>
+
+	</article>
+
+	<footer class="main-header mt-5">
+		<h3 style="color:#764ba2;margin-bottom:20px"><i class="bi bi-trophy"></i> Sınav Başarı İpuçları</h3>
+		<ul style="list-style:none;padding:0;text-align:left;max-width:800px;margin:0 auto">
+			<li style="margin:10px 0">📝 Hub ve Switch arasındaki farkları net bilin</li>
+			<li style="margin:10px 0">📝 T568B kablo standardını ezberleyin (1-Beyaz-Turuncu, 2-Turuncu...)</li>
+			<li style="margin:10px 0">📝 OSI katmanlarını sıralı olarak öğrenin (hatırlama tekniklerini kullanın)</li>
+			<li style="margin:10px 0">📝 IP sınıflarının oktet aralıklarını bilin</li>
+			<li style="margin:10px 0">📝 Subnet mask hesaplamalarını pratik yapın</li>
+			<li style="margin:10px 0">📝 LAN, MAN, WAN coğrafi kapsamlarını karıştırmayın</li>
+			<li style="margin:10px 0">📝 Kablo türlerinin temel farklarını öğrenin</li>
+			<li style="margin:10px 0">📝 VPN'in amacını ve çalışma prensibini anlayın</li>
+		</ul>
+		<p style="margin-top:30px;color:#6c757d">&copy; 2025 İslam ERGÜN - Başarılar Dilerim! 🎓</p>
+	</footer>
+</div>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<script>
+function showAnswer(questionNumber) {
+	const answer = document.getElementById('answer' + questionNumber);
+	answer.classList.toggle('show');
+	
+	const btn = event.target;
+	if(answer.classList.contains('show')) {
+		btn.textContent = 'Cevabı Gizle';
+		btn.style.background = 'linear-gradient(135deg,#f44336,#d32f2f)';
+	} else {
+		btn.textContent = 'Cevabı Göster';
+		btn.style.background = 'linear-gradient(135deg,#667eea,#764ba2)';
+	}
+}
+</script>
+
+</body>
+</html>
+
