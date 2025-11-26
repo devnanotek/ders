@@ -113,6 +113,10 @@
 			<p><strong>Açıklama:</strong> Sınırlı bir coğrafi alanda kurulmuş yerel ağ</p>
 			<p><strong>Örnekler:</strong> Ofis ağı, okul laboratuvarı, ev ağı</p>
 			<p><strong>Teknolojiler:</strong> Ethernet, Wi-Fi</p>
+			<p><strong>Hız:</strong> 1 Gbps - 100 Gbps</p>
+			<p><strong>Gecikme (Latency):</strong> 1-2 ms (çok düşük)</p>
+			<p><strong>Maliyet:</strong> Düşük, tek seferlik yatırım</p>
+			<p><strong>Sahiplik:</strong> Kuruluşa aittir</p>
 		</div>
 
 		<div class="device-card">
@@ -120,6 +124,11 @@
 			<p><strong>Kapsam:</strong> Bir şehir veya büyük kampüs</p>
 			<p><strong>Açıklama:</strong> Şehir çapında birden fazla LAN'ı birbirine bağlar</p>
 			<p><strong>Örnekler:</strong> Üniversite kampüsleri arası bağlantı, şehir içi kurumsal ağlar</p>
+			<p><strong>Teknolojiler:</strong> Fiber optik, Metro Ethernet</p>
+			<p><strong>Hız:</strong> 100 Mbps - 10 Gbps</p>
+			<p><strong>Gecikme:</strong> 5-10 ms</p>
+			<p><strong>Maliyet:</strong> Orta, genelde ISP'den kiralanır</p>
+			<p><strong>Sahiplik:</strong> Genelde ISP veya belediye</p>
 		</div>
 
 		<div class="device-card">
@@ -127,7 +136,96 @@
 			<p><strong>Kapsam:</strong> Ülke, kıta veya dünya çapında</p>
 			<p><strong>Açıklama:</strong> Geniş coğrafi alanlardaki ağları birbirine bağlar</p>
 			<p><strong>Örnekler:</strong> İnternet, bankacılık ağları, kurumsal WAN'lar</p>
-			<p><strong>Teknolojiler:</strong> Fiber optik, uydu bağlantıları, kiralık hatlar</p>
+			<p><strong>Teknolojiler:</strong> Fiber optik, uydu bağlantıları, kiralık hatlar, MPLS</p>
+			<p><strong>Hız:</strong> 10 Mbps - 100 Gbps (değişken)</p>
+			<p><strong>Gecikme:</strong> 50-300 ms (uzaklığa göre)</p>
+			<p><strong>Maliyet:</strong> Yüksek, aylık abonelik</p>
+			<p><strong>Sahiplik:</strong> ISP (Internet Service Provider)</p>
+		</div>
+
+		<div class="example-box">
+			<h4><i class="bi bi-map"></i> Gerçek Dünya Karşılaştırması: LAN vs MAN vs WAN</h4>
+
+			<p><strong>📚 Örnek 1: Üniversite Sistemi</strong></p>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Ağ Tipi</th>
+						<th>Kullanım Yeri</th>
+						<th>Örnek</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="background:#e8f5e9">
+						<td><strong>LAN</strong></td>
+						<td>Tek bir bina</td>
+						<td>Bilgisayar Mühendisliği binasındaki tüm bilgisayarlar</td>
+					</tr>
+					<tr style="background:#fff3e0">
+						<td><strong>MAN</strong></td>
+						<td>Kampüs geneli</td>
+						<td>Tüm fakülte binaları (5 km²)</td>
+					</tr>
+					<tr style="background:#e3f2fd">
+						<td><strong>WAN</strong></td>
+						<td>Şehirler arası</td>
+						<td>İstanbul ve Ankara kampüsleri arası bağlantı</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p><strong>🏦 Örnek 2: Banka Ağ Yapısı</strong></p>
+			<ul>
+				<li><strong>LAN:</strong> Kadıköy şubesindeki tüm bilgisayarlar (switch ile bağlı)</li>
+				<li><strong>MAN:</strong> İstanbul'daki tüm şubeler (fiber optik ile merkeze bağlı)</li>
+				<li><strong>WAN:</strong> İzmir, Ankara, Antalya şubeleri merkez ile bağlı (MPLS kiralık hat)</li>
+			</ul>
+
+			<p><strong>🏢 Örnek 3: Şirket Ağı</strong></p>
+			<p><strong>Senaryo:</strong> Türkiye genelinde ofisleri olan bir şirket</p>
+			<ul>
+				<li><strong>LAN (İstanbul Merkez Ofis):</strong>
+					<ul>
+						<li>200 bilgisayar</li>
+						<li>10 switch ile star topoloji</li>
+						<li>1 Gbps Ethernet</li>
+						<li>Maliyet: Switch başına ~2000 TL (tek seferlik)</li>
+					</ul>
+				</li>
+				<li><strong>MAN (İstanbul Şubeler):</strong>
+					<ul>
+						<li>Kadıköy, Beşiktaş, Üsküdar ofisleri</li>
+						<li>Fiber kiralık hat (ISP'den)</li>
+						<li>100 Mbps hız</li>
+						<li>Maliyet: Hat başına ~1500 TL/ay</li>
+					</ul>
+				</li>
+				<li><strong>WAN (Diğer Şehirler):</strong>
+					<ul>
+						<li>Ankara, İzmir, Antalya ofisleri</li>
+						<li>MPLS VPN (ISP'den)</li>
+						<li>50 Mbps hız</li>
+						<li>Maliyet: Lokasyon başına ~5000 TL/ay</li>
+					</ul>
+				</li>
+			</ul>
+
+			<p><strong>⚡ Hız ve Gecikme Karşılaştırması:</strong></p>
+			<div class="ip-example">
+<strong>Test: Ankara'dan İstanbul'a dosya transferi</strong>
+
+LAN içinde (aynı ofis):
+- 1 GB dosya → 8 saniye (1 Gbps)
+- Ping: 1 ms
+
+MAN içinde (İstanbul şubeleri arası):
+- 1 GB dosya → 80 saniye (100 Mbps)
+- Ping: 5 ms
+
+WAN üzerinden (Ankara → İstanbul):
+- 1 GB dosya → 160 saniye (50 Mbps)
+- Ping: 25 ms
+			</div>
 		</div>
 	</article>
 
@@ -150,6 +248,18 @@
 			<p><strong>Avantajlar:</strong> ✓ Bir cihaz arızası diğerlerini etkilemez ✓ Arıza tespiti kolay ✓ Yüksek hız ✓ Yönetimi kolay</p>
 			<p><strong>Dezavantajlar:</strong> ✗ Merkezi cihaz arızası tüm ağı durdurur ✗ Daha fazla kablo gerektirir ✗ Hub/switch maliyeti</p>
 			<p><strong>Kullanım:</strong> En yaygın kullanılan topoloji (Modern Ethernet)</p>
+		</div>
+
+		<div class="example-box">
+			<h4><i class="bi bi-building"></i> Gerçek Dünya Örneği - Star Topoloji:</h4>
+			<p><strong>Senaryo:</strong> Bir okulun bilgisayar laboratuvarı</p>
+			<ul>
+				<li>Laboratuvarda 30 bilgisayar var</li>
+				<li>Tüm bilgisayarlar merkezi bir 48-port switch'e bağlı</li>
+				<li>Öğretmen masasındaki 1 bilgisayar bozulduğunda sadece o çalışmaz, diğer 29 bilgisayar etkilenmez</li>
+				<li>Ancak switch bozulursa tüm bilgisayarlar ağdan düşer</li>
+				<li>Her bilgisayarın kendi kablosu olduğu için arıza tespiti çok kolay</li>
+			</ul>
 		</div>
 
 		<h2>3. Ring (Halka) Topolojisi</h2>
@@ -334,6 +444,35 @@
 			</div>
 		</div>
 
+		<div class="example-box">
+			<h4><i class="bi bi-question-circle"></i> TCP vs UDP: Hangi Durumda Kullanılır?</h4>
+			
+			<p><strong>🎮 Örnek 1: Online Oyun (UDP)</strong></p>
+			<p>PUBG, Valorant gibi oyunlarda karakter hareketleri UDP ile gönderilir. Neden?</p>
+			<ul>
+				<li>Hız kritiktir, 10ms gecikme bile oyunu etkiler</li>
+				<li>1 paket kaybolursa önemli değil, zaten yeni pozisyon gelecek</li>
+				<li>Eski pozisyon bilgisi zaten işe yaramaz</li>
+			</ul>
+
+			<p><strong>💰 Örnek 2: Banka İşlemi (TCP)</strong></p>
+			<p>İnternet bankacılığında para transferi TCP ile yapılır. Neden?</p>
+			<ul>
+				<li>Her byte önemlidir, veri kaybolmamalı</li>
+				<li>İşlem sırası değişmemeli (önce bakiye kontrolü, sonra transfer)</li>
+				<li>10 milisaniye gecikme sorun değil, önemli olan doğruluk</li>
+			</ul>
+
+			<p><strong>📹 Örnek 3: YouTube Canlı Yayın (UDP + TCP Hibrit)</strong></p>
+			<ul>
+				<li>Video akışı: UDP (hız önemli, 1-2 frame kaybolabilir)</li>
+				<li>Chat mesajları: TCP (her mesaj kaybolmamalı)</li>
+			</ul>
+
+			<p><strong>📞 Örnek 4: WhatsApp Görüntülü Arama (UDP)</strong></p>
+			<p>Görüntü ve ses UDP ile gönderilir çünkü 3 saniye önceki ses/görüntü anlamsızdır. Anlık olmalı.</p>
+		</div>
+
 		<h2>TCP 3-Way Handshake</h2>
 		<div class="example-box">
 			<ol>
@@ -494,6 +633,36 @@
 			</ul>
 		</div>
 
+		<div class="example-box">
+			<h4><i class="bi bi-house-door"></i> Gerçek Dünya Örneği - Özel IP Kullanımı:</h4>
+			
+			<p><strong>🏠 Evdeki Ağ Yapısı:</strong></p>
+			<ul>
+				<li><strong>Modem/Router Genel IP:</strong> 78.190.45.123 (ISP tarafından atandı)</li>
+				<li><strong>Router Yerel IP:</strong> 192.168.1.1 (Gateway)</li>
+				<li><strong>Bilgisayarınız:</strong> 192.168.1.100</li>
+				<li><strong>Telefonunuz:</strong> 192.168.1.101</li>
+				<li><strong>TV:</strong> 192.168.1.102</li>
+			</ul>
+			<p>Tüm cihazlar internete çıkarken 78.190.45.123 IP'sini kullanır (NAT sayesinde)</p>
+
+			<p><strong>🏢 Şirket Ağı - Büyük Yapı:</strong></p>
+			<ul>
+				<li><strong>Genel Ağ:</strong> 10.0.0.0/8 (16 milyon IP adresi kullanılabilir)</li>
+				<li><strong>İnsan Kaynakları:</strong> 10.1.0.0/16</li>
+				<li><strong>IT Departmanı:</strong> 10.2.0.0/16</li>
+				<li><strong>Muhasebe:</strong> 10.3.0.0/16</li>
+				<li><strong>Misafir Wi-Fi:</strong> 10.100.0.0/16 (İzole edilmiş)</li>
+			</ul>
+
+			<p><strong>☕ Kafe Wi-Fi - Küçük Yapı:</strong></p>
+			<ul>
+				<li><strong>Ağ:</strong> 192.168.0.0/24 (254 kullanıcı)</li>
+				<li>Router: 192.168.0.1</li>
+				<li>Müşteriler: 192.168.0.2 - 192.168.0.254</li>
+			</ul>
+		</div>
+
 		<h2>Subnet Mask (Alt Ağ Maskesi)</h2>
 		<p>IP adresinin hangi kısmının ağ (network), hangi kısmının host olduğunu belirler.</p>
 
@@ -574,6 +743,90 @@ Network: 11000000.10101000.00000001.00000000 = 192.168.1.0
 				<li>192.168.1.128/26 → Hostlar: 192.168.1.129 - 192.168.1.190</li>
 				<li>192.168.1.192/26 → Hostlar: 192.168.1.193 - 192.168.1.254</li>
 			</ol>
+		</div>
+
+		<div class="example-box">
+			<h4><i class="bi bi-building"></i> Gerçek Dünya Subnetting Örneği: Şirket Ağı</h4>
+			
+			<p><strong>📋 Problem:</strong></p>
+			<p>Bir şirkete 192.168.10.0/24 ağı verildi. Şu departmanlar için alt ağ oluşturun:</p>
+			<ul>
+				<li>IT Departmanı: 50 bilgisayar</li>
+				<li>Muhasebe: 30 bilgisayar</li>
+				<li>İnsan Kaynakları: 20 bilgisayar</li>
+				<li>Yönetim: 10 bilgisayar</li>
+			</ul>
+
+			<p><strong>✅ Çözüm (VLSM - Variable Length Subnet Mask):</strong></p>
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Departman</th>
+						<th>İhtiyaç</th>
+						<th>Subnet</th>
+						<th>Subnet Mask</th>
+						<th>Kullanılabilir IP</th>
+						<th>IP Aralığı</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr style="background:#e3f2fd">
+						<td><strong>IT</strong></td>
+						<td>50 PC</td>
+						<td>192.168.10.0/26</td>
+						<td>255.255.255.192</td>
+						<td>62 IP</td>
+						<td>192.168.10.1 - .62</td>
+					</tr>
+					<tr style="background:#e8f5e9">
+						<td><strong>Muhasebe</strong></td>
+						<td>30 PC</td>
+						<td>192.168.10.64/27</td>
+						<td>255.255.255.224</td>
+						<td>30 IP</td>
+						<td>192.168.10.65 - .94</td>
+					</tr>
+					<tr style="background:#fff3e0">
+						<td><strong>İK</strong></td>
+						<td>20 PC</td>
+						<td>192.168.10.96/27</td>
+						<td>255.255.255.224</td>
+						<td>30 IP</td>
+						<td>192.168.10.97 - .126</td>
+					</tr>
+					<tr style="background:#fce4ec">
+						<td><strong>Yönetim</strong></td>
+						<td>10 PC</td>
+						<td>192.168.10.128/28</td>
+						<td>255.255.255.240</td>
+						<td>14 IP</td>
+						<td>192.168.10.129 - .142</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p><strong>🔧 Router Yapılandırması:</strong></p>
+			<div class="ip-example">
+<strong>IT Departmanı Gateway:</strong> 192.168.10.1
+<strong>Muhasebe Gateway:</strong> 192.168.10.65
+<strong>İK Gateway:</strong> 192.168.10.97
+<strong>Yönetim Gateway:</strong> 192.168.10.129
+
+<strong>Örnek IT Bilgisayar Ayarı:</strong>
+IP Adresi: 192.168.10.15
+Subnet Mask: 255.255.255.192
+Gateway: 192.168.10.1
+DNS: 8.8.8.8
+			</div>
+
+			<p><strong>💡 Neden Subnetting Yaptık?</strong></p>
+			<ul>
+				<li>✅ <strong>Güvenlik:</strong> Muhasebe departmanı IT'nin yazıcısını görmez</li>
+				<li>✅ <strong>Performans:</strong> Her departmanın kendi broadcast domain'i var</li>
+				<li>✅ <strong>Yönetim:</strong> Departman bazlı firewall kuralları</li>
+				<li>✅ <strong>Verimlilik:</strong> IP israfı önlendi (Yönetime /24 vermek 240 IP israfı olurdu)</li>
+			</ul>
 		</div>
 
 		<h2>IPv6</h2>
@@ -710,6 +963,34 @@ Network: 11000000.10101000.00000001.00000000 = 192.168.1.0
 				</tr>
 			</tbody>
 		</table>
+
+		<div class="example-box">
+			<h4><i class="bi bi-diagram-3"></i> Pratik Senaryo: Hub vs Switch Farkı</h4>
+			
+			<p><strong>📍 Durum:</strong> Bir ofiste 8 bilgisayar var</p>
+
+			<p><strong>❌ Hub Kullanırsak:</strong></p>
+			<ul>
+				<li>Bilgisayar-A, Bilgisayar-B'ye veri gönderirken <strong>tüm 8 bilgisayar bu veriyi alır</strong></li>
+				<li>Bilgisayar-C aynı anda veri göndermek isterse <strong>çarpışma (collision)</strong> olur</li>
+				<li>Sadece 1 bilgisayar aynı anda konuşabilir</li>
+				<li>Güvenlik riski: Herkes herkesi dinleyebilir (Wireshark ile kolayca izlenir)</li>
+				<li>Hız: 100 Mbps hub varsa, 8 bilgisayar bu hızı paylaşır (kişi başı ~12.5 Mbps)</li>
+			</ul>
+
+			<p><strong>✅ Switch Kullanırsak:</strong></p>
+			<ul>
+				<li>Bilgisayar-A, Bilgisayar-B'ye veri gönderirken <strong>sadece B alır</strong></li>
+				<li>Aynı anda Bilgisayar-C ile D, E ile F konuşabilir (çakışma yok)</li>
+				<li>Her port <strong>full 100 Mbps</strong> alır (paylaşım yok)</li>
+				<li>MAC adres tablosu ile akıllıca yönlendirme</li>
+				<li>Güvenlik: Her port izole, dinleme zor</li>
+			</ul>
+
+			<p><strong>🏢 Gerçek Dünya Karşılaştırma:</strong></p>
+			<p><strong>Hub:</strong> Bir sınıfta herkes aynı anda bağırarak konuşuyor (kargaşa)</p>
+			<p><strong>Switch:</strong> Herkes ayrı telefon hattından konuşuyor (organize)</p>
+		</div>
 	</article>
 
 	<article class="content-card">
@@ -839,6 +1120,106 @@ Network: 11000000.10101000.00000001.00000000 = 192.168.1.0
 			<br>
 			<p><strong>Örnek:</strong> Evdeki tüm cihazlar (192.168.1.x) → İnternet'e tek bir genel IP ile çıkar</p>
 		</div>
+
+		<div class="example-box">
+			<h4><i class="bi bi-arrow-left-right"></i> NAT Nasıl Çalışır? - Adım Adım Örnek</h4>
+			
+			<p><strong>🏠 Senaryo:</strong> Evden Google'a bağlanıyorsunuz</p>
+
+			<p><strong>1️⃣ İç Ağdan Çıkış:</strong></p>
+			<ul>
+				<li><strong>Kaynak:</strong> 192.168.1.100:54321 (Sizin bilgisayar)</li>
+				<li><strong>Hedef:</strong> 142.250.185.78:443 (Google sunucu)</li>
+			</ul>
+
+			<p><strong>2️⃣ Router NAT İşlemi:</strong></p>
+			<p>Router özel IP'yi genel IP'ye çevirir ve port numarasını kaydeder:</p>
+			<ul>
+				<li><strong>Eski Kaynak:</strong> 192.168.1.100:54321</li>
+				<li><strong>Yeni Kaynak:</strong> 78.190.45.123:12345 (Modem'in genel IP'si)</li>
+				<li><strong>NAT Tablosuna Yazar:</strong> 12345 → 192.168.1.100:54321</li>
+			</ul>
+
+			<p><strong>3️⃣ İnternete Gönderim:</strong></p>
+			<ul>
+				<li><strong>Kaynak:</strong> 78.190.45.123:12345</li>
+				<li><strong>Hedef:</strong> 142.250.185.78:443</li>
+			</ul>
+
+			<p><strong>4️⃣ Yanıt Geldiğinde:</strong></p>
+			<p>Google cevap gönderir:</p>
+			<ul>
+				<li><strong>Kaynak:</strong> 142.250.185.78:443</li>
+				<li><strong>Hedef:</strong> 78.190.45.123:12345</li>
+			</ul>
+
+			<p><strong>5️⃣ Router Geri Çevirir:</strong></p>
+			<p>Router NAT tablosuna bakar: "12345 → 192.168.1.100:54321"</p>
+			<ul>
+				<li><strong>Yeni Hedef:</strong> 192.168.1.100:54321</li>
+			</ul>
+
+			<p><strong>✅ Sonuç:</strong> Google sizin özel IP'nizi (192.168.1.100) asla görmez, sadece modem'in genel IP'sini görür!</p>
+		</div>
+
+		<h2>VPN (Virtual Private Network)</h2>
+		<div class="info-box">
+			<p><strong>Tanım:</strong> Güvensiz bir ağ (İnternet) üzerinden güvenli, şifreli bağlantı kurar</p>
+			<p><strong>Amaç:</strong></p>
+			<ul>
+				<li>Uzaktan güvenli erişim (Evden ofis ağına bağlanma)</li>
+				<li>Veri şifreleme (Kafe Wi-Fi'sinde güvenlik)</li>
+				<li>Gizlilik (IP adresi gizleme)</li>
+				<li>Coğrafi kısıtlamayı aşma</li>
+			</ul>
+			<br>
+			<p><strong>VPN Protokolleri:</strong></p>
+			<ul>
+				<li><strong>PPTP:</strong> Eski, hızlı ama güvensiz</li>
+				<li><strong>L2TP/IPSec:</strong> Güvenli, yaygın</li>
+				<li><strong>OpenVPN:</strong> Açık kaynak, çok güvenli</li>
+				<li><strong>IKEv2:</strong> Hızlı, mobil cihazlar için ideal</li>
+				<li><strong>WireGuard:</strong> Modern, hızlı, güvenli</li>
+			</ul>
+		</div>
+
+		<div class="example-box">
+			<h4><i class="bi bi-shield-lock"></i> VPN Kullanım Senaryoları</h4>
+
+			<p><strong>💼 Senaryo 1: Uzaktan Çalışma</strong></p>
+			<p>Bir çalışan evden şirket sunucusuna erişmek istiyor:</p>
+			<ul>
+				<li><strong>VPN'siz:</strong> Güvensiz, sunucu internete açık olmalı (risk)</li>
+				<li><strong>VPN'li:</strong> Şifreli tünel, çalışan sanki ofiste gibi erişir</li>
+				<li>Çalışan ofis ağındaki yazıcıya bile erişebilir (192.168.10.5)</li>
+			</ul>
+
+			<p><strong>☕ Senaryo 2: Kafe Wi-Fi Güvenliği</strong></p>
+			<p>Kafede herkese açık Wi-Fi'ye bağlandınız:</p>
+			<ul>
+				<li><strong>VPN'siz:</strong> Şifresiz Wi-Fi, herkes trafiğinizi izleyebilir (Wireshark)</li>
+				<li><strong>VPN'li:</strong> Tüm trafik şifreli, kimse göremez</li>
+			</ul>
+
+			<p><strong>🌍 Senaryo 3: Site-to-Site VPN (Şirket Şubeleri)</strong></p>
+			<ul>
+				<li><strong>İstanbul Ofis:</strong> 10.1.0.0/16</li>
+				<li><strong>Ankara Ofis:</strong> 10.2.0.0/16</li>
+				<li>VPN Tunnel ile iki ofis sanki aynı binada gibi haberleşir</li>
+				<li>İstanbul'daki bilgisayar, Ankara'daki yazıcıyı görebilir</li>
+			</ul>
+
+			<p><strong>🎮 Senaryo 4: Oyun/Streaming</strong></p>
+			<ul>
+				<li>Başka ülke sunucusuna bağlanma (ping düşürme)</li>
+				<li>Coğrafi kısıtlamaları aşma</li>
+				<li><strong>Not:</strong> VPN genelde ping'i artırır, azaltmaz!</li>
+			</ul>
+
+			<p><strong>🔒 VPN Şifreleme Örneği:</strong></p>
+			<p><strong>VPN'siz:</strong> "Merhaba Google" → Herkes görebilir</p>
+			<p><strong>VPN'li:</strong> "X8f#mK9@pL2$nR7..." → Şifreli, kimse okuyamaz</p>
+		</div>
 	</article>
 
 	<article class="content-card">
@@ -858,6 +1239,83 @@ Network: 11000000.10101000.00000001.00000000 = 192.168.1.0
 				<li><strong>Cat8:</strong> 40 Gbps, 2000 MHz, 30 metre</li>
 			</ul>
 			<p><strong>Konektör:</strong> RJ-45 (8P8C)</p>
+		</div>
+
+		<div class="device-card" style="border-color:#ff9800">
+			<h4><i class="bi bi-shield-fill-check"></i> STP (Shielded Twisted Pair) Kablo</h4>
+			<p><strong>Korumalı bükümlü çift kablo</strong></p>
+			<p><strong>Özellikler:</strong></p>
+			<ul>
+				<li>Metal folyo veya örgü ile korunmuş</li>
+				<li>Elektromanyetik parazit (EMI) koruması</li>
+				<li>UTP'den daha pahalı ve kalın</li>
+				<li>Endüstriyel ortamlar için ideal</li>
+			</ul>
+			<p><strong>Kullanım:</strong> Fabrikalar, hastaneler, elektrikli motor yakınları</p>
+		</div>
+
+		<div class="example-box">
+			<h4><i class="bi bi-tools"></i> Kablo Türü Seçimi - Hangi Durumda Ne Kullanılır?</h4>
+
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Durum</th>
+						<th>Önerilen Kablo</th>
+						<th>Neden?</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>🏠 Ev Ağı</td>
+						<td><strong>Cat5e UTP</strong></td>
+						<td>Ucuz, 1 Gbps yeterli, kısa mesafe</td>
+					</tr>
+					<tr>
+						<td>🏢 Ofis (Standart)</td>
+						<td><strong>Cat6 UTP</strong></td>
+						<td>Gelecekte 10G upgrade, 100 metre mesafe</td>
+					</tr>
+					<tr>
+						<td>🏭 Fabrika</td>
+						<td><strong>Cat6a STP</strong></td>
+						<td>Motor ve makine paraziti koruması</td>
+					</tr>
+					<tr>
+						<td>🏥 Hastane MRI Odası</td>
+						<td><strong>Fiber Optik</strong></td>
+						<td>Elektromanyetik alandan etkilenmez</td>
+					</tr>
+					<tr>
+						<td>🏙️ Bina Arası (500m)</td>
+						<td><strong>Single-Mode Fiber</strong></td>
+						<td>UTP max 100m, fiber kilometrelerce gider</td>
+					</tr>
+					<tr>
+						<td>🎮 Gaming Cafe</td>
+						<td><strong>Cat6 UTP</strong></td>
+						<td>Düşük gecikme, yüksek hız</td>
+					</tr>
+					<tr>
+						<td>🏗️ Bina İç Tesisat</td>
+						<td><strong>Cat6a UTP</strong></td>
+						<td>20-30 yıl kullanılır, gelecek garantili</td>
+					</tr>
+					<tr>
+						<td>💻 Sunucu Odası</td>
+						<td><strong>Cat6a/Cat8 + Fiber</strong></td>
+						<td>10G-40G hız, yüksek bant genişliği</td>
+					</tr>
+					<tr>
+						<td>📡 Şehirler Arası</td>
+						<td><strong>Single-Mode Fiber</strong></td>
+						<td>Onlarca kilometre, yüksek hız</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p><strong>💡 Pratik İpucu:</strong></p>
+			<p>Yeni bina kablolarken <strong>Cat6 veya Cat6a</strong> kullanın. Cat5e günümüzde yeterli olsa da 10 yıl sonra pişman olabilirsiniz. Kablo değiştirmek duvar açmak demektir!</p>
 		</div>
 
 		<h2>UTP Kablo Bağlantı Şemaları</h2>
