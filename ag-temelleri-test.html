@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="İslam ERGÜN">
+	<meta name="description" content="Ağ Temelleri Test - Kapsamlı online test sistemi">
+	<meta name="keywords" content="Ağ Temelleri, Test, Network, Online Test">
+	<meta name="robots" content="index, follow">
+	<meta property="og:title" content="Ağ Temelleri Test">
+	<meta property="og:description" content="Ağ Temelleri dersi için kapsamlı online test sistemi">
+	<meta property="og:type" content="website">
+	<title>Ağ Temelleri Test | Online Test Sistemi</title>
+	
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box}
+		body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px 0}
+		.main-header{background:#fff;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);padding:40px;margin-bottom:30px;text-align:center}
+		.main-header h1{color:#764ba2;font-weight:700;margin-bottom:10px;font-size:2.5rem}
+		.author-badge{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 20px;border-radius:50px;margin-top:15px;font-size:0.9rem}
+		.content-card{background:#fff;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);padding:40px;margin-bottom:30px}
+		.test-info{background:linear-gradient(135deg,#e3f2fd,#f3e5f5);border-left:4px solid #667eea;padding:20px;margin:20px 0;border-radius:10px}
+		.question-card{background:#fff;border:2px solid #667eea;border-radius:10px;padding:25px;margin:20px 0;transition:all 0.3s}
+		.question-card:hover{box-shadow:0 8px 20px rgba(102,126,234,0.2)}
+		.question-number{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;width:50px;height:50px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-right:15px;font-size:1.2rem}
+		.question-text{color:#333;font-size:1.1rem;font-weight:500;margin-bottom:20px;line-height:1.6}
+		.question-topic{display:inline-block;background:#f0f0f0;color:#667eea;padding:5px 15px;border-radius:20px;font-size:0.85rem;margin-bottom:15px;font-weight:600}
+		.option-item{background:#f8f9fa;padding:15px 20px;margin:10px 0;border-radius:8px;cursor:pointer;transition:all 0.3s;border:2px solid transparent;position:relative}
+		.option-item:hover{background:#e3f2fd;border-color:#667eea;transform:translateX(5px)}
+		.option-item.selected{background:#e3f2fd;border-color:#667eea;font-weight:600}
+		.option-item.correct{background:#e8f5e9;border-color:#4caf50;color:#2e7d32}
+		.option-item.wrong{background:#ffebee;border-color:#f44336;color:#c62828}
+		.option-label{font-weight:600;color:#667eea;margin-right:10px;min-width:30px;display:inline-block}
+		.btn-submit{background:linear-gradient(135deg,#4caf50,#45a049);color:#fff;border:none;padding:15px 40px;border-radius:50px;cursor:pointer;font-size:1.1rem;font-weight:600;transition:all 0.3s;margin:20px 0;box-shadow:0 5px 15px rgba(76,175,80,0.3)}
+		.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(76,175,80,0.4)}
+		.btn-submit:disabled{background:#ccc;cursor:not-allowed;transform:none}
+		.result-card{background:#fff;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);padding:40px;margin:20px 0;display:none}
+		.result-card.show{display:block}
+		.score-display{text-align:center;padding:30px;background:linear-gradient(135deg,#4caf50,#45a049);color:#fff;border-radius:15px;margin:20px 0}
+		.score-display h2{font-size:3rem;font-weight:700;margin:10px 0}
+		.score-display p{font-size:1.2rem;margin:5px 0}
+		.result-details{margin-top:30px}
+		.result-item{background:#f8f9fa;padding:15px;margin:10px 0;border-radius:8px;border-left:4px solid #667eea}
+		.result-item.correct{border-left-color:#4caf50;background:#e8f5e9}
+		.result-item.wrong{border-left-color:#f44336;background:#ffebee}
+		.explanation-box{background:#fff3cd;border:2px solid #ffc107;border-radius:8px;padding:15px;margin-top:15px;display:none}
+		.explanation-box.show{display:block}
+		.progress-bar-container{background:#f0f0f0;border-radius:10px;height:30px;margin:20px 0;overflow:hidden}
+		.progress-bar-fill{background:linear-gradient(135deg,#667eea,#764ba2);height:100%;transition:width 0.3s;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600}
+		.btn-back{position:fixed;top:20px;left:20px;background:#fff;color:#764ba2;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;z-index:1000;font-weight:600}
+		.btn-back:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3);color:#667eea}
+		.btn-reset{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:12px 30px;border-radius:50px;cursor:pointer;font-weight:600;transition:all 0.3s;margin-top:20px}
+		.btn-reset:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(102,126,234,0.4)}
+		.loading{text-align:center;padding:50px;color:#fff;font-size:1.2rem}
+		@media (max-width:768px){.main-header h1{font-size:1.8rem}.btn-back{font-size:0.8rem;padding:8px 15px}.question-number{width:40px;height:40px;font-size:1rem}}
+		:focus-visible{outline:3px solid #667eea;outline-offset:2px}
+	</style>
+</head>
+<body>
+
+<a href="index.html" class="btn-back"><i class="bi bi-arrow-left-circle"></i> Ana Sayfa</a>
+
+<div class="container">
+	<header class="main-header" role="banner">
+		<h1><i class="bi bi-clipboard-check"></i> Ağ Temelleri Test</h1>
+		<p>Kapsamlı Online Test Sistemi</p>
+		<span class="author-badge"><i class="bi bi-person-circle"></i> İslam ERGÜN</span>
+	</header>
+
+	<div id="loading" class="loading">
+		<i class="bi bi-arrow-repeat" style="font-size:2rem;animation:spin 1s linear infinite"></i>
+		<p>Test yükleniyor...</p>
+	</div>
+
+	<div id="test-container" style="display:none">
+		<div class="content-card">
+			<div class="test-info">
+				<h3><i class="bi bi-info-circle"></i> Test Bilgileri</h3>
+				<p><strong>Toplam Soru:</strong> <span id="total-questions">0</span></p>
+				<p><strong>Konular:</strong> <span id="test-topics"></span></p>
+				<div class="progress-bar-container">
+					<div class="progress-bar-fill" id="progress-bar" style="width:0%">0%</div>
+				</div>
+			</div>
+
+			<div id="questions-container"></div>
+
+			<div style="text-align:center">
+				<button id="submit-btn" class="btn-submit" disabled>
+					<i class="bi bi-check-circle"></i> Testi Bitir ve Sonuçları Gör
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="result-container" class="result-card">
+		<div class="score-display">
+			<h2 id="score-percentage">0%</h2>
+			<p id="score-text">Doğru: 0 / Yanlış: 0</p>
+			<p id="score-message"></p>
+		</div>
+
+		<div class="result-details">
+			<h3><i class="bi bi-list-check"></i> Detaylı Sonuçlar</h3>
+			<div id="result-list"></div>
+		</div>
+
+		<div style="text-align:center">
+			<button class="btn-reset" onclick="location.reload()">
+				<i class="bi bi-arrow-clockwise"></i> Testi Yeniden Başlat
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<!-- Test Soruları JSON Verisi - Doğrudan HTML içinde -->
+<script type="text/javascript">
+	// Test verileri doğrudan JavaScript değişkenine atanıyor (CORS sorunu yok)
+	const testData = {
+		"testInfo": {
+			"title": "Ağ Temelleri Test",
+			"totalQuestions": 88,
+			"topics": ["Bilgisayar Ağı Nedir?", "Ağ Topolojileri", "OSI Modeli", "TCP/IP Modeli", "IP Adresleme", "Ağ Cihazları", "Kablolama Standartları", "Ağ Protokolleri", "Ağ Komutları"]
+		},
+		"questions": [
+			{"id":1,"topic":"Bilgisayar Ağı Nedir?","question":"Aşağıdakilerden hangisi bilgisayar ağının temel amaçlarından biri DEĞİLDİR?","options":["Kaynak paylaşımı","Veri iletişimi","Merkezileştirilmiş yönetim","Bilgisayar hızını artırma"],"correct":3,"explanation":"Bilgisayar ağı bilgisayarın hızını artırmaz, sadece kaynak paylaşımı, veri iletişimi ve merkezi yönetim sağlar."},
+			{"id":2,"topic":"Bilgisayar Ağı Nedir?","question":"PAN (Personal Area Network) ağının kapsamı nedir?","options":["1-10 metre","10-100 metre","Bir bina içi","Şehir çapında"],"correct":0,"explanation":"PAN kişisel cihazlar arası ağdır ve 1-10 metre arası kapsama sahiptir (Bluetooth, USB bağlantıları)."},
+			{"id":3,"topic":"Bilgisayar Ağı Nedir?","question":"LAN (Local Area Network) için hangisi YANLIŞTIR?","options":["Bir bina veya kampüs içinde kurulur","Ethernet ve Wi-Fi teknolojileri kullanılır","Gecikme (latency) 50-300 ms arasındadır","Hız 1 Gbps - 100 Gbps arasındadır"],"correct":2,"explanation":"LAN'da gecikme çok düşüktür (1-2 ms). 50-300 ms gecikme WAN ağlarına aittir."},
+			{"id":4,"topic":"Bilgisayar Ağı Nedir?","question":"MAN (Metropolitan Area Network) hangi coğrafi alanı kapsar?","options":["Kişisel cihazlar arası","Bir bina veya kampüs","Bir şehir veya büyük kampüs","Ülke veya kıta çapında"],"correct":2,"explanation":"MAN bir şehir veya büyük kampüs alanını kapsar ve birden fazla LAN'ı birbirine bağlar."},
+			{"id":5,"topic":"Bilgisayar Ağı Nedir?","question":"WAN (Wide Area Network) için hangisi DOĞRUDUR?","options":["Sahiplik kuruluşa aittir","Gecikme 1-2 ms arasındadır","Maliyet düşük, tek seferlik yatırımdır","ISP (Internet Service Provider) sahipliğindedir"],"correct":3,"explanation":"WAN geniş coğrafi alanları kapsar, ISP sahipliğindedir ve aylık abonelik ücreti ile kullanılır."},
+			{"id":6,"topic":"Ağ Topolojileri","question":"Star (Yıldız) topolojisinin avantajlarından biri hangisidir?","options":["Az kablo gerektirir","Bir cihaz arızası diğerlerini etkilemez","Ana kablo arızasında tüm ağ çalışmaya devam eder","En ekonomik topolojidir"],"correct":1,"explanation":"Star topolojisinde tüm cihazlar merkezi switch/hub'a bağlıdır. Bir cihaz arızası sadece o cihazı etkiler."},
+			{"id":7,"topic":"Ağ Topolojileri","question":"Bus (Yol) topolojisinin dezavantajı nedir?","options":["Kurulumu zordur","Ana kablo arızasında tüm ağ çöker","Yüksek hız sağlar","Arıza tespiti kolaydır"],"correct":1,"explanation":"Bus topolojisinde tüm cihazlar tek bir ana kabloya bağlıdır. Ana kablo arızasında tüm ağ çalışamaz."},
+			{"id":8,"topic":"Ağ Topolojileri","question":"Mesh (Örgü) topolojisinin özelliği nedir?","options":["En az kablo gerektirir","En ekonomik topolojidir","Yüksek güvenilirlik sağlar","Kurulumu en kolay topolojidir"],"correct":2,"explanation":"Mesh topolojisinde her cihaz birden fazla cihaza bağlıdır, bu da yüksek güvenilirlik ve alternatif yollar sağlar."},
+			{"id":9,"topic":"Ağ Topolojileri","question":"Ring (Halka) topolojisinde veri nasıl dolaşır?","options":["Çift yönlü","Tek yönlü","Rastgele","Merkezi cihazdan yayılır"],"correct":1,"explanation":"Ring topolojisinde cihazlar halka şeklinde bağlanır ve veri tek yönde dolaşır, bu sayede çarpışma (collision) olmaz."},
+			{"id":10,"topic":"Ağ Topolojileri","question":"Hangi topoloji günümüzde en yaygın kullanılan topolojidir?","options":["Bus","Ring","Star","Mesh"],"correct":2,"explanation":"Star topoloji modern Ethernet ağlarında en yaygın kullanılan topolojidir çünkü arıza tespiti kolay ve yönetimi basittir."},
+			{"id":11,"topic":"OSI Modeli","question":"OSI modeli kaç katmandan oluşur?","options":["4","5","6","7"],"correct":3,"explanation":"OSI (Open Systems Interconnection) modeli 7 katmandan oluşur: Physical, Data Link, Network, Transport, Session, Presentation, Application."},
+			{"id":12,"topic":"OSI Modeli","question":"OSI modelinin 1. katmanı (Physical) hangi veri birimini kullanır?","options":["Frame","Packet","Segment","Bit"],"correct":3,"explanation":"Physical katman fiziksel sinyalleri iletir ve veri birimi bit'tir (0 ve 1)."},
+			{"id":13,"topic":"OSI Modeli","question":"Router hangi OSI katmanında çalışır?","options":["Layer 1 (Physical)","Layer 2 (Data Link)","Layer 3 (Network)","Layer 4 (Transport)"],"correct":2,"explanation":"Router Layer 3 (Network) katmanında çalışır çünkü IP adreslerine göre yönlendirme yapar."},
+			{"id":14,"topic":"OSI Modeli","question":"Switch hangi OSI katmanında çalışır?","options":["Layer 1 (Physical)","Layer 2 (Data Link)","Layer 3 (Network)","Layer 4 (Transport)"],"correct":1,"explanation":"Switch Layer 2 (Data Link) katmanında çalışır çünkü MAC adreslerine göre frame'leri yönlendirir."},
+			{"id":15,"topic":"OSI Modeli","question":"TCP protokolü hangi OSI katmanında çalışır?","options":["Layer 3 (Network)","Layer 4 (Transport)","Layer 5 (Session)","Layer 7 (Application)"],"correct":1,"explanation":"TCP (Transmission Control Protocol) Layer 4 (Transport) katmanında çalışır ve uçtan uca güvenilir veri iletimi sağlar."},
+			{"id":16,"topic":"OSI Modeli","question":"HTTP protokolü hangi OSI katmanında çalışır?","options":["Layer 4 (Transport)","Layer 5 (Session)","Layer 6 (Presentation)","Layer 7 (Application)"],"correct":3,"explanation":"HTTP (HyperText Transfer Protocol) Layer 7 (Application) katmanında çalışır ve web tarayıcıları ile sunucular arası iletişimi sağlar."},
+			{"id":17,"topic":"TCP/IP Modeli","question":"TCP/IP modeli kaç katmandan oluşur?","options":["3","4","5","7"],"correct":1,"explanation":"TCP/IP modeli 4 katmandan oluşur: Network Access, Internet, Transport, Application."},
+			{"id":18,"topic":"TCP/IP Modeli","question":"TCP ve UDP arasındaki temel fark nedir?","options":["TCP daha hızlıdır","TCP bağlantısız (connectionless), UDP bağlantı odaklıdır","TCP bağlantı odaklı (connection-oriented) ve güvenilir, UDP bağlantısız ve hızlıdır","UDP sadece web için kullanılır"],"correct":2,"explanation":"TCP bağlantı odaklıdır ve güvenilir veri iletimi sağlar. UDP bağlantısızdır, daha hızlıdır ama güvenilir değildir."},
+			{"id":19,"topic":"TCP/IP Modeli","question":"TCP 3-Way Handshake sırası nedir?","options":["SYN → ACK → FIN","SYN → SYN-ACK → ACK","ACK → SYN → SYN-ACK","FIN → ACK → FIN → ACK"],"correct":1,"explanation":"TCP bağlantısı 3-Way Handshake ile kurulur: İstemci SYN gönderir, sunucu SYN-ACK gönderir, istemci ACK gönderir."},
+			{"id":20,"topic":"TCP/IP Modeli","question":"HTTP protokolü hangi port numarasını kullanır?","options":["21","25","80","443"],"correct":2,"explanation":"HTTP protokolü varsayılan olarak port 80'i kullanır. HTTPS ise port 443 kullanır."},
+			{"id":21,"topic":"TCP/IP Modeli","question":"HTTPS protokolü hangi port numarasını kullanır?","options":["80","443","8080","8443"],"correct":1,"explanation":"HTTPS (HTTP Secure) protokolü varsayılan olarak port 443'ü kullanır ve SSL/TLS şifreleme sağlar."},
+			{"id":22,"topic":"IP Adresleme","question":"IPv4 adresi kaç bitten oluşur?","options":["16 bit","32 bit","64 bit","128 bit"],"correct":1,"explanation":"IPv4 adresi 32 bitten oluşur ve 4 oktet (8 bitlik) halinde gösterilir (örn: 192.168.1.1)."},
+			{"id":23,"topic":"IP Adresleme","question":"192.168.1.0/24 ağında kaç kullanılabilir host adresi vardır?","options":["254","255","256","512"],"correct":0,"explanation":"/24 subnet maskesi 255.255.255.0 demektir. 192.168.1.0 network adresi, 192.168.1.255 broadcast adresidir. Kalan 254 adres kullanılabilir (1-254)."},
+			{"id":24,"topic":"IP Adresleme","question":"Aşağıdaki IP adreslerinden hangisi özel (private) IP adresidir?","options":["8.8.8.8","192.168.1.1","172.217.16.4","203.0.113.1"],"correct":1,"explanation":"192.168.1.1 özel IP adresidir. Özel IP aralıkları: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16."},
+			{"id":25,"topic":"IP Adresleme","question":"Subnet mask 255.255.255.0'un CIDR notasyonu nedir?","options":["/16","/24","/32","/8"],"correct":1,"explanation":"255.255.255.0 = 11111111.11111111.11111111.00000000 = 24 bit network kısmı, yani /24."},
+			{"id":26,"topic":"IP Adresleme","question":"IPv6 adresi kaç bitten oluşur?","options":["32 bit","64 bit","128 bit","256 bit"],"correct":2,"explanation":"IPv6 adresi 128 bitten oluşur ve 8 grup halinde hexadecimal formatında gösterilir (örn: 2001:0db8:85a3:0000:0000:8a2e:0370:7334)."},
+			{"id":27,"topic":"Ağ Cihazları","question":"Hub hangi OSI katmanında çalışır?","options":["Layer 1 (Physical)","Layer 2 (Data Link)","Layer 3 (Network)","Layer 4 (Transport)"],"correct":0,"explanation":"Hub Layer 1 (Physical) katmanında çalışır. Gelen sinyalleri tüm portlara yayınlar (broadcast), akıllı değildir."},
+			{"id":28,"topic":"Ağ Cihazları","question":"Hub ile Switch arasındaki temel fark nedir?","options":["Hub daha hızlıdır","Switch MAC adreslerine göre yönlendirme yapar, Hub yapmaz","Hub daha pahalıdır","Switch sadece Layer 1'de çalışır"],"correct":1,"explanation":"Switch MAC adreslerine göre akıllı yönlendirme yapar (Layer 2), Hub ise tüm portlara yayın yapar (Layer 1)."},
+			{"id":29,"topic":"Ağ Cihazları","question":"Router'ın temel görevi nedir?","options":["MAC adreslerine göre yönlendirme","IP adreslerine göre yönlendirme","Port numaralarına göre filtreleme","Sinyalleri güçlendirme"],"correct":1,"explanation":"Router'ın temel görevi IP adreslerine göre paketleri farklı ağlar arasında yönlendirmektir (Layer 3)."},
+			{"id":30,"topic":"Ağ Cihazları","question":"Access Point'in görevi nedir?","options":["Kablolu ağları birleştirmek","Kablosuz ağ sağlamak","IP adreslerini yönlendirmek","Sinyalleri güçlendirmek"],"correct":1,"explanation":"Access Point (AP) kablosuz ağ (Wi-Fi) sağlar ve kablosuz cihazların kablolu ağa bağlanmasını sağlar."},
+			{"id":31,"topic":"Ağ Cihazları","question":"Modem'in görevi nedir?","options":["Dijital sinyalleri analog sinyallere çevirmek","MAC adreslerine göre yönlendirme yapmak","IP adreslerine göre yönlendirme yapmak","Sadece sinyalleri güçlendirmek"],"correct":0,"explanation":"Modem (Modulator-Demodulator) dijital sinyalleri analog sinyallere çevirir (modülasyon) ve analog sinyalleri dijitale çevirir (demodülasyon)."},
+			{"id":32,"topic":"Kablolama Standartları","question":"UTP kablosunda kaç çift tel bulunur?","options":["2 çift","4 çift","6 çift","8 çift"],"correct":1,"explanation":"UTP (Unshielded Twisted Pair) kablosunda 4 çift (8 tel) bulunur. Her çift birbirine sarılıdır (twisted) gürültüyü azaltmak için."},
+			{"id":33,"topic":"Kablolama Standartları","question":"Cat5e kablosu hangi hıza kadar destekler?","options":["10 Mbps","100 Mbps","1 Gbps","10 Gbps"],"correct":2,"explanation":"Cat5e (Category 5 enhanced) kablosu 1 Gbps (1000 Mbps) hıza kadar destekler ve 100 metre mesafeye kadar kullanılabilir."},
+			{"id":34,"topic":"Kablolama Standartları","question":"Fiber optik kablonun avantajı nedir?","options":["Daha ucuzdur","Daha kısa mesafe destekler","Elektromanyetik gürültüden etkilenmez ve çok yüksek hız sağlar","Kurulumu daha kolaydır"],"correct":2,"explanation":"Fiber optik kablo ışık sinyalleri kullanır, elektromanyetik gürültüden etkilenmez ve çok yüksek hızlar (10 Gbps+) sağlar."},
+			{"id":35,"topic":"Kablolama Standartları","question":"RJ-45 konektörü hangi kablolama standardında kullanılır?","options":["Fiber optik","Koaksiyel","UTP/STP","Seri port"],"correct":2,"explanation":"RJ-45 konektörü UTP (Unshielded Twisted Pair) ve STP (Shielded Twisted Pair) kablolarda kullanılır."},
+			{"id":36,"topic":"Ağ Protokolleri","question":"DNS'in görevi nedir?","options":["IP adreslerini MAC adreslerine çevirmek","Domain adlarını IP adreslerine çevirmek","Port numaralarını yönetmek","Paketleri yönlendirmek"],"correct":1,"explanation":"DNS (Domain Name System) domain adlarını (örn: google.com) IP adreslerine (örn: 172.217.16.4) çevirir."},
+			{"id":37,"topic":"Ağ Protokolleri","question":"DHCP'in görevi nedir?","options":["Domain adlarını çözmek","Otomatik IP adresi atamak","E-posta göndermek","Dosya transferi yapmak"],"correct":1,"explanation":"DHCP (Dynamic Host Configuration Protocol) ağdaki cihazlara otomatik olarak IP adresi, subnet mask, gateway ve DNS bilgilerini atar."},
+			{"id":38,"topic":"Ağ Protokolleri","question":"FTP protokolü hangi port numarasını kullanır?","options":["20","21","22","23"],"correct":1,"explanation":"FTP (File Transfer Protocol) varsayılan olarak port 21'i kullanır. Port 20 ise veri transferi için kullanılır."},
+			{"id":39,"topic":"Ağ Komutları","question":"ping komutunun görevi nedir?","options":["IP adresini göstermek","Ağ bağlantısını test etmek","Yönlendirme tablosunu göstermek","Port durumunu kontrol etmek"],"correct":1,"explanation":"ping komutu bir hedef IP adresine veya domain'e ICMP paketleri göndererek ağ bağlantısını test eder ve yanıt süresini (latency) ölçer."},
+			{"id":40,"topic":"Ağ Komutları","question":"ipconfig komutu (Windows) hangi bilgileri gösterir?","options":["Sadece IP adresi","IP adresi, subnet mask, gateway, DNS","Sadece MAC adresi","Sadece port numaraları"],"correct":1,"explanation":"ipconfig komutu Windows'ta ağ yapılandırma bilgilerini gösterir: IP adresi, subnet mask, default gateway, DNS sunucuları vb."},
+			{"id":41,"topic":"Bilgisayar Ağı Nedir?","question":"LAN ağının sahipliği kimdedir?","options":["ISP (Internet Service Provider)","Kuruluşa aittir","Belediye","Devlet"],"correct":1,"explanation":"LAN (Local Area Network) kuruluşa aittir ve genellikle tek seferlik yatırımla kurulur. WAN ise ISP sahipliğindedir."},
+			{"id":42,"topic":"Bilgisayar Ağı Nedir?","question":"WAN ağının gecikme (latency) süresi genellikle ne kadardır?","options":["1-2 ms","5-10 ms","50-300 ms","1-5 saniye"],"correct":2,"explanation":"WAN ağlarında gecikme uzaklığa göre değişir ve genellikle 50-300 ms arasındadır. LAN'da ise 1-2 ms çok düşüktür."},
+			{"id":43,"topic":"Bilgisayar Ağı Nedir?","question":"MAN ağının teknolojisi genellikle hangisidir?","options":["Ethernet","Wi-Fi","Fiber optik, Metro Ethernet","Uydu bağlantıları"],"correct":2,"explanation":"MAN (Metropolitan Area Network) genellikle fiber optik ve Metro Ethernet teknolojileri kullanır çünkü şehir çapında yüksek hız gerektirir."},
+			{"id":44,"topic":"Bilgisayar Ağı Nedir?","question":"PAN ağına örnek hangisidir?","options":["Ofis ağı","Bluetooth kulaklık-bilgisayar bağlantısı","Şehir WiFi ağı","İnternet"],"correct":1,"explanation":"PAN (Personal Area Network) kişisel cihazlar arası ağdır. Bluetooth kulaklık, USB fare gibi cihazlar PAN örneğidir."},
+			{"id":45,"topic":"Bilgisayar Ağı Nedir?","question":"Aşağıdakilerden hangisi WAN teknolojisi DEĞİLDİR?","options":["MPLS","Fiber optik","Uydu bağlantıları","Ethernet (yerel ağ)"],"correct":3,"explanation":"Ethernet genellikle LAN (yerel ağ) teknolojisidir. WAN teknolojileri: MPLS, fiber optik, uydu, kiralık hatlar."},
+			{"id":46,"topic":"Ağ Topolojileri","question":"Tree (Ağaç) topolojisi hangi topolojilerin birleşimidir?","options":["Bus + Ring","Star + Star (hierarchical)","Mesh + Bus","Ring + Star"],"correct":1,"explanation":"Tree (Ağaç) topolojisi hiyerarşik yapıdadır ve birden fazla Star topolojisinin birleşimidir."},
+			{"id":47,"topic":"Ağ Topolojileri","question":"Hybrid (Karma) topolojinin özelliği nedir?","options":["Sadece bir topoloji türü kullanır","İki veya daha fazla topolojinin birleşimidir","En basit topolojidir","Artık kullanılmaz"],"correct":1,"explanation":"Hybrid (Karma) topoloji iki veya daha fazla topolojinin birleşimidir ve büyük kurumsal ağlarda esneklik sağlar."},
+			{"id":48,"topic":"Ağ Topolojileri","question":"Ring topolojisinin avantajı nedir?","options":["Çarpışma (collision) olmaz","En ekonomik topolojidir","Kurulumu en kolaydır","Ana kablo arızasında çalışmaya devam eder"],"correct":0,"explanation":"Ring topolojisinde veri tek yönde dolaştığı için çarpışma (collision) olmaz. Her cihaz eşit erişim hakkına sahiptir."},
+			{"id":49,"topic":"Ağ Topolojileri","question":"Bus topolojisinde arıza tespiti neden zordur?","options":["Çok fazla kablo vardır","Ana kablo boyunca tüm cihazlar bağlıdır, hangi cihazın arızalı olduğu belirsizdir","Cihazlar çok uzaktadır","Merkezi yönetim yoktur"],"correct":1,"explanation":"Bus topolojisinde tüm cihazlar tek bir ana kabloya bağlıdır. Bir cihaz arızalı olduğunda hangi cihazın arızalı olduğunu bulmak zordur."},
+			{"id":50,"topic":"Ağ Topolojileri","question":"Mesh topolojisinde 'Tam Örgü' ne demektir?","options":["Sadece bazı cihazlar birbirine bağlıdır","Her cihaz diğer tüm cihazlara bağlıdır","Sadece merkezi cihaza bağlıdır","Halka şeklinde bağlıdır"],"correct":1,"explanation":"Tam örgü (Full Mesh) topolojisinde her cihaz diğer tüm cihazlara doğrudan bağlıdır. Bu yüksek güvenilirlik sağlar ama çok fazla kablo gerektirir."},
+			{"id":51,"topic":"OSI Modeli","question":"OSI modelinin 2. katmanı (Data Link) hangi veri birimini kullanır?","options":["Bit","Frame","Packet","Segment"],"correct":1,"explanation":"Data Link katmanı frame (çerçeve) kullanır. MAC adreslerine göre frame'leri yönlendirir."},
+			{"id":52,"topic":"OSI Modeli","question":"OSI modelinin 3. katmanı (Network) hangi veri birimini kullanır?","options":["Frame","Packet","Segment","Bit"],"correct":1,"explanation":"Network katmanı packet (paket) kullanır. IP adreslerine göre paketleri yönlendirir."},
+			{"id":53,"topic":"OSI Modeli","question":"Presentation (Sunum) katmanının görevi nedir?","options":["Veri formatı dönüşümü, şifreleme, sıkıştırma","Fiziksel bağlantı sağlama","IP adresleme","Uçtan uca veri iletimi"],"correct":0,"explanation":"Presentation (Sunum) katmanı veri formatı dönüşümü (ASCII, EBCDIC), şifreleme (SSL/TLS) ve sıkıştırma (JPEG, MPEG) işlemlerini yapar."},
+			{"id":54,"topic":"OSI Modeli","question":"Session (Oturum) katmanının görevi nedir?","options":["Veri formatı dönüşümü","Uygulamalar arası oturum yönetimi, bağlantı başlatma/sonlandırma","IP adresleme","Fiziksel sinyal iletimi"],"correct":1,"explanation":"Session (Oturum) katmanı uygulamalar arası oturum yönetimi yapar, bağlantı başlatır ve sonlandırır. Protokoller: NetBIOS, RPC."},
+			{"id":55,"topic":"TCP/IP Modeli","question":"TCP/IP modelinin Application katmanı OSI modelinin hangi katmanlarına karşılık gelir?","options":["Sadece Application","Application, Presentation, Session","Transport, Network","Data Link, Physical"],"correct":1,"explanation":"TCP/IP modelinin Application katmanı OSI modelinin Application, Presentation ve Session katmanlarını kapsar."},
+			{"id":56,"topic":"TCP/IP Modeli","question":"UDP hangi uygulamalarda kullanılır?","options":["Web tarayıcıları (HTTP)","Video streaming, online oyunlar, DNS sorguları","E-posta gönderimi (SMTP)","Dosya transferi (FTP)"],"correct":1,"explanation":"UDP hızlı ama güvenilir olmayan iletim sağlar. Video streaming, online oyunlar, DNS sorguları, VoIP gibi uygulamalarda kullanılır."},
+			{"id":57,"topic":"TCP/IP Modeli","question":"TCP bağlantısı nasıl sonlandırılır?","options":["3-Way Handshake","4-Way Handshake","Tek yönlü FIN","Otomatik zaman aşımı"],"correct":1,"explanation":"TCP bağlantısı 4-Way Handshake ile sonlandırılır: FIN → ACK → FIN → ACK. Her iki taraf da bağlantıyı kapatır."},
+			{"id":58,"topic":"TCP/IP Modeli","question":"SSH protokolü hangi port numarasını kullanır?","options":["21","22","23","25"],"correct":1,"explanation":"SSH (Secure Shell) protokolü varsayılan olarak port 22'yi kullanır ve güvenli uzak erişim sağlar."},
+			{"id":59,"topic":"IP Adresleme","question":"10.0.0.0/8 ağı hangi IP sınıfına aittir?","options":["A Sınıfı","B Sınıfı","C Sınıfı","D Sınıfı"],"correct":0,"explanation":"10.0.0.0/8 A sınıfı özel IP adresidir. A sınıfı: 1-126 (ilk oktet), B sınıfı: 128-191, C sınıfı: 192-223."},
+			{"id":60,"topic":"IP Adresleme","question":"172.16.0.0/12 ağı hangi IP sınıfına aittir?","options":["A Sınıfı","B Sınıfı","C Sınıfı","D Sınıfı"],"correct":1,"explanation":"172.16.0.0/12 B sınıfı özel IP adresidir. B sınıfı IP'ler 128-191 arası ilk oktete sahiptir."},
+			{"id":61,"topic":"IP Adresleme","question":"NAT (Network Address Translation) ne işe yarar?","options":["Domain adlarını IP'ye çevirir","Özel IP adreslerini genel IP adresine çevirir","MAC adreslerini IP'ye çevirir","Port numaralarını değiştirir"],"correct":1,"explanation":"NAT (Network Address Translation) özel IP adreslerini genel (public) IP adresine çevirir. Böylece birçok cihaz tek bir genel IP ile internete çıkabilir."},
+			{"id":62,"topic":"IP Adresleme","question":"Loopback adresi nedir?","options":["192.168.1.1","127.0.0.1","0.0.0.0","255.255.255.255"],"correct":1,"explanation":"127.0.0.1 loopback adresidir ve cihazın kendisine bağlanmasını test etmek için kullanılır. localhost olarak da bilinir."},
+			{"id":63,"topic":"IP Adresleme","question":"Broadcast adresi ne işe yarar?","options":["Sadece bir cihaza gönderim","Ağdaki tüm cihazlara gönderim","Dış ağlara gönderim","Sadece router'a gönderim"],"correct":1,"explanation":"Broadcast adresi (örn: 192.168.1.255) ağdaki tüm cihazlara paket göndermek için kullanılır. Tüm hostlar bu paketi alır."},
+			{"id":64,"topic":"Ağ Cihazları","question":"Layer 3 Switch'in özelliği nedir?","options":["Sadece MAC adreslerine göre çalışır","Hem MAC hem IP adreslerine göre çalışır (routing yapabilir)","Sadece fiziksel katmanda çalışır","Sadece port numaralarına göre çalışır"],"correct":1,"explanation":"Layer 3 Switch hem Layer 2 (switch) hem Layer 3 (router) özelliklerine sahiptir. MAC adreslerine göre switching, IP adreslerine göre routing yapabilir."},
+			{"id":65,"topic":"Ağ Cihazları","question":"Repeater'in görevi nedir?","options":["IP adreslerine göre yönlendirme","Sinyalleri güçlendirip yeniden iletmek","MAC adreslerine göre yönlendirme","Kablosuz ağ sağlamak"],"correct":1,"explanation":"Repeater (Tekrarlayıcı) zayıflayan sinyalleri güçlendirip yeniden iletir. Layer 1 (Physical) katmanında çalışır."},
+			{"id":66,"topic":"Ağ Cihazları","question":"Bridge'in görevi nedir?","options":["Farklı ağları birleştirmek (Layer 3)","Aynı ağ içinde segmentleri birleştirmek (Layer 2)","Sinyalleri güçlendirmek","Kablosuz ağ sağlamak"],"correct":1,"explanation":"Bridge (Köprü) Layer 2'de çalışır ve aynı ağ içindeki farklı segmentleri birleştirir. MAC adreslerine göre filtreleme yapar."},
+			{"id":67,"topic":"Ağ Cihazları","question":"Firewall'ın görevi nedir?","options":["Sadece sinyalleri güçlendirmek","Ağ güvenliğini sağlamak, trafiği filtrelemek","Sadece IP yönlendirme yapmak","Kablosuz ağ sağlamak"],"correct":1,"explanation":"Firewall (Güvenlik Duvarı) ağ güvenliğini sağlar, gelen/giden trafiği filtreler ve yetkisiz erişimleri engeller."},
+			{"id":68,"topic":"Ağ Cihazları","question":"NIC (Network Interface Card) hangi katmanda çalışır?","options":["Layer 1 (Physical)","Layer 2 (Data Link)","Layer 1 ve Layer 2","Layer 3 (Network)"],"correct":2,"explanation":"NIC (Network Interface Card - Ağ Kartı) hem Layer 1 (fiziksel bağlantı) hem Layer 2 (MAC adresi) katmanlarında çalışır."},
+			{"id":69,"topic":"Kablolama Standartları","question":"Cat6 kablosu hangi hıza kadar destekler?","options":["100 Mbps","1 Gbps","10 Gbps (55 metreye kadar)","100 Gbps"],"correct":2,"explanation":"Cat6 kablosu 1 Gbps hızı 100 metreye kadar, 10 Gbps hızı ise 55 metreye kadar destekler."},
+			{"id":70,"topic":"Kablolama Standartları","question":"T568A ve T568B kablolama standartları arasındaki fark nedir?","options":["Hız farkı vardır","Tel renklerinin sırası farklıdır","Kablo kalınlığı farklıdır","Kullanım alanı farklıdır"],"correct":1,"explanation":"T568A ve T568B tel renklerinin sırasında farklıdır. T568B daha yaygın kullanılır. Her ikisi de aynı hızı destekler."},
+			{"id":71,"topic":"Kablolama Standartları","question":"Straight-through kablo ne zaman kullanılır?","options":["Aynı tür cihazlar arasında (PC-PC, Switch-Switch)","Farklı tür cihazlar arasında (PC-Switch, Switch-Router)","Sadece router'lar arasında","Sadece PC'ler arasında"],"correct":1,"explanation":"Straight-through kablo farklı tür cihazlar arasında kullanılır: PC-Switch, Switch-Router. Aynı tür cihazlar için crossover kablo gerekir."},
+			{"id":72,"topic":"Kablolama Standartları","question":"Crossover kablo ne zaman kullanılır?","options":["Farklı tür cihazlar arasında","Aynı tür cihazlar arasında (PC-PC, Switch-Switch)","Sadece router'lar arasında","Hiçbir zaman"],"correct":1,"explanation":"Crossover kablo aynı tür cihazlar arasında kullanılır: PC-PC, Switch-Switch. Tel çiftleri çapraz bağlanır."},
+			{"id":73,"topic":"Kablolama Standartları","question":"STP (Shielded Twisted Pair) kablonun avantajı nedir?","options":["Daha ucuzdur","Elektromanyetik gürültüye karşı korumalıdır","Daha hızlıdır","Daha uzun mesafe destekler"],"correct":1,"explanation":"STP (Shielded Twisted Pair) kabloda her çift tel ekranlanmıştır (shielded), bu da elektromanyetik gürültüye karşı koruma sağlar."},
+			{"id":74,"topic":"Kablolama Standartları","question":"Fiber optik kablo hangi sinyalleri kullanır?","options":["Elektrik sinyalleri","Işık sinyalleri","Radyo sinyalleri","Ses sinyalleri"],"correct":1,"explanation":"Fiber optik kablo ışık sinyalleri kullanır. Bu sayede elektromanyetik gürültüden etkilenmez ve çok yüksek hızlar sağlar."},
+			{"id":75,"topic":"Ağ Protokolleri","question":"SMTP protokolü hangi port numarasını kullanır?","options":["21","25","80","110"],"correct":1,"explanation":"SMTP (Simple Mail Transfer Protocol) e-posta gönderimi için port 25'i kullanır. POP3 port 110, IMAP port 143 kullanır."},
+			{"id":76,"topic":"Ağ Protokolleri","question":"POP3 protokolü ne işe yarar?","options":["E-posta göndermek","E-posta almak (sunucudan indirmek)","Web sayfaları görüntülemek","Dosya transferi yapmak"],"correct":1,"explanation":"POP3 (Post Office Protocol 3) e-posta almak için kullanılır. E-postaları sunucudan indirir ve genellikle sunucudan siler."},
+			{"id":77,"topic":"Ağ Protokolleri","question":"ARP (Address Resolution Protocol) ne işe yarar?","options":["IP adresini MAC adresine çevirir","MAC adresini IP adresine çevirir","Domain adını IP'ye çevirir","Port numarasını belirler"],"correct":0,"explanation":"ARP (Address Resolution Protocol) IP adresini MAC adresine çevirir. Aynı ağdaki cihazların MAC adreslerini öğrenmek için kullanılır."},
+			{"id":78,"topic":"Ağ Protokolleri","question":"ICMP (Internet Control Message Protocol) ne işe yarar?","options":["E-posta göndermek","Ağ hata mesajları ve kontrol mesajları göndermek (ping komutu)","Dosya transferi yapmak","Web sayfaları görüntülemek"],"correct":1,"explanation":"ICMP (Internet Control Message Protocol) ağ hata mesajları ve kontrol mesajları göndermek için kullanılır. ping komutu ICMP kullanır."},
+			{"id":79,"topic":"Ağ Protokolleri","question":"Telnet protokolü hangi port numarasını kullanır?","options":["21","22","23","25"],"correct":2,"explanation":"Telnet protokolü port 23'ü kullanır. Güvenli olmayan uzak erişim sağlar. Güvenli alternatifi SSH (port 22)'dir."},
+			{"id":80,"topic":"Ağ Protokolleri","question":"SNMP (Simple Network Management Protocol) ne işe yarar?","options":["E-posta göndermek","Ağ cihazlarını izlemek ve yönetmek","Dosya transferi yapmak","Web sayfaları görüntülemek"],"correct":1,"explanation":"SNMP (Simple Network Management Protocol) ağ cihazlarını (router, switch, server) izlemek ve yönetmek için kullanılır. Port 161 kullanır."},
+			{"id":81,"topic":"Ağ Protokolleri","question":"NTP (Network Time Protocol) ne işe yarar?","options":["Dosya transferi","Ağ cihazlarının saatlerini senkronize etmek","E-posta göndermek","Web sayfaları görüntülemek"],"correct":1,"explanation":"NTP (Network Time Protocol) ağ cihazlarının saatlerini senkronize etmek için kullanılır. Port 123 kullanır."},
+			{"id":82,"topic":"Ağ Komutları","question":"tracert (Windows) veya traceroute (Linux) komutunun görevi nedir?","options":["IP adresini göstermek","Paketlerin izlediği yolu (router'ları) göstermek","Port durumunu kontrol etmek","MAC adresini göstermek"],"correct":1,"explanation":"tracert/traceroute komutu paketlerin hedefe ulaşırken hangi router'lardan geçtiğini gösterir. Her router'ın IP adresini ve gecikme süresini listeler."},
+			{"id":83,"topic":"Ağ Komutları","question":"netstat komutunun görevi nedir?","options":["IP adresini göstermek","Aktif ağ bağlantılarını, port durumlarını göstermek","Yönlendirme tablosunu göstermek","MAC adresini göstermek"],"correct":1,"explanation":"netstat komutu aktif ağ bağlantılarını, dinleyen portları, routing tablosunu gösterir. Ağ durumunu analiz etmek için kullanılır."},
+			{"id":84,"topic":"Ağ Komutları","question":"arp -a komutu ne gösterir?","options":["IP adresini","ARP tablosunu (IP-MAC adres eşleşmelerini)","Port durumunu","Yönlendirme tablosunu"],"correct":1,"explanation":"arp -a komutu ARP tablosunu gösterir. Bu tablo IP adresleri ile MAC adresleri arasındaki eşleşmeleri içerir."},
+			{"id":85,"topic":"Ağ Komutları","question":"nslookup komutunun görevi nedir?","options":["IP adresini göstermek","DNS sorgusu yapmak (domain → IP çevirisi)","Port durumunu kontrol etmek","MAC adresini göstermek"],"correct":1,"explanation":"nslookup komutu DNS sorgusu yapar. Domain adını IP adresine çevirir veya tersine IP'den domain'e çevirir."},
+			{"id":86,"topic":"Ağ Komutları","question":"ifconfig (Linux) veya ipconfig (Windows) komutunun /all parametresi ne işe yarar?","options":["Sadece IP adresini gösterir","Tüm ağ yapılandırma bilgilerini detaylı gösterir","Sadece MAC adresini gösterir","Sadece gateway'i gösterir"],"correct":1,"explanation":"ipconfig /all (Windows) veya ifconfig -a (Linux) komutu tüm ağ yapılandırma bilgilerini detaylı gösterir: IP, MAC, gateway, DNS, DHCP bilgileri."},
+			{"id":87,"topic":"Ağ Komutları","question":"route print (Windows) veya route -n (Linux) komutunun görevi nedir?","options":["IP adresini göstermek","Yönlendirme tablosunu (routing table) göstermek","Port durumunu kontrol etmek","MAC adresini göstermek"],"correct":1,"explanation":"route print/route -n komutu yönlendirme tablosunu gösterir. Hangi ağlara hangi gateway üzerinden gidileceğini listeler."},
+			{"id":88,"topic":"Ağ Komutları","question":"ping -t (Windows) veya ping -c (Linux) komutunun farkı nedir?","options":["Sadece bir kez ping gönderir","Sürekli ping gönderir (Windows -t) veya belirli sayıda ping gönderir (Linux -c)","Sadece localhost'a ping gönderir","Sadece gateway'e ping gönderir"],"correct":1,"explanation":"ping -t (Windows) sürekli ping gönderir (Ctrl+C ile durdurulur). ping -c 5 (Linux) 5 kez ping gönderir ve durur."}
+		]
+	};
+</script>
+
+<script>
+	let questionsData = [];
+	let userAnswers = {};
+	let testCompleted = false;
+
+	// Test verilerini yükle (artık JSON dosyası yerine doğrudan JavaScript değişkeninden)
+	$(document).ready(function() {
+		if (typeof testData !== 'undefined' && testData && testData.questions && Array.isArray(testData.questions)) {
+			questionsData = testData.questions;
+			$('#total-questions').text(testData.testInfo.totalQuestions);
+			$('#test-topics').text(testData.testInfo.topics.join(', '));
+			renderQuestions();
+			$('#loading').hide();
+			$('#test-container').show();
+		} else {
+			$('#loading').html('<p style="color:#f44336">❌ Test verisi yüklenemedi. Sayfayı yenileyin.</p>');
+		}
+	});
+
+	// Soruları render et
+	function renderQuestions() {
+		const container = $('#questions-container');
+		container.empty();
+
+		questionsData.forEach(function(q, index) {
+			const questionHtml = `
+				<div class="question-card" data-question-id="${q.id}">
+					<div class="question-topic">${q.topic}</div>
+					<div style="display:flex;align-items:flex-start;margin-bottom:15px">
+						<div class="question-number">${index + 1}</div>
+						<div class="question-text">${q.question}</div>
+					</div>
+					<div class="options-container">
+						${q.options.map(function(option, optIndex) {
+							return `
+								<div class="option-item" data-option="${optIndex}" data-question-id="${q.id}">
+									<span class="option-label">${String.fromCharCode(65 + optIndex)}.</span>
+									<span>${option}</span>
+								</div>
+							`;
+						}).join('')}
+					</div>
+					<div class="explanation-box" id="explanation-${q.id}">
+						<strong><i class="bi bi-lightbulb"></i> Açıklama:</strong>
+						<p style="margin-top:10px">${q.explanation}</p>
+					</div>
+				</div>
+			`;
+			container.append(questionHtml);
+		});
+
+		// Seçenek tıklama olayları
+		$('.option-item').on('click', function() {
+			if (testCompleted) return;
+			
+			const questionId = $(this).data('question-id');
+			const optionIndex = $(this).data('option');
+			const questionCard = $(this).closest('.question-card');
+
+			// Aynı sorudaki diğer seçenekleri temizle
+			questionCard.find('.option-item').removeClass('selected');
+			
+			// Seçili seçeneği işaretle
+			$(this).addClass('selected');
+			
+			// Kullanıcı cevabını kaydet
+			userAnswers[questionId] = optionIndex;
+			
+			// İlerleme çubuğunu güncelle
+			updateProgress();
+			
+			// Submit butonunu aktif et
+			checkAllAnswered();
+		});
+	}
+
+	// İlerleme çubuğunu güncelle
+	function updateProgress() {
+		const answered = Object.keys(userAnswers).length;
+		const total = questionsData.length;
+		const percentage = Math.round((answered / total) * 100);
+		
+		$('#progress-bar').css('width', percentage + '%').text(percentage + '%');
+	}
+
+	// Tüm sorular cevaplandı mı kontrol et
+	function checkAllAnswered() {
+		const answered = Object.keys(userAnswers).length;
+		const total = questionsData.length;
+		
+		if (answered === total) {
+			$('#submit-btn').prop('disabled', false);
+		}
+	}
+
+	// Testi bitir ve sonuçları göster
+	$('#submit-btn').on('click', function() {
+		if (testCompleted) return;
+		
+		testCompleted = true;
+		calculateResults();
+		$('#test-container').hide();
+		$('#result-container').addClass('show');
+		
+		// Sayfayı sonuçlara kaydır
+		$('html, body').animate({
+			scrollTop: $('#result-container').offset().top - 20
+		}, 500);
+	});
+
+	// Sonuçları hesapla
+	function calculateResults() {
+		let correct = 0;
+		let wrong = 0;
+		const results = [];
+
+		questionsData.forEach(function(q) {
+			const userAnswer = userAnswers[q.id];
+			const correctAnswer = q.correct;
+			const isCorrect = userAnswer === correctAnswer;
+			
+			if (isCorrect) {
+				correct++;
+			} else {
+				wrong++;
+			}
+
+			results.push({
+				question: q,
+				userAnswer: userAnswer,
+				correctAnswer: correctAnswer,
+				isCorrect: isCorrect
+			});
+		});
+
+		// Sonuçları göster
+		displayResults(correct, wrong, results);
+		
+		// Soruları işaretle
+		markQuestions(results);
+	}
+
+	// Sonuçları ekranda göster
+	function displayResults(correct, wrong, results) {
+		const total = questionsData.length;
+		const percentage = Math.round((correct / total) * 100);
+		
+		$('#score-percentage').text(percentage + '%');
+		$('#score-text').text(`Doğru: ${correct} / Yanlış: ${wrong} / Toplam: ${total}`);
+		
+		// Mesaj belirle
+		let message = '';
+		if (percentage >= 90) {
+			message = '🏆 Mükemmel! Harika bir sonuç!';
+		} else if (percentage >= 75) {
+			message = '👍 Çok İyi! Başarılı bir sonuç!';
+		} else if (percentage >= 60) {
+			message = '✅ İyi! Daha fazla çalışma ile daha iyi olabilirsiniz.';
+		} else if (percentage >= 50) {
+			message = '⚠️ Orta. Daha fazla çalışmanız gerekiyor.';
+		} else {
+			message = '❌ Başarısız. Lütfen konuları tekrar gözden geçirin.';
+		}
+		$('#score-message').text(message);
+
+		// Detaylı sonuçlar
+		const resultList = $('#result-list');
+		resultList.empty();
+
+		results.forEach(function(result, index) {
+			const q = result.question;
+			const userOption = result.userAnswer !== undefined ? String.fromCharCode(65 + result.userAnswer) : 'Cevaplanmadı';
+			const correctOption = String.fromCharCode(65 + result.correctAnswer);
+			const userAnswerText = result.userAnswer !== undefined ? q.options[result.userAnswer] : 'Cevaplanmadı';
+			const correctAnswerText = q.options[result.correctAnswer];
+			
+			const resultItem = `
+				<div class="result-item ${result.isCorrect ? 'correct' : 'wrong'}">
+					<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+						<strong>Soru ${index + 1}:</strong>
+						<span style="font-size:1.2rem">${result.isCorrect ? '✅' : '❌'}</span>
+					</div>
+					<p><strong>Soru:</strong> ${q.question}</p>
+					<p><strong>Konu:</strong> ${q.topic}</p>
+					<p><strong>Sizin Cevabınız:</strong> <span style="color:${result.isCorrect ? '#4caf50' : '#f44336'};font-weight:600">${userOption}. ${userAnswerText}</span></p>
+					${!result.isCorrect ? `<p><strong>Doğru Cevap:</strong> <span style="color:#4caf50;font-weight:600">${correctOption}. ${correctAnswerText}</span></p>` : ''}
+					<div class="explanation-box show" style="margin-top:10px">
+						<strong><i class="bi bi-lightbulb"></i> Açıklama:</strong>
+						<p style="margin-top:5px">${q.explanation}</p>
+					</div>
+				</div>
+			`;
+			resultList.append(resultItem);
+		});
+	}
+
+	// Soruları işaretle (doğru/yanlış)
+	function markQuestions(results) {
+		results.forEach(function(result) {
+			const questionCard = $(`.question-card[data-question-id="${result.question.id}"]`);
+			const options = questionCard.find('.option-item');
+			
+			options.each(function() {
+				const optionIndex = $(this).data('option');
+				$(this).removeClass('selected');
+				
+				if (optionIndex === result.correctAnswer) {
+					$(this).addClass('correct');
+				} else if (optionIndex === result.userAnswer && !result.isCorrect) {
+					$(this).addClass('wrong');
+				}
+			});
+			
+			// Açıklamayı göster
+			$(`#explanation-${result.question.id}`).addClass('show');
+		});
+	}
+
+	// Loading animasyonu
+	$('<style>').prop('type', 'text/css').html('@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }').appendTo('head');
+</script>
+
+</body>
+</html>
+

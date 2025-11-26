@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="İslam ERGÜN">
+	<meta name="description" content="Ağ Temelleri Özel Test - Sınav Odaklı Sorular">
+	<meta name="keywords" content="Ağ Temelleri, Test, Network, Hub, Switch, Topoloji, OSI, IP">
+	<meta name="robots" content="index, follow">
+	<title>Ağ Temelleri Özel Test | Sınav Odaklı</title>
+	
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	
+	<style>
+		*{margin:0;padding:0;box-sizing:border-box}
+		body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px 0}
+		.main-header{background:#fff;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);padding:40px;margin-bottom:30px;text-align:center}
+		.main-header h1{color:#764ba2;font-weight:700;margin-bottom:10px;font-size:2.5rem}
+		.author-badge{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 20px;border-radius:50px;margin-top:15px;font-size:0.9rem}
+		.content-card{background:#fff;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);padding:40px;margin-bottom:30px}
+		.test-info{background:linear-gradient(135deg,#e3f2fd,#f3e5f5);border-left:4px solid #667eea;padding:20px;margin:20px 0;border-radius:10px}
+		.question-card{background:#fff;border:2px solid #667eea;border-radius:10px;padding:25px;margin:20px 0;transition:all 0.3s}
+		.question-card:hover{box-shadow:0 8px 20px rgba(102,126,234,0.2)}
+		.question-number{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;width:50px;height:50px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-right:15px;font-size:1.2rem}
+		.question-text{color:#333;font-size:1.1rem;font-weight:500;margin-bottom:20px;line-height:1.6}
+		.question-topic{display:inline-block;background:#f0f0f0;color:#667eea;padding:5px 15px;border-radius:20px;font-size:0.85rem;margin-bottom:15px;font-weight:600}
+		.option-item{background:#f8f9fa;padding:15px 20px;margin:10px 0;border-radius:8px;cursor:pointer;transition:all 0.3s;border:2px solid transparent;position:relative}
+		.option-item:hover{background:#e3f2fd;border-color:#667eea;transform:translateX(5px)}
+		.option-item.selected{background:#e3f2fd;border-color:#667eea;font-weight:600}
+		.option-item.correct{background:#e8f5e9;border-color:#4caf50;color:#2e7d32}
+		.option-item.wrong{background:#ffebee;border-color:#f44336;color:#c62828}
+		.option-label{font-weight:600;color:#667eea;margin-right:10px;min-width:30px;display:inline-block}
+		.btn-submit{background:linear-gradient(135deg,#4caf50,#45a049);color:#fff;border:none;padding:15px 40px;border-radius:50px;cursor:pointer;font-size:1.1rem;font-weight:600;transition:all 0.3s;margin:20px 0;box-shadow:0 5px 15px rgba(76,175,80,0.3)}
+		.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(76,175,80,0.4)}
+		.btn-submit:disabled{background:#ccc;cursor:not-allowed;transform:none}
+		.result-card{background:#fff;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);padding:40px;margin:20px 0;display:none}
+		.result-card.show{display:block}
+		.score-display{text-align:center;padding:30px;background:linear-gradient(135deg,#4caf50,#45a049);color:#fff;border-radius:15px;margin:20px 0}
+		.score-display h2{font-size:3rem;font-weight:700;margin:10px 0}
+		.score-display p{font-size:1.2rem;margin:5px 0}
+		.result-details{margin-top:30px}
+		.result-item{background:#f8f9fa;padding:15px;margin:10px 0;border-radius:8px;border-left:4px solid #667eea}
+		.result-item.correct{border-left-color:#4caf50;background:#e8f5e9}
+		.result-item.wrong{border-left-color:#f44336;background:#ffebee}
+		.explanation-box{background:#fff3cd;border:2px solid #ffc107;border-radius:8px;padding:15px;margin-top:15px;display:none}
+		.explanation-box.show{display:block}
+		.progress-bar-container{background:#f0f0f0;border-radius:10px;height:30px;margin:20px 0;overflow:hidden}
+		.progress-bar-fill{background:linear-gradient(135deg,#667eea,#764ba2);height:100%;transition:width 0.3s;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600}
+		.btn-back{position:fixed;top:20px;left:20px;background:#fff;color:#764ba2;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;z-index:1000;font-weight:600}
+		.btn-back:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3);color:#667eea}
+		.btn-reset{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:12px 30px;border-radius:50px;cursor:pointer;font-weight:600;transition:all 0.3s;margin-top:20px}
+		.btn-reset:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(102,126,234,0.4)}
+		.loading{text-align:center;padding:50px;color:#fff;font-size:1.2rem}
+		@media (max-width:768px){.main-header h1{font-size:1.8rem}.btn-back{font-size:0.8rem;padding:8px 15px}.question-number{width:40px;height:40px;font-size:1rem}}
+		:focus-visible{outline:3px solid #667eea;outline-offset:2px}
+	</style>
+</head>
+<body>
+
+<a href="index.html" class="btn-back"><i class="bi bi-arrow-left-circle"></i> Ana Sayfa</a>
+
+<div class="container">
+	<header class="main-header" role="banner">
+		<h1><i class="bi bi-clipboard-check"></i> Ağ Temelleri Özel Test</h1>
+		<p>Sınav Odaklı Sorular</p>
+		<span class="author-badge"><i class="bi bi-person-circle"></i> İslam ERGÜN</span>
+	</header>
+
+	<div id="test-container">
+		<div class="content-card">
+			<div class="test-info">
+				<h3><i class="bi bi-info-circle"></i> Test Bilgileri</h3>
+				<p><strong>Toplam Soru:</strong> <span id="total-questions">0</span></p>
+				<p><strong>Konular:</strong> Hub/Switch, Topolojiler, T568B, Kablolama, OSI, IP Sınıfları, Subnet Mask, VPN, LAN/MAN/WAN</p>
+				<div class="progress-bar-container">
+					<div class="progress-bar-fill" id="progress-bar" style="width:0%">0%</div>
+				</div>
+			</div>
+
+			<div id="questions-container"></div>
+
+			<div style="text-align:center">
+				<button id="submit-btn" class="btn-submit" disabled>
+					<i class="bi bi-check-circle"></i> Testi Bitir ve Sonuçları Gör
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="result-container" class="result-card">
+		<div class="score-display">
+			<h2 id="score-percentage">0%</h2>
+			<p id="score-text">Doğru: 0 / Yanlış: 0</p>
+			<p id="score-message"></p>
+		</div>
+
+		<div class="result-details">
+			<h3><i class="bi bi-list-check"></i> Detaylı Sonuçlar</h3>
+			<div id="result-list"></div>
+		</div>
+
+		<div style="text-align:center">
+			<button class="btn-reset" onclick="location.reload()">
+				<i class="bi bi-arrow-clockwise"></i> Testi Yeniden Başlat
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+<!-- Test Soruları - Doğrudan HTML içinde -->
+<script type="text/javascript">
+	const testData = {
+		"testInfo": {
+			"title": "Ağ Temelleri Özel Test",
+			"totalQuestions": 45
+		},
+		"questions": [
+			{"id":1,"topic":"Hub vs Switch","question":"Hub hangi OSI katmanında çalışır?","options":["Layer 1 (Physical)","Layer 2 (Data Link)","Layer 3 (Network)","Layer 4 (Transport)"],"correct":0,"explanation":"Hub Layer 1 (Physical) katmanında çalışır. Gelen sinyalleri tüm portlara yayınlar (broadcast), akıllı değildir."},
+			{"id":2,"topic":"Hub vs Switch","question":"Switch hangi OSI katmanında çalışır?","options":["Layer 1 (Physical)","Layer 2 (Data Link)","Layer 3 (Network)","Layer 4 (Transport)"],"correct":1,"explanation":"Switch Layer 2 (Data Link) katmanında çalışır. MAC adreslerine göre frame'leri yönlendirir, akıllıdır."},
+			{"id":3,"topic":"Hub vs Switch","question":"Hub ile Switch arasındaki temel fark nedir?","options":["Hub daha hızlıdır","Switch MAC adreslerine göre yönlendirme yapar, Hub tüm portlara yayın yapar","Hub daha pahalıdır","Switch sadece Layer 1'de çalışır"],"correct":1,"explanation":"Switch MAC adreslerine göre akıllı yönlendirme yapar (Layer 2), Hub ise tüm portlara yayın yapar (Layer 1)."},
+			{"id":4,"topic":"Hub vs Switch","question":"Hub'ın dezavantajı nedir?","options":["Çok pahalıdır","Gelen sinyalleri tüm portlara yayınlar, çarpışma (collision) riski yüksektir","Sadece 2 portu vardır","Sadece fiber optik kablolarla çalışır"],"correct":1,"explanation":"Hub gelen sinyalleri tüm portlara yayınlar, bu da çarpışma (collision) riskini artırır ve ağ performansını düşürür."},
+			{"id":5,"topic":"Topolojiler","question":"Star (Yıldız) topolojisinin avantajı nedir?","options":["Az kablo gerektirir","Bir cihaz arızası diğerlerini etkilemez","Ana kablo arızasında çalışmaya devam eder","En ekonomik topolojidir"],"correct":1,"explanation":"Star topolojisinde tüm cihazlar merkezi switch/hub'a bağlıdır. Bir cihaz arızası sadece o cihazı etkiler."},
+			{"id":6,"topic":"Topolojiler","question":"Bus (Yol) topolojisinin dezavantajı nedir?","options":["Kurulumu zordur","Ana kablo arızasında tüm ağ çöker","Yüksek hız sağlar","Arıza tespiti kolaydır"],"correct":1,"explanation":"Bus topolojisinde tüm cihazlar tek bir ana kabloya bağlıdır. Ana kablo arızasında tüm ağ çalışamaz."},
+			{"id":7,"topic":"Topolojiler","question":"Ring (Halka) topolojisinde veri nasıl dolaşır?","options":["Çift yönlü","Tek yönlü","Rastgele","Merkezi cihazdan yayılır"],"correct":1,"explanation":"Ring topolojisinde cihazlar halka şeklinde bağlanır ve veri tek yönde dolaşır, bu sayede çarpışma (collision) olmaz."},
+			{"id":8,"topic":"Topolojiler","question":"Hangi topoloji günümüzde en yaygın kullanılan topolojidir?","options":["Bus","Ring","Star","Mesh"],"correct":2,"explanation":"Star topoloji modern Ethernet ağlarında en yaygın kullanılan topolojidir çünkü arıza tespiti kolay ve yönetimi basittir."},
+			{"id":9,"topic":"Topolojiler","question":"Mesh (Örgü) topolojisinin özelliği nedir?","options":["En az kablo gerektirir","Yüksek güvenilirlik sağlar","En ekonomik topolojidir","Kurulumu en kolay topolojidir"],"correct":1,"explanation":"Mesh topolojisinde her cihaz birden fazla cihaza bağlıdır, bu da yüksek güvenilirlik ve alternatif yollar sağlar."},
+			{"id":10,"topic":"T568B Standardı","question":"T568B kablolama standardında hangi renk tel 1. pin'de bulunur?","options":["Turuncu-Beyaz","Yeşil-Beyaz","Mavi-Beyaz","Kahverengi-Beyaz"],"correct":0,"explanation":"T568B standardında 1. pin Turuncu-Beyaz (Orange-White) telidir. T568B daha yaygın kullanılır."},
+			{"id":11,"topic":"T568B Standardı","question":"T568B standardında 2. pin hangi renk telidir?","options":["Turuncu","Yeşil","Mavi","Kahverengi"],"correct":0,"explanation":"T568B standardında 2. pin Turuncu (Orange) telidir. Sıralama: 1-Turuncu-Beyaz, 2-Turuncu, 3-Yeşil-Beyaz, 4-Mavi, 5-Mavi-Beyaz, 6-Yeşil, 7-Kahverengi-Beyaz, 8-Kahverengi."},
+			{"id":12,"topic":"T568B Standardı","question":"T568B ve T568A arasındaki fark nedir?","options":["Hız farkı vardır","Tel renklerinin sırası farklıdır","Kablo kalınlığı farklıdır","Kullanım alanı farklıdır"],"correct":1,"explanation":"T568A ve T568B tel renklerinin sırasında farklıdır. T568B daha yaygın kullanılır. Her ikisi de aynı hızı destekler."},
+			{"id":13,"topic":"Konnektör","question":"UTP kablolarda hangi konnektör kullanılır?","options":["RJ-11","RJ-45","BNC","ST"],"correct":1,"explanation":"UTP (Unshielded Twisted Pair) kablolarda RJ-45 konnektörü kullanılır. RJ-11 telefon kablolarında kullanılır."},
+			{"id":14,"topic":"Konnektör","question":"RJ-45 konnektörü kaç pinlidir?","options":["4 pin","6 pin","8 pin","10 pin"],"correct":2,"explanation":"RJ-45 konnektörü 8 pinlidir ve UTP/STP kablolarda kullanılır. Her pin bir tel çiftine karşılık gelir."},
+			{"id":15,"topic":"Kablo Türleri","question":"UTP kablosunun özelliği nedir?","options":["Elektromanyetik koruma vardır","Ekranlanmamış bükümlü çift kablodur","Sadece fiber optik ile çalışır","En pahalı kablo türüdür"],"correct":1,"explanation":"UTP (Unshielded Twisted Pair) ekranlanmamış bükümlü çift kablodur. Her çift tel birbirine sarılıdır, gürültüyü azaltır."},
+			{"id":16,"topic":"Kablo Türleri","question":"STP kablosunun UTP'den farkı nedir?","options":["Daha ucuzdur","Elektromanyetik gürültüye karşı ekranlanmıştır","Daha yavaştır","Daha az tel içerir"],"correct":1,"explanation":"STP (Shielded Twisted Pair) kabloda her çift tel ekranlanmıştır (shielded), bu da elektromanyetik gürültüye karşı koruma sağlar."},
+			{"id":17,"topic":"Kablo Türleri","question":"Fiber optik kablonun avantajı nedir?","options":["Daha ucuzdur","Elektromanyetik gürültüden etkilenmez ve çok yüksek hız sağlar","Daha kısa mesafe destekler","Kurulumu daha kolaydır"],"correct":1,"explanation":"Fiber optik kablo ışık sinyalleri kullanır, elektromanyetik gürültüden etkilenmez ve çok yüksek hızlar (10 Gbps+) sağlar."},
+			{"id":18,"topic":"Kablo Türleri","question":"Koaksiyel kablo hangi teknolojide kullanılır?","options":["Modern Ethernet","Eski Ethernet (10Base2, 10Base5) ve TV kabloları","Sadece fiber optik","Sadece Wi-Fi"],"correct":1,"explanation":"Koaksiyel kablo eski Ethernet teknolojilerinde (10Base2, 10Base5) ve TV kablolarında kullanılır. Artık pek kullanılmaz."},
+			{"id":19,"topic":"UTP Kablo Yapısı","question":"UTP kablosunda kaç çift tel bulunur?","options":["2 çift","4 çift","6 çift","8 çift"],"correct":1,"explanation":"UTP kablosunda 4 çift (8 tel) bulunur. Her çift birbirine sarılıdır (twisted) gürültüyü azaltmak için."},
+			{"id":20,"topic":"UTP Kablo Yapısı","question":"UTP kablosunda tel çiftlerinin birbirine sarılmasının amacı nedir?","options":["Görsel olarak güzel görünmesi","Elektromanyetik gürültüyü azaltmak","Daha uzun olması","Daha ucuz olması"],"correct":1,"explanation":"Tel çiftlerinin birbirine sarılması (twisting) elektromanyetik gürültüyü (EMI) azaltır ve sinyal kalitesini artırır."},
+			{"id":21,"topic":"OSI Katmanları","question":"OSI modeli kaç katmandan oluşur?","options":["4","5","6","7"],"correct":3,"explanation":"OSI (Open Systems Interconnection) modeli 7 katmandan oluşur: Physical, Data Link, Network, Transport, Session, Presentation, Application."},
+			{"id":22,"topic":"OSI Katmanları","question":"OSI modelinin katmanları aşağıdan yukarıya doğru sıralaması nedir?","options":["Application, Presentation, Session, Transport, Network, Data Link, Physical","Physical, Data Link, Network, Transport, Session, Presentation, Application","Network, Transport, Session, Application, Physical, Data Link, Presentation","Transport, Network, Data Link, Physical, Session, Presentation, Application"],"correct":1,"explanation":"OSI modeli aşağıdan yukarıya: 1-Physical, 2-Data Link, 3-Network, 4-Transport, 5-Session, 6-Presentation, 7-Application."},
+			{"id":23,"topic":"OSI Katmanları","question":"OSI modelinin 3. katmanı hangisidir?","options":["Physical","Data Link","Network","Transport"],"correct":2,"explanation":"OSI modelinin 3. katmanı Network (Ağ) katmanıdır. IP adresleme ve yönlendirme bu katmanda yapılır."},
+			{"id":24,"topic":"OSI Katmanları","question":"OSI modelinin 4. katmanı hangisidir?","options":["Network","Transport","Session","Application"],"correct":1,"explanation":"OSI modelinin 4. katmanı Transport (Taşıma) katmanıdır. TCP ve UDP protokolleri bu katmanda çalışır."},
+			{"id":25,"topic":"IP Sınıfları","question":"A sınıfı IP adresinin ilk okteti hangi aralıktadır?","options":["1-126","128-191","192-223","224-239"],"correct":0,"explanation":"A sınıfı IP adreslerinin ilk okteti 1-126 arasındadır. Örnek: 10.0.0.1, 126.0.0.1"},
+			{"id":26,"topic":"IP Sınıfları","question":"B sınıfı IP adresinin ilk okteti hangi aralıktadır?","options":["1-126","128-191","192-223","224-239"],"correct":1,"explanation":"B sınıfı IP adreslerinin ilk okteti 128-191 arasındadır. Örnek: 172.16.0.1, 191.255.255.254"},
+			{"id":27,"topic":"IP Sınıfları","question":"C sınıfı IP adresinin ilk okteti hangi aralıktadır?","options":["1-126","128-191","192-223","224-239"],"correct":2,"explanation":"C sınıfı IP adreslerinin ilk okteti 192-223 arasındadır. Örnek: 192.168.1.1, 223.255.255.254"},
+			{"id":28,"topic":"IP Sınıfları","question":"192.168.1.0 hangi IP sınıfına aittir?","options":["A Sınıfı","B Sınıfı","C Sınıfı","D Sınıfı"],"correct":2,"explanation":"192.168.1.0 C sınıfı IP adresidir çünkü ilk oktet 192'dir (192-223 aralığı)."},
+			{"id":29,"topic":"Alt Ağ Maskesi","question":"C sınıfı IP için varsayılan subnet mask nedir?","options":["255.0.0.0","255.255.0.0","255.255.255.0","255.255.255.255"],"correct":2,"explanation":"C sınıfı IP için varsayılan subnet mask 255.255.255.0'dır. Bu /24 CIDR notasyonuna eşittir."},
+			{"id":30,"topic":"Alt Ağ Maskesi","question":"Subnet mask 255.255.255.0'un CIDR notasyonu nedir?","options":["/16","/24","/32","/8"],"correct":1,"explanation":"255.255.255.0 = 11111111.11111111.11111111.00000000 = 24 bit network kısmı, yani /24."},
+			{"id":31,"topic":"Alt Ağ Maskesi","question":"192.168.1.0/24 ağında kaç kullanılabilir host adresi vardır?","options":["254","255","256","512"],"correct":0,"explanation":"/24 subnet maskesi 255.255.255.0 demektir. 192.168.1.0 network adresi, 192.168.1.255 broadcast adresidir. Kalan 254 adres kullanılabilir (1-254)."},
+			{"id":32,"topic":"C Sınıfı IP - Aynı Ağ","question":"Aşağıdaki IP adreslerinden hangileri aynı ağdadır? (192.168.1.0/24)","options":["192.168.1.10 ve 192.168.2.10","192.168.1.10 ve 192.168.1.20","192.168.1.10 ve 10.0.0.10","192.168.1.10 ve 172.16.1.10"],"correct":1,"explanation":"192.168.1.10 ve 192.168.1.20 aynı ağdadır çünkü her ikisi de 192.168.1.0/24 ağına aittir (ilk 3 oktet aynı)."},
+			{"id":33,"topic":"C Sınıfı IP - Aynı Ağ","question":"192.168.1.0/24 ağında hangi IP adresleri kullanılabilir?","options":["192.168.1.0 - 192.168.1.255","192.168.1.1 - 192.168.1.254","192.168.0.0 - 192.168.255.255","192.168.1.0 - 192.168.1.256"],"correct":1,"explanation":"192.168.1.0 network adresi, 192.168.1.255 broadcast adresidir. Kullanılabilir host adresleri: 192.168.1.1 - 192.168.1.254 (254 adet)."},
+			{"id":34,"topic":"C Sınıfı IP - Aynı Ağ","question":"192.168.1.100 ve 192.168.1.200 aynı ağda mıdır? (Subnet: 255.255.255.0)","options":["Evet, aynı ağdadır","Hayır, farklı ağlardadır","Sadece aynı switch'te ise","Sadece aynı router'da ise"],"correct":0,"explanation":"Evet, 192.168.1.100 ve 192.168.1.200 aynı ağdadır çünkü subnet mask 255.255.255.0 ile her ikisi de 192.168.1.0 ağına aittir."},
+			{"id":35,"topic":"VPN","question":"VPN'in açılımı nedir?","options":["Virtual Private Network","Very Private Network","Variable Public Network","Virtual Public Network"],"correct":0,"explanation":"VPN (Virtual Private Network) - Sanal Özel Ağ. Güvenli ve şifreli bağlantı sağlar."},
+			{"id":36,"topic":"VPN","question":"VPN'in temel amacı nedir?","options":["İnternet hızını artırmak","Güvenli ve şifreli uzaktan erişim sağlamak","Dosya paylaşımını engellemek","Ağ hızını düşürmek"],"correct":1,"explanation":"VPN'in temel amacı güvenli ve şifreli uzaktan erişim sağlamaktır. İnternet üzerinden özel ağa güvenli bağlantı kurar."},
+			{"id":37,"topic":"VPN","question":"VPN hangi durumlarda kullanılır?","options":["Sadece evde","Uzaktan çalışma, güvenli veri transferi, coğrafi kısıtlamaları aşma","Sadece ofiste","Sadece mobil cihazlarda"],"correct":1,"explanation":"VPN uzaktan çalışma, güvenli veri transferi, coğrafi kısıtlamaları aşma (örnek: Netflix, YouTube) gibi durumlarda kullanılır."},
+			{"id":38,"topic":"LAN-MAN-WAN","question":"LAN (Local Area Network) hangi coğrafi alanı kapsar?","options":["Kişisel cihazlar arası","Bir bina veya kampüs","Bir şehir veya büyük kampüs","Ülke veya kıta çapında"],"correct":1,"explanation":"LAN (Local Area Network) bir bina veya kampüs içinde kurulur. Sınırlı bir coğrafi alanda yerel ağdır."},
+			{"id":39,"topic":"LAN-MAN-WAN","question":"MAN (Metropolitan Area Network) hangi coğrafi alanı kapsar?","options":["Bir bina veya kampüs","Bir şehir veya büyük kampüs","Ülke veya kıta çapında","Dünya çapında"],"correct":1,"explanation":"MAN (Metropolitan Area Network) bir şehir veya büyük kampüs alanını kapsar ve birden fazla LAN'ı birbirine bağlar."},
+			{"id":40,"topic":"LAN-MAN-WAN","question":"WAN (Wide Area Network) hangi coğrafi alanı kapsar?","options":["Bir bina veya kampüs","Bir şehir veya büyük kampüs","Ülke, kıta veya dünya çapında","Sadece bir oda"],"correct":2,"explanation":"WAN (Wide Area Network) ülke, kıta veya dünya çapında geniş coğrafi alanları kapsar. İnternet en büyük WAN örneğidir."},
+			{"id":41,"topic":"LAN-MAN-WAN","question":"LAN'ın gecikme (latency) süresi genellikle ne kadardır?","options":["1-2 ms","50-100 ms","200-300 ms","1-5 saniye"],"correct":0,"explanation":"LAN'da gecikme çok düşüktür (1-2 ms). WAN'da ise 50-300 ms arasındadır."},
+			{"id":42,"topic":"LAN-MAN-WAN","question":"WAN'ın sahipliği kimdedir?","options":["Kuruluşa aittir","ISP (Internet Service Provider) sahipliğindedir","Belediye","Devlet"],"correct":1,"explanation":"WAN geniş coğrafi alanları kapsar, ISP sahipliğindedir ve aylık abonelik ücreti ile kullanılır."},
+			{"id":43,"topic":"LAN-MAN-WAN","question":"LAN'ın sahipliği kimdedir?","options":["ISP","Kuruluşa aittir","Belediye","Devlet"],"correct":1,"explanation":"LAN (Local Area Network) kuruluşa aittir ve genellikle tek seferlik yatırımla kurulur."},
+			{"id":44,"topic":"LAN-MAN-WAN","question":"MAN hangi teknolojileri kullanır?","options":["Sadece Ethernet","Sadece Wi-Fi","Fiber optik, Metro Ethernet","Sadece uydu"],"correct":2,"explanation":"MAN (Metropolitan Area Network) genellikle fiber optik ve Metro Ethernet teknolojileri kullanır çünkü şehir çapında yüksek hız gerektirir."},
+			{"id":45,"topic":"LAN-MAN-WAN","question":"Aşağıdakilerden hangisi WAN teknolojisi DEĞİLDİR?","options":["MPLS","Fiber optik","Uydu bağlantıları","Ethernet (yerel ağ)"],"correct":3,"explanation":"Ethernet genellikle LAN (yerel ağ) teknolojisidir. WAN teknolojileri: MPLS, fiber optik, uydu, kiralık hatlar."}
+		]
+	};
+</script>
+
+<script>
+	let questionsData = [];
+	let userAnswers = {};
+	let testCompleted = false;
+
+	// Test verilerini yükle
+	$(document).ready(function() {
+		if (typeof testData !== 'undefined' && testData && testData.questions && Array.isArray(testData.questions)) {
+			questionsData = testData.questions;
+			$('#total-questions').text(testData.testInfo.totalQuestions);
+			renderQuestions();
+		} else {
+			$('#questions-container').html('<p style="color:#f44336;text-align:center;padding:50px">❌ Test verisi yüklenemedi. Sayfayı yenileyin.</p>');
+		}
+	});
+
+	// Soruları render et
+	function renderQuestions() {
+		const container = $('#questions-container');
+		container.empty();
+
+		questionsData.forEach(function(q, index) {
+			const questionHtml = `
+				<div class="question-card" data-question-id="${q.id}">
+					<div class="question-topic">${q.topic}</div>
+					<div style="display:flex;align-items:flex-start;margin-bottom:15px">
+						<div class="question-number">${index + 1}</div>
+						<div class="question-text">${q.question}</div>
+					</div>
+					<div class="options-container">
+						${q.options.map(function(option, optIndex) {
+							return `
+								<div class="option-item" data-option="${optIndex}" data-question-id="${q.id}">
+									<span class="option-label">${String.fromCharCode(65 + optIndex)}.</span>
+									<span>${option}</span>
+								</div>
+							`;
+						}).join('')}
+					</div>
+					<div class="explanation-box" id="explanation-${q.id}">
+						<strong><i class="bi bi-lightbulb"></i> Açıklama:</strong>
+						<p style="margin-top:10px">${q.explanation}</p>
+					</div>
+				</div>
+			`;
+			container.append(questionHtml);
+		});
+
+		// Seçenek tıklama olayları
+		$('.option-item').on('click', function() {
+			if (testCompleted) return;
+			
+			const questionId = $(this).data('question-id');
+			const optionIndex = $(this).data('option');
+			const questionCard = $(this).closest('.question-card');
+
+			// Aynı sorudaki diğer seçenekleri temizle
+			questionCard.find('.option-item').removeClass('selected');
+			
+			// Seçili seçeneği işaretle
+			$(this).addClass('selected');
+			
+			// Kullanıcı cevabını kaydet
+			userAnswers[questionId] = optionIndex;
+			
+			// İlerleme çubuğunu güncelle
+			updateProgress();
+			
+			// Submit butonunu aktif et
+			checkAllAnswered();
+		});
+	}
+
+	// İlerleme çubuğunu güncelle
+	function updateProgress() {
+		const answered = Object.keys(userAnswers).length;
+		const total = questionsData.length;
+		const percentage = Math.round((answered / total) * 100);
+		
+		$('#progress-bar').css('width', percentage + '%').text(percentage + '%');
+	}
+
+	// Tüm sorular cevaplandı mı kontrol et
+	function checkAllAnswered() {
+		const answered = Object.keys(userAnswers).length;
+		const total = questionsData.length;
+		
+		if (answered === total) {
+			$('#submit-btn').prop('disabled', false);
+		}
+	}
+
+	// Testi bitir ve sonuçları göster
+	$('#submit-btn').on('click', function() {
+		if (testCompleted) return;
+		
+		testCompleted = true;
+		calculateResults();
+		$('#test-container').hide();
+		$('#result-container').addClass('show');
+		
+		// Sayfayı sonuçlara kaydır
+		$('html, body').animate({
+			scrollTop: $('#result-container').offset().top - 20
+		}, 500);
+	});
+
+	// Sonuçları hesapla
+	function calculateResults() {
+		let correct = 0;
+		let wrong = 0;
+		const results = [];
+
+		questionsData.forEach(function(q) {
+			const userAnswer = userAnswers[q.id];
+			const correctAnswer = q.correct;
+			const isCorrect = userAnswer === correctAnswer;
+			
+			if (isCorrect) {
+				correct++;
+			} else {
+				wrong++;
+			}
+
+			results.push({
+				question: q,
+				userAnswer: userAnswer,
+				correctAnswer: correctAnswer,
+				isCorrect: isCorrect
+			});
+		});
+
+		// Sonuçları göster
+		displayResults(correct, wrong, results);
+		
+		// Soruları işaretle
+		markQuestions(results);
+	}
+
+	// Sonuçları ekranda göster
+	function displayResults(correct, wrong, results) {
+		const total = questionsData.length;
+		const percentage = Math.round((correct / total) * 100);
+		
+		$('#score-percentage').text(percentage + '%');
+		$('#score-text').text(`Doğru: ${correct} / Yanlış: ${wrong} / Toplam: ${total}`);
+		
+		// Mesaj belirle
+		let message = '';
+		if (percentage >= 90) {
+			message = '🏆 Mükemmel! Harika bir sonuç!';
+		} else if (percentage >= 75) {
+			message = '👍 Çok İyi! Başarılı bir sonuç!';
+		} else if (percentage >= 60) {
+			message = '✅ İyi! Daha fazla çalışma ile daha iyi olabilirsiniz.';
+		} else if (percentage >= 50) {
+			message = '⚠️ Orta. Daha fazla çalışmanız gerekiyor.';
+		} else {
+			message = '❌ Başarısız. Lütfen konuları tekrar gözden geçirin.';
+		}
+		$('#score-message').text(message);
+
+		// Detaylı sonuçlar
+		const resultList = $('#result-list');
+		resultList.empty();
+
+		results.forEach(function(result, index) {
+			const q = result.question;
+			const userOption = result.userAnswer !== undefined ? String.fromCharCode(65 + result.userAnswer) : 'Cevaplanmadı';
+			const correctOption = String.fromCharCode(65 + result.correctAnswer);
+			const userAnswerText = result.userAnswer !== undefined ? q.options[result.userAnswer] : 'Cevaplanmadı';
+			const correctAnswerText = q.options[result.correctAnswer];
+			
+			const resultItem = `
+				<div class="result-item ${result.isCorrect ? 'correct' : 'wrong'}">
+					<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+						<strong>Soru ${index + 1}:</strong>
+						<span style="font-size:1.2rem">${result.isCorrect ? '✅' : '❌'}</span>
+					</div>
+					<p><strong>Soru:</strong> ${q.question}</p>
+					<p><strong>Konu:</strong> ${q.topic}</p>
+					<p><strong>Sizin Cevabınız:</strong> <span style="color:${result.isCorrect ? '#4caf50' : '#f44336'};font-weight:600">${userOption}. ${userAnswerText}</span></p>
+					${!result.isCorrect ? `<p><strong>Doğru Cevap:</strong> <span style="color:#4caf50;font-weight:600">${correctOption}. ${correctAnswerText}</span></p>` : ''}
+					<div class="explanation-box show" style="margin-top:10px">
+						<strong><i class="bi bi-lightbulb"></i> Açıklama:</strong>
+						<p style="margin-top:5px">${q.explanation}</p>
+					</div>
+				</div>
+			`;
+			resultList.append(resultItem);
+		});
+	}
+
+	// Soruları işaretle (doğru/yanlış)
+	function markQuestions(results) {
+		results.forEach(function(result) {
+			const questionCard = $(`.question-card[data-question-id="${result.question.id}"]`);
+			const options = questionCard.find('.option-item');
+			
+			options.each(function() {
+				const optionIndex = $(this).data('option');
+				$(this).removeClass('selected');
+				
+				if (optionIndex === result.correctAnswer) {
+					$(this).addClass('correct');
+				} else if (optionIndex === result.userAnswer && !result.isCorrect) {
+					$(this).addClass('wrong');
+				}
+			});
+			
+			// Açıklamayı göster
+			$(`#explanation-${result.question.id}`).addClass('show');
+		});
+	}
+</script>
+
+</body>
+</html>
+
