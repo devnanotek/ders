@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="İslam ERGÜN">
+    <meta name="description"
+        content="Yazılım Kurulumu ve Yönetimi dersi, Navicat kurulumu, kullanımı ve veritabanı yönetimi sunumu.">
+    <meta name="keywords" content="Navicat, Veritabanı, Database, SQL, MySQL, Kurulum, Yönetim, Ders Notları">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Navicat Kurulumu ve Yönetimi | Ders Notları">
+    <meta property="og:description" content="Navicat ile veritabanı yönetimi ve kurulum detayları sunumu.">
+    <meta property="og:type" content="website">
+    <title>Navicat Kurulumu ve Yönetimi | Yazılım Kurulumu</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-bg: #0b1120;
+            /* Darker background */
+            --secondary-bg: #1e293b;
+            --accent-color: #0ea5e9;
+            /* Sky 500 */
+            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            --text-primary: #f1f5f9;
+            /* Slate 100 - Very Light */
+            --text-secondary: #cbd5e1;
+            /* Slate 300 - Light Grey (High Contrast) */
+            --card-bg: #1e293b;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.05) 0px, transparent 50%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-heading {
+            font-family: 'Outfit', sans-serif;
+            color: #ffffff;
+        }
+
+        .text-accent {
+            color: var(--accent-color) !important;
+        }
+
+        .text-secondary {
+            color: var(--text-secondary) !important;
+        }
+
+        /* Timeline specific */
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 2rem;
+            width: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 5rem;
+            /* More spacing */
+            padding-left: 5rem;
+        }
+
+        .timeline-badge {
+            position: absolute;
+            left: 0.8rem;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--accent-color);
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+            border: 2px solid #fff;
+        }
+
+        .timeline-content {
+            background: #151e2e;
+            /* Solid dark color for readability */
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-body {
+            padding: 2.5rem;
+        }
+
+        .timeline-carousel {
+            height: 100%;
+            min-height: 400px;
+            background: #020617;
+            /* Slate 950 */
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-carousel img {
+            max-height: 400px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        /* Helpers for content */
+        .info-card {
+            background: rgba(15, 23, 42, 0.5);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .code-block {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: monospace;
+            color: #a5b4fc;
+        }
+
+        /* Tables */
+        .table-dark {
+            --bs-table-bg: #1e293b;
+            --bs-table-border-color: #334155;
+            --bs-table-color: var(--text-secondary);
+        }
+
+        /* Buttons & Badges */
+        .badge {
+            font-weight: 600;
+            padding: 0.5em 0.8em;
+        }
+
+        .badge.bg-warning {
+            color: #000 !important;
+            background-color: #fbbf24 !important;
+        }
+
+        .badge.bg-info {
+            color: #000 !important;
+            background-color: #38bdf8 !important;
+        }
+
+        .badge.bg-light {
+            color: #000 !important;
+        }
+
+        .badge.bg-secondary {
+            color: #fff !important;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent-gradient);
+            color: #fff;
+            padding: 15px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -10px rgba(14, 165, 233, 0.6);
+            color: #ffffff;
+        }
+
+        /* Navigation */
+        .btn-back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            font-weight: 500;
+        }
+
+        .btn-back:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+        }
+
+        .monitor-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            color: var(--accent-color);
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .timeline-carousel {
+                height: 300px;
+                min-height: 300px;
+                border-left: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .timeline-container::before {
+                left: 1rem;
+            }
+
+            .timeline-item {
+                padding-left: 3rem;
+            }
+
+            .timeline-badge {
+                left: 0;
+                width: 2rem;
+                height: 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .timeline-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="btn-back">
+        <i class="bi bi-arrow-left"></i> Ana Sayfa
+    </a>
+
+    <header class="page-header">
+        <div class="monitor-icon"><i class="bi bi-diagram-3-fill"></i></div>
+        <h1 class="page-title">Navicat Kurulumu ve Yönetimi</h1>
+        <p class="page-subtitle">Veritabanı yönetim sistemleri, Navicat arayüzü ve temel özellikler üzerine detaylı
+            dökümantasyon ve görsel sunum.</p>
+    </header>
+
+    <div class="container pb-5">
+        <div class="timeline-container" id="timelineContainer">
+            <!-- Dynamic Content Will Load Here -->
+        </div>
+
+        <!-- NEW: Detailed Resources Section -->
+        <div class="resources-section mt-5 mb-5">
+            <h2 class="font-heading text-white mb-4 border-bottom border-secondary pb-2">
+                <i class="bi bi-collection-play-fill text-accent me-2"></i>Detaylı Bilgi ve Kaynaklar
+            </h2>
+
+            <div class="accordion" id="accordionResources">
+
+                <!-- 1. Navicat Tarihçesi -->
+                <div class="accordion-item bg-transparent border-secondary mb-3">
+                    <h2 class="accordion-header">
+                        <button
+                            class="accordion-button collapsed bg-dark text-white border border-secondary rounded shadow-none"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#resHistory">
+                            <i class="bi bi-clock-history text-info me-3"></i>Navicat Tarihçesi ve Gelişimi
+                        </button>
+                    </h2>
+                    <div id="resHistory" class="accordion-collapse collapse" data-bs-parent="#accordionResources">
+                        <div
+                            class="accordion-body bg-dark border border-secondary border-top-0 rounded-bottom text-secondary">
+                            <div class="row">
+                                <div class="col-md-3 text-center mb-3 mb-md-0">
+                                    <div class="display-1 text-secondary opacity-25 fw-bold">2002</div>
+                                </div>
+                                <div class="col-md-9">
+                                    <p>Navicat, <strong>PremiumSoft CyberTech Ltd.</strong> tarafından Hong Kong
+                                        merkezli olarak geliştirilmeye başlanmıştır. İlk sürümü Şubat 2002'de sadece
+                                        MySQL yönetim aracı olarak piyasaya sürülmüştür.</p>
+                                    <ul class="timeline-list list-unstyled border-start border-secondary ps-3">
+                                        <li class="mb-2"><strong class="text-white">2002:</strong> Windows için Navicat
+                                            MySQL yayınlandı.</li>
+                                        <li class="mb-2"><strong class="text-white">2005:</strong> PostgreSQL desteği
+                                            eklendi.</li>
+                                        <li class="mb-2"><strong class="text-white">2008:</strong> Oracle veritabanı
+                                            desteği ile kurumsal pazara giriş yapıldı.</li>
+                                        <li class="mb-2"><strong class="text-accent">2009 (Dönüm Noktası):</strong> Tüm
+                                            veritabanlarını tek arayüzden yönetmeyi sağlayan <strong>Navicat
+                                                Premium</strong> duyuruldu.</li>
+                                        <li><strong class="text-white">2024+:</strong> Cloud entegrasyonları (AWS,
+                                            Google Cloud, Azure) ve NoSQL (MongoDB, Redis) destekleri ile modern bir
+                                            veri platformuna dönüştü.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Paketler ve Sürümler -->
+                <div class="accordion-item bg-transparent border-secondary mb-3">
+                    <h2 class="accordion-header">
+                        <button
+                            class="accordion-button collapsed bg-dark text-white border border-secondary rounded shadow-none"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#resPackages">
+                            <i class="bi bi-box-seam text-warning me-3"></i>Paketler ve Lisanslama Modelleri
+                        </button>
+                    </h2>
+                    <div id="resPackages" class="accordion-collapse collapse" data-bs-parent="#accordionResources">
+                        <div
+                            class="accordion-body bg-dark border border-secondary border-top-0 rounded-bottom text-secondary">
+                            <p>Navicat farklı ihtiyaçlara yönelik çeşitli varyasyonlar sunar. En popüler paketler:</p>
+                            <div class="table-responsive">
+                                <table class="table table-dark table-bordered border-secondary table-sm small">
+                                    <thead class="text-accent">
+                                        <tr>
+                                            <th>Sürüm</th>
+                                            <th>Kapsam</th>
+                                            <th>Hedef Kitle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="fw-bold text-white">Navicat Premium</td>
+                                            <td>MySQL, PostgreSQL, Oracle, SQLite, SQL Server, MariaDB ve NoSQL (Hepsi
+                                                Dahil).</td>
+                                            <td>Full-Stack Geliştiriciler, Kurumsal Şirketler</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold text-white">Navicat Essentials</td>
+                                            <td>Temel fonksiyonlar (Tablo düzenleme, SQL sorgu). Raporlama ve
+                                                Mühendislik araçları kısıtlı.</td>
+                                            <td>Öğrenciler, Küçük Projeler, Hobi Kullanıcıları</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold text-white">Navicat for MySQL / PgSQL</td>
+                                            <td>Sadece belirli bir veritabanı motoruna özel sürüm.</td>
+                                            <td>Özel uzmanlık gerektiren durumlar (Sadece DBA'ler)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="fw-bold text-white">Navicat Cloud</td>
+                                            <td>Takım çalışması ve ayar senkronizasyonu servisi.</td>
+                                            <td>Uzak Ekipler (Remote Teams)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Avantaj/Dezavantaj -->
+                <div class="accordion-item bg-transparent border-secondary mb-3">
+                    <h2 class="accordion-header">
+                        <button
+                            class="accordion-button collapsed bg-dark text-white border border-secondary rounded shadow-none"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#resProsCons">
+                            <i class="bi bi-hand-thumbs-up text-success me-3"></i>Avantajlar ve Dezavantajlar
+                        </button>
+                    </h2>
+                    <div id="resProsCons" class="accordion-collapse collapse" data-bs-parent="#accordionResources">
+                        <div
+                            class="accordion-body bg-dark border border-secondary border-top-0 rounded-bottom text-secondary">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <h6 class="text-success border-bottom border-success pb-2 mb-3"><i
+                                            class="bi bi-plus-circle-fill me-2"></i>Avantajları</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i><strong>Kullanıcı
+                                                Dostu (UX):</strong> Öğrenmesi en kolay arayüzlerden birine sahiptir.
+                                        </li>
+                                        <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i><strong>Hepsi Bir
+                                                Arada:</strong> Farklı veritabanları arasında anlık geçiş ve veri
+                                            aktarımı.</li>
+                                        <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i><strong>Görsel
+                                                Sorgu Oluşturucu:</strong> SQL bilmeden sürükle-bırak ile sorgu
+                                            yazabilme.</li>
+                                        <li class="mb-2"><i class="bi bi-check2 text-success me-2"></i><strong>SSH
+                                                Tünelleme:</strong> Ekstra VPN gerektirmeden güvenli sunucu bağlantısı.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-danger border-bottom border-danger pb-2 mb-3"><i
+                                            class="bi bi-dash-circle-fill me-2"></i>Dezavantajları</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><i
+                                                class="bi bi-x mb-1 text-danger me-2"></i><strong>Maliyet:</strong>
+                                            Ticari lisansları oldukça pahalıdır (Yıllık yüzlerce dolar).</li>
+                                        <li class="mb-2"><i class="bi bi-x mb-1 text-danger me-2"></i><strong>Kapalı
+                                                Kaynak:</strong> Eklenti yazılamaz veya özelleştirilemez.</li>
+                                        <li class="mb-2"><i class="bi bi-x mb-1 text-danger me-2"></i><strong>Kaynak
+                                                Tüketimi:</strong> Java tabanlı rakiplere göre hafif olsa da, büyük
+                                            projelerde RAM tüketimi artabilir.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Rakip Analizi -->
+                <div class="accordion-item bg-transparent border-secondary mb-3">
+                    <h2 class="accordion-header">
+                        <button
+                            class="accordion-button collapsed bg-dark text-white border border-secondary rounded shadow-none"
+                            type="button" data-bs-toggle="collapse" data-bs-target="#resCompetitors">
+                            <i class="bi bi-graph-up-arrow text-primary me-3"></i>Rakip Analizi ve Karşılaştırma
+                        </button>
+                    </h2>
+                    <div id="resCompetitors" class="accordion-collapse collapse" data-bs-parent="#accordionResources">
+                        <div
+                            class="accordion-body bg-dark border border-secondary border-top-0 rounded-bottom text-secondary">
+                            <p>Sektördeki diğer güçlü oyuncular ve Navicat ile temel farkları:</p>
+
+                            <div class="card bg-black border-secondary mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title text-info">DBeaver (En Güçlü Rakip)</h5>
+                                    <p class="card-text small text-secondary">Açık kaynaklı ve ücretsiz olması nedeniyle
+                                        en popüler alternatiftir.</p>
+                                    <ul class="small mb-0">
+                                        <li><strong>Fark:</strong> DBeaver Java tabanlıdır (Eclipse altyapısı), bu
+                                            yüzden Navicat'e göre daha hantal çalışabilir.</li>
+                                        <li><strong>Avantaj:</strong> Tamamen ücretsiz (Community Edition).</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card bg-black border-secondary mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title text-warning">DataGrip (JetBrains)</h5>
+                                    <p class="card-text small text-secondary">IntelliJ IDEA yaratıcılarından çıkan,
+                                        kodlama odaklı veritabanı IDE'sidir.</p>
+                                    <ul class="small mb-0">
+                                        <li><strong>Fark:</strong> Navicat "yönetim" odaklıdır, DataGrip "kodlama/sorgu"
+                                            odaklıdır.</li>
+                                        <li><strong>Avantaj:</strong> Sektördeki en iyi SQL otomatik tamamlama
+                                            (IntelliSense) özelliğine sahiptir.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card bg-black border-secondary">
+                                <div class="card-body">
+                                    <h5 class="card-title text-success">HeidiSQL</h5>
+                                    <p class="card-text small text-secondary">Sadece Windows odaklı, çok hafif ve basit
+                                        bir araçtır.</p>
+                                    <ul class="small mb-0">
+                                        <li><strong>Fark:</strong> Çok temel özellikler sunar, görsel modelleme yoktur.
+                                        </li>
+                                        <li><strong>Avantaj:</strong> Kurulum gerektirmeyen (Portable) sürümleri vardır
+                                            ve çok hızlıdır.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section mt-5 border-top border-secondary pt-5">
+            <div class="text-center">
+                <h3 class="mb-4 text-white">Sunum Dosyalarını İndir</h3>
+                <p class="text-secondary mb-4">Dersin sunum dosyasını PDF veya PPTX formatında indirebilirsiniz.</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="YAZILIM KURULUMU VE YÖNETİMİ-NAVICAT-SUNUM.pdf" class="download-btn" download>
+                        <i class="bi bi-file-pdf-fill"></i>
+                        PDF İndir
+                    </a>
+                    <a href="YAZILIM KURULUMU VE YÖNETİMİ-NAVICAT-SUNUM.pptx" class="download-btn"
+                        style="background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);" download>
+                        <i class="bi bi-file-earmark-ppt-fill"></i>
+                        PPTX İndir
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const slides = [
+            {
+                id: 1,
+                title: "Navicat: Kurumsal Veritabanı Yönetimi",
+                images: ["img/navicat/navicat-premium-logo-slaty1.svg"],
+                content: `
+                    <div class="mb-4">
+                        <div class="info-card">
+                            <h5 class="font-heading mb-2 text-white">Sistem Tanımı</h5>
+                            <p class="mb-0"><strong>Navicat Premium</strong>, PremiumSoft CyberTech Ltd. tarafından geliştirilen, endüstri standardı bir veritabanı yönetim, geliştirme ve bakım platformudur.</p>
+                        </div>
+                        
+                        <h6 class="text-accent mb-3"><i class="bi bi-crosshair me-2"></i>Temel Hedefler</h6>
+                        <ul class="list-unstyled text-secondary mb-4">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Karmaşık sorguların görselleştirilmesi</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Verim ve üretkenliğin artırılması</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Veritabanı güvenliğinin sağlanması</li>
+                        </ul>
+
+                        <div class="d-flex gap-3 align-items-center p-3 border border-secondary rounded bg-dark">
+                            <i class="bi bi-translate fs-3 text-info"></i>
+                            <div>
+                                <small class="text-secondary d-block font-monospace">Etimoloji</small>
+                                <strong class="text-white">Navicat = Navigate (Gezinmek) + Cat (Katalog)</strong>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "Yönetim Arayüzleri: CLI vs GUI",
+                images: ["img/navicat/gui-cli-img1-slaty2.jpg", "img/navicat/database-img-slay2.jpg"],
+                content: `
+                    <div class="mb-4">
+                        <p class="text-secondary mb-4">Veritabanı yönetiminde kullanılan iki ana yaklaşımın (Komut Satırı ve Grafik Arayüz) teknik karşılaştırması.</p>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <div class="bg-dark p-3 rounded border border-secondary mb-3">
+                                    <h6 class="text-warning mb-2"><i class="bi bi-terminal me-2"></i>CLI (Command Line Interface)</h6>
+                                    <p class="small text-secondary mb-2">Doğrudan SQL komutları ile yönetim.</p>
+                                    <div class="d-flex gap-2">
+                                        <span class="badge bg-secondary bg-opacity-10 text-white border border-secondary">Yüksek Performans</span>
+                                        <span class="badge bg-secondary bg-opacity-10 text-white border border-secondary">Otomasyon</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="bg-dark p-3 rounded border border-secondary">
+                                    <h6 class="text-info mb-2"><i class="bi bi-window-desktop me-2"></i>GUI (Graphical User Interface)</h6>
+                                    <p class="small text-secondary mb-2">Görsel araçlar ve sihirbazlar ile yönetim.</p>
+                                    <div class="d-flex gap-2">
+                                        <span class="badge bg-secondary bg-opacity-10 text-white border border-secondary">Hızlı Öğrenme</span>
+                                        <span class="badge bg-secondary bg-opacity-10 text-white border border-secondary">Görsel Analiz</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "Veritabanı Ekosistemi",
+                images: ["img/navicat/databese-turleri-slayt3.png", "img/navicat/database-img2-slaty3.jpg"],
+                content: `
+                    <div class="mb-4">
+                        <p class="text-secondary">Modern yazılım mimarilerinde kullanılan veri saklama teknolojilerinin sınıflandırılması.</p>
+
+                        <div class="accordion" id="accTypes">
+                            <div class="accordion-item bg-transparent border-secondary mb-2">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed bg-dark text-white shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+                                        <span class="badge bg-primary me-2">RDBMS</span> İlişkisel Veritabanları
+                                    </button>
+                                </h2>
+                                <div id="c1" class="accordion-collapse collapse show" data-bs-parent="#accTypes">
+                                    <div class="accordion-body text-secondary small">
+                                        Satır ve sütun tabanlı yapı. (MySQL, PostgreSQL, Oracle). Finansal veriler için ideal.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item bg-transparent border-secondary mb-2">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed bg-dark text-white shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+                                        <span class="badge bg-warning text-dark me-2">NoSQL</span> İlişkisel Olmayan
+                                    </button>
+                                </h2>
+                                <div id="c2" class="accordion-collapse collapse" data-bs-parent="#accTypes">
+                                    <div class="accordion-body text-secondary small">
+                                        Esnek döküman veya anahtar-değer yapısı. (MongoDB, Redis). Büyük veri ve hız için ideal.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "Yöntem Analizi: Derinlemesine Bakış",
+                images: ["img/navicat/cli-img1-slaty4.png", "img/navicat/cli-img2-slaty4.png", "img/navicat/gui-img1-slaty4.png", "img/navicat/gui-img2-slaty4.jpg", "img/navicat/gui-img3-slaty4.jpg"],
+                content: `
+                    <div class="mb-4">
+                        <table class="table table-dark table-bordered border-secondary text-sm ali">
+                            <thead>
+                                <tr class="bg-secondary text-white">
+                                    <th width="30%">Parametre</th>
+                                    <th class="text-warning">CLI (Terminal)</th>
+                                    <th class="text-info">GUI (Navicat)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-secondary">
+                                <tr>
+                                    <td class="text-white">Hata Toleransı</td>
+                                    <td>Düşük (Syntax Hatası)</td>
+                                    <td>Yüksek (Kontrollü Giriş)</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-white">Görünürlük</td>
+                                    <td>Metin Tabanlı</td>
+                                    <td>Grafiksel Şemalar</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-white">Kullanıcı Profili</td>
+                                    <td>DevOps / SysAdmin</td>
+                                    <td>Developer / Analyst</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="info-card mt-3 py-2">
+                            <small class="text-secondary"><strong>Profesyonel Not:</strong> Navicat gibi güçlü GUI araçları, arka planda yine optimize edilmiş SQL komutlarını çalıştırır, ancak kullanıcıyı sözdizimi hatalarından korur.</small>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 5,
+                title: "Neden Navicat?",
+                images: ["img/navicat/navicatgoruntu-slaty5.jpg", "img/navicat/navicatgoruntu2-slaty5.jpg", "img/navicat/database-type-slaty5.png", "img/navicat/isletimsistemleri-slaty5.png"],
+                content: `
+                    <div class="mb-4">
+                        <h6 class="text-white mb-3">Entegre Yönetim Çözümü</h6>
+                        <p class="text-secondary mb-4">Navicat'in sektörde tercih edilmesinin temel nedenleri ve desteklediği geniş teknoloji yelpazesi.</p>
+
+                        <div class="row g-2 mb-4">
+                            <div class="col-6">
+                                <div class="p-2 border border-secondary rounded text-center h-100">
+                                    <i class="bi bi-clouds fs-4 text-primary mb-1"></i>
+                                    <div class="small fw-bold text-white">Cloud Desteği</div>
+                                    <div class="text-muted" style="font-size: 0.75rem">AWS, Azure, Google</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border border-secondary rounded text-center h-100">
+                                    <i class="bi bi-shield-lock fs-4 text-success mb-1"></i>
+                                    <div class="small fw-bold text-white">Güvenlik</div>
+                                    <div class="text-muted" style="font-size: 0.75rem">SSH & SSL Tünel</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border border-secondary rounded text-center h-100">
+                                    <i class="bi bi-arrow-repeat fs-4 text-warning mb-1"></i>
+                                    <div class="small fw-bold text-white">Senkronizasyon</div>
+                                    <div class="text-muted" style="font-size: 0.75rem">Veri & Yapı Transferi</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border border-secondary rounded text-center h-100">
+                                    <i class="bi bi-file-earmark-spreadsheet fs-4 text-info mb-1"></i>
+                                    <div class="small fw-bold text-white">Raporlama</div>
+                                    <div class="text-muted" style="font-size: 0.75rem">Otomatik İşlemler</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 6,
+                title: "Kurulum Protokolü",
+                images: ["img/navicat/navicatnasilindirilir-slaty6.jpg", "img/navicat/navicatnasilindirilir-slaty6.png", "img/navicat/navicatnasilkurulur1-slaty6.png", "img/navicat/navicatnasilkurulur2-slaty6.png", "img/navicat/navicatnasilkurulur3-slaty6.png", "img/navicat/navicatnasilkurulur4-slaty6.png", "img/navicat/navicatnasilkurulur5-slaty6.png", "img/navicat/navicatnasilkurulur6-slaty6.png", "img/navicat/navicatnasilkurulur7-slaty6.png"],
+                content: `
+                    <div class="mb-4">
+                        <p class="text-secondary">Windows ortamında Navicat Premium kurulum adımları.</p>
+                        
+                        <ol class="list-group list-group-numbered bg-transparent text-secondary">
+                            <li class="list-group-item bg-transparent border-0 text-secondary ps-0">
+                                <strong>Kaynağa Erişim:</strong> Resmi web sitesinden (navicat.com) güncel sürümün indirilmesi.
+                            </li>
+                            <li class="list-group-item bg-transparent border-0 text-secondary ps-0">
+                                <strong>Kurulum Sihirbazı:</strong> <code>.exe</code> dosyasının yönetici haklarıyla çalıştırılması.
+                            </li>
+                            <li class="list-group-item bg-transparent border-0 text-secondary ps-0">
+                                <strong>Konfigürasyon:</strong> Hedef dizin seçimi ve lisans onayı.
+                            </li>
+                            <li class="list-group-item bg-transparent border-0 text-secondary ps-0">
+                                <strong>Finalizasyon:</strong> Kurulumun tamamlanması ve uygulamanın başlatılması.
+                            </li>
+                        </ol>
+
+                        <div class="mt-3 p-3 bg-secondary bg-opacity-10 border border-secondary rounded">
+                            <i class="bi bi-info-circle-fill text-info me-2"></i>
+                            <small class="text-secondary">Eğitim amaçlı kullanım için 14 günlük deneme sürümü (Trial) yeterlidir.</small>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 7,
+                title: "Terminal Bağlantı (CLI) Uygulaması",
+                images: ["img/navicat/clidbornekkod1-slaty7.png", "img/navicat/clidbornekkod2-slaty7.png"],
+                content: `
+                    <div class="mb-4">
+                        <h6 class="text-white font-monospace mb-3">>_ MySQL Bağlantı Komutları</h6>
+                        
+                        <div class="code-block mb-3">
+                            <span class="text-secondary"># 1. MySQL Dizinine Erişim</span><br>
+                            <span class="text-white">cd</span> <span class="text-warning">C:\\xampp\\mysql\\bin</span><br><br>
+                            
+                            <span class="text-secondary"># 2. Yetkili Kullanıcı Girişi</span><br>
+                            <span class="text-white">mysql</span> -u <span class="text-info">root</span> -p<br><br>
+                            
+                            <span class="text-secondary"># 3. Veritabanı Listeleme</span><br>
+                            <span class="text-success">SHOW DATABASES;</span>
+                        </div>
+                        
+                        <p class="text-secondary small">
+                            Bu yöntem, sunucu tarafında grafik arayüzün bulunmadığı durumlarda (Linux Server, Docker vb.) hayati önem taşır.
+                        </p>
+                    </div>
+                `
+            },
+            {
+                id: 8,
+                title: "Navicat Bağlantı Konfigürasyonu",
+                images: ["img/navicat/databasebaglanti-slayt8.png", "img/navicat/databasebaglanti2-slayt8.png", "img/navicat/databasebaglanti3-slayt8.png"],
+                content: `
+                    <div class="mb-4">
+                        <div class="d-flex align-items-start gap-3 mb-4">
+                            <div class="bg-success rounded p-2 text-white fw-bold">GUI</div>
+                            <div>
+                                <h6 class="text-white mb-1">Yeni Bağlantı Oluşturma</h6>
+                                <p class="text-secondary small mb-0">Navicat arayüzünden 'Connection' menüsü ile yerel veya uzak sunucu tanımı.</p>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-sm table-dark table-borderless text-secondary small">
+                                <tr>
+                                    <td class="text-info w-25">Connection Name</td>
+                                    <td>Bağlantıyı tanımlayan etiket (Örn: Local-Dev)</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-info">Host</td>
+                                    <td>Sunucu IP adresi veya 'localhost'</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-info">Port</td>
+                                    <td>Servis kapısı (MySQL: 3306)</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-info">Credentials</td>
+                                    <td>Kullanıcı adı ve şifre</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 9,
+                title: "SQL Sorgusu ile DB Oluşturma",
+                images: ["img/navicat/cli-db-slayt9.png"],
+                content: `
+                     <div class="mb-4">
+                        <h6 class="text-white mb-3">Syntax Yapısı</h6>
+                        <div class="code-block border-warning border-opacity-25">
+                            <span class="text-info">CREATE DATABASE</span> <span class="text-white">db_proje_v1</span><br>
+                            <span class="text-info">CHARACTER SET</span> <span class="text-warning">utf8mb4</span><br>
+                            <span class="text-info">COLLATE</span> <span class="text-warning">utf8mb4_general_ci</span>;
+                        </div>
+
+                        <div class="mt-3">
+                            <h6 class="text-white small">Neden utf8mb4?</h6>
+                            <p class="text-secondary small">
+                                Standart utf8'den farklı olarak, 4-byte karakterleri (Emoji, özel semboller, karmaşık alfabeler) tam olarak destekler. Modern standarttır.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 10,
+                title: "Görsel Arayüz ile DB Oluşturma",
+                images: ["img/navicat/databaseolusturmaguinavicat1-slayt10.png", "img/navicat/databaseolusturmaguinavicat2-slayt10.png.png", "img/navicat/databaseolusturmaguinavicat3-slayt10.png"],
+                content: `
+                    <div class="mb-4">
+                        <p class="text-secondary">Kod yazmadan, form tabanlı veritabanı kurulumu.</p>
+                        
+                        <div class="d-flex flex-column gap-3">
+                            <div class="d-flex gap-3 p-3 bg-dark rounded border border-secondary align-items-center">
+                                <span class="badge bg-primary rounded-pill h-50">1</span>
+                                <div class="text-secondary small">Bağlantıya Sağ Tık > <strong>New Database</strong></div>
+                            </div>
+                            <div class="d-flex gap-3 p-3 bg-dark rounded border border-secondary align-items-center">
+                                <span class="badge bg-primary rounded-pill h-50">2</span>
+                                <div class="text-secondary small">Database Name, Charset (utf8mb4) ve Collation Seçimi</div>
+                            </div>
+                             <div class="d-flex gap-3 p-3 bg-dark rounded border border-secondary align-items-center">
+                                <span class="badge bg-success rounded-pill h-50">3</span>
+                                <div class="text-secondary small">Onaylama ve Oluşturma</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 11,
+                title: "Tablo Mimarisi",
+                images: ["img/navicat/navicat-tables1-slayt11.png", "img/navicat/navicat-tables2-slayt11.png"],
+                content: `
+                    <div class="mb-4">
+                        <p class="text-secondary mb-3">Veritabanının en küçük yapı taşı olan tabloların teknik özellikleri.</p>
+                        
+                        <div class="row g-2">
+                             <div class="col-4">
+                                <div class="p-2 bg-dark border border-secondary rounded text-center">
+                                    <div class="text-accent fw-bold small">Name</div>
+                                    <div class="text-secondary" style="font-size: 0.7rem">Sütun Adı</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-2 bg-dark border border-secondary rounded text-center">
+                                    <div class="text-accent fw-bold small">Type</div>
+                                    <div class="text-secondary" style="font-size: 0.7rem">Veri Tipi (Int, Varchar)</div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-2 bg-dark border border-secondary rounded text-center">
+                                    <div class="text-accent fw-bold small">Length</div>
+                                    <div class="text-secondary" style="font-size: 0.7rem">Karakter Limiti</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-dark border border-warning rounded mt-4 d-flex align-items-center">
+                            <i class="bi bi-key-fill text-warning fs-4 me-3"></i>
+                            <div>
+                                <h6 class="text-warning mb-0 small">Primary Key (PK)</h6>
+                                <small class="text-secondary">Her kaydın benzersiz kimliğidir. Genellikle 'id' adıyla ve 'Auto Increment' özelliğiyle kullanılır.</small>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 12,
+                title: "Veri Modelleme (ER Diyagramları)",
+                images: ["img/navicat/modelleme-slayt12.png", "img/navicat/modelleme2-slayt12.png"],
+                content: `
+                    <div class="mb-4">
+                        <h6 class="text-white mb-2">Entity Relationship (Varlık-İlişki) Modeli</h6>
+                        <p class="text-secondary small mb-4">Kodlamadan önce veritabanının mantıksal haritasının çıkarılması sürecidir.</p>
+                        
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item bg-transparent text-secondary border-secondary">
+                                <i class="bi bi-box me-2 text-info"></i><strong>Entity (Varlık):</strong> Veritabanındaki tablolar (Örn: Müşteriler)
+                            </div>
+                            <div class="list-group-item bg-transparent text-secondary border-secondary">
+                                <i class="bi bi-list-nested me-2 text-info"></i><strong>Attribute (Nitelik):</strong> Tablo sütunları (Örn: Ad, Soyad)
+                            </div>
+                             <div class="list-group-item bg-transparent text-secondary border-0">
+                                <i class="bi bi-share me-2 text-info"></i><strong>Relationship (İlişki):</strong> Tablolar arası bağlar (1-1, 1-n, n-n)
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 13,
+                title: "Pazar Analizi: Rakip Araçlar",
+                images: ["img/navicat/modelleme1-slayt13.png", "img/navicat/modelleme2-slayt13.png", "img/navicat/modelleme3-slayt13.png", "img/navicat/modelleme4-slayt13.png", "img/navicat/modelleme5-slayt13.png", "img/navicat/modelleme6-slayt13.png", "img/navicat/modelleme7-slayt13.png", "img/navicat/modelleme8-slayt13.png"],
+                content: `
+                    <div class="mb-4">
+                        <p class="text-secondary small mb-3">Sektörde kullanılan diğer popüler araçların karşılaştırmalı analizi.</p>
+
+                        <div class="d-flex flex-column gap-3">
+                            <!-- Araç 1 -->
+                            <div class="d-flex align-items-center bg-dark p-2 rounded border border-secondary">
+                                <div class="bg-primary text-white p-2 rounded me-3 fw-bold" style="width: 50px; text-align: center;">N</div>
+                                <div>
+                                    <div class="text-white fw-bold small">Navicat</div>
+                                    <div class="text-secondary" style="font-size: 0.75rem">All-in-one çözüm, Kullanıcı dostu, Ücretli.</div>
+                                </div>
+                            </div>
+                             <!-- Araç 2 -->
+                             <div class="d-flex align-items-center bg-dark p-2 rounded border border-secondary">
+                                <div class="bg-secondary text-white p-2 rounded me-3 fw-bold" style="width: 50px; text-align: center;">D</div>
+                                <div>
+                                    <div class="text-white fw-bold small">DBeaver</div>
+                                    <div class="text-secondary" style="font-size: 0.75rem">Açık Kaynak, Ücretsiz, Biraz daha karmaşık arayüz.</div>
+                                </div>
+                            </div>
+                             <!-- Araç 3 -->
+                             <div class="d-flex align-items-center bg-dark p-2 rounded border border-secondary">
+                                <div class="bg-warning text-dark p-2 rounded me-3 fw-bold" style="width: 50px; text-align: center;">G</div>
+                                <div>
+                                    <div class="text-white fw-bold small">DataGrip (JetBrains)</div>
+                                    <div class="text-secondary" style="font-size: 0.75rem">Çok güçlü IDE özellikleri, Backend geliştiriciler için ideal.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 14,
+                title: "Teşekkürler",
+                images: ["img/navicat/mardinartukluniversitelogo.png"],
+                content: `
+                    <div class="text-center py-4">
+                        <div class="mb-4">
+                            <i class="bi bi-check-circle-fill text-accent fs-1"></i>
+                        </div>
+                        <h3 class="font-heading text-white">Sunum Sonu</h3>
+                        <p class="text-secondary mb-4">Dinlediğiniz için teşekkürler.</p>
+                        
+                        <div class="p-3 border border-secondary rounded bg-dark mx-auto" style="max-width: 300px;">
+                            <div class="fw-bold text-white">İslam ERGÜN</div>
+                            <div class="text-secondary small">25658051</div>
+                            <div class="text-secondary small mt-1">Mardin Artuklu Üniversitesi</div>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        function renderTimeline() {
+            const container = document.getElementById('timelineContainer');
+            container.innerHTML = '';
+
+            slides.forEach((slide) => {
+                // Generate Carousel Items with proper sizing logic
+                let carouselItemsHtml = '';
+                slide.images.forEach((imgSrc, imgIndex) => {
+                    const activeClass = imgIndex === 0 ? 'active' : '';
+                    carouselItemsHtml += `
+                        <div class="carousel-item ${activeClass} h-100">
+                            <div class="d-flex align-items-center justify-content-center h-100 w-100">
+                                <img src="${imgSrc}" loading="lazy" alt="${slide.title} Görsel ${imgIndex + 1}">
+                            </div>
+                        </div>
+                    `;
+                });
+
+                // Carousel Controls (Only if > 1 image)
+                const carouselControlsHtml = slide.images.length > 1 ? `
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-${slide.id}" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        <span class="visually-hidden">Önceki</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-${slide.id}" data-bs-slide="next">
+                        <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
+                        <span class="visually-hidden">Sonraki</span>
+                    </button>
+                ` : '';
+
+                // Render Timeline Item
+                // Note: We use order classes to stack visualization on top on mobile, but side-by-side on desktop
+                const html = `
+                    <div class="timeline-item">
+                        <div class="timeline-badge">${slide.id}</div>
+                        <div class="timeline-content">
+                            <div class="row g-0">
+                                <!-- Desktop: Image Right (col-lg-7), Content Left (col-lg-5) -->
+                                <!-- Mobile: Image Top, Content Bottom -->
+                                <div class="col-lg-7 order-lg-2 bg-black border-start border-secondary">
+                                    <div id="carousel-${slide.id}" class="carousel slide timeline-carousel" data-bs-interval="false">
+                                        <!-- Indicators if many images -->
+                                        ${slide.images.length > 1 ? `
+                                        <div class="carousel-indicators">
+                                            ${slide.images.map((_, i) => `<button type="button" data-bs-target="#carousel-${slide.id}" data-bs-slide-to="${i}" class="${i === 0 ? 'active' : ''}" aria-label="Slide ${i + 1}"></button>`).join('')}
+                                        </div>` : ''}
+                                        
+                                        <div class="carousel-inner h-100">
+                                            ${carouselItemsHtml}
+                                        </div>
+                                        ${carouselControlsHtml}
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 order-lg-1">
+                                    <div class="timeline-body h-100 d-flex flex-column justify-content-center">
+                                        <h3 class="font-heading text-white mb-4 border-bottom border-secondary pb-3">${slide.title}</h3>
+                                        ${slide.content}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+
+            // Initialize All Carousels specifically
+            const carousels = document.querySelectorAll('.carousel');
+            carousels.forEach(c => {
+                new bootstrap.Carousel(c, {
+                    interval: false, // No auto-slide for educational content
+                    wrap: true
+                });
+            });
+        }
+
+        // Initialize Timeline
+        document.addEventListener('DOMContentLoaded', renderTimeline);
+    </script>
+</body>
+
+</html>

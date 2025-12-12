@@ -1,0 +1,534 @@
+SLAYT 1 TEXT : 
+KONU : NAVİCAT
+Tanım: PremumSoft CyberTech Ltd. tarafından geliştirilen, çoklu veritabanı yönetim ve geliştirme aracıdır. 
+Amaç: Kullanıcılara veritabanı işlemlerin (tasarım, yönetim, geliştirme, bakım) sezgisel bir grafik arayüz (GUI) üzerinden kolaylaştırmak. 
+Navicat’ın ilk sürümü resmi olarak 2002 yılında yayınlandı. Özellikle Mart 2002’de Windows için Navicat for MySQL sürümü ilk kez halka sunulduğu kabul edilir
+Navicat Premium, yani Navicat’in tüm veritabanı tiplerini tek bir uygulamada birleştiren versiyonu, ilk olarak 2009 yılında yayınlandı.
+
+Navicat Kelime Anlamı (Kökeni)
+Navicat = Navigate + Cat (veya -cat eki) şeklinde yorumlanır.
+🔹 Navigate
+İngilizce “navigate” kelimesi:
+Yol göstermek
+Yönlendirmek
+Bir sistem içinde rahatça gezmek
+anlamlarına gelir.
+🔹 Navicat’ın Anlam Çağrışımı
+Bu bağlamda Navicat:
+“Veritabanları arasında kolayca gezinebilmeyi ve yönetebilmeyi sağlayan araç”anlamını çağrıştırır.
+
+------------------------------------------------
+
+SLAYT 2 TEXT : 
+DATABASE
+CLI
+GUI
+
+Database CLI ve GUI, aynı veritabanını yönetmenin iki farklı yoludur; biri komut satırı, diğeri görsel arayüzdür ve ikisi de arka planda SQL kullanır.
+
+
+
+Hangi Senaryoda Hangisi?
+CLI Kullan
+Sunucuda SSH ile çalışırken
+Script, cron, otomasyon yazarken
+CI/CD süreçlerinde
+Performans ve hız önemliyse
+GUI Kullan
+Tablo ve ilişki tasarlarken
+Eğitim ve ders anlatırken
+Veriyi görsel analiz ederken
+Hızlı debug ve inceleme yaparken
+
+Gerçek Hayat Bağlantısı (Önemli Anlatım)
+Veritabanı Motoru (MySQL, PostgreSQL)⬇CLI veya GUI⬇SQL Komutları⬇Veri
+
+------------------------------------------------
+
+SLAYT 3 TEXT : 
+
+
+Verilerin düzenli, güvenli ve hızlı erişilebilir şekilde saklandığı yapıdır.
+Örnek: MySQL, PostgreSQL, Oracle, MongoDB.
+
+
+
+Veritabanı, verilerin düzenli, güvenli ve hızlı erişilebilir şekilde saklandığı yapılardır. Yazılımlarda kullanıcılar, ürünler, siparişler, mesajlar gibi tüm bilgiler veritabanlarında tutulur. Veritabanı sistemleri; veri ekleme, silme, güncelleme, sorgulama gibi işlemleri yönetir.
+
+Veritabanı Türleri
+Veritabanları, veri yapısına ve kullanım amacına göre sınıflandırılır. Güncel yazılım dünyasında en yaygın türler aşağıdadır.
+
+1️⃣ İlişkisel Veritabanları (Relational Database – RDBMS)
+Veriler tablo (satır–sütun) mantığıyla tutulur.Tablolar arasında Primary Key – Foreign Key ilişkileri vardır.SQL (Structured Query Language) kullanılır.
+Özellikleri
+Güçlü veri bütünlüğü (ACID)
+İlişkisel yapı
+Karmaşık sorgular için ideal
+Kurumsal projelerde yaygın
+Örnekler
+MySQL / MariaDB
+PostgreSQL
+Oracle Database
+Microsoft SQL Server
+Kullanım Alanları
+Web uygulamaları
+ERP, CRM sistemleri
+Bankacılık ve muhasebe yazılımları
+
+2️⃣ NoSQL Veritabanları
+Tablo zorunluluğu yoktur, esnek veri yapısı sunar.Büyük veri ve yüksek trafikli sistemler için geliştirilmiştir.
+Alt Türleri
+🔹 a) Doküman Tabanlı
+Veriler JSON / BSON formatında tutulur.
+MongoDB
+CouchDB
+Kullanım: API’ler, modern web uygulamaları
+
+🔹 b) Anahtar–Değer (Key–Value)
+Çok hızlıdır, basit veri yapısı vardır.
+Redis
+Memcached
+Kullanım: Cache, session, anlık veriler
+
+🔹 c) Kolon Tabanlı
+Büyük veri analizine uygundur.
+Cassandra
+HBase
+Kullanım: Big Data, log sistemleri
+
+🔹 d) Grafik Veritabanları
+İlişkiler node–edge mantığıyla tutulur.
+Neo4j
+Kullanım: Sosyal ağlar, öneri sistemleri
+
+3️⃣ Hiyerarşik Veritabanları
+Veriler ağaç yapısı şeklinde tutulur (parent–child).
+Özellikleri
+Eski bir yapıdır
+Günümüzde nadiren kullanılır
+Örnek: IBM IMS
+
+4️⃣ Ağ (Network) Veritabanları
+Hiyerarşik yapının gelişmiş hâlidir.Bir kaydın birden fazla ebeveyni olabilir.
+Karmaşık yapılı sistemler
+Günümüzde pek tercih edilmez
+
+5️⃣ Nesne Tabanlı Veritabanları (OODBMS)
+Veriler nesne (object) olarak saklanır.OOP mantığıyla çalışır.
+Örnekler
+db4o
+ObjectDB
+Kullanım: Özel akademik ve mühendislik projeleri
+
+6️⃣ Bulut (Cloud) Veritabanları
+Bulut altyapısında çalışan, yönetimi kolay sistemlerdir.
+Örnekler
+Amazon RDS
+Google Firestore
+Azure SQL Database
+Avantaj: Ölçeklenebilirlik, bakım kolaylığı
+
+Kısa Karşılaştırma Tablosu
+TürYapıAvantajDezavantajİlişkiselTabloGüçlü veri bütünlüğüÖlçekleme zorNoSQLEsnekYüksek performansİlişki zayıfKey-ValueBasitÇok hızlıKarmaşık sorgu yokGrafikİlişki odaklıBağlantı analizleriÖğrenme eğrisiBulutDağıtıkKolay yönetimMaliyet
+
+Yazılım Geliştirici Olarak Pratik Öneri
+PHP + PDO + MySQL → İlişkisel DB ile başla
+Redis → Cache & session
+MongoDB → API ve esnek veri
+PostgreSQL → Büyük ve kurumsal projeler
+
+
+
+------------------------------------------------
+
+SLAYT 4 TEXT : 
+
+
+CLI (Command Line Interface)
+Komut satırında çalışan, tamamen yazı tabanlı arayüzdür.Örn: Terminal, PowerShell, MySQL CLI.
+Özellikleri:
+Hızlıdır
+Daha az kaynak tüketir
+İleri seviye kullanıcı için esnektir
+Öğrenmesi zordur
+
+GUI (Graphical User Interface)
+Buton, form, ikon gibi grafiksel öğelerle kullanılan arayüzdür.Örn: Navicat, phpMyAdmin, Windows, macOS.
+Özellikleri:
+Kullanımı kolay
+Öğrenmesi hızlı
+CLI’ye göre daha fazla sistem kaynağı kullanır
+
+
+
+CLI (Command Line Interface) – Komut Satırı Arayüzü
+CLI, kullanıcı ile sistem arasındaki etkileşimin yazılı komutlar üzerinden yapıldığı arayüzdür. Klavyeden girilen komutlar doğrudan işletim sistemine ya da ilgili programa iletilir.
+Örnekler
+Linux / macOS: bash, zsh
+Windows: CMD, PowerShell
+Veritabanı: mysql, psql
+Geliştirme: git, npm, composer, docker
+Temel Özellikler
+Hızlı ve kaynak tüketimi düşüktür
+Otomasyon (script) için idealdir
+Uzaktan yönetimde (SSH) vazgeçilmezdir
+Öğrenme eğrisi vardır (komut ezberi gerekir)
+
+GUI (Graphical User Interface) – Grafiksel Arayüz
+GUI, kullanıcıya butonlar, pencereler, menüler, ikonlar gibi görsel öğeler sunar. Fare ve klavye ile etkileşim sağlanır.
+Örnekler
+Windows, macOS masaüstü
+Veritabanı araçları: Navicat, phpMyAdmin, DBeaver
+IDE’ler: VS Code, PhpStorm
+Sunucu panelleri: Plesk, cPanel
+Temel Özellikler
+Kullanımı kolay ve görseldir
+Yeni başlayanlar için idealdir
+Hata yapma riski düşüktür
+CLI’a göre daha fazla sistem kaynağı kullanır
+
+CLI ve GUI Karşılaştırma Tablosu
+KriterCLIGUIKullanımKomut yazarakGörsel öğelerleÖğrenmeZorKolayHızÇok hızlıGörece yavaşKaynak TüketimiDüşükYüksekOtomasyonÇok güçlüZayıfUzak ErişimİdealSınırlıHata RiskiYüksek (yanlış komut)Düşük
+
+Yazılım Geliştirmede Hangisi Ne Zaman Kullanılır?
+CLI Tercih Edilen Durumlar
+Sunucu yönetimi (Linux, Docker, Nginx)
+Git işlemleri (git pull, git commit)
+Paket yönetimi (npm, composer)
+Cron, otomasyon, CI/CD
+GUI Tercih Edilen Durumlar
+Veritabanı tasarımı ve modelleme (Navicat Model)
+Tablo, index, foreign key görsel yönetimi
+Hızlı inceleme ve raporlama
+Eğitim ve sunum ortamları
+
+Pratik Örnek (Veritabanı)
+CLI ile MySQL
+mysql -u root -p
+SHOW DATABASES;
+GUI ile MySQL (Navicat)
+Host, kullanıcı adı, şifre girilir
+Veritabanları sol menüde listelenir
+Tablo ekleme/ilişki sürükle–bırak
+
+Profesyonel Yaklaşım
+Gerçek projelerde CLI + GUI birlikte kullanılır:
+Günlük işler ve otomasyon → CLI
+Tasarım, analiz ve eğitim → GUI
+İyi bir yazılımcı her ikisini de etkin kullanabilendir.
+
+
+
+
+------------------------------------------------
+
+SLAYT 5 TEXT : 
+
+NAVİCAT NEDİR ?
+Navicat, veritabanlarını grafiksel arayüzle yönetmeyi sağlayan bir veritabanı yönetim aracıdır.
+
+Çoklu veritabanı desteği sunar
+Çoklu Platform desteği sunar
+
+
+
+Navicat Nedir? (Kavramsal anlatım)
+Navicat, tek bir uygulama üzerinden farklı veritabanı türlerine bağlanabildiğin bir veritabanı yönetim ve geliştirme aracıdır. 
+Özellikle “Premium” sürüm, tek programdan MySQL, PostgreSQL, Oracle, SQL Server, SQLite gibi sistemleri aynı anda yönetmeye izin verir; 
+ayrıca MongoDB/Redis/Snowflake gibi sistemlere de bağlanabilir.
+
+Navicat’in sağladığı değer şudur:
+Bir projede sadece sorgu yazmak yok: tablo tasarlama, ilişki kurma, yedekleme, veri taşıma, raporlama, hata ayıklama, performans analizi gibi işler var.
+Terminalden bunların hepsi yapılır ama GUI araçları işin hızını çok artırır.
+
+Navicat'ın Kapsamlı Veri tabanı Desteği
+İLİŞKİSEL VERİTABANLARI (RDBMS)
+MySQL, MariaDB, PostgreSQL, Oracle, Microsoft SQL Server, SQLite
+NOSQL VERİTABANLARI
+MongoDB, Redis
+BULUT VERİTABANLARI
+Amazon RDS, Google Cloud SQL, Oracle Cloud, Microsoft Azure
+
+Navicat Premium, yani Navicat’in tüm veritabanı tiplerini tek bir uygulamada birleştiren versiyonu, ilk olarak 2009 yılında yayınlandı.
+
+
+
+
+------------------------------------------------
+
+SLAYT 6 TEXT : 
+NAVİCAT KURULUM
+Navicat.com web adresine gidiniz
+Products menüsüne tıklayınız
+Navicat Premium 17 Free Trail 
+butonuna tıklayarak indiriniz
+
+Kurulum Sihirbazını çalıştır – ileri
+Lisans sözleşmesi kabul et – ileri 
+Kurulum dizinini seçin  - ileri
+Ek ayarlar – ileri
+Kurulumu başlat – install
+Kurulum tamamlandı - finish
+
+
+
+
+3) Navicat Ürün Ailesi / Modüller Mantığı
+Navicat dünyasında genelde 2 ana yaklaşım var:
+Navicat Premium: Çoklu DB türleri tek uygulamada Navicat
+Navicat for MySQL / PostgreSQL / ...: Tek DB ailesi odaklı ürün (MySQL/MariaDB gibi) Navicat
+Ayrıca Navicat Data Modeler gibi ayrı ürünler/özellik setleri var: ER diyagram ve modelleme odaklı. Reverse engineering (DB’den modele çıkarma) gibi özellikleri vurgular.
+
+“Ben bugün Navicat’ı bir GUI client olarak ele alıyorum; ama Navicat aslında bir ‘araç seti’.”
+
+
+
+
+
+------------------------------------------------
+
+SLAYT 7 TEXT : 
+
+CLI DB ÖRNEK : 
+
+KOMUT : 
+cd C:\xampp\mysql\bin
+
+KOMUT : 
+mysql -u root -p
+
+KOMUT : 
+SHOW DATABASES;
+
+
+
+
+
+------------------------------------------------
+
+SLAYT 8 TEXT : 
+DATABASE BAĞLANTI
+Bağlantılar tıkla
+Database seç
+Database bağlantı bilgilerini gir
+Bağlantı başarılı - Tamamlandı
+Güvenli ve Esnek Bağlantı Seçenekler 
+SSH Tünelleme: Güvenli olmayan ağlar üzerinden bile şifreli bağlantı kurma.
+HTTP Tünelleme: Güvenlik duvarlarının arkasındaki veri tabanlarına erişim sağlama. 
+SSL Desteği: Ver iletişimin şifrelemek için SSL/TLS kullanma imkanı.
+
+
+
+
+
+------------------------------------------------
+
+SLAYT 9 TEXT : 
+CLI DB OLUŞTURMA ÖRNEK
+KOMUT : 
+cd C:\xampp\mysql\bin
+KOMUT : 
+mysql -u root -p
+KOMUT : 
+CREATE DATABASE cli_dbtest
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_general_ci;
+
+
+
+------------------------------------------------
+
+SLAYT 10 TEXT : 
+DATABASE OLUŞTURMA
+Bağlantıya tıklayıp aç. 
+Sağ tık yap: “New Database” seçin
+Açılan pencerede:
+Name: veritabanı adı (ör. my_app_db)
+Encoding / Collation: utf8mb4 ve utf8mb4_general_ci (Türkçe için önerilir)
+OK / Create ile oluştur.
+
+
+
+------------------------------------------------
+
+SLAYT 11 TEXT : 
+DATABASE TABLES
+New Table butonuna tıklayınız
+Fields : Tablonuza ekleyeceğiniz Sütun adlarını yazınız ve türlerini bu sekmede yapabilirsiniz
+
+
+
+
+
+------------------------------------------------
+
+SLAYT 12 TEXT : 
+MODELLEME (ER DİYAGRAM)
+ER Diyagram (Entity–Relationship Diagram), bir veritabanının mantıksal yapısını görsel olarak ifade eden modelleme yöntemidir.
+Amaç; veritabanı oluşturulmadan önce tabloların (entity), bu tabloların alanlarının (attribute) ve tablolar arasındaki ilişkilerin (relationship) net bir şekilde tasarlanmasını sağlamaktır.
+
+Veritabanı modelleme, bir yazılımın verilerinin:
+hangi tablolarda tutulacağını,
+tabloların hangi alanlara sahip olacağını,
+tablolar arasında nasıl ilişkiler olacağını
+
+Modelleme = Koddan önce düşünmek
+
+Navicat’te Modelleme Ne Anlama Gelir?
+Navicat’te modelleme:
+ER Diagram (Entity Relationship Diagram) üzerinden yapılır
+Tabloları kutular, ilişkileri çizgiler ile gösterir
+Hem veritabanından modele, hem de modelden veritabanına dönüşüm yapabilir
+Navicat’te bu işlevler iki şekilde karşımıza çıkar:
+Navicat içindeki ER Diagram / Design özellikleri
+Navicat Data Modeler (ayrı ama entegre çalışan profesyonel araç)
+
+
+Navicat sadece tablo ekleme aracı değil, aynı zamanda bir veritabanı tasarım aracıdır
+
+
+
+
+------------------------------------------------
+
+SLAYT 13 TEXT : 
+
+NAVICAT – Avantaj & Dezavantajlar
+✅ Avantajları
+Çoklu veritabanı desteği
+MySQL, MariaDB, PostgreSQL, Oracle, SQL Server, SQLite, MongoDB, Redis
+Tek arayüzden tüm DB’ler
+Farklı veritabanlarını tek programdan yönetebilirsin
+Görsel ve kullanıcı dostu arayüz
+CLI bilmeyenler için çok ideal
+Visual Query Builder
+SQL yazmadan sorgu oluşturma
+Veri senkronizasyonu
+DB ↔ DB, tablo ↔ tablo karşılaştırma
+Modelleme (ER Diagram)
+Tablo ilişkilerini görsel olarak tasarlama
+Backup / Restore
+Zamanlanmış yedekleme
+Cloud destekleri
+Amazon RDS, Azure, Google Cloud
+Stabil ve hızlı
+Büyük veritabanlarında bile performanslı
+❌ Dezavantajları
+Ücretli
+Lisans fiyatı bireysel kullanıcılar için pahalı
+Premium özellikler ayrı
+Tek DB lisansı vs Premium farkı
+Açık kaynak değil
+SQL IDE derinliği DataGrip kadar güçlü değil
+
+🔵 DBEAVER – Avantaj & Dezavantajlar
+✅ Avantajları
+Ücretsiz (Community Edition)
+Açık kaynak
+Çok geniş DB desteği
+Plugin (eklenti) mimarisi
+ER Diagram desteği
+Cross-platform (Win / Mac / Linux)
+❌ Dezavantajları
+Arayüz karmaşık
+Yeni başlayanlar için zor
+Performans
+Büyük DB’lerde Navicat kadar akıcı değil
+Senkronizasyon ve karşılaştırma sınırlı
+Kurumsal özellikler ücretli
+
+🟣 DATAGRIP (JetBrains) – Avantaj & Dezavantajlar
+✅ Avantajları
+En güçlü SQL IDE
+Akıllı kod tamamlama
+Query refactoring
+Versiyon kontrol (Git) entegrasyonu
+Profesyonel geliştiriciler için ideal
+❌ Dezavantajları
+Ücretli (abonelik)
+GUI odaklı değil
+Modelleme ve senkronizasyon zayıf
+Yeni başlayanlar için karmaşık
+
+🟡 HEIDISQL – Avantaj & Dezavantajlar
+✅ Avantajları
+Tamamen ücretsiz
+Hafif ve hızlı
+MySQL / MariaDB odaklı
+Düşük sistem gereksinimi
+❌ Dezavantajları
+Sadece Windows
+Görsel modelleme yok
+Senkronizasyon yok
+Modern UI yok
+Gelişmiş araçlar yok
+
+🟠 TABLEPLUS – Avantaj & Dezavantajlar
+✅ Avantajları
+Çok hızlı ve minimal
+Modern arayüz
+MacOS kullanıcıları için ideal
+Kolay bağlantı yönetimi
+❌ Dezavantajları
+Ücretli
+Gelişmiş senkronizasyon yok
+Modelleme sınırlı
+Enterprise ihtiyaçlara uygun değil
+
+🔴 DBVISUALIZER – Avantaj & Dezavantajlar
+✅ Avantajları
+Kurumsal kullanım odaklı
+Çoklu DB desteği
+Güçlü SQL editörü
+Gelişmiş analiz araçları
+❌ Dezavantajları
+Ücretli
+Arayüz Navicat kadar kullanıcı dostu değil
+Öğrenme eğrisi yüksek
+
+📊 KISA KIYAS TABLOSU (Avantaj / Dezavantaj Odaklı)
+AraçEn Güçlü YönüEn Zayıf YönüNavicatHepsi bir arada, görsel, senkronizasyonÜcretliDBeaverÜcretsiz & açık kaynakKarmaşık arayüzDataGripSQL yazma & IDE gücüGUI zayıfHeidiSQLHafif & ücretsizÖzellik fakiriTablePlusHız & sade UIEnterprise zayıfDbVisualizerKurumsal çözümlerÖğrenmesi zor
+
+🎯 HANGİSİ KİM İÇİN?
+Öğrenci / Yeni başlayan → Navicat / DBeaver
+PHP + MySQL geliştirici → Navicat
+Saf SQL & Backend developer → DataGrip
+Basit ve hızlı işler → HeidiSQL
+MacOS + hafif kullanım → TablePlus
+Kurumsal DB admin → DbVisualizer
+
+
+
+
+
+
+
+
+------------------------------------------------
+
+SLAYT 14 TEXT : 
+DİNLEDİĞİNİZ İÇİN TEŞEKKÜR EDERİM
+
+
+HAZIRLAYAN : İSLAM ERGÜN
+ÖĞRENCİ NO : 25658051
+BÖLÜM/SINIF : 
+Bilgisayar Programcılık Bölüm / sınıf 1
+
+
+KAYNAKÇA : 
+devnanotek.github.io/ders
+
+
+
+
+
+
+
+
+
+
+
+
+
+
