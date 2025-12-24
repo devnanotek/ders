@@ -1,0 +1,17 @@
+using System;
+
+public class SayiSýfýrlaSonlandýrma{
+
+    public static void Main(string[] args){
+
+        int sayi = 1;
+
+        while (sayi!=0){
+            Console.WriteLine("bir sayý girin..:");
+            sayi = Convert.ToInt32(Console.ReadLine());
+        }
+
+        Console.WriteLine("Ýþlem Sonlandýrýldý");
+        Console.ReadLine();
+    }
+}

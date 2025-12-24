@@ -1,0 +1,28 @@
+using System;
+
+namespace test {
+    class Program {
+        static long[] sayilar;
+
+        static long Fib(int n) {
+
+            if (0 == sayilar[n]) {
+                sayilar[n] = Fib(n - 1) + Fib(n - 2);
+            }
+            return sayilar[n];
+        }
+
+
+        static void Main() {
+
+            Console.Write("n = ");
+            int n = int.Parse(Console.ReadLine());
+            sayilar = new long[n + 2];
+            sayilar[1] = 1;
+            sayilar[2] = 1;
+            long sonuc = Fib(n);
+            Console.WriteLine("fib({0}) = {1}", n, sonuc);
+            Console.ReadKey();
+        }
+    }
+}

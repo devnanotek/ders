@@ -1,0 +1,24 @@
+//Klavyeden istenen adeti kadar girilen sayýlarýn ortalamasý
+
+using System;
+
+public class istenenSayiKadarToplamaÝslemi{
+    
+    public static void Main(string[] args){
+        
+    int i,sayi,deger;
+    double toplam=0;
+    Console.WriteLine("Kaç adet sayinýn ortalamasýný istiyorsunuz");
+    deger= Convert.ToInt32(Console.ReadLine());
+
+    	for (i = 1; i<=deger; i++){
+        	Console.WriteLine(i + ".sayiyi giriniz...");
+        	sayi = Convert.ToInt32(Console.ReadLine());
+        	toplam += sayi;
+    	}
+    
+    	toplam /= deger;          
+    	Console.WriteLine("ortalama : " + toplam); 
+    	Console.ReadKey();
+    }
+}

@@ -1,0 +1,25 @@
+
+using System;
+
+class Program {
+        static void Main(string[] args) {
+            int taban, us, sonuc = 1;
+
+            Console.Write("Taban : ");
+            taban = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Üs : ");
+            us = Convert.ToInt32(Console.ReadLine());
+
+
+            while (us != 0) {
+
+                sonuc *= taban;
+                --us;
+            }
+
+            Console.WriteLine("Sonuç = {0}", sonuc);
+
+            Console.ReadLine();
+        }
+    }

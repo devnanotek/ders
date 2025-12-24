@@ -1,0 +1,54 @@
+// 10 adet sayýnýn arasýndaki ilk 3 sayý
+
+using System;
+
+class enBuyukUcSayiyiBulma{
+        
+    public static void Main(string[] args){
+
+     	   //deðiþkenler tanýmlanýyor   
+     	   int buyuk=0;
+     	   int buyuk2=0;
+     	   int buyuk3=0;
+     	   int[] sayi = new int[10];//dizi tanýmlanýyor
+
+            for (int i = 0; i <= 9; i++) { 
+                // 10 adet sayýnýn girilmesi için for döngüsü açýlýyor                     
+                Console.Write("Lütfen Sayýlarý Giriniz :");
+                sayi[i] = Convert.ToInt32(Console.ReadLine()); //girilen deðerler int e çevriliyor
+            }
+            
+            for (int i = 0; i < 9; i++) {
+                    //en büyük sayýyý bulmak için
+                    if (buyuk < sayi[i]) { 
+                        buyuk = sayi[i]; }
+
+            }
+                 
+            for (int i = 0; i < 9; i++) {
+                    if (sayi[i]==buyuk){  
+                        i++ ; //en büyük sayý pas geçiliyor
+                    }  
+                    else if (buyuk2 < sayi[i]){   //en büyük 2.sayýyý bulmak için
+                        buyuk2 = sayi[i];
+                    }   
+            }
+            
+            for (int i = 0; i < 9; i++) {
+                    if (sayi[i]==buyuk || sayi[i]==buyuk2) {
+                        i++ ;// en büyük 2.sayýyý pas geçiliyor
+                    }else if (buyuk3 < sayi[i]){ //en büyük 3.sayýyý bulmak için
+                        buyuk3 = sayi[i];
+                    }
+                }
+               Console.WriteLine("En büyük sayý:{0}",buyuk);
+               Console.WriteLine("En büyük sayý:{0}",buyuk2);
+               Console.WriteLine("En büyük sayý:{0}",buyuk3);
+
+               //Dilersek en büyük 3 sayýnýn ortalamasýný alabiliriz. 
+               int ortalama=(buyuk + buyuk2 + buyuk3)/3;  
+               Console.Write(ortalama);
+               Console.ReadLine();
+    }
+
+}

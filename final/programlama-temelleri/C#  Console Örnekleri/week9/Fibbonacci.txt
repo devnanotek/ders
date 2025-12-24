@@ -1,0 +1,29 @@
+
+using System;
+ 
+namespace Fibonacci {
+    class Program {
+        static void Main() {
+            Console.Write("Fibonacci Sayısı için bir seri giriniz : ");
+            int fib = int.Parse(Console.ReadLine());
+ 
+            int sonuc = Fibonacci(fib);
+ 
+            Console.WriteLine($" {fib} .serisinin Fibonacci Sayısı : {sonuc}");
+            Console.ReadLine();
+        }
+ 
+        static int Fibonacci(int n) {
+            if (n == 0 || n == 1)
+                return n;
+ 
+            int f1 = 0, f2 = 1, f3 = 0;
+            for (int i = 2; i <= n; i++) {
+                f3 = f1 + f2;
+                f1 = f2;
+                f2 = f3;
+            }
+            return f3;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+using System;
+class Program {
+    static void Main() {
+        Console.WriteLine("Rasgele üretilen sayılar  : ");
+        for (int i = 1; i < 10; i++) {
+            SayiUret();
+        }
+    }
+
+
+    static Random r = new Random();
+
+    static void SayiUret() {
+        int n = r.Next();
+        Console.WriteLine(n);
+        Console.ReadLine();
+    }
+}

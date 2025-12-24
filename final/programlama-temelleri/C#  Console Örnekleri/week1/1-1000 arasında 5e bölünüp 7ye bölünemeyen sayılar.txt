@@ -1,0 +1,24 @@
+using System;
+
+namespace sayi1000_5etam_7yebolunmeyen {
+    class Program {
+        static void Main(string[] args) {  
+            int toplam=0;
+            int adet=0;
+
+            for (int i = 1; i <=1000; i++) {
+
+                if ( (i % 5 == 0) &&  (i%7!=0) ){//sayýlarýn 5e bölünüp 7ye bölünemeyenleri burada ayrýþtýrýyoruz
+                    Console.WriteLine(i);//sonuçlarý ekrana yazýyoruz
+                    toplam = toplam + i;//yazdýðýmýz kurallara uyan sayýlarý topluyoruz
+                    adet++;// yazdýðýmýz kurallara uyan sayýlarýn adeti arttýrýyoruz 
+                };
+               
+            }
+            	Console.WriteLine("Sayýlarýn toplamý : " + toplam);
+            	Console.WriteLine("Sayýlarýn adeti : " + adet);
+  		Console.ReadLine();
+ 
+        }
+    }
+}

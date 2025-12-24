@@ -1,0 +1,27 @@
+// 3 sayý arasýndaki en büyük ve en küçük deðeri bulma
+using System;
+
+public class enBuyukEnKucuk{
+
+    public static void Main(string[] args){
+                
+        int[] c = new int[3];
+        int enbuyuk = 0;
+        int enkucuk = 9999;
+        
+        for (int i = 0; i < 3; i++) {            
+        	Console.WriteLine("Sayý giriniz");
+        	c[i] = Convert.ToInt32(Console.ReadLine());
+        
+        	if (c[i] > enbuyuk) {
+        	enbuyuk = c[i];  }
+        
+        	if (c[i] < enkucuk) {
+        	enkucuk = c[i]; }
+        }
+        
+        Console.WriteLine("en kücük deger : " + enkucuk);
+        Console.WriteLine("en büyük deger : " + enbuyuk);
+        Console.ReadLine();
+    }
+}

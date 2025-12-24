@@ -1,0 +1,14 @@
+using System;
+
+public class RasgeleDongu{
+
+    public static void Main(string[] args){
+        int n=0;
+        do {
+             Random rnd = new Random();
+             n = rnd.Next(-10, 100); // negatif sayý denk gelirse döngü duruyor.
+             Console.Write("\nRastgele Üretilen Sayý..: {0} ", n);             
+        }while (n>0);
+        
+    }
+}

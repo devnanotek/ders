@@ -1,0 +1,17 @@
+using System;
+
+public class dikeyYazdir{
+
+    public static void Main(string[] args){
+
+        string isim;
+        Console.WriteLine("mesajinizi giriniz");
+        isim = Console.ReadLine();
+		char[] dizi=isim.ToCharArray();
+
+        	for(int i=0; i<dizi.Length;i++){
+		Console.WriteLine(dizi[i]);
+		}
+      
+    }
+}

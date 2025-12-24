@@ -1,0 +1,21 @@
+using System;
+
+public class Toplamaİslemi{
+
+    public static void Main(string[] args){
+        int toplam=0,a,b;
+		
+        Console.WriteLine("bir sayi girin");
+        a = Convert.ToInt32(Console.ReadLine());
+        
+        Console.WriteLine("bir sayi girin");
+        b = Convert.ToInt32(Console.ReadLine());
+         
+        for (int i = a; i <= b; i++){
+        toplam += i;
+        }
+         
+        Console.WriteLine("Toplam : {0}", toplam);
+        Console.ReadKey();
+    }
+}

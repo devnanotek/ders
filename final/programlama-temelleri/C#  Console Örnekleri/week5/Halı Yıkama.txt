@@ -1,0 +1,35 @@
+using System;
+
+class HaliYikama{
+	static void Main(string[] args){
+		
+		Console.WriteLine("Halýnýn enini giriniz:");
+		int en = Convert.ToInt16( Console.ReadLine());
+
+		Console.WriteLine("Halýnýn boyunu giriniz:");
+		int boy = Convert.ToInt16(Console.ReadLine());
+
+		int metrekare = en * boy;
+
+		Console.WriteLine("Halýnýn Tipini Giriniz:");
+		Console.WriteLine("Makine Halý M2 Fiyatý:65TL Kodu:M");
+		Console.WriteLine("Shaggy Halý M2 Fiyatý:75TL Kodu:S");
+		Console.WriteLine("El Dokuma M2 Fiyatý:115TL Kodu:E");
+		string secim = Console.ReadLine();
+
+		if (secim == "M" || secim == "m"){
+		Console.WriteLine("Halýnýn Ücreti:" + (metrekare * 5));
+		Console.ReadLine();
+
+		}else if (secim == "S" || secim == "s"){
+		Console.WriteLine("Halýnýn Ücreti:" + (metrekare * 7));
+		Console.ReadLine();
+
+		}else if (secim == "E" || secim == "e"){
+		Console.WriteLine("Halýnýn Ücreti:" + (metrekare * 10));
+		Console.ReadLine();
+
+		}else Console.WriteLine("Geçersiz Bir Deðer Girdiniz"); // tek satýr iþlemde parantez açýlmayabilir
+
+	}
+}

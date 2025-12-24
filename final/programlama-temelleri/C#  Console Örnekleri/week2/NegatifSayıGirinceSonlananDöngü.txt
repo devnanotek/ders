@@ -1,0 +1,18 @@
+using System;
+
+public class NegatifSayiGirilinceSonlandýrma{
+
+    public static void Main(string[] args){
+        int sayi = 0,toplam=0;
+
+        while ( sayi>=0) {
+        	Console.Write("Sayý Giriniz..:");
+        	sayi = Convert.ToInt16(Console.ReadLine());
+        	toplam += sayi;
+        }
+
+        Console.WriteLine("Döngü sonlandý");
+        Console.WriteLine("Sayýlarýn Toplamý..:{0}", toplam-sayi);
+        Console.ReadKey();
+    }
+}

@@ -1,0 +1,93 @@
+using System;
+ 
+namespace istanbulKart
+{
+    class Program{
+
+        static double bakiye = 0; // baþlangýç olarak 0 olarak belirliyoruz.
+		
+        static void ParaYatir() { 
+
+	    // para eklemek için metodu tanýmlýyoruz.
+            Console.WriteLine("Yatýrmak istediðiniz miktarý giriniz");
+            bakiye = bakiye + Convert.ToInt32(Console.ReadLine());
+
+            //Kullanýcýdan karta eklemek istediði para miktarýný aldýktan
+            //sonra kartta ki para miktarýný güncelliyoruz.
+            Console.WriteLine("Yeni bakiyeniz:" + bakiye);         
+        }
+
+        static void BakiyeGoster(){ 
+	    //Eðer kullanýcý para miktarýný sorgulamak isterse bu metoda geliyor.
+            Console.WriteLine("Bakiyeniz:" + bakiye);
+            Console.ReadLine();
+        }
+ 
+        static void Otobus(){ //2 adet karttan birini seçmesini istiyoruz
+
+            Console.WriteLine("1-Tam Kart");
+            Console.WriteLine("2-Indirimli Kart");
+            int secim = 1;
+            secim = Convert.ToInt32(Console.ReadLine());
+
+
+            //secim iþlemini okuyoruz
+            if (secim==1){ //eðer seçim 1 ise 
+                 
+                if (bakiye >=10) {
+			//Eðer kartta bakiye 10TL üstü ise 
+                    	bakiye=bakiye - 10;// bakiyeden 10TL düþüyoruz 
+                    	Console.WriteLine("Otogar - Kampüs \n Lütfen kapýlara yaslanmayýnýz...");
+
+                }else if (bakiye < 10) { 
+		        // eðer bakiyesi 10 TLden yüksek deðil ise
+ 			Console.WriteLine("Bakiye Yetersiz"); 
+			Console.ReadLine(); 
+		}else if (secim==2) {
+ 
+		if (bakiye >= 6.50){
+                    bakiye = bakiye - 6.50;
+                    Console.WriteLine("Otogar - Kampüs \n Lütfen kapýlara yaslanmayýnýz...");
+
+                }else if (bakiye < 6.50){
+                    Console.WriteLine("Bakiye Yetersiz");
+                    Console.ReadLine();
+                }
+            }
+        }
+ 
+
+        static void Main(string[] args){  
+
+	    int secim=0;
+            
+            do{
+
+	    //Do kullanarak iþlemleri en az 1 kez gösteriyoruz.
+            Console.WriteLine("Yapmak istediðiniz iþlemi seçiniz.");
+            Console.WriteLine("1-Para Yatýr");
+            Console.WriteLine("2-Bakiye Göster");
+            Console.WriteLine("3-Otobüse Bin");
+            Console.WriteLine("4-Uygulamayý kapat");
+             
+            secim = Convert.ToInt32(Console.ReadLine());
+            //kullanýcýnýn yapmak istediði iþlemi seçime aktarýyoruz
+
+              switch (secim){
+                case 1: //Eðer seçim 1 ise
+                    ParaYatir();
+                    break;
+                case 2:
+                    BakiyeGoster();
+                    break;
+                case 3:
+                    Otobus();
+                    break;
+                 
+            	} 
+            } while (secim!=4);//Seçim 4 olana dek kullanýcýya iþlem seçeneklerini gösteriyoruz.
+            //secim 4 olduðunda ise uygulama kapatýlýyor.
+ 
+        }
+    }
+}

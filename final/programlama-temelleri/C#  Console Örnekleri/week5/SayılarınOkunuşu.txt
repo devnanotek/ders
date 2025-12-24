@@ -1,0 +1,29 @@
+using System;
+
+class sayilarinOkunusu{
+	
+     static void Main(string[] args){
+		 
+		 string[] birler={"","bir","iki","üç","dört","beş","altı","yedi","sekiz","dokuz"};
+		 string[] onlar={"","on","yirmi","otuz","kırk","elli","atmış","yetmiş","seksen","doksan"};
+		 string[] yuzler={"","yüz","iki yüz","üç yüz","dört yüz","beş yüz","altı yüz","yedi yüz","sekiz yüz","dokuz yüz"};
+ 		 
+ 		int sayi, i = 0;
+		 do{
+ 			Console.Write("Lütfen 3 Basamaklı Sayı Giriniz = ");
+		 	sayi = Convert.ToInt32(Console.ReadLine());
+ 			if (sayi > 9999 || sayi < 0)
+ 			Console.WriteLine("Girdiğiniz Sayı 3 Basamaklı Olmalıdır !!!");
+ 			else
+ 			break;
+ 		}while(i == 1);
+
+ 		int birinci = sayi % 10;
+ 		int ikinci = (sayi / 10)%10;
+ 		int ucuncu = sayi / 100;
+
+ 		Console.WriteLine(yuzler[ucuncu] + " " + onlar[ikinci] + " " + birler[birinci]);
+		 
+	
+      }
+}

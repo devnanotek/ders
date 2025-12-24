@@ -1,0 +1,25 @@
+using System;
+
+public class Faktoriyel2{
+
+
+        static int faktoriyelAl(int a){
+            int fakt = 1;
+            for (int i = 1; i <= a; i++){
+                fakt=i * fakt;
+            }
+            return fakt;
+        }
+
+
+ 
+        static void Main(string[] args){
+            Console.WriteLine("Faktöriyeli Hesaplanacak Sayýyý Giriniz = ");
+            int sayi = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(sayi+"!=" + faktoriyelAl(sayi));
+            Console.ReadLine();
+        }
+
+
+
+}

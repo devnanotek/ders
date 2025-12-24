@@ -1,0 +1,23 @@
+
+using System;
+
+public class HelloWorld{
+    public static void Main(string[] args){
+        int sayi = 1;
+        while(sayi <= 100){
+		 int i=1; // reset
+		 while (i < sayi){
+    			int toplam = 0;  // reset
+                    	if (sayi % i == 0){
+                        	toplam += i;  
+                    	}
+                   i += 1;
+                 }
+            if (toplam == sayi){
+            Console.WriteLine(sayi + "mükemmel bir sayıdır.");
+            }
+          sayi += 1;
+	}
+  
+    }
+}

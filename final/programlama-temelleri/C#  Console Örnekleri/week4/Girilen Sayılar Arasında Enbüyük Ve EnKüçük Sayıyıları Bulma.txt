@@ -1,0 +1,39 @@
+// Klayveden girilen sayý kadar arasýndaki en büyük ve en küçük deðeri bulma
+using System;
+
+public class enBuyukEnkucuk{
+
+    public static void Main(string[] args){
+           int Buyuk, Kucuk;
+
+           int[] sayilar=new int[100];
+	   Console.WriteLine("Klavyeden girmek istediðiniz sayý adetini giriniz : ");
+  
+	   int adet = Convert.ToInt16(Console.ReadLine());  
+
+	   //listeye eleman aktarýlýyor. Klavyeden istenen adet kadar yada 10 sayýda alýnabilir
+           for (int i = 0; i < adet; i++){
+               int sayi = Convert.ToInt16(Console.ReadLine());
+               sayilar[i]=sayi;
+           }
+ 
+           //Buyuk ve Kucuk adlý deðiþkene ilk deðerler atanýyor
+           Buyuk = sayilar[0];
+           Kucuk = sayilar[0];
+
+           //en büyük ve en küçük deðer için tarama yapýlýyor.
+           foreach (int sayi in sayilar){
+               if (sayi > Buyuk){
+                   Buyuk = sayi;
+               }
+               if (sayi < Kucuk){
+                   Kucuk = sayi;
+               }
+               Console.WriteLine(sayi);
+           }
+           Console.WriteLine("en buyuk sayi:{0}", Buyuk);
+           Console.WriteLine("en kucuk sayi:{0}", Kucuk);
+ 
+           Console.ReadLine();
+    }
+}

@@ -1,0 +1,36 @@
+using System;
+    class Program    {
+        static void Main(string[] args) {
+
+            int sayi = 2;
+            int kontrol = 0;
+            int say = 0;
+            int sutun = 0;
+            Console.WriteLine("İlk 50 Asal Sayı");
+            Console.WriteLine("==================");
+
+            while (true) { 
+                kontrol = 0; // reset atılıyor
+                if (say==50){
+                    break;
+                }
+                for (int i = 2; i < sayi; i++){
+                    if(sayi % i == 0) {
+                        kontrol++; // if kontrolünde kullanılıyor
+                        break;
+                    }    
+                }
+                if(kontrol==0) { // asal olup olmadığını anlıyor
+                    sutun++;
+                    Console.Write(sayi+"\t");
+                    if (sutun % 10 == 0){
+                        Console.WriteLine();
+                    }
+                    say++;
+                }
+                sayi++;
+            }
+            
+            Console.ReadKey();
+        }
+    }

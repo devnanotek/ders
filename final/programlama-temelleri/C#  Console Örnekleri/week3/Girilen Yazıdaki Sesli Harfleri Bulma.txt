@@ -1,0 +1,32 @@
+using System;
+
+public class SesliHarfleriBulma {
+
+    public static void Main(string[] args){
+
+    Console.WriteLine("Yazdýðýn metinde kaçtane sesli harf olduðunu bulabilirim /nBir metin girebilir misin?");
+    string metin = Console.ReadLine();
+
+    int harfSayisi = SesliHarfler(metin);
+    Console.WriteLine("Girdiðiniz Cümlede"+ harfSayisi + "Tane Sesli Harf Bulunmaktadýr...");
+    Console.ReadLine();
+
+    }
+    
+    static int SesliHarfler(string gelenYazi){
+
+    char[] harfler = gelenYazi.ToCharArray();
+    int harfSayisi = 0;
+    char[] sesli = { 'a', 'e', 'o', 'ö', 'u', 'ü', 'ý','i','A','E','O','Ö','U','Ü','I','Ý'};
+    
+        for (int i = 0; i < harfler.Length; i++){
+
+            foreach (char sesliHarf in sesli){
+                if(sesliHarf == harfler[i]){
+                harfSayisi++;
+                }
+            }
+        }
+        return harfSayisi;
+    }
+}

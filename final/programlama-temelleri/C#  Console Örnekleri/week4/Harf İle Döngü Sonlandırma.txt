@@ -1,0 +1,14 @@
+using System;
+
+public class harfleSonlandirma{
+
+    public static void Main(string[] args){
+     string harf ="f";
+      while (harf!="q"){
+        Console.WriteLine("harf girin..:");
+        harf = Console.ReadLine();
+      }
+      Console.WriteLine(DateTime.Now);
+      Console.ReadLine();
+    }
+}

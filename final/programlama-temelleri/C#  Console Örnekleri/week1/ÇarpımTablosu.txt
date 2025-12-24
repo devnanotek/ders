@@ -1,0 +1,13 @@
+int x, y,seviye;
+Console.WriteLine("Kaçýncý sayýya kadar ");
+seviye = Convert.ToInt32(Console.ReadLine());
+
+for (y = 1; y <= seviye; y++) {
+	for (x=1; x<=seviye; x++) {
+		Console.WriteLine("{0}*{1}= {2}",x,y,x*y );
+	}
+
+Console.WriteLine(" ");
+}
+
+Console.ReadKey();

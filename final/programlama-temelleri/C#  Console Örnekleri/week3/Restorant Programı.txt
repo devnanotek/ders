@@ -1,0 +1,129 @@
+using System;
+  
+class RestorantProgram {
+
+       static int hesap = 0;
+	
+	//yiyecekeler
+        
+        static void yiyecekler() {
+            Console.WriteLine("Ýstediðiniz yemeðin numarasýný giriniz:");
+            Console.WriteLine("1 - Et yemeði");
+            Console.WriteLine("2 - Mantý");
+            Console.WriteLine("3 - Tavuk");
+           
+            int secim = Convert.ToInt32(Console.ReadLine());
+            if (secim == 1){
+                hesap += 20;
+                Console.WriteLine("Et yemeðiniz hazýrlanýyor.");
+            }else if (secim == 2){
+                hesap += 15;
+                Console.WriteLine("Mantýnýz hazýrlanýyor.");
+            }else if (secim == 3){
+                hesap += 10;
+                Console.WriteLine("Tavuðunuz hazýrlanýyor.");
+            }else{
+                Console.WriteLine("Geçersiz Ýþlem");
+            	Console.ReadLine();
+            }
+         }
+ 
+
+
+
+	//içecekler
+
+        static void icecekler(){ 
+            Console.WriteLine("Ýstediðiniz içeceðin numarasýný giriniz:");
+            Console.WriteLine("1 - Ayran");
+            Console.WriteLine("2 - Kola");
+            Console.WriteLine("3 - Limonata");
+        
+            int secim = Convert.ToInt32(Console.ReadLine());
+            if (secim == 1){
+                hesap += 3;
+                Console.WriteLine("Ýçeceðiniz Ayran");
+            }else if (secim == 2){
+                hesap += 4;
+                Console.WriteLine("Ýçeceðiniz Kola");
+            }else if (secim == 3){
+                hesap += 5;
+                Console.WriteLine("Ýçeceðiniz Limonata");
+            }else{
+             	Console.WriteLine("Geçersiz Ýþlem");
+             	Console.ReadLine();
+            }
+ 
+        }
+
+
+
+
+
+	//tatlýlar
+ 
+        static void tatlilar(){
+
+ 	    Console.WriteLine("Ýstediðiniz tatlýnýn numarasýný giriniz:");
+            Console.WriteLine("1 - Sütlaç");
+            Console.WriteLine("2 - Kazandibi");
+            Console.WriteLine("3 - Tavuk Göðsü");
+        
+            int secim = Convert.ToInt32(Console.ReadLine());
+            if (secim == 1){
+                hesap +=6;
+                Console.WriteLine("Tatlýnýz Sütlaç");
+            }else if (secim == 2){
+                hesap +=6;
+                Console.WriteLine("Tatlýnýz Kazandibi");
+            }else if (secim == 3){
+                hesap +=6;
+                Console.WriteLine("Tatlýnýz Tavuk Göðsü");
+            }else {
+                Console.WriteLine("Geçersiz Ýþlem");
+            Console.ReadLine();
+            }
+        }
+ 
+
+
+
+	/hesap öde
+
+        static void hesapode(){
+            Console.WriteLine("Ödemeniz gereken ücret {0}TL",hesap);
+            Console.ReadLine();
+        }
+        
+
+
+
+
+	// Ana Metod
+
+        static void Main(string[] args){
+            int secim;
+            do{   
+            Console.WriteLine("**********Ana Menü**********");
+            Console.WriteLine("1 - Yiyecekler");
+            Console.WriteLine("2 - Ýçecekler");
+            Console.WriteLine("3 - Tatlýlar");
+            Console.WriteLine("4 - Hesap Öde");
+
+            Console.WriteLine("Ýþlem yapmak için numara giriniz:");
+            secim = Convert.ToInt32(Console.ReadLine());
+            if (secim == 1)
+                yiyecekler();
+            else if (secim == 2)
+                icecekler();
+            else if (secim == 3)
+               tatlilar();
+            else if (secim ==4)
+                hesapode();
+            else
+                break;
+            }while (secim !=4);
+        }
+
+
+}

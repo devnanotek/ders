@@ -1,0 +1,32 @@
+using System;
+
+class Bankamatik  {
+        static void Main(string[] args) {
+
+            int hesap = 0;
+            int secim;
+
+            do {
+                Console.WriteLine(" 1-Hesap Göster \n 2-Para Yatýrma \n 3-Para Çekme \n 4-Çýkýþ");
+                secim = Convert.ToInt16(Console.ReadLine());
+ 
+                if (secim ==1){
+                Console.WriteLine("Hesabýnýzda " + hesap + "TL bulunmaktadýr.");
+                Console.ReadLine();
+                }else if (secim == 2){
+                    Console.WriteLine("Kaç para yatýrmak istiyorsunuz?");
+                    int yatirilan = Convert.ToInt16(Console.ReadLine());
+                    hesap = hesap + yatirilan;
+                }else if (secim == 3){
+                    Console.WriteLine("Kaç para çekmek istiyorsunuz?");
+                    int cekim = Convert.ToInt16(Console.ReadLine());
+                     
+                if (cekim>hesap){
+                    Console.WriteLine("Yeterli bakiyeniz yoktur.");
+                }else hesap = hesap - cekim;
+                }
+ 
+            }while (secim != 4);
+             
+        }
+}

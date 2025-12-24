@@ -1,0 +1,24 @@
+using System;
+ 
+namespace ikisayiarasindakicift {
+    class Program {
+        public static void Main(string[] args) {
+            int baslangic,bitis;//baslangic ve bitis deðiþkneleri atanýyor
+
+            Console.WriteLine("Baþlangýç Sayýsýný Giriniz:");//baslangic deðeri alýnýyor
+            baslangic=Convert.ToInt32(Console.ReadLine());//deðer integer a çevriliyor
+            
+            Console.WriteLine("Bitis Sayýsýný Giriniz:");//bitis deðeri alýnýyor
+            bitis=Convert.ToInt32(Console.ReadLine());//deðer integer a çevriliyor
+             
+	for (int i = baslangic; i < bitis; i++) {
+        	//döngüye baslangic ve bitis sayilari belirtiliyor  
+    		if (i % 2==0) { // sayýnýn çift olup olmadýðý kontrol ediliyor
+  			Console.WriteLine(i);  //sayý çift ise ekrana yazdýrýlýyor  
+                }
+	}
+
+	Console.ReadLine();
+        }
+    }
+}

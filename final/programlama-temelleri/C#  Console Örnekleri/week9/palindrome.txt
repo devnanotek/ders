@@ -1,0 +1,26 @@
+
+        static void Main(string[] args)
+        {
+            Console.Write("Enter something for to check that is it palindrome :");
+            string text = Console.ReadLine();
+            int uzunluk = text.Length;
+            bool bayrak = true;
+
+            //check palindrome
+            for (int i = 0; i < uzunluk/2; i++)
+            {
+                if (text[i] != text[uzunluk - (i + 1)])
+                {
+                    bayrak = false;
+                    break;
+                }
+            }
+
+            //bayrak doğru ise bu text bir palindrome
+            if (bayrak) {
+                Console.WriteLine("{0} is palindrome", text);
+            } else {
+                Console.WriteLine("{0} is not palindrome", text);
+            }
+            Console.ReadLine();
+        }

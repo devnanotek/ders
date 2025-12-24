@@ -1,0 +1,36 @@
+using System;
+
+public class Armstrong{
+    
+        static void Main(string[] args) {
+        int carpim, toplam, r,uzunluk,sayi,baslangic;
+	carpim=1;
+
+        Console.Write("Pozitif Sayı Gir : ");
+        sayi = Convert.ToInt32(Console.ReadLine());
+	    baslangic=sayi;
+	    uzunluk=sayi.ToString().Length;
+
+                toplam = 0;
+                
+                while (sayi != 0){
+
+                    r = sayi % 10;
+		    	for(int i=1; i<=uzunluk ; i++){
+			carpim=carpim*r; }
+
+		   	toplam = toplam + carpim;
+		   	carpim=1;
+                    	sayi = sayi / 10;
+                }
+
+                if (baslangic == toplam)
+                    Console.WriteLine("ARMSTRONG sayı");
+                else
+                    Console.WriteLine("Üzgünüm");  
+     
+            Console.ReadKey();
+
+        }
+
+}

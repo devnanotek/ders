@@ -1,0 +1,31 @@
+using System;
+ 
+namespace dortislem {
+    class Program {
+        static void Main(string[] args) {
+            Console.WriteLine("Birinci sayýyý girin");
+            int sayi1 = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine("Ýkinci sayýyý girin");
+            int sayi2 = Convert.ToInt16(Console.ReadLine());
+ 
+            Console.WriteLine("Toplama için --> 1");
+            Console.WriteLine("Çýkarma için --> 2");
+            Console.WriteLine("Çarpma için --> 3");
+            Console.WriteLine("Bölme için --> 4");
+            int islem = Convert.ToInt16(Console.ReadLine());
+            if (islem == 1){
+                Console.WriteLine(sayi1 + sayi2);
+                Console.ReadLine();
+            } else if  (islem == 2) {
+                Console.WriteLine(sayi1 - sayi2);
+                Console.ReadLine();
+            } else if  (islem == 3) {
+                Console.WriteLine(sayi1 * sayi2);
+                Console.ReadLine();
+            } else {
+                Console.WriteLine(sayi1 / sayi2);
+                Console.ReadLine();
+            }
+        }
+    }
+}

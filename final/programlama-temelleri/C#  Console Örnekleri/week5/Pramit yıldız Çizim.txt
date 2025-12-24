@@ -1,0 +1,17 @@
+using System;
+
+public class Piramit
+{
+    public static void Main(string[] args){
+        int x, y, seviye;
+        Console.WriteLine("Döngü Seviyesi");
+        seviye = Convert.ToInt32(Console.ReadLine());
+         
+        for (y = 0; y <= seviye; y++){
+            for (x=1; x<=y; x++){
+               Console.Write("*"); }
+          Console.WriteLine(" ");
+        }
+        Console.ReadKey();
+    }
+}

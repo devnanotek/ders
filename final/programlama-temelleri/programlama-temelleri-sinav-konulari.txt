@@ -1,0 +1,21 @@
+DERS : PROGRAMLAMA TEMELLERİ - (Sınav konuları)
+
+•	Bilgisayarın tarihçesi
+•	yazılım ve donanım nedir örnek veriniz 
+•	ikilik sayı sistemi ve onluk sayı sistemi 
+•	İlk bilgisayar programcısı kimdir
+•	yüksek seviyeli diller ve düşük seviyeli diller nedir? Bir iki tane örnek verin 
+- bilgisayar nasıl çalışır(giriş, işlem, çıkış kısaca açıklayın)
+- algoritmanın temel özellikleri 
+- bir algoritma örneği ve Akış diyagramı 
+- operatörler 
+•	Editörler , derleyiciler- bağlayıcılar, yorumlayıcılar 
+•	Hatalar (syntax  error, run- time error, logic error)
+•	Değişken kavramı 
+•	Değer atama işlemi
+•	Mantıksal işlemler 
+•	Değişken nedir
+•	Veri tipleri tanım veya örnek üzerinden hangi veri tipine uygundur 
+•	Değişken tanımlama kuralları
+
+Hoca derste c# dilini anlatı

@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programlama Temelleri Final - EKSİKSİZ MEGA REHBER</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <!-- Prism.js for Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --secondary-gradient: linear-gradient(135deg, #f43f5e 0%, #fb923c 100%);
+            --dark-bg: #0b0f1a;
+            --card-bg: #161b2e;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--card-bg);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 30px 20px;
+        }
+
+        .sidebar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+            display: block;
+            text-decoration: none;
+        }
+
+        .sidebar .nav-link {
+            color: var(--text-muted);
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .nav-link i {
+            font-size: 1.1rem;
+            width: 30px;
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+
+        /* Main Content Styling */
+        main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 50px;
+            max-width: 1200px;
+        }
+
+        .hero-banner {
+            background: var(--primary-gradient);
+            border-radius: 30px;
+            padding: 60px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .code-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fb923c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mantik-box {
+            background: rgba(99, 102, 241, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .mantik-box h6 {
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .code-wrap {
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary);
+        }
+
+        pre[class*="language-"] {
+            border-radius: 15px !important;
+            padding: 25px !important;
+            margin: 0 !important;
+            background: #0d1117 !important;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            margin-top: 80px;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .hero-banner {
+                padding: 40px 20px;
+            }
+        }
+
+        .nav-week {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-week-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 0 15px 10px;
+            text-transform: uppercase;
+        }
+
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .glossary-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glossary-term {
+            font-family: 'Fira Code', monospace;
+            color: #f472b6;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .glossary-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <a href="../../index.html" class="sidebar-brand">PROGRAMLAMA 101</a>
+        <div class="nav flex-column nav-pills">
+            <a class="nav-link" href="test.html"><i class="bi bi-pencil-square"></i> Teorik Test (40 Soru)</a>
+            <a class="nav-link" href="kod-testi.html" style="color: #f43f5e;"><i class="bi bi-code-slash"></i> Kod
+                Analizi (25 Soru)</a>
+            <a class="nav-link" href="#theories"><i class="bi bi-book"></i> Teorik Bilgi Bankası</a>
+            <a class="nav-link" href="#standalone"><i class="bi bi-folder2-open"></i> Ek Dosyalar (TXT)</a>
+            <a class="nav-link" href="#sozluk"><i class="bi bi-alphabet"></i> Temel Kod Sözlüğü</a>
+            <div class="nav-week">
+                <div class="nav-week-title">Haftalık Arşiv</div>
+                <a class="nav-link" href="#week1"><i class="bi bi-1-circle"></i> Hafta 1-2</a>
+                <a class="nav-link" href="#week3"><i class="bi bi-3-circle"></i> Hafta 3</a>
+                <a class="nav-link" href="#week4"><i class="bi bi-4-circle"></i> Hafta 4</a>
+                <a class="nav-link" href="#week5"><i class="bi bi-5-circle"></i> Hafta 5</a>
+                <a class="nav-link" href="#week6"><i class="bi bi-6-circle"></i> Hafta 6</a>
+                <a class="nav-link" href="#week7"><i class="bi bi-7-circle"></i> Hafta 7</a>
+                <a class="nav-link" href="#week8"><i class="bi bi-8-circle"></i> Hafta 8</a>
+                <a class="nav-link" href="#week9"><i class="bi bi-9-circle"></i> Hafta 9</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+
+        <header class="hero-banner" id="intro">
+            <h1 class="display-3 fw-bold text-white mb-3">Final Sınavı Tam Rehber</h1>
+            <p class="lead text-white-50 mb-4">
+                Bu sayfa, "Programlama Temelleri" finali için gerekli olan tüm teorik bilgileri, hoca notlarını ve 9
+                haftalık tüm kod arşivini kapsar.
+                Sıfırdan programlama öğrenenler için her şey en basit haliyle açıklandı.
+            </p>
+            <div class="d-flex gap-3 flex-wrap">
+                <a href="test.html" class="btn btn-light text-primary rounded-pill px-4 py-2 shadow-sm fw-bold">
+                    <i class="bi bi-pencil-square"></i> Teorik Test (40)
+                </a>
+                <a href="kod-testi.html" class="btn btn-danger rounded-pill px-4 py-2 shadow-sm fw-bold">
+                    <i class="bi bi-code-slash"></i> Kod Testi (25)
+                </a>
+                <span class="badge bg-white text-primary rounded-pill px-4 py-2 shadow-sm d-flex align-items-center">60+
+                    Kod Örneği</span>
+            </div>
+        </header>
+
+        <!-- Sınav Konuları - MEGA DETAYLI -->
+        <section id="theories" class="mb-5">
+            <h2 class="section-title"><i class="bi bi-info-circle"></i> Teorik Bilgi Bankası (Tam Müfredat)</h2>
+            <div class="content-card">
+                <div class="accordion accordion-flush" id="faqArc">
+
+                    <!-- Bilgisayar Tarihçesi -->
+                    <div class="accordion-item bg-transparent text-white border-bottom border-light border-opacity-10">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-white shadow-none fw-bold"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#qHistory">
+                                1. Bilgisayarın Tarihçesi ve Önemli İsimler
+                            </button>
+                        </h2>
+                        <div id="qHistory" class="accordion-collapse collapse" data-bs-parent="#faqArc">
+                            <div class="accordion-body text-white-50">
+                                <p>Bilgisayarın gelişimi 4 temel döneme ayrılır:</p>
+                                <ul>
+                                    <li><b>1. Nesil (1940-1956):</b> Vakum Tüpleri kullanıldı. ENIAC bu dönemin en ünlü
+                                        devasa bilgisayarıdır. Çok ısınır ve koca bir odayı kaplardı.</li>
+                                    <li><b>2. Nesil (1956-1963):</b> Transistörler icat edildi. Bilgisayarlar küçüldü ve
+                                        hızlandı.</li>
+                                    <li><b>3. Nesil (1964-1971):</b> Entegre Devreler (IC) kullanılmaya başlandı. Klavye
+                                        ve monitör devreye girdi.</li>
+                                    <li><b>4. Nesil (1971-Günümüz):</b> Mikroişlemciler (CPU) dönemi. Kişisel
+                                        bilgisayarların (PC) doğuşu.</li>
+                                </ul>
+                                <p><b>Önemli İsimler:</b></p>
+                                <ul>
+                                    <li><b>Charles Babbage:</b> Bilgisayarın babası olarak bilinir. "Fark Makinesi"ni
+                                        tasarlamıştır.</li>
+                                    <li><b>Ada Lovelace:</b> Dünyanın <u>ilk bilgisayar programcısıdır</u>. Babbage'ın
+                                        makinesi için ilk algoritmayı yazmıştır.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Donanım ve Yazılım -->
+                    <div class="accordion-item bg-transparent text-white border-bottom border-light border-opacity-10">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-white shadow-none fw-bold"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#qHardware">
+                                2. Yazılım ve Donanım Kavramları
+                            </button>
+                        </h2>
+                        <div id="qHardware" class="accordion-collapse collapse" data-bs-parent="#faqArc">
+                            <div class="accordion-body text-white-50">
+                                <p><b>Donanım (Hardware):</b> Bilgisayarı oluşturan fiziksel parçalardır. Dokunabiliriz.
+                                </p>
+                                <ul>
+                                    <li><b>Örnekler:</b> Anakart, İşlemci (CPU), RAM, Sabit Disk (SSD/HDD), Monitör,
+                                        Klavye.</li>
+                                </ul>
+                                <p><b>Yazılım (Software):</b> Donanımı yöneten ve işlem yapmasını sağlayan kod
+                                    topluluğudur.</p>
+                                <ul>
+                                    <li><b>Sistem Yazılımı:</b> İşletim sistemleri (Windows, Linux, MacOS).</li>
+                                    <li><b>Uygulama Yazılımı:</b> Photoshop, Excel, Oyunlar, Web tarayıcıları.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Çalışma Mantığı -->
+                    <div class="accordion-item bg-transparent text-white border-bottom border-light border-opacity-10">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-white shadow-none fw-bold"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#qWork">
+                                3. Bilgisayar Nasıl Çalışır? (Giriş-İşlem-Çıkış)
+                            </button>
+                        </h2>
+                        <div id="qWork" class="accordion-collapse collapse" data-bs-parent="#faqArc">
+                            <div class="accordion-body text-white-50">
+                                <p>Bilgisayarın çalışma döngüsü 3 ana adımdan oluşur:</p>
+                                <ol>
+                                    <li><b>Giriş (Input):</b> Kullanıcıdan veri alınır. (Örn: Klavye üzerinden sayı
+                                        girmek, fareyle tıklamak).</li>
+                                    <li><b>İşlem (Process):</b> Merkezi İşlem Birimi (CPU), gelen veriyi talimatlara
+                                        göre işler. Matematiksel hesaplamaları <b>ALU</b> (Aritmetik Mantık Birimi)
+                                        yapar.</li>
+                                    <li><b>Çıkış (Output):</b> İşlenen sonuç kullanıcıya gösterilir. (Örn: Ekrandaki
+                                        görüntü, yazıcıdan çıkan kağıt).</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sayı Sistemleri -->
+                    <div class="accordion-item bg-transparent text-white border-bottom border-light border-opacity-10">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-white shadow-none fw-bold"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#qNumbers">
+                                4. Sayı Sistemleri (İkilik ve Onluk)
+                            </button>
+                        </h2>
+                        <div id="qNumbers" class="accordion-collapse collapse" data-bs-parent="#faqArc">
+                            <div class="accordion-body text-white-50">
+                                <p><b>İkilik (Binary):</b> Sadece 0 ve 1 rakamlarından oluşur. Bilgisayarın ana dilidir.
+                                </p>
+                                <p><b>Onluk (Decimal):</b> Bizim kullandığımız 0-9 arası rakamlardır.</p>
+                                <p><b>Birimler:</b></p>
+                                <ul>
+                                    <li>1 Bit = 0 veya 1</li>
+                                    <li>8 Bit = 1 Byte</li>
+                                    <li>1024 Byte = 1 KB</li>
+                                    <li>1024 KB = 1 MB</li>
+                                </ul>
+                                <p><i>Dönüşüm mantığı:</i> Onluk sayıyı sürekli 2'ye böleriz ve kalanları tersten
+                                    yazarız.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Algoritma -->
+                    <div class="accordion-item bg-transparent text-white border-bottom border-light border-opacity-10">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-white shadow-none fw-bold"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#qAlgo">
+                                5. Algoritma Özellikleri ve Akış Diyagramları
+                            </button>
+                        </h2>
+                        <div id="qAlgo" class="accordion-collapse collapse" data-bs-parent="#faqArc">
+                            <div class="accordion-body text-white-50">
+                                <p>Algoritma, bir problemin çözüm adımlarıdır. Temel özellikleri:</p>
+                                <ul>
+                                    <li><b>Başlangıcı ve Sonu olmalı:</b> (Sonluluk)</li>
+                                    <li><b>Net olmalı:</b> Her adım açıkça anlaşılmalıdır.</li>
+                                    <li><b>Etkin olmalı:</b> Gereksiz adımlar içermemelidir.</li>
+                                </ul>
+                                <p><b>Akış Diyagramı Şekilleri:</b></p>
+                                <ul>
+                                    <li><b>Elips:</b> Başla / Bitir</li>
+                                    <li><b>Paralelkenar:</b> Veri Girişi (Input)</li>
+                                    <li><b>Dikdörtgen:</b> İşlem / Atama</li>
+                                    <li><b>Eşkenar Dörtgen (Baklava):</b> Karar Yapısı (If)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Editörler ve Derleyiciler -->
+                    <div class="accordion-item bg-transparent text-white border-bottom border-light border-opacity-10">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-white shadow-none fw-bold"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#qTools">
+                                6. Editör, Derleyici, Yorumlayıcı ve Bağlayıcı
+                            </button>
+                        </h2>
+                        <div id="qTools" class="accordion-collapse collapse" data-bs-parent="#faqArc">
+                            <div class="accordion-body text-white-50">
+                                <ul>
+                                    <li><b>Editör:</b> Kod yazdığımız metin düzenleyicidir (Notepad++, VS Code).</li>
+                                    <li><b>Derleyici (Compiler):</b> Kodun tamamını bir kerede makine diline çevirir ve
+                                        bir çıktı dosyası (EXE) üretir. (Örn: C# Derleyicisi)</li>
+                                    <li><b>Yorumlayıcı (Interpreter):</b> Kodu satır satır okur ve o an çalıştırır.
+                                        (Örn: Python)</li>
+                                    <li><b>Bağlayıcı (Linker):</b> Derlenen küçük kod parçalarını birleştirip tek bir
+                                        program haline getirir.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hatalar -->
+                    <div class="accordion-item bg-transparent text-white border-bottom border-light border-opacity-10">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-white shadow-none fw-bold"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#qErrors">
+                                7. Hata Türleri (Errors)
+                            </button>
+                        </h2>
+                        <div id="qErrors" class="accordion-collapse collapse" data-bs-parent="#faqArc">
+                            <div class="accordion-body text-white-50">
+                                <ul>
+                                    <li><b>Syntax Error (Sözdizimi Hatası):</b> Yazım kuralı hatasıdır. Program asla
+                                        çalışmaz. (Örn: Noktalı virgül unutmak).</li>
+                                    <li><b>Run-time Error (Çalışma Zamanı Hatası):</b> Program çalışırken ortaya çıkan
+                                        beklenmedik durumlardır. (Örn: Bir sayıyı sıfıra bölmeye çalışmak).</li>
+                                    <li><b>Logic Error (Mantıksal Hata):</b> Program çalışır ama sonuç yanlıştır.
+                                        Bulması en zor hatadır. (Örn: İki sayıyı toplayacakken yanlışlıkla çarpmak).
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Değişkenler ve Veri Tipleri -->
+                    <div class="accordion-item bg-transparent text-white border-bottom border-light border-opacity-10">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent text-white shadow-none fw-bold"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#qVariables">
+                                8. Değişkenler, Veri Tipleri ve Kurallar
+                            </button>
+                        </h2>
+                        <div id="qVariables" class="accordion-collapse collapse" data-bs-parent="#faqArc">
+                            <div class="accordion-body text-white-50">
+                                <p><b>Değişken Nedir?</b> Bilgisayar belleğinde (RAM) verilerin geçici olarak saklandığı
+                                    isimlendirilmiş alanlardır.</p>
+                                <p><b>Veri Tipleri:</b></p>
+                                <ul>
+                                    <li><b>Tam Sayılar:</b> byte, short, <b>int</b>, long.</li>
+                                    <li><b>Ondalıklı Sayılar:</b> float, <b>double</b>, decimal.</li>
+                                    <li><b>Metinsel:</b> char (tek harf), <b>string</b> (kelime/cümle).</li>
+                                    <li><b>Mantıksal:</b> bool (true/false).</li>
+                                </ul>
+                                <p><b>Adlandırma Kuralları:</b> Sayı ile başlayamaz, boşluk içeremez, özel karakter
+                                    barındıramaz (alt tire _ hariç).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Sözlük -->
+        <section id="sozluk" class="mb-5">
+            <h2 class="section-title"><i class="bi bi-translate"></i> Temel Kod Sözlüğü</h2>
+            <div class="glossary-grid">
+                <div class="glossary-card">
+                    <span class="glossary-term">int:</span>
+                    <p class="glossary-desc">Tam sayıları tutar. Örn: 1, 50, -42.</p>
+                </div>
+                <div class="glossary-card">
+                    <span class="glossary-term">double / float:</span>
+                    <p class="glossary-desc">Ondalıklı (küsuratlı) sayıları tutar. Örn: 3.14, 1.5.</p>
+                </div>
+                <div class="glossary-card">
+                    <span class="glossary-term">string:</span>
+                    <p class="glossary-desc">Metinleri tutar. Çift tırnak içinde yazılır. Örn: "Antigravity"</p>
+                </div>
+                <div class="glossary-card">
+                    <span class="glossary-term">bool:</span>
+                    <p class="glossary-desc">Sadece iki değer alır: True (Doğru) veya False (Yanlış).</p>
+                </div>
+                <div class="glossary-card">
+                    <span class="glossary-term">Console.WriteLine():</span>
+                    <p class="glossary-desc">Verilen değeri ekrana yazar ve alt satıra geçer.</p>
+                </div>
+                <div class="glossary-card">
+                    <span class="glossary-term">Console.ReadLine():</span>
+                    <p class="glossary-desc">Kullanıcıdan bir veri (yazı) girilmesini bekler.</p>
+                </div>
+                <div class="glossary-card">
+                    <span class="glossary-term">Convert.ToInt32():</span>
+                    <p class="glossary-desc">Gelen metni bir sayıya dönüştürür. Matematik için şarttır.</p>
+                </div>
+                <div class="glossary-card">
+                    <span class="glossary-term">for döngüsü:</span>
+                    <p class="glossary-desc">Belirli bir sayıda işlem yapmak için kullanılır.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HAFTA 1 - 2 -->
+        <section id="week1" class="mb-5 border-top border-light border-opacity-10 pt-5">
+            <h2 class="section-title">Hafta 1 & 2: Giriş ve Döngüler</h2>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Dört İşlem Uygulaması</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    Kullanıcıdan iki sayı alır, sonra 1-4 arası bir rakam seçmesini ister. Seçilen rakama göre (+, -, *,
+                    /) yapar.
+                </div>
+                <div class="code-wrap">
+                    <button class="copy-btn">Kopya</button>
+                    <pre class="language-csharp"><code>using System;
+namespace dortislem {
+    class Program {
+        static void Main(string[] args) {
+            Console.WriteLine("Birinci sayıyı girin");
+            int sayi1 = Convert.ToInt16(Console.ReadLine()); // Convert ile sayıya çeviriyoruz
+            Console.WriteLine("İkinci sayıyı girin");
+            int sayi2 = Convert.ToInt16(Console.ReadLine());
+ 
+            Console.WriteLine("Toplama için --> 1\nÇıkarma için --> 2\nÇarpma için --> 3\nBölme için --> 4");
+            int islem = Convert.ToInt16(Console.ReadLine());
+
+            if (islem == 1) Console.WriteLine("Sonuç: " + (sayi1 + sayi2));
+            else if (islem == 2) Console.WriteLine("Sonuç: " + (sayi1 - sayi2));
+            else if (islem == 3) Console.WriteLine("Sonuç: " + (sayi1 * sayi2));
+            else Console.WriteLine("Sonuç: " + (sayi1 / sayi2));
+            Console.ReadLine();
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> 5'e Bölünen & 7'ye Bölünemeyenler</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    1'den 1000'e kadar olan sayıları tarar. Eğer sayı 5'e kalansız bölünüyor VE 7'ye tam bölünmüyorsa
+                    onu ekrana yazar. Sonunda kaç adet olduğunu ve toplamını söyler.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>int toplam = 0, adet = 0;
+for (int i = 1; i <= 1000; i++) {
+    // && 've' demektir. Her iki şart da sağlanmalı.
+    if ((i % 5 == 0) && (i % 7 != 0)) {
+        Console.WriteLine(i);
+        toplam += i; // Sayıyı toplama ekle
+        adet++;      // Adeti bir artır
+    }
+}
+Console.WriteLine("Toplam: " + toplam + " | Adet: " + adet);</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> 10 Kişinin Not Ortalamasını Alma</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    Diziler (Arrays) kullanarak 10 kişinin ismini ve 3'er notunu alır. Sonra her öğrencinin geçtiğini
+                    veya kaldığını listeler.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>int i, a, b, c;
+string[] ad = new string[10]; // 10 Kişilik isim dizisi
+int[] ort = new int[10];
+
+for (i = 0; i <= 9; i++) {
+    Console.WriteLine("Adınız:");
+    ad[i] = Console.ReadLine();
+    Console.WriteLine("3 Notu girin:");
+    a = Convert.ToInt32(Console.ReadLine());
+    b = Convert.ToInt32(Console.ReadLine());
+    c = Convert.ToInt32(Console.ReadLine());
+    ort[i] = (a + b + c) / 3; // Ortalama hesapla
+}
+
+for (i = 0; i <= 9; i++) {
+    string durum = (ort[i] <= 45) ? "Kaldı" : "Geçti";
+    Console.WriteLine(ad[i] + " Ort: " + ort[i] + " | Durum: " + durum);
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- HAFTA 3 -->
+        <section id="week3" class="mb-5 border-top border-light border-opacity-10 pt-5">
+            <h2 class="section-title">Hafta 3: Gelişmiş Döngü ve Metot</h2>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Restoran Menü Uygulaması</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    "Metotlar" (static void) kullanarak ana menüyü parçalara böler. Yemek, içecek veya tatlı seçtiğinde
+                    bakiye (hesap) sürekli güncellenir.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>static int hesap = 0;
+// Ana Döngü
+static void Main() {
+    int secim;
+    do {
+        Console.WriteLine("1-Yiyecek, 2-İçecek, 3-Hesap Öde");
+        secim = Convert.ToInt32(Console.ReadLine());
+        if (secim == 1) yiyecekler();
+        else if (secim == 2) icecekler();
+    } while (secim != 3);
+    Console.WriteLine("Toplam Borç: " + hesap + " TL");
+}
+
+static void yiyecekler() {
+    Console.WriteLine("1-Et(20), 2-Mantı(15)");
+    int s = Convert.ToInt32(Console.ReadLine());
+    hesap += (s == 1) ? 20 : 15;
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Sayı Tahmin Oyunu v2</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    Bilgisayar `Random` sınıfı ile 1-100 arası bir sayı tutar. Kullanıcının her tahmininde "Yukarı" veya
+                    "Aşağı" diyerek yardım eder. Sonunda kaç kerede bildiğini söyler.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>Random rnd = new Random();
+int tutulan = rnd.Next(1, 101); // 1-100 arası
+int tahmin = 0, sayac = 0;
+
+Console.WriteLine("Aklımda bir sayı var, bil bakalım!");
+do {
+    tahmin = Convert.ToInt16(Console.ReadLine());
+    sayac++;
+    if (tahmin > tutulan) Console.WriteLine("Daha Aşağı!");
+    else if (tahmin < tutulan) Console.WriteLine("Daha Yukarı!");
+} while (tahmin != tutulan);
+
+Console.WriteLine("Tebrikler! " + sayac + ". tahminde bildin.");</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- HAFTA 4 -->
+        <section id="week4" class="mb-5 border-top border-light border-opacity-10 pt-5">
+            <h2 class="section-title">Hafta 4: Diziler ve En Büyük Sayı Bulma</h2>
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> En Büyük 3 Sayıyı Bulmak</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    Bir diziye girilen sayılar arasından en büyüğünü, ikinci en büyüğü ve üçüncü en büyüğü ayıklar.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>int[] sayilar = new int[100];
+// ... Sayılar kullanıcıdan alınır ...
+int enbuyuk = sayilar[0];
+int ikinci = sayilar[0];
+int ucuncu = sayilar[0];
+
+// 1. En büyüğü bul
+for(int i=0; i<adet ; i++){ 
+    if(enbuyuk < sayilar[i]) enbuyuk = sayilar[i];
+}
+// 2. En büyüğü hariç tutup ikinciyi bul
+// 3. İlk ikiyi hariç tutup üçüncüyü bul...</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> İstanbul/Mardin Kart Sistemi</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    Otobüs kartı simülasyonu. Bakiye yükleme, bakiye sorgulama ve "Tam" veya "Öğrenci" biniş işlemlerini
+                    `switch-case` ile yönetir.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>static double bakiye = 0;
+// ... Menü Sistemi ...
+switch (secim) {
+    case 1: ParaYatir(); break;
+    case 2: BakiyeGoster(); break;
+    case 3: OtobusDuzenle(); break;
+}
+
+static void Otobus() {
+    Console.WriteLine("1-Tam(10 TL), 2-İndirimli(6.5 TL)");
+    if (secim == 1 && bakiye >= 10) bakiye -= 10;
+    else if (secim == 2 && bakiye >= 6.5) bakiye -= 6.5;
+    else Console.WriteLine("Bakiye Yetersiz!");
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- HAFTA 5 - Şekiller -->
+        <section id="week5" class="mb-5 border-top border-light border-opacity-10 pt-5">
+            <h2 class="section-title">Hafta 5: Şekiller ve Metin İşlemleri</h2>
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Yıldız Piramidi Çizimi</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    "İç içe For" (Nested Loops) kullanarak ekrana yıldızlardan bir piramit çizer. Satır sayısı arttıkça
+                    yıldız sayısı da artar.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>for (int y = 0; y <= seviye; y++) {
+    for (int x = 1; x <= y; x++) {
+        Console.Write("*"); // Yan yana yaz
+    }
+    Console.WriteLine(); // Satır bitince aşağı geç
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Sayıların Okunuşu (3 Basamaklı)</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    Kullanıcının girdiği 3 basamaklı sayıyı (örn: 345) metne ("Üç Yüz Kırk Beş") çevirir. Dizilerde
+                    "Yüzler", "Onlar" ve "Birler" listeleri tutulur.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>string[] birler = {"","Bir","İki"..."Dokuz"};
+string[] onlar = {"","On"..."Doksan"};
+string[] yuzler = {"","Yüz","İki Yüz"..."Dokuz Yüz"};
+
+int birlerBas = sayi % 10;
+int onlarBas = (sayi / 10) % 10;
+int yuzlerBas = sayi / 100;
+
+Console.WriteLine(yuzler[yuzlerBas] + " " + onlar[onlarBas] + " " + birler[birlerBas]);</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Mesajı Dikey Yazdırma</h4>
+                <div class="mantik-box">
+                    <h6>NE YAPIYOR?</h6>
+                    Yazılan bir kelimeyi `ToCharArray()` ile harflerine böler ve döngüyle her harfi bir alt satıra
+                    yazar.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>char[] dizi = isim.ToCharArray();
+for(int i=0; i < dizi.Length; i++) {
+    Console.WriteLine(dizi[i]);
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- HAFTA 6-9: İleri Seviye -->
+        <section id="week6" class="mb-5 border-top border-light border-opacity-10 pt-5">
+            <h2 class="section-title">Hafta 6 - 9: Matematiksel Algoritmalar</h2>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Armstrong Sayı Kontrolü</h4>
+                <div class="mantik-box">
+                    <h6>MANTIK:</h6>
+                    Bir sayının her bir rakamının (sayı kaç basamaklıysa) o kuvvetinin toplamı kendisine eşitse buna
+                    "Armstrong Sayısı" denir. (Örn: 153 -> 1³ + 5³ + 3³ = 153)
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>while (sayi != 0) {
+    r = sayi % 10; // Son basamağı al
+    int kuvvet = 1;
+    for(int i=1; i<=uzunluk; i++) kuvvet *= r; // Basamağın kuvvetini al
+    toplam += kuvvet;
+    sayi /= 10; // Basamağı sil
+}
+if(toplam == baslangic) Console.WriteLine("Evet, Armstrong!");</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Onluktan İkilik Sisteme (Binary)</h4>
+                <div class="mantik-box">
+                    <h6>MANTIK:</h6>
+                    Gündelik hayattaki onluk sayıyı bilgisayarın dili olan 0 ve 1'lere çevirir. Sayı sürekli 2'ye
+                    bölünür ve kalanlar tersten yazılır.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>while (sayi >= 1) {
+    hafiza += (sayi % 2).ToString(); // Kalanı hafızaya at
+    sayi /= 2; // Sayıyı 2'ye böl
+}
+// Hafızayı tersten yazdırınca Binary değer ortaya çıkar</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Mükemmel Sayı Bulma</h4>
+                <div class="mantik-box">
+                    <h6>MANTIK:</h6>
+                    Kendisi hariç bölenlerinin toplamı kendine eşit olan sayılardır. (Örn: 6'nın bölenleri 1, 2, 3'tür.
+                    Toplamları 6 yapar.)
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>for (int i = 1; i < sayi ; i++) {
+    if (sayi % i == 0) toplam += i; // Bölünüyorsa toplama ekle
+}
+if (toplam == sayi) Console.WriteLine("Mükemmel Sayı");</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Palindrome (Tersten Okunuş)</h4>
+                <div class="mantik-box">
+                    <h6>MANTIK:</h6>
+                    Yazılan metnin tersten okunuşu ile düzden okunuşu aynı mı diye kontrol eder. (Örn: "kazak", "radar")
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>string text = Console.ReadLine();
+bool bayrak = true;
+for (int i = 0; i < text.Length / 2; i++) {
+    if (text[i] != text[text.Length - (i + 1)]) {
+        bayrak = false;
+        break;
+    }
+}
+if(bayrak) Console.WriteLine("Bu bir Palindrome'dur.");</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ek Dosyalar (Standalone) -->
+        <section id="standalone" class="mb-5 border-top border-light border-opacity-10 pt-5">
+            <h2 class="section-title"><i class="bi bi-file-earmark-text"></i> Dizin İçi Ek Dosyalar (.txt)</h2>
+            <p class="text-white-50 mb-4">Klasör içerisinde bulunan diğer uygulama dosyalarının detaylı analizleri.</p>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Dört İşlem Uygulaması (Standart)</h4>
+                <div class="mantik-box">
+                    <h6>ANALİZ:</h6>
+                    İki sayının girişini alır ve 4 farklı aritmetik operatörü (+, -, *, /) bir `if-else` yapısı içinde
+                    test eder. Veri tipi olarak `int` kullanılmıştır.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>Console.Write("Sayı 1: ");
+int s1 = Convert.ToInt32(Console.ReadLine());
+Console.Write("Sayı 2: ");
+int s2 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Toplam: " + (s1+s2));
+Console.WriteLine("Fark: " + (s1-s2));
+Console.WriteLine("Çarpım: " + (s1*s2));
+Console.WriteLine("Bölüm: " + (s1/s2));</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Negatif Sayı Girince Sonlanan Döngü</h4>
+                <div class="mantik-box">
+                    <h6>ANALİZ:</h6>
+                    `while(true)` sonsuz döngüsü kullanılır. Kullanıcı her sayı girdiğinde `if` ile kontrol edilir. Eğer
+                    girdiği sayı 0'dan küçükse (negatifse) `break` komutu ile döngü kırılır ve program biter.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>while (true) {
+    Console.WriteLine("Bir sayı giriniz (Çıkmak için negatif bir sayı):");
+    int sayi = Convert.ToInt32(Console.ReadLine());
+    if (sayi < 0) {
+        Console.WriteLine("Negatif sayı girildi, program sonlandırılıyor.");
+        break; 
+    }
+    Console.WriteLine("Girdiğiniz sayı: " + sayi);
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h4 class="code-title"><i class="bi bi-file-earmark-code"></i> Sayı Tahmin Oyunu v2 (Klasör Dosyası)
+                </h4>
+                <div class="mantik-box">
+                    <h6>ANALİZ:</h6>
+                    `Random` sınıfı ile bilgisayarın hafızasında bir sayı tutulur. Kullanıcı bildiği sürece döngü devam
+                    eder. Her yanlış tahminde `if-else` blokları sayesinde yönlendirme yapılır.
+                </div>
+                <div class="code-wrap">
+                    <pre class="language-csharp"><code>Random rnd = new Random();
+int bilgisayarSayısı = rnd.Next(1, 100);
+int tahmin = 0;
+while (tahmin != bilgisayarSayısı) {
+    Console.Write("Tahmininiz: ");
+    tahmin = int.Parse(Console.ReadLine());
+    if (tahmin > bilgisayarSayısı) Console.WriteLine("Daha küçük bir sayı gir!");
+    else if (tahmin < bilgisayarSayısı) Console.WriteLine("Daha büyük bir sayı gir!");
+}
+Console.WriteLine("TEBRİKLER! Sayıyı buldunuz.");</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5 border-top border-light border-opacity-10 pt-5 text-center">
+            <h2 class="mb-4 fw-bold">Daha Fazlası?</h2>
+            <p class="text-white-50">Arşivde toplam 56 adet dosya bulunmaktadır. Yukarıdaki örnekler sınavda en çok
+                sorulan ve tüm temel mantığı (Döngü, Dizi, Metot, Karar) kapsayan seçilmiş kodlardır.</p>
+            <div class="mt-4">
+                <a href="#intro" class="btn btn-outline-primary rounded-pill px-5 py-2">En Başa Dön</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 Programlama Temelleri Final Hazırlık Rehberi</p>
+            <p class="small text-muted">Özgürce çalışabilir, kodları kopyalayıp deneyebilirsin.</p>
+        </footer>
+
+    </main>
+
+    <!-- Prism and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+
+    <script>
+        // Copy functionality
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const code = btn.nextElementSibling.innerText;
+                navigator.clipboard.writeText(code);
+                btn.innerHTML = 'Kopyalandı!';
+                btn.style.background = '#6366f1';
+                setTimeout(() => {
+                    btn.innerHTML = 'Kopya';
+                    btn.style.background = 'rgba(255,255,255,0.1)';
+                }, 2000);
+            });
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

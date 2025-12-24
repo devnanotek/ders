@@ -1,0 +1,89 @@
+using System;
+
+public class Fibonacci{
+
+
+   int[] dizi=new int[50];
+
+   static int Fibonacci(int adet){
+
+	int sayi1 = 0; dizi[0]=0;
+	int sayi2 = 1; dizi[1]=1;
+	int i,sayi3;
+
+	Console.Write(sayi1 + " \t " + sayi2 + "\t ");
+
+	for (i = 2; i <=adet; i++){
+		sayi3 = sayi1 + sayi2;
+		Console.Write(sayi3 + "\t ");
+	 
+		sayi1 = sayi2;
+		sayi2 = sayi3;
+		dizi[i]=sayi3;
+	}
+
+   	return dizi;
+   }
+
+
+
+
+    public static void Main(string[] args){
+
+		Console.WriteLine("Fibonacci Dizisi kaç seri devam etmesini istiyorsunuz : ");
+		int sayi=Convert.ToInt16(Console.Readline());
+		
+		Console.WriteLine("\nFibonacci Serisi \n " + Fibonacci(sayi));
+            	Console.ReadLine();
+
+	}
+ 
+    
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+using System;
+
+public class FibonacciDizisi{
+
+
+    static int[] dizi=new int[50];
+
+    static int Fibonacci(int adet){
+
+	int sayi1 = 0; dizi[0]=0;
+	int sayi2 = 1; dizi[1]=1;
+	int i,sayi3;
+
+	Console.Write(sayi1 + " \t " + sayi2 + "\t ");
+
+	for (i = 2; i < adet; i++){
+		sayi3 = sayi1 + sayi2;
+		Console.Write(sayi3 + "\t ");
+	 
+		sayi1 = sayi2;
+		sayi2 = sayi3;
+		dizi[i]=sayi3;
+	}
+
+   	return dizi;
+   }
+
+
+
+
+    public static void Main(string[] args){
+
+		Console.WriteLine("Fibonacci Dizisi kaç seri devam etmesini istiyorsunuz : ");
+		int sayi=Convert.ToInt16(Console.Readline());
+		for(int i=0; i<10;i++){
+			
+		}
+		int[] dizi2=Fibonacci(sayi);
+
+	}
+ 
+    
+}

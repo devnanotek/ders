@@ -1,0 +1,24 @@
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int number;
+            Console.Write("Sayı Giriniz : ");
+            sayi = int.Parse(Console.ReadLine());
+            int q;
+            string hafiza = "";
+            while (sayi >= 1) {
+                q = sayi / 2;
+                hafiza += (sayi % 2).ToString();
+                sayi = q;
+            }
+            string binary = "";
+            for (int i = hafiza.Length - 1; i >= 0; i--) {
+                binary = binary + hafiza[i];
+            }
+
+            Console.WriteLine("{0} sayısının Binary format hali {1}",sayi, binary);
+            Console.ReadLine();
+        }
+    }

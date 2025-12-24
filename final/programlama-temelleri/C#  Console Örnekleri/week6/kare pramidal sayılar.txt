@@ -1,0 +1,28 @@
+// ilk doğal sayıların karelerinin toplamını temsil eder. İlk birkaç kare piramidal sayı 1, 5, 14, 30, 55, 91, 140, 204, 285, 385, 506,… şeklindedir.
+
+static void Main(string[] args)
+        {
+            int toplam = 0;
+            Console.Write("N : ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            for(int i = 1; i <= n; i++)
+            {
+                toplam = 0;
+                for(int j=1;j<=i;j++)
+                {
+                    toplam += j * j;
+                    Console.Write(j+"^2");
+                    if (j != i)
+                    {
+                        Console.Write(" + ");
+                    }
+                    else
+                    {
+                        Console.Write(" = ");
+                    }
+                }
+                Console.Write(toplam);
+                Console.WriteLine();
+            }
+            Console.ReadKey();
+        }

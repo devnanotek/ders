@@ -1,0 +1,38 @@
+using System;
+
+public class SayiTahmin {
+
+    public static void Main(string[] args) {
+        
+        int hak = 5;
+        Random rnd = new Random();
+        int tutulan = rnd.Next(1, 100);
+        int sayi=0;
+        
+	Console.Write("Tuttuðum Sayýyý Tahmin Edin : ");
+
+	while (hak>0) {
+
+
+		sayi = Convert.ToInt16(Console.ReadLine());
+		hak = hak - 1;
+
+		if (sayi == tutulan){
+		Console.WriteLine("tebrilker sayýyý "+hak+".hakkýnýzda doðru tahmin ettiniz");
+		break;
+		} else {            
+			if (sayi > tutulan)
+			Console.WriteLine("Daha Aþaðý bir sayý söyleyin");
+			else
+			Console.WriteLine("Daha Yukarý bir sayi söyleyin");
+		}
+
+		if(hak==0)
+		Console.WriteLine("tahmin hakkýnýz bitti sayýmýz:"+tutulan+" idi");
+		else
+		Console.WriteLine("Kalan tahmin hakkýnýz:{0}", hak);
+
+
+	}
+    }
+}

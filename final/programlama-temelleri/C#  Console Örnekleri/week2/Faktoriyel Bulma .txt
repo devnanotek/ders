@@ -1,0 +1,18 @@
+using System;
+
+public class Faktoriyel{
+
+    public static void Main(string[] args){
+
+        int sayi,i,fakt=1;
+        Console.WriteLine("Faktoriyeli alýnacak sayý girin");
+        sayi = Convert.ToInt16(Console.ReadLine());
+
+        for (i=1; i <= sayi; i++){
+	        fakt= i * fakt;
+        }
+
+        Console.WriteLine(sayi +"!=" + fakt);
+        Console.ReadLine();
+    }
+}

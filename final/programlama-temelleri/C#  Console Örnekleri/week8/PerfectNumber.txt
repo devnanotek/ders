@@ -1,0 +1,25 @@
+using System;
+
+namespace Program{
+    class Program{
+        static void Main(string[] args){
+
+            int sayi,toplam=0,q;
+            Console.Write("enter the Number");
+            sayi = int.Parse(Console.ReadLine());
+            q = sayi;
+            for (int i = 1; i < sayi ; i++) {
+                if (sayi % i == 0) {
+                    toplam=toplam + i;
+                }
+            }
+                if (toplam == q) {
+                    Console.WriteLine("\n Mükemmel Sayı");
+                    Console.ReadLine();
+                } else {
+                    Console.WriteLine("\n Sayı Mükemmel Değildir");
+                    Console.ReadLine();
+                }
+            }
+      }
+}

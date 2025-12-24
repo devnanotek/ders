@@ -1,0 +1,57 @@
+
+using System;
+class program {
+    public static void Main() {
+ 
+        int hesap = 1000, cekilen, yatirilan;
+        int secim, pin = 0, x = 0;
+        Console.WriteLine("Enter Your Pin Number ");
+        pin = int.Parse(Console.ReadLine());
+
+        while (true) {
+            Console.WriteLine("******** ATM SERVİSİNE HOŞGELDİNİZ **************\n");
+            Console.WriteLine("1. Bakiye Kontrol \n");
+            Console.WriteLine("2. Para Çek \n");
+            Console.WriteLine("3. Para Yatır \n");
+            Console.WriteLine("4. Çıkış \n");
+            Console.WriteLine("*********************************************\n\n");
+            Console.WriteLine("Hangi İşlemi yapmak istersiniz : ");
+            secim = int.Parse(Console.ReadLine());
+
+            switch (secim) {
+            case 1:
+                Console.WriteLine("\n Hesap Bakiyeniz : {0} ", amount);
+                break;
+
+            case 2:
+                Console.WriteLine("\n Ne kadar Para çekmek istiyorsunuz : ");
+                withdraw = int.Parse(Console.ReadLine());
+                if (withdraw % 10 != 0) {
+                  Console.WriteLine("\n Lütfen 10 TL ve katları şeklinde para girişi talep ediniz ");  
+
+                } else if (cekilen > (hesap - 500)) {
+                   Console.WriteLine("\n Yetersiz Bakiye");
+
+                } else {
+                   hesap = hesap - cekilen;
+                   Console.WriteLine("\n\n Lütfen Paranızı Alınız");
+                   Console.WriteLine("\n Mevcut Bakiye {0}", hesap);
+                }
+                break;
+
+            case 3:
+                Console.WriteLine("\n Ne kadar Para yatırmak istiyorsunuz ? ");
+                yatirilan = int.Parse(Console.ReadLine());
+                hesap = hesap + yatirilan;
+                Console.WriteLine("Mevcut Bakiyeniz {0}", hesap);
+                break;
+
+            case 4:
+                Console.WriteLine("\n ATM ye TEKRAR BEKLERİZ...");
+            break;
+
+            }
+        }
+        Console.WriteLine("\n\n ATM HİZMETİNİ KULLANDIĞINIZ İÇİN TEŞEKKÜR EDERİZ ");
+    }
+ }

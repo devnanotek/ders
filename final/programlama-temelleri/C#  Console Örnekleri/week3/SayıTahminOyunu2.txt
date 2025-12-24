@@ -1,0 +1,28 @@
+using System;
+
+public class SayiBulmaOyunu{
+
+    public static void Main(string[] args){
+
+        int sayi=0,tahmin=0,min=0,max=100,sayac=0;
+        Random Rnd = new Random();
+
+        sayi =Convert .ToInt16 ( Rnd.Next(0, 100));
+        Console.Write("0-100 arasý bir sayý giriniz ");
+
+        do{
+          sayac++;
+          tahmin = Convert.ToInt16(Console.ReadLine());
+          if (tahmin >sayi)
+            max = tahmin;
+          else
+            min = tahmin;
+
+         Console.WriteLine("{0} - {1} arasýnda sayý giriniz", min, max);
+
+        }while (sayi!=tahmin);
+
+        Console.WriteLine("Tebrikler sayý {0} \n {1} .tahminde bildiniz", sayi,sayac );
+        Console.ReadLine();
+    }
+}

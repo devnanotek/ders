@@ -1,0 +1,31 @@
+int i,a,b,c;
+int[] not = new int [10];
+int[] top = new int[10];
+int[] ort = new int[10];
+string[] ad = new string[10];
+
+for (i = 0; i <= 9; i++) {
+	Console.WriteLine("adýnýzý giriniz");
+	ad[i] = Console.ReadLine();
+
+	Console.WriteLine("1.notunuzu girin");
+	a = Convert.ToInt32(Console.ReadLine());
+
+	Console.WriteLine("2.notunuzu girin");
+	b = Convert.ToInt32(Console.ReadLine());
+
+	Console.WriteLine("3.notunuzu girin");
+	c = Convert.ToInt32(Console.ReadLine());
+	top[i] = a+b+c;
+	ort[i] = top[i] / 3;
+}
+
+for (i = 0; i <= 9; i++) {
+	if (ort[i] <= 45) {
+		Console.WriteLine(ad[i] + " not ortalamasý : " + ort[i] + " sýnýfta kaldý kaldý");
+	} else {
+		Console.WriteLine(ad[i] + " not ortalamasý : " + ort[i] + " bir üst sýnýfa geçti");
+	}
+}
+
+Console.ReadLine();

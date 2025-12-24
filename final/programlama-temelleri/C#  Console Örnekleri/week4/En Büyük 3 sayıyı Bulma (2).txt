@@ -1,0 +1,50 @@
+// İstenen adet kadar sayının arasındaki ilk 3 sayı
+using System;
+
+class enBuyukUcSayiyiBulma{
+
+     static void Main(string[] args){
+
+		 int[] sayilar=new int[100];
+		 Console.WriteLine("Kaç adet sayı girmek istiyorsunuz");
+		 int adet=Convert.ToInt16(Console.ReadLine());
+
+		 for(int i=0; i < adet ; i++){
+			Console.WriteLine(i+1+" .sayı : ");
+			int sayi=Convert.ToInt16(Console.ReadLine());
+			 sayilar[i]=sayi;
+		 }
+		 
+		 int enbuyuk=sayilar[0];
+		 int ikinci=sayilar[0];
+		 int ucuncu=sayilar[0];
+		 
+		 for(int i=0; i<adet ; i++){ 
+			  if(enbuyuk < sayilar[i]){ //en büyük sayıyı bulmak için
+			  	enbuyuk=sayilar[i];
+			 	}
+		 }
+			 
+		 for(int i=0; i<adet ; i++){
+			  if(sayilar[i]==enbuyuk){				
+			  	i++;  // en büyük sayı pas geçiliyor			 	  
+			   }else{
+			     if(ikinci < sayilar[i]){  // en büyük 2.sayıyı bulmak için 
+			  	ikinci=sayilar[i];  }
+			  }	
+		 }
+	 
+		 for(int i=0; i<adet ; i++){
+			  if(sayilar[i]==enbuyuk || sayilar[i]==ikinci){
+			  	     i++;  // en büyük 2.sayıyı pas geçiliyor
+			 }else{
+			      if(ucuncu < sayilar[i]){ //en büyük 3.sayıyı bulmak için
+			      ucuncu=sayilar[i]; }
+			  }	
+		 }
+
+		 Console.WriteLine("Listenin en büyük elemanı ...."+ enbuyuk);
+		 Console.WriteLine("Listenin en büyük İKİNCİ elemanı ...."+ ikinci);
+		 Console.WriteLine("Listenin en büyük ÜÇÜNCÜ elemanı ...."+ ucuncu);
+      }
+}
