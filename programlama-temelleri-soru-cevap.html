@@ -1,504 +1,728 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="İslam ERGÜN">
-	<meta name="description" content="Programlama Temelleri dersi özeti. C# programlama, algoritma ve akış diyagramları.">
+	<meta name="description"
+		content="Programlama Temelleri dersi özeti. C# programlama, algoritma ve akış diyagramları.">
 	<meta name="keywords" content="Programlama, C#, Algoritma, Akış Diyagramı, Eğitim">
 	<meta name="robots" content="index, follow">
 	<meta property="og:title" content="Programlama Temelleri Ders Özeti">
 	<meta property="og:description" content="Programlama temelleri dersi için hazırlanmış kapsamlı ders özeti">
 	<meta property="og:type" content="website">
 	<title>Programlama Temelleri Ders Özeti | C# & Algoritma</title>
-	
+
 	<!-- Bootstrap 5 CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<!-- Bootstrap Icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+		rel="stylesheet">
+
 	<style>
-		*{margin:0;padding:0;box-sizing:border-box}
-		body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px 0}
-		.main-header{background:#fff;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);padding:40px;margin-bottom:30px;text-align:center}
-		.main-header h1{color:#764ba2;font-weight:700;margin-bottom:10px;font-size:2.5rem}
-		.author-badge{display:inline-block;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:8px 20px;border-radius:50px;margin-top:15px;font-size:0.9rem}
-		.content-card{background:#fff;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.1);padding:40px;margin-bottom:30px}
-		.content-card h1{color:#764ba2;border-bottom:3px solid #667eea;padding-bottom:15px;margin-bottom:25px}
-		.content-card h2{color:#667eea;margin-top:30px;margin-bottom:20px;border-left:4px solid #764ba2;padding-left:15px}
-		.content-card h3{color:#555;margin-top:20px;margin-bottom:15px}
-		.info-box{background:linear-gradient(135deg,#e3f2fd,#f3e5f5);border-left:4px solid #667eea;padding:20px;margin:20px 0;border-radius:10px}
-		.example-box{background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-left:4px solid #4caf50;padding:20px;margin:20px 0;border-radius:10px}
-		.warning-box{background:linear-gradient(135deg,#fff3e0,#ffe0b2);border-left:4px solid #ff9800;padding:20px;margin:20px 0;border-radius:10px}
-		.code-block{background:#272822;color:#f8f8f2;padding:20px;border-radius:10px;overflow-x:auto;margin:15px 0;border-left:4px solid #61dafb;font-family:'Consolas','Courier New',monospace;line-height:1.6}
-		.code-block code{color:#f8f8f2;font-family:'Consolas','Courier New',monospace}
-		.syntax-keyword{color:#f92672;font-weight:600}
-		.syntax-type{color:#66d9ef;font-style:italic}
-		.syntax-method{color:#a6e22e}
-		.syntax-string{color:#e6db74}
-		.syntax-number{color:#ae81ff}
-		.syntax-comment{color:#75715e;font-style:italic}
-		.syntax-operator{color:#f92672}
-		.syntax-variable{color:#f8f8f2}
-		code{padding:3px 8px;border-radius:4px;font-family:'Courier New',monospace;font-size:0.9em;color:#e83e8c}
-		table{width:100%;border-collapse:collapse;margin:20px 0;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-		th{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:15px;text-align:left}
-		td{padding:12px 15px;border-bottom:1px solid #e0e0e0}
-		tr:hover{background:#f5f5f5}
-		ul,ol{margin-left:25px;line-height:1.8}
-		li{margin:10px 0}
-		.btn-back{position:fixed;top:20px;left:20px;background:#fff;color:#764ba2;padding:12px 20px;border-radius:50px;text-decoration:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);transition:all 0.3s;z-index:1000;font-weight:600}
-		.btn-back:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3);color:#667eea}
-		.btn-print{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;padding:12px 24px;border-radius:50px;cursor:pointer;font-size:1rem;transition:all 0.3s;margin:20px 0}
-		.btn-print:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(102,126,234,0.4)}
-		@media print{body{background:#fff;padding:0}.btn-back,.btn-print,.no-print{display:none}.content-card{box-shadow:none}}
-		@media (max-width:768px){.main-header h1{font-size:1.8rem}.btn-back{font-size:0.8rem;padding:8px 15px}}
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box
+		}
+
+		body {
+			font-family: 'Poppins', sans-serif;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			min-height: 100vh;
+			padding: 20px 0
+		}
+
+		.main-header {
+			background: #fff;
+			border-radius: 15px;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+			padding: 40px;
+			margin-bottom: 30px;
+			text-align: center
+		}
+
+		.main-header h1 {
+			color: #764ba2;
+			font-weight: 700;
+			margin-bottom: 10px;
+			font-size: 2.5rem
+		}
+
+		.author-badge {
+			display: inline-block;
+			background: linear-gradient(135deg, #667eea, #764ba2);
+			color: #fff;
+			padding: 8px 20px;
+			border-radius: 50px;
+			margin-top: 15px;
+			font-size: 0.9rem
+		}
+
+		.content-card {
+			background: #fff;
+			border-radius: 15px;
+			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+			padding: 40px;
+			margin-bottom: 30px
+		}
+
+		.content-card h1 {
+			color: #764ba2;
+			border-bottom: 3px solid #667eea;
+			padding-bottom: 15px;
+			margin-bottom: 25px
+		}
+
+		.content-card h2 {
+			color: #667eea;
+			margin-top: 30px;
+			margin-bottom: 20px;
+			border-left: 4px solid #764ba2;
+			padding-left: 15px
+		}
+
+		.content-card h3 {
+			color: #555;
+			margin-top: 20px;
+			margin-bottom: 15px
+		}
+
+		.info-box {
+			background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+			border-left: 4px solid #667eea;
+			padding: 20px;
+			margin: 20px 0;
+			border-radius: 10px
+		}
+
+		.example-box {
+			background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+			border-left: 4px solid #4caf50;
+			padding: 20px;
+			margin: 20px 0;
+			border-radius: 10px
+		}
+
+		.warning-box {
+			background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+			border-left: 4px solid #ff9800;
+			padding: 20px;
+			margin: 20px 0;
+			border-radius: 10px
+		}
+
+		.code-block {
+			background: #272822;
+			color: #f8f8f2;
+			padding: 20px;
+			border-radius: 10px;
+			overflow-x: auto;
+			margin: 15px 0;
+			border-left: 4px solid #61dafb;
+			font-family: 'Consolas', 'Courier New', monospace;
+			line-height: 1.6
+		}
+
+		.code-block code {
+			color: #f8f8f2;
+			font-family: 'Consolas', 'Courier New', monospace
+		}
+
+		.syntax-keyword {
+			color: #f92672;
+			font-weight: 600
+		}
+
+		.syntax-type {
+			color: #66d9ef;
+			font-style: italic
+		}
+
+		.syntax-method {
+			color: #a6e22e
+		}
+
+		.syntax-string {
+			color: #e6db74
+		}
+
+		.syntax-number {
+			color: #ae81ff
+		}
+
+		.syntax-comment {
+			color: #75715e;
+			font-style: italic
+		}
+
+		.syntax-operator {
+			color: #f92672
+		}
+
+		.syntax-variable {
+			color: #f8f8f2
+		}
+
+		code {
+			padding: 3px 8px;
+			border-radius: 4px;
+			font-family: 'Courier New', monospace;
+			font-size: 0.9em;
+			color: #e83e8c
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 20px 0;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
+		}
+
+		th {
+			background: linear-gradient(135deg, #667eea, #764ba2);
+			color: #fff;
+			padding: 15px;
+			text-align: left
+		}
+
+		td {
+			padding: 12px 15px;
+			border-bottom: 1px solid #e0e0e0
+		}
+
+		tr:hover {
+			background: #f5f5f5
+		}
+
+		ul,
+		ol {
+			margin-left: 25px;
+			line-height: 1.8
+		}
+
+		li {
+			margin: 10px 0
+		}
+
+		.btn-back {
+			position: fixed;
+			top: 20px;
+			left: 20px;
+			background: #fff;
+			color: #764ba2;
+			padding: 12px 20px;
+			border-radius: 50px;
+			text-decoration: none;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+			transition: all 0.3s;
+			z-index: 1000;
+			font-weight: 600
+		}
+
+		.btn-back:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+			color: #667eea
+		}
+
+		.btn-print {
+			background: linear-gradient(135deg, #667eea, #764ba2);
+			color: #fff;
+			border: none;
+			padding: 12px 24px;
+			border-radius: 50px;
+			cursor: pointer;
+			font-size: 1rem;
+			transition: all 0.3s;
+			margin: 20px 0
+		}
+
+		.btn-print:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4)
+		}
+
+		@media print {
+			body {
+				background: #fff;
+				padding: 0
+			}
+
+			.btn-back,
+			.btn-print,
+			.no-print {
+				display: none
+			}
+
+			.content-card {
+				box-shadow: none
+			}
+		}
+
+		@media (max-width:768px) {
+			.main-header h1 {
+				font-size: 1.8rem
+			}
+
+			.btn-back {
+				font-size: 0.8rem;
+				padding: 8px 15px
+			}
+		}
 	</style>
 </head>
+
 <body>
 
-<a href="index.html" class="btn-back no-print"><i class="bi bi-arrow-left-circle"></i> Ana Sayfa</a>
+	<a href="index.html" class="btn-back no-print"><i class="bi bi-arrow-left-circle"></i> Ana Sayfa</a>
 
-<div class="container">
-	<header class="main-header" role="banner">
-		<h1><i class="bi bi-code-square"></i> Programlama Temelleri</h1>
-		<p>Bilgisayar Programcılığı 1. Sınıf - Ders Özeti</p>
-		<span class="author-badge"><i class="bi bi-person-circle"></i> İslam ERGÜN</span>
-		<div class="mt-3">
-			<button class="btn-print" onclick="window.print()"><i class="bi bi-printer"></i> PDF Olarak İndir</button>
-		</div>
-	</header>
+	<div class="container">
+		<header class="main-header" role="banner">
+			<h1><i class="bi bi-code-square"></i> Programlama Temelleri</h1>
+			<p>Bilgisayar Programcılığı 1. Sınıf - Ders Özeti</p>
+			<span class="author-badge"><i class="bi bi-person-circle"></i> İslam ERGÜN</span>
+			<div class="mt-3">
+				<button class="btn-print" onclick="window.print()"><i class="bi bi-printer"></i> PDF Olarak
+					İndir</button>
+			</div>
+		</header>
 
-	<article class="content-card">
-		<h1><i class="bi bi-1-circle"></i> Bilgisayar ve Programlama Temelleri</h1>
-		
-		<h2>Bilgisayar Nedir?</h2>
-		<p>Bilgisayar, kullanıcıdan aldığı verilerle mantıksal ve aritmetiksel işlemleri yapan, sonuçları saklayan elektronik bir makinedir.</p>
-		
-		<div class="info-box">
-			<h3><i class="bi bi-info-circle"></i> İki Temel Özelliği:</h3>
-			<ol>
-				<li>Veri işlemek için sembolleri (harf, sayı, noktalama) kullanır</li>
-				<li>Tüm işleri adım adım detaylandırılmış komut listesine (program) göre yapar</li>
-			</ol>
-		</div>
+		<article class="content-card">
+			<h1><i class="bi bi-1-circle"></i> Bilgisayar ve Programlama Temelleri</h1>
 
-		<h2>Temel Kavramlar</h2>
-		<ul>
-			<li><strong>Bilgi:</strong> Soyut kavram, gerçekler ve düşünceler</li>
-			<li><strong>Semboller:</strong> Bilginin iletilmesinde kullanılan araçlar</li>
-			<li><strong>Veri:</strong> Sembollerle ifade edilen işlenmemiş bilgi</li>
-		</ul>
+			<h2>Bilgisayar Nedir?</h2>
+			<p>Bilgisayar, kullanıcıdan aldığı verilerle mantıksal ve aritmetiksel işlemleri yapan, sonuçları saklayan
+				elektronik bir makinedir.</p>
 
-		<h2>Bilgisayarın Bileşenleri</h2>
-		<ol>
-			<li><strong>Donanım (Hardware):</strong> Fiziksel parçalar (ekran, klavye, disk, fare, yazıcı)</li>
-			<li><strong>Yazılım (Software):</strong> Programlar
-				<ul>
-					<li>İşletim Sistemleri</li>
-					<li>Uygulama Yazılımları</li>
-					<li>Programlama Dilleri</li>
-				</ul>
-			</li>
-		</ol>
+			<div class="info-box">
+				<h3><i class="bi bi-info-circle"></i> İki Temel Özelliği:</h3>
+				<ol>
+					<li>Veri işlemek için sembolleri (harf, sayı, noktalama) kullanır</li>
+					<li>Tüm işleri adım adım detaylandırılmış komut listesine (program) göre yapar</li>
+				</ol>
+			</div>
 
-		<h2>İkili Sayı Sistemi</h2>
-		<p>Bilgisayarlar 0 ve 1'lerden oluşan ikili sistemi kullanır</p>
-		
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Birim</th>
-					<th>Değer</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1 Bit</td>
-					<td>En küçük bellek birimi (0 veya 1)</td>
-				</tr>
-				<tr>
-					<td>1 Byte</td>
-					<td>8 Bit</td>
-				</tr>
-				<tr>
-					<td>1 KB</td>
-					<td>1024 Byte</td>
-				</tr>
-				<tr>
-					<td>1 MB</td>
-					<td>1024 KB</td>
-				</tr>
-				<tr>
-					<td>1 GB</td>
-					<td>1024 MB</td>
-				</tr>
-				<tr>
-					<td>1 TB</td>
-					<td>1024 GB</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<div class="example-box">
-			<h3><i class="bi bi-lightbulb"></i> Örnek Dönüşümler:</h3>
+			<h2>Temel Kavramlar</h2>
 			<ul>
-				<li>(175)₁₀ = (10101111)₂</li>
-				<li>(10110100)₂ = 128 + 32 + 16 + 4 = (180)₁₀</li>
+				<li><strong>Bilgi:</strong> Soyut kavram, gerçekler ve düşünceler</li>
+				<li><strong>Semboller:</strong> Bilginin iletilmesinde kullanılan araçlar</li>
+				<li><strong>Veri:</strong> Sembollerle ifade edilen işlenmemiş bilgi</li>
 			</ul>
-		</div>
 
-		<h2>Programlama Dilleri Sınıflandırması</h2>
-		<div class="info-box">
-			<h3>Seviyelerine Göre:</h3>
-			<ul>
-				<li><strong>Makine Dili:</strong> 0 ve 1'ler</li>
-				<li><strong>Assembly:</strong> Düşük seviyeli</li>
-				<li><strong>C, C++, Java:</strong> Orta seviyeli</li>
-				<li><strong>Pascal, Basic:</strong> Yüksek seviyeli</li>
-				<li><strong>Visual Basic, Python:</strong> Çok yüksek seviyeli</li>
-			</ul>
-		</div>
-	</article>
-
-	<article class="content-card">
-		<h1><i class="bi bi-2-circle"></i> Programlama Aşamaları ve Algoritma</h1>
-
-		<h2>Programlama Aşamaları</h2>
-		<ol>
-			<li>Problemin tanınması</li>
-			<li>Çözüm yönteminin belirlenmesi</li>
-			<li>Algoritmanın geliştirilmesi</li>
-			<li>Akış şemasının düzenlenmesi</li>
-			<li>Programın el ile çalıştırılıp denenmesi</li>
-			<li>Uygun programlama dilinin seçilmesi</li>
-			<li>Programın kodlanması</li>
-			<li>Programın bilgisayar ile çalıştırılıp sınanması</li>
-		</ol>
-
-		<h2>Algoritma Nedir?</h2>
-		<p>Bir problemi çözmek için gerekli olan sıralı mantıksal adımların tümüdür.</p>
-
-		<div class="info-box">
-			<h3><i class="bi bi-check2-circle"></i> Algoritmanın Temel Özellikleri:</h3>
+			<h2>Bilgisayarın Bileşenleri</h2>
 			<ol>
-				<li><strong>Kesinlik:</strong> Anlatım satırları kesin olmalı</li>
-				<li><strong>Etkinlik:</strong> Tekrar anlatımlar olmamalı</li>
-				<li><strong>Sonluluk:</strong> Mutlaka bitiş noktası olmalı</li>
-				<li><strong>Giriş-Çıkış:</strong> Çıkış bilgisi kesinlikle olmalı</li>
-			</ol>
-		</div>
-
-		<h2>İşlemler</h2>
-		
-		<h3>1. Aritmetik İşlemler (Öncelik Sırası):</h3>
-		<ol>
-			<li><code>^</code> (Üs alma)</li>
-			<li><code>*</code> (Çarpma)</li>
-			<li><code>/</code> (Bölme)</li>
-			<li><code>+</code> (Toplama)</li>
-			<li><code>-</code> (Çıkarma)</li>
-		</ol>
-
-		<h3>2. İlişkisel İşlemler:</h3>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Operatör</th>
-					<th>Anlamı</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><code>&gt;</code></td>
-					<td>Büyüktür</td>
-				</tr>
-				<tr>
-					<td><code>&lt;</code></td>
-					<td>Küçüktür</td>
-				</tr>
-				<tr>
-					<td><code>=</code></td>
-					<td>Eşittir</td>
-				</tr>
-				<tr>
-					<td><code>&gt;=</code></td>
-					<td>Büyük veya eşit</td>
-				</tr>
-				<tr>
-					<td><code>&lt;=</code></td>
-					<td>Küçük veya eşit</td>
-				</tr>
-				<tr>
-					<td><code>^=</code></td>
-					<td>Eşit değil</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3>3. Mantıksal İşlemler:</h3>
-		<ul>
-			<li><strong>AND (VE):</strong> Her iki koşul da doğru olmalı</li>
-			<li><strong>OR (VEYA):</strong> Koşullardan biri doğru olmalı</li>
-			<li><strong>NOT (DEĞİL):</strong> Koşulun tersi</li>
-		</ul>
-
-		<h2>Yazılım Geliştirme Araçları</h2>
-		<ul>
-			<li><strong>Editörler:</strong> Kod yazmak için (Notepad, Wordpad)</li>
-			<li><strong>Derleyiciler (Compiler):</strong> Tüm kodu bir kerede makine diline çevirir</li>
-			<li><strong>Yorumlayıcılar (Interpreter):</strong> Kodu satır satır çalıştırır</li>
-			<li><strong>Bağlayıcılar (Linker):</strong> Kodları birleştirip çalıştırılabilir dosya oluşturur</li>
-		</ul>
-
-		<h2>Hata Türleri</h2>
-		<ol>
-			<li><strong>Syntax Error (Sözdizimi):</strong> Programlama dili kurallarına aykırılık</li>
-			<li><strong>Run-time Error:</strong> Program çalışırken oluşan hatalar</li>
-			<li><strong>Logic Error (Mantık Hatası):</strong> Yanlış düşünülmüş mantık</li>
-		</ol>
-
-		<h2>Algoritma Örnekleri</h2>
-		
-		<div class="example-box">
-			<h3><i class="bi bi-calculator"></i> Örnek 1: İki Sayının Toplamı</h3>
-			<ol>
-				<li>BAŞLA</li>
-				<li>A sayısını oku</li>
-				<li>B sayısını oku</li>
-				<li>TOPLAM = A + B</li>
-				<li>TOPLAM değerini ekrana yaz</li>
-				<li>SON</li>
-			</ol>
-		</div>
-
-		<div class="example-box">
-			<h3><i class="bi bi-calculator"></i> Örnek 2: Büyük Sayıdan Küçüğü Çıkarma</h3>
-			<ol>
-				<li>BAŞLA</li>
-				<li>A sayısını oku</li>
-				<li>B sayısını oku</li>
-				<li>Eğer A > B ise
+				<li><strong>Donanım (Hardware):</strong> Fiziksel parçalar (ekran, klavye, disk, fare, yazıcı)</li>
+				<li><strong>Yazılım (Software):</strong> Programlar
 					<ul>
-						<li>SONUC = A - B</li>
-					</ul>
-					Değilse
-					<ul>
-						<li>SONUC = B - A</li>
+						<li>İşletim Sistemleri</li>
+						<li>Uygulama Yazılımları</li>
+						<li>Programlama Dilleri</li>
 					</ul>
 				</li>
-				<li>SONUC'u yaz</li>
-				<li>SON</li>
 			</ol>
-		</div>
-	</article>
 
-	<article class="content-card">
-		<h1><i class="bi bi-3-circle"></i> Akış Diyagramları</h1>
+			<h2>İkili Sayı Sistemi</h2>
+			<p>Bilgisayarlar 0 ve 1'lerden oluşan ikili sistemi kullanır</p>
 
-		<h2>Akış Diyagramı Nedir?</h2>
-		<p>Algoritmanın şekillerle görsel gösterimidir. Standart semboller kullanılır.</p>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Birim</th>
+						<th>Değer</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1 Bit</td>
+						<td>En küçük bellek birimi (0 veya 1)</td>
+					</tr>
+					<tr>
+						<td>1 Byte</td>
+						<td>8 Bit</td>
+					</tr>
+					<tr>
+						<td>1 KB</td>
+						<td>1024 Byte</td>
+					</tr>
+					<tr>
+						<td>1 MB</td>
+						<td>1024 KB</td>
+					</tr>
+					<tr>
+						<td>1 GB</td>
+						<td>1024 MB</td>
+					</tr>
+					<tr>
+						<td>1 TB</td>
+						<td>1024 GB</td>
+					</tr>
+				</tbody>
+			</table>
 
-		<h2>Temel Akış Diyagramı Sembolleri</h2>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Sembol</th>
-					<th>Kullanımı</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Terminal (Oval)</td>
-					<td>Başla/Son</td>
-				</tr>
-				<tr>
-					<td>Paralel Kenar</td>
-					<td>Giriş/Çıkış işlemleri</td>
-				</tr>
-				<tr>
-					<td>Dikdörtgen</td>
-					<td>İşlem adımları</td>
-				</tr>
-				<tr>
-					<td>Eşkenar Dörtgen</td>
-					<td>Karar verme (Evet/Hayır)</td>
-				</tr>
-				<tr>
-					<td>Ok</td>
-					<td>Program akış yönü</td>
-				</tr>
-			</tbody>
-		</table>
+			<div class="example-box">
+				<h3><i class="bi bi-lightbulb"></i> Örnek Dönüşümler:</h3>
+				<ul>
+					<li>(175)₁₀ = (10101111)₂</li>
+					<li>(10110100)₂ = 128 + 32 + 16 + 4 = (180)₁₀</li>
+				</ul>
+			</div>
 
-		<div class="example-box">
-			<h3><i class="bi bi-diagram-3"></i> Akış Diyagramı Örneği: 1'den 100'e Kadar Toplamı</h3>
+			<h2>Programlama Dilleri Sınıflandırması</h2>
+			<div class="info-box">
+				<h3>Seviyelerine Göre:</h3>
+				<ul>
+					<li><strong>Makine Dili:</strong> 0 ve 1'ler</li>
+					<li><strong>Assembly:</strong> Düşük seviyeli</li>
+					<li><strong>C, C++, Java:</strong> Orta seviyeli</li>
+					<li><strong>Pascal, Basic:</strong> Yüksek seviyeli</li>
+					<li><strong>Visual Basic, Python:</strong> Çok yüksek seviyeli</li>
+				</ul>
+			</div>
+		</article>
+
+		<article class="content-card">
+			<h1><i class="bi bi-2-circle"></i> Programlama Aşamaları ve Algoritma</h1>
+
+			<h2>Programlama Aşamaları</h2>
 			<ol>
-				<li>Başla</li>
-				<li>S = 1, T = 0</li>
-				<li>T = T + S</li>
-				<li>S = S + 1</li>
-				<li>S &lt;= 100 ise 3'e git</li>
-				<li>T'yi göster</li>
-				<li>Son</li>
+				<li>Problemin tanınması</li>
+				<li>Çözüm yönteminin belirlenmesi</li>
+				<li>Algoritmanın geliştirilmesi</li>
+				<li>Akış şemasının düzenlenmesi</li>
+				<li>Programın el ile çalıştırılıp denenmesi</li>
+				<li>Uygun programlama dilinin seçilmesi</li>
+				<li>Programın kodlanması</li>
+				<li>Programın bilgisayar ile çalıştırılıp sınanması</li>
 			</ol>
-		</div>
-	</article>
 
-	<article class="content-card">
-		<h1><i class="bi bi-4-circle"></i> C# Programlama</h1>
+			<h2>Algoritma Nedir?</h2>
+			<p>Bir problemi çözmek için gerekli olan sıralı mantıksal adımların tümüdür.</p>
 
-		<h2>Değişkenler (Variables)</h2>
-		<p>Değişken, hafızada değer tutan alanlardır. Her değişkenin bir türü vardır.</p>
+			<div class="info-box">
+				<h3><i class="bi bi-check2-circle"></i> Algoritmanın Temel Özellikleri:</h3>
+				<ol>
+					<li><strong>Kesinlik:</strong> Anlatım satırları kesin olmalı</li>
+					<li><strong>Etkinlik:</strong> Tekrar anlatımlar olmamalı</li>
+					<li><strong>Sonluluk:</strong> Mutlaka bitiş noktası olmalı</li>
+					<li><strong>Giriş-Çıkış:</strong> Çıkış bilgisi kesinlikle olmalı</li>
+				</ol>
+			</div>
 
-		<h2>Veri Tipleri</h2>
+			<h2>İşlemler</h2>
 
-		<h3>Tam Sayı Tipleri:</h3>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Tip</th>
-					<th>Aralık</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><code>byte</code></td>
-					<td>0-255</td>
-				</tr>
-				<tr>
-					<td><code>sbyte</code></td>
-					<td>-128 ile 127</td>
-				</tr>
-				<tr>
-					<td><code>short</code></td>
-					<td>-32,768 ile 32,767</td>
-				</tr>
-				<tr>
-					<td><code>int</code></td>
-					<td>-2 milyar ile +2 milyar</td>
-				</tr>
-				<tr>
-					<td><code>long</code></td>
-					<td>Çok büyük sayılar</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3>Ondalık Sayı Tipleri:</h3>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Tip</th>
-					<th>Hassasiyet</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><code>float</code></td>
-					<td>7 basamak</td>
-				</tr>
-				<tr>
-					<td><code>double</code></td>
-					<td>15 basamak</td>
-				</tr>
-				<tr>
-					<td><code>decimal</code></td>
-					<td>28 basamak</td>
-				</tr>
-			</tbody>
-		</table>
-
-		<h3>Diğer Tipler:</h3>
-		<ul>
-			<li><strong><code>char</code>:</strong> Tek karakter ('a', 'B', '5')</li>
-			<li><strong><code>string</code>:</strong> Metin ("Merhaba", "C# programlama")</li>
-			<li><strong><code>bool</code>:</strong> true/false</li>
-		</ul>
-
-		<h2>Değişken Tanımlama Kuralları</h2>
-		<div class="info-box">
+			<h3>1. Aritmetik İşlemler (Öncelik Sırası):</h3>
 			<ol>
-				<li>Harf ile başlamalı: <code>string Ad1;</code> ✓</li>
-				<li>Boşluk olamaz: <code>string Ad_Soyad;</code> ✓</li>
-				<li>Sadece harf, rakam, alt çizgi: <code>string ali_veli;</code> ✓</li>
-				<li>C# komutu olmamalı: <code>string true;</code> ✗</li>
+				<li><code>^</code> (Üs alma)</li>
+				<li><code>*</code> (Çarpma)</li>
+				<li><code>/</code> (Bölme)</li>
+				<li><code>+</code> (Toplama)</li>
+				<li><code>-</code> (Çıkarma)</li>
 			</ol>
-		</div>
 
-		<h2>Temel C# Komutları</h2>
+			<h3>2. İlişkisel İşlemler:</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Operatör</th>
+						<th>Anlamı</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>&gt;</code></td>
+						<td>Büyüktür</td>
+					</tr>
+					<tr>
+						<td><code>&lt;</code></td>
+						<td>Küçüktür</td>
+					</tr>
+					<tr>
+						<td><code>=</code></td>
+						<td>Eşittir</td>
+					</tr>
+					<tr>
+						<td><code>&gt;=</code></td>
+						<td>Büyük veya eşit</td>
+					</tr>
+					<tr>
+						<td><code>&lt;=</code></td>
+						<td>Küçük veya eşit</td>
+					</tr>
+					<tr>
+						<td><code>^=</code></td>
+						<td>Eşit değil</td>
+					</tr>
+				</tbody>
+			</table>
 
-		<h3>Ekrana Yazma:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">Console</span>.<span class="syntax-method">Write</span>(<span class="syntax-string">"Merhaba"</span>);      <span class="syntax-comment">// Yan yana yazar</span><br>
+			<h3>3. Mantıksal İşlemler:</h3>
+			<ul>
+				<li><strong>AND (VE):</strong> Her iki koşul da doğru olmalı</li>
+				<li><strong>OR (VEYA):</strong> Koşullardan biri doğru olmalı</li>
+				<li><strong>NOT (DEĞİL):</strong> Koşulun tersi</li>
+			</ul>
+
+			<h2>Yazılım Geliştirme Araçları</h2>
+			<ul>
+				<li><strong>Editörler:</strong> Kod yazmak için (Notepad, Wordpad)</li>
+				<li><strong>Derleyiciler (Compiler):</strong> Tüm kodu bir kerede makine diline çevirir</li>
+				<li><strong>Yorumlayıcılar (Interpreter):</strong> Kodu satır satır çalıştırır</li>
+				<li><strong>Bağlayıcılar (Linker):</strong> Kodları birleştirip çalıştırılabilir dosya oluşturur</li>
+			</ul>
+
+			<h2>Hata Türleri</h2>
+			<ol>
+				<li><strong>Syntax Error (Sözdizimi):</strong> Programlama dili kurallarına aykırılık</li>
+				<li><strong>Run-time Error:</strong> Program çalışırken oluşan hatalar</li>
+				<li><strong>Logic Error (Mantık Hatası):</strong> Yanlış düşünülmüş mantık</li>
+			</ol>
+
+			<h2>Algoritma Örnekleri</h2>
+
+			<div class="example-box">
+				<h3><i class="bi bi-calculator"></i> Örnek 1: İki Sayının Toplamı</h3>
+				<ol>
+					<li>BAŞLA</li>
+					<li>A sayısını oku</li>
+					<li>B sayısını oku</li>
+					<li>TOPLAM = A + B</li>
+					<li>TOPLAM değerini ekrana yaz</li>
+					<li>SON</li>
+				</ol>
+			</div>
+
+			<div class="example-box">
+				<h3><i class="bi bi-calculator"></i> Örnek 2: Büyük Sayıdan Küçüğü Çıkarma</h3>
+				<ol>
+					<li>BAŞLA</li>
+					<li>A sayısını oku</li>
+					<li>B sayısını oku</li>
+					<li>Eğer A > B ise
+						<ul>
+							<li>SONUC = A - B</li>
+						</ul>
+						Değilse
+						<ul>
+							<li>SONUC = B - A</li>
+						</ul>
+					</li>
+					<li>SONUC'u yaz</li>
+					<li>SON</li>
+				</ol>
+			</div>
+		</article>
+
+		<article class="content-card">
+			<h1><i class="bi bi-3-circle"></i> Akış Diyagramları</h1>
+
+			<h2>Akış Diyagramı Nedir?</h2>
+			<p>Algoritmanın şekillerle görsel gösterimidir. Standart semboller kullanılır.</p>
+
+			<h2>Temel Akış Diyagramı Sembolleri</h2>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Sembol</th>
+						<th>Kullanımı</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Terminal (Oval)</td>
+						<td>Başla/Son</td>
+					</tr>
+					<tr>
+						<td>Paralel Kenar</td>
+						<td>Giriş/Çıkış işlemleri</td>
+					</tr>
+					<tr>
+						<td>Dikdörtgen</td>
+						<td>İşlem adımları</td>
+					</tr>
+					<tr>
+						<td>Eşkenar Dörtgen</td>
+						<td>Karar verme (Evet/Hayır)</td>
+					</tr>
+					<tr>
+						<td>Ok</td>
+						<td>Program akış yönü</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="example-box">
+				<h3><i class="bi bi-diagram-3"></i> Akış Diyagramı Örneği: 1'den 100'e Kadar Toplamı</h3>
+				<ol>
+					<li>Başla</li>
+					<li>S = 1, T = 0</li>
+					<li>T = T + S</li>
+					<li>S = S + 1</li>
+					<li>S &lt;= 100 ise 3'e git</li>
+					<li>T'yi göster</li>
+					<li>Son</li>
+				</ol>
+			</div>
+		</article>
+
+		<article class="content-card">
+			<h1><i class="bi bi-4-circle"></i> C# Programlama</h1>
+
+			<h2>Değişkenler (Variables)</h2>
+			<p>Değişken, hafızada değer tutan alanlardır. Her değişkenin bir türü vardır.</p>
+
+			<h2>Veri Tipleri</h2>
+
+			<h3>Tam Sayı Tipleri:</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Tip</th>
+						<th>Aralık</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>byte</code></td>
+						<td>0-255</td>
+					</tr>
+					<tr>
+						<td><code>sbyte</code></td>
+						<td>-128 ile 127</td>
+					</tr>
+					<tr>
+						<td><code>short</code></td>
+						<td>-32,768 ile 32,767</td>
+					</tr>
+					<tr>
+						<td><code>int</code></td>
+						<td>-2 milyar ile +2 milyar</td>
+					</tr>
+					<tr>
+						<td><code>long</code></td>
+						<td>Çok büyük sayılar</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3>Ondalık Sayı Tipleri:</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Tip</th>
+						<th>Hassasiyet</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>float</code></td>
+						<td>7 basamak</td>
+					</tr>
+					<tr>
+						<td><code>double</code></td>
+						<td>15 basamak</td>
+					</tr>
+					<tr>
+						<td><code>decimal</code></td>
+						<td>28 basamak</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h3>Diğer Tipler:</h3>
+			<ul>
+				<li><strong><code>char</code>:</strong> Tek karakter ('a', 'B', '5')</li>
+				<li><strong><code>string</code>:</strong> Metin ("Merhaba", "C# programlama")</li>
+				<li><strong><code>bool</code>:</strong> true/false</li>
+			</ul>
+
+			<h2>Değişken Tanımlama Kuralları</h2>
+			<div class="info-box">
+				<ol>
+					<li>Harf ile başlamalı: <code>string Ad1;</code> ✓</li>
+					<li>Boşluk olamaz: <code>string Ad_Soyad;</code> ✓</li>
+					<li>Sadece harf, rakam, alt çizgi: <code>string ali_veli;</code> ✓</li>
+					<li>C# komutu olmamalı: <code>string true;</code> ✗</li>
+				</ol>
+			</div>
+
+			<h2>Temel C# Komutları</h2>
+
+			<h3>Ekrana Yazma:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">Console</span>.<span class="syntax-method">Write</span>(<span class="syntax-string">"Merhaba"</span>);      <span class="syntax-comment">// Yan yana yazar</span><br>
 <span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Merhaba"</span>);  <span class="syntax-comment">// Alt satıra geçer</span></code>
-		</div>
+			</div>
 
-		<h3>Klavyeden Okuma:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">string</span> <span class="syntax-variable">isim</span> = <span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();</code>
-		</div>
+			<h3>Klavyeden Okuma:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">string</span> <span class="syntax-variable">isim</span> = <span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();</code>
+			</div>
 
-		<h3>Ekranı Bekletme:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">Console</span>.<span class="syntax-method">ReadKey</span>();</code>
-		</div>
+			<h3>Ekranı Bekletme:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">Console</span>.<span class="syntax-method">ReadKey</span>();</code>
+			</div>
 
-		<h2>Tür Dönüşümü</h2>
+			<h2>Tür Dönüşümü</h2>
 
-		<h3>Convert Sınıfı:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">int</span> <span class="syntax-variable">sayi</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToInt32</span>(<span class="syntax-string">"123"</span>);<br>
+			<h3>Convert Sınıfı:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">int</span> <span class="syntax-variable">sayi</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToInt32</span>(<span class="syntax-string">"123"</span>);<br>
 <span class="syntax-type">double</span> <span class="syntax-variable">ondalik</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToDouble</span>(<span class="syntax-string">"12.5"</span>);<br>
 <span class="syntax-type">string</span> <span class="syntax-variable">metin</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToString</span>(<span class="syntax-number">45</span>);</code>
-		</div>
+			</div>
 
-		<h3>Parse Metodu:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">int</span> <span class="syntax-variable">a</span> = <span class="syntax-type">int</span>.<span class="syntax-method">Parse</span>(<span class="syntax-string">"100"</span>);<br>
+			<h3>Parse Metodu:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">int</span> <span class="syntax-variable">a</span> = <span class="syntax-type">int</span>.<span class="syntax-method">Parse</span>(<span class="syntax-string">"100"</span>);<br>
 <span class="syntax-type">double</span> <span class="syntax-variable">b</span> = <span class="syntax-type">double</span>.<span class="syntax-method">Parse</span>(<span class="syntax-string">"3.14"</span>);</code>
-		</div>
+			</div>
 
-		<h2>Operatörler</h2>
+			<h2>Operatörler</h2>
 
-		<h3>Aritmetik:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">int</span> <span class="syntax-variable">toplam</span> = <span class="syntax-number">5</span> + <span class="syntax-number">3</span>;  <span class="syntax-comment">// 8</span><br>
+			<h3>Aritmetik:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">int</span> <span class="syntax-variable">toplam</span> = <span class="syntax-number">5</span> + <span class="syntax-number">3</span>;  <span class="syntax-comment">// 8</span><br>
 <span class="syntax-type">int</span> <span class="syntax-variable">carpim</span> = <span class="syntax-number">4</span> * <span class="syntax-number">2</span>;  <span class="syntax-comment">// 8</span><br>
 <span class="syntax-type">int</span> <span class="syntax-variable">bolum</span> = <span class="syntax-number">10</span> / <span class="syntax-number">2</span>;  <span class="syntax-comment">// 5</span><br>
 <span class="syntax-type">int</span> <span class="syntax-variable">mod</span> = <span class="syntax-number">10</span> % <span class="syntax-number">3</span>;    <span class="syntax-comment">// 1 (kalan)</span></code>
-		</div>
+			</div>
 
-		<h3>Artırma/Azaltma:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">int</span> <span class="syntax-variable">a</span> = <span class="syntax-number">5</span>;<br>
+			<h3>Artırma/Azaltma:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">int</span> <span class="syntax-variable">a</span> = <span class="syntax-number">5</span>;<br>
 <span class="syntax-variable">a</span>++;   <span class="syntax-comment">// a = 6 (sonra arttır)</span><br>
 ++<span class="syntax-variable">a</span>;   <span class="syntax-comment">// a = 7 (önce arttır)</span></code>
-		</div>
+			</div>
 
-		<h3>Karşılaştırma:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">bool</span> <span class="syntax-variable">sonuc1</span> = <span class="syntax-number">5</span> > <span class="syntax-number">3</span>;      <span class="syntax-comment">// true</span><br>
+			<h3>Karşılaştırma:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">bool</span> <span class="syntax-variable">sonuc1</span> = <span class="syntax-number">5</span> > <span class="syntax-number">3</span>;      <span class="syntax-comment">// true</span><br>
 <span class="syntax-type">bool</span> <span class="syntax-variable">sonuc2</span> = <span class="syntax-number">10</span> == <span class="syntax-number">10</span>;   <span class="syntax-comment">// true</span><br>
 <span class="syntax-type">bool</span> <span class="syntax-variable">sonuc3</span> = <span class="syntax-number">7</span> != <span class="syntax-number">5</span>;     <span class="syntax-comment">// true</span></code>
-		</div>
+			</div>
 
-		<h3>Mantıksal:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">bool</span> <span class="syntax-variable">sonuc</span> = (<span class="syntax-number">5</span> > <span class="syntax-number">3</span>) <span class="syntax-operator">&&</span> (<span class="syntax-number">10</span> < <span class="syntax-number">20</span>);   <span class="syntax-comment">// true (VE)</span><br>
+			<h3>Mantıksal:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">bool</span> <span class="syntax-variable">sonuc</span> = (<span class="syntax-number">5</span> > <span class="syntax-number">3</span>) <span class="syntax-operator">&&</span> (<span class="syntax-number">10</span> < <span class="syntax-number">20</span>);   <span class="syntax-comment">// true (VE)</span><br>
 <span class="syntax-type">bool</span> <span class="syntax-variable">sonuc2</span> = (<span class="syntax-number">5</span> > <span class="syntax-number">3</span>) <span class="syntax-operator">||</span> (<span class="syntax-number">10</span> > <span class="syntax-number">20</span>);  <span class="syntax-comment">// true (VEYA)</span><br>
 <span class="syntax-type">bool</span> <span class="syntax-variable">sonuc3</span> = <span class="syntax-operator">!</span>(<span class="syntax-number">5</span> > <span class="syntax-number">3</span>);              <span class="syntax-comment">// false (DEĞİL)</span></code>
-		</div>
+			</div>
 
-		<h2>Kontrol Yapıları</h2>
+			<h2>Kontrol Yapıları</h2>
 
-		<h3>if-else:</h3>
-		<div class="code-block">
-			<code><span class="syntax-keyword">if</span> (koşul)<br>
+			<h3>if-else:</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">if</span> (koşul)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Koşul doğruysa çalışır</span><br>
 }<br>
@@ -506,12 +730,12 @@
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Koşul yanlışsa çalışır</span><br>
 }</code>
-		</div>
+			</div>
 
-		<div class="example-box">
-			<h4>Örnek:</h4>
-			<div class="code-block">
-				<code><span class="syntax-type">int</span> <span class="syntax-variable">yas</span> = <span class="syntax-number">18</span>;<br>
+			<div class="example-box">
+				<h4>Örnek:</h4>
+				<div class="code-block">
+					<code><span class="syntax-type">int</span> <span class="syntax-variable">yas</span> = <span class="syntax-number">18</span>;<br>
 <span class="syntax-keyword">if</span> (<span class="syntax-variable">yas</span> >= <span class="syntax-number">18</span>)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Reşitsiniz"</span>);<br>
@@ -520,12 +744,12 @@
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Reşit değilsiniz"</span>);<br>
 }</code>
+				</div>
 			</div>
-		</div>
 
-		<h3>switch-case:</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">int</span> <span class="syntax-variable">gun</span> = <span class="syntax-number">3</span>;<br>
+			<h3>switch-case:</h3>
+			<div class="code-block">
+				<code><span class="syntax-type">int</span> <span class="syntax-variable">gun</span> = <span class="syntax-number">3</span>;<br>
 <span class="syntax-keyword">switch</span> (<span class="syntax-variable">gun</span>)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">case</span> <span class="syntax-number">1</span>:<br>
@@ -541,19 +765,19 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Geçersiz gün"</span>);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">break</span>;<br>
 }</code>
-		</div>
+			</div>
 
-		<h3>Ternary Operatör (?:):</h3>
-		<div class="code-block">
-			<code><span class="syntax-type">string</span> <span class="syntax-variable">mesaj</span> = (<span class="syntax-variable">yas</span> >= <span class="syntax-number">18</span>) <span class="syntax-operator">?</span> <span class="syntax-string">"Reşit"</span> <span class="syntax-operator">:</span> <span class="syntax-string">"Reşit değil"</span>;</code>
-		</div>
-
-		<h2>Pratik Örnekler</h2>
-
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek 1: İki Sayıyı Toplama</h3>
+			<h3>Ternary Operatör (?:):</h3>
 			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+				<code><span class="syntax-type">string</span> <span class="syntax-variable">mesaj</span> = (<span class="syntax-variable">yas</span> >= <span class="syntax-number">18</span>) <span class="syntax-operator">?</span> <span class="syntax-string">"Reşit"</span> <span class="syntax-operator">:</span> <span class="syntax-string">"Reşit değil"</span>;</code>
+			</div>
+
+			<h2>Pratik Örnekler</h2>
+
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek 1: İki Sayıyı Toplama</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">Write</span>(<span class="syntax-string">"Birinci sayı: "</span>);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">sayi1</span> = <span class="syntax-type">Convert</span>.<span class="syntax-method">ToInt32</span>(<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>());<br>
@@ -564,13 +788,13 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">toplam</span> = <span class="syntax-variable">sayi1</span> + <span class="syntax-variable">sayi2</span>;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Toplam: "</span> + <span class="syntax-variable">toplam</span>);<br>
 }</code>
+				</div>
 			</div>
-		</div>
 
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek 2: Selamlaşma</h3>
-			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">selamla</span>(<span class="syntax-type">string</span> <span class="syntax-variable">kullanici</span>)<br>
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek 2: Selamlaşma</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">selamla</span>(<span class="syntax-type">string</span> <span class="syntax-variable">kullanici</span>)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Hoşgeldin "</span> + <span class="syntax-variable">kullanici</span>);<br>
 }<br>
@@ -581,65 +805,67 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">string</span> <span class="syntax-variable">isim</span> = <span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-method">selamla</span>(<span class="syntax-variable">isim</span>);<br>
 }</code>
+				</div>
 			</div>
-		</div>
 
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek 3: Programlama Sever misin?</h3>
-			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek 3: Programlama Sever misin?</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Programlamayı seviyor musun? (Y/N)"</span>);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">string</span> <span class="syntax-variable">cevap</span> = <span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">cevap</span> == <span class="syntax-string">"Y"</span> <span class="syntax-operator">?</span> <span class="syntax-string">"Harika!"</span> <span class="syntax-operator">:</span> <span class="syntax-string">"Oh yazık..."</span>);<br>
 }</code>
+				</div>
 			</div>
-		</div>
 
-	</article>
+		</article>
 
-	<article class="content-card">
-		<h1><i class="bi bi-5-circle"></i> Döngüler (Loops)</h1>
+		<article class="content-card">
+			<h1><i class="bi bi-5-circle"></i> Döngüler (Loops)</h1>
 
-		<h2>Döngü Nedir?</h2>
-		<p>Birbiriyle ilişkili kodları arka arkaya çalıştırmak için kullanılan yapılardır.</p>
+			<h2>Döngü Nedir?</h2>
+			<p>Birbiriyle ilişkili kodları arka arkaya çalıştırmak için kullanılan yapılardır.</p>
 
-		<div class="info-box">
-			<h3><i class="bi bi-info-circle"></i> Neden Döngü Kullanırız?</h3>
-			<p>Belirli işlemleri üst üste bir problemi çözmek için yüz defa veya belirli kriterleri sağlayana kadar gerekebilir. Eğer döngü yapısı olmasaydı alt alta aynı işlemi yüz defa yazmak gerekirdi.</p>
-		</div>
+			<div class="info-box">
+				<h3><i class="bi bi-info-circle"></i> Neden Döngü Kullanırız?</h3>
+				<p>Belirli işlemleri üst üste bir problemi çözmek için yüz defa veya belirli kriterleri sağlayana kadar
+					gerekebilir. Eğer döngü yapısı olmasaydı alt alta aynı işlemi yüz defa yazmak gerekirdi.</p>
+			</div>
 
-		<h2>for Döngüsü</h2>
-		<p>C#'ta en çok kullanılan döngü türüdür. Belli koşulları sağladığı sürece birden fazla çalıştırılmasını istediğimiz kodlar için kullanılır.</p>
+			<h2>for Döngüsü</h2>
+			<p>C#'ta en çok kullanılan döngü türüdür. Belli koşulları sağladığı sürece birden fazla çalıştırılmasını
+				istediğimiz kodlar için kullanılır.</p>
 
-		<h3>Sözdizimi:</h3>
-		<div class="code-block">
-			<code><span class="syntax-keyword">for</span>(ifade1; koşul; ifade2)<br>
+			<h3>Sözdizimi:</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">for</span>(ifade1; koşul; ifade2)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Çalıştırılacak komutlar</span><br>
 }</code>
-		</div>
+			</div>
 
-		<div class="info-box">
-			<h3><i class="bi bi-gear"></i> for Döngüsünün Çalışma Prensibi</h3>
-			<ol>
-				<li><strong>ifade1</strong> çalıştırılır (ilk değer atama)</li>
-				<li><strong>Koşul</strong> kontrol edilir</li>
-				<li>Koşul sağlanıyorsa:
-					<ul>
-						<li>Küme parantezleri içindeki komutlar çalıştırılır</li>
-						<li><strong>ifade2</strong> çalıştırılır (artırma/azaltma)</li>
-						<li>2. adıma dönülür</li>
-					</ul>
-				</li>
-				<li>Koşul sağlanmıyorsa döngüden çıkılır</li>
-			</ol>
-		</div>
+			<div class="info-box">
+				<h3><i class="bi bi-gear"></i> for Döngüsünün Çalışma Prensibi</h3>
+				<ol>
+					<li><strong>ifade1</strong> çalıştırılır (ilk değer atama)</li>
+					<li><strong>Koşul</strong> kontrol edilir</li>
+					<li>Koşul sağlanıyorsa:
+						<ul>
+							<li>Küme parantezleri içindeki komutlar çalıştırılır</li>
+							<li><strong>ifade2</strong> çalıştırılır (artırma/azaltma)</li>
+							<li>2. adıma dönülür</li>
+						</ul>
+					</li>
+					<li>Koşul sağlanmıyorsa döngüden çıkılır</li>
+				</ol>
+			</div>
 
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek 1: 1'den 10'a Kadar Sayıları Yazdırma</h3>
-			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek 1: 1'den 10'a Kadar Sayıları Yazdırma</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">i</span>;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">for</span>(<span class="syntax-variable">i</span> = <span class="syntax-number">1</span>; <span class="syntax-variable">i</span> <= <span class="syntax-number">10</span>; <span class="syntax-variable">i</span>++)<br>
@@ -648,14 +874,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
 }</code>
+				</div>
+				<p><strong>Çıktı:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
 			</div>
-			<p><strong>Çıktı:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
-		</div>
 
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek 2: 1'den 10'a Kadar Toplama</h3>
-			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek 2: 1'den 10'a Kadar Toplama</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">i</span>, <span class="syntax-variable">toplam</span> = <span class="syntax-number">0</span>;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">for</span>(<span class="syntax-variable">i</span> = <span class="syntax-number">1</span>; <span class="syntax-variable">i</span> <= <span class="syntax-number">10</span>; <span class="syntax-variable">i</span>++)<br>
@@ -665,50 +891,53 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">toplam</span>);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
 }</code>
+				</div>
+				<p><strong>Çıktı:</strong> 55</p>
 			</div>
-			<p><strong>Çıktı:</strong> 55</p>
-		</div>
 
-		<div class="warning-box">
-			<h3><i class="bi bi-exclamation-triangle"></i> for Döngüsü Kuralları</h3>
-			<ul>
-				<li>İki ifade ve bir koşulün istenirse bir tanesi, istenirse bazıları, istenirse de tamamı boş bırakılabilir; ancak <strong>noktalı virgüller mutlaka yazılmalıdır</strong></li>
-				<li>Döngünün içinde tanımlanan değişkenler <code>for(int i=0; i&lt;5; i++)</code> döngünün dışında kullanılamaz</li>
-				<li>Değişkeni döngü dışında kullanabilmek için döngüden önce tanımlanmalıdır</li>
-			</ul>
-		</div>
+			<div class="warning-box">
+				<h3><i class="bi bi-exclamation-triangle"></i> for Döngüsü Kuralları</h3>
+				<ul>
+					<li>İki ifade ve bir koşulün istenirse bir tanesi, istenirse bazıları, istenirse de tamamı boş
+						bırakılabilir; ancak <strong>noktalı virgüller mutlaka yazılmalıdır</strong></li>
+					<li>Döngünün içinde tanımlanan değişkenler <code>for(int i=0; i&lt;5; i++)</code> döngünün dışında
+						kullanılamaz</li>
+					<li>Değişkeni döngü dışında kullanabilmek için döngüden önce tanımlanmalıdır</li>
+				</ul>
+			</div>
 
-		<h2>while Döngüsü</h2>
-		<p>Komut ya da komutların bir koşul sağlandığı sürece çalıştırılmasını sağlar.</p>
+			<h2>while Döngüsü</h2>
+			<p>Komut ya da komutların bir koşul sağlandığı sürece çalıştırılmasını sağlar.</p>
 
-		<h3>Sözdizimi:</h3>
-		<div class="code-block">
-			<code><span class="syntax-keyword">while</span>(koşul)<br>
+			<h3>Sözdizimi:</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">while</span>(koşul)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Çalıştırılacak komutlar</span><br>
 }</code>
-		</div>
+			</div>
 
-		<div class="info-box">
-			<h3><i class="bi bi-gear"></i> while Döngüsünün Çalışma Prensibi</h3>
-			<ol>
-				<li><strong>Koşul</strong> kontrol edilir</li>
-				<li>Eğer koşul sağlanıyorsa:
-					<ul>
-						<li>Küme parantezleri içindeki komutlar çalıştırılır</li>
-						<li>1. adıma dönülür</li>
-					</ul>
-				</li>
-				<li>Koşul sağlanmıyorsa döngüden çıkılır</li>
-			</ol>
-			<p><strong>Not:</strong> <code>while</code> döngüsü, <code>for</code> döngüsünün yalnızca koşuldan oluşan halidir.<br>
-			Yani <code>for(;i&lt;10;)</code> ile <code>while(i&lt;10)</code> aynı döngüdür.</p>
-		</div>
+			<div class="info-box">
+				<h3><i class="bi bi-gear"></i> while Döngüsünün Çalışma Prensibi</h3>
+				<ol>
+					<li><strong>Koşul</strong> kontrol edilir</li>
+					<li>Eğer koşul sağlanıyorsa:
+						<ul>
+							<li>Küme parantezleri içindeki komutlar çalıştırılır</li>
+							<li>1. adıma dönülür</li>
+						</ul>
+					</li>
+					<li>Koşul sağlanmıyorsa döngüden çıkılır</li>
+				</ol>
+				<p><strong>Not:</strong> <code>while</code> döngüsü, <code>for</code> döngüsünün yalnızca koşuldan
+					oluşan halidir.<br>
+					Yani <code>for(;i&lt;10;)</code> ile <code>while(i&lt;10)</code> aynı döngüdür.</p>
+			</div>
 
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek: 1'den 10'a Kadar while ile Yazdırma</h3>
-			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek: 1'den 10'a Kadar while ile Yazdırma</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">i</span> = <span class="syntax-number">1</span>;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">while</span>(<span class="syntax-variable">i</span> <= <span class="syntax-number">10</span>)<br>
@@ -718,40 +947,43 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
 }</code>
+				</div>
+				<p><strong>Çıktı:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
 			</div>
-			<p><strong>Çıktı:</strong> 1, 2, 3, 4, 5, 6, 7, 8, 9, 10</p>
-		</div>
 
-		<h2>do-while Döngüsü</h2>
-		<p>Şimdiye kadar gördüğümüz döngülerde önce koşula bakılıyor, sonra komutlar çalıştırılıyordu. Ancak bazen döngüdeki komutların <strong>koşul sağlanmasa da en az bir kez çalıştırılmasını</strong> isteyebiliriz. Bu durumlar için <code>do-while</code> döngüsü kullanılır.</p>
+			<h2>do-while Döngüsü</h2>
+			<p>Şimdiye kadar gördüğümüz döngülerde önce koşula bakılıyor, sonra komutlar çalıştırılıyordu. Ancak bazen
+				döngüdeki komutların <strong>koşul sağlanmasa da en az bir kez çalıştırılmasını</strong> isteyebiliriz.
+				Bu durumlar için <code>do-while</code> döngüsü kullanılır.</p>
 
-		<h3>Sözdizimi:</h3>
-		<div class="code-block">
-			<code><span class="syntax-keyword">do</span><br>
+			<h3>Sözdizimi:</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">do</span><br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-comment">// Çalıştırılacak komutlar</span><br>
 }<br>
 <span class="syntax-keyword">while</span>(koşul);</code>
-		</div>
+			</div>
 
-		<div class="info-box">
-			<h3><i class="bi bi-gear"></i> do-while Döngüsünün Çalışma Prensibi</h3>
-			<ol>
-				<li>Döngüdeki komutlar <strong>bir kez çalıştırılır</strong></li>
-				<li><strong>Koşul</strong> kontrol edilir:
-					<ul>
-						<li>Eğer koşul sağlanıyorsa 1. adıma dönülür</li>
-						<li>Eğer koşul sağlanmıyorsa döngüden çıkılır</li>
-					</ul>
-				</li>
-			</ol>
-			<p><strong>Fark:</strong> <code>do-while</code> döngüsü, koşul yanlış olsa bile en az bir kez çalışır!</p>
-		</div>
+			<div class="info-box">
+				<h3><i class="bi bi-gear"></i> do-while Döngüsünün Çalışma Prensibi</h3>
+				<ol>
+					<li>Döngüdeki komutlar <strong>bir kez çalıştırılır</strong></li>
+					<li><strong>Koşul</strong> kontrol edilir:
+						<ul>
+							<li>Eğer koşul sağlanıyorsa 1. adıma dönülür</li>
+							<li>Eğer koşul sağlanmıyorsa döngüden çıkılır</li>
+						</ul>
+					</li>
+				</ol>
+				<p><strong>Fark:</strong> <code>do-while</code> döngüsü, koşul yanlış olsa bile en az bir kez çalışır!
+				</p>
+			</div>
 
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek: do-while Kullanımı</h3>
-			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek: do-while Kullanımı</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>(<span class="syntax-type">string</span>[] <span class="syntax-variable">args</span>)<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">i</span> = <span class="syntax-number">1</span>;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">do</span><br>
@@ -762,18 +994,19 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">while</span>(<span class="syntax-variable">i</span> <= <span class="syntax-number">10</span>);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">ReadLine</span>();<br>
 }</code>
+				</div>
 			</div>
-		</div>
 
-		<h2>Döngülerde Kullanılan Anahtar Kelimeler</h2>
+			<h2>Döngülerde Kullanılan Anahtar Kelimeler</h2>
 
-		<h3>1. break - Döngüden Çıkış</h3>
-		<p><code>break</code> komutu, döngüden tamamen çıkmak için kullanılır. Hatırlarsanız <code>switch-case</code>'de de kullanmıştık.</p>
+			<h3>1. break - Döngüden Çıkış</h3>
+			<p><code>break</code> komutu, döngüden tamamen çıkmak için kullanılır. Hatırlarsanız
+				<code>switch-case</code>'de de kullanmıştık.</p>
 
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek: break Kullanımı</h3>
-			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek: break Kullanımı</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">for</span>(<span class="syntax-type">char</span> <span class="syntax-variable">a</span> = <span class="syntax-string">'a'</span>; ; )<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br>
@@ -782,17 +1015,18 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">break</span>;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br>
 }</code>
+				</div>
+				<p><strong>Açıklama:</strong> Bu program, kullanıcı "q" harfini girene kadar döngüde kalmaktadır.</p>
 			</div>
-			<p><strong>Açıklama:</strong> Bu program, kullanıcı "q" harfini girene kadar döngüde kalmaktadır.</p>
-		</div>
 
-		<h3>2. continue - İterasyonu Atla</h3>
-		<p><code>continue</code> komutu, döngüden çıkmaz, sadece o anki iterasyonu sonlandırır ve bir sonraki iterasyona geçer.</p>
+			<h3>2. continue - İterasyonu Atla</h3>
+			<p><code>continue</code> komutu, döngüden çıkmaz, sadece o anki iterasyonu sonlandırır ve bir sonraki
+				iterasyona geçer.</p>
 
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek: continue ile Çift Sayıları Yazdırma</h3>
-			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek: continue ile Çift Sayıları Yazdırma</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">for</span>(<span class="syntax-type">int</span> <span class="syntax-variable">a</span> = <span class="syntax-number">0</span>; <span class="syntax-variable">a</span> < <span class="syntax-number">51</span>; <span class="syntax-variable">a</span>++)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br>
@@ -801,88 +1035,243 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">a</span>);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br>
 }</code>
+				</div>
+				<p><strong>Açıklama:</strong> Bu program 0'dan 50'ye kadar (0 ve 50 dahil) olan çift sayıları ekrana alt
+					alta yazmaktadır.</p>
 			</div>
-			<p><strong>Açıklama:</strong> Bu program 0'dan 50'ye kadar (0 ve 50 dahil) olan çift sayıları ekrana alt alta yazmaktadır.</p>
-		</div>
 
-		<h3>3. goto - Belirli Bir Etikete Atlama</h3>
-		<p><code>goto</code> komutu, program akışını belirli bir etikete yönlendirir.</p>
+			<h3>3. goto - Belirli Bir Etikete Atlama</h3>
+			<p><code>goto</code> komutu, program akışını belirli bir etikete yönlendirir.</p>
 
-		<div class="warning-box">
-			<h3><i class="bi bi-exclamation-triangle"></i> Uyarı</h3>
-			<p><code>goto</code> kullanımı genellikle önerilmez çünkü kod okunabilirliğini azaltır. Sadece özel durumlar için kullanılmalıdır.</p>
-		</div>
+			<div class="warning-box">
+				<h3><i class="bi bi-exclamation-triangle"></i> Uyarı</h3>
+				<p><code>goto</code> kullanımı genellikle önerilmez çünkü kod okunabilirliğini azaltır. Sadece özel
+					durumlar için kullanılmalıdır.</p>
+			</div>
 
-		<div class="example-box">
-			<h3><i class="bi bi-code"></i> Örnek: goto Kullanımı</h3>
-			<div class="code-block">
-				<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek: goto Kullanımı</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">static</span> <span class="syntax-type">void</span> <span class="syntax-method">Main</span>()<br>
 {<br>
 &nbsp;&nbsp;&nbsp;&nbsp;birinci: <span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Birinci bölüm"</span>);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">goto</span> ucuncu;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;ikinci: <span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"İkinci bölüm"</span>);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;ucuncu: <span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"Üçüncü bölüm"</span>);<br>
 }</code>
+				</div>
+				<p><strong>Çıktı:</strong> Birinci bölüm, Üçüncü bölüm (İkinci bölüm çalıştırılmaz)</p>
 			</div>
-			<p><strong>Çıktı:</strong> Birinci bölüm, Üçüncü bölüm (İkinci bölüm çalıştırılmaz)</p>
-		</div>
 
-		<h2>Döngü Türleri Karşılaştırması</h2>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>Döngü Türü</th>
-					<th>Kullanım Durumu</th>
-					<th>İlk Kontrol</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><code>for</code></td>
-					<td>Döngü sayısı biliniyorsa</td>
-					<td>Koşul önce kontrol edilir</td>
-				</tr>
-				<tr>
-					<td><code>while</code></td>
-					<td>Döngü sayısı bilinmiyorsa</td>
-					<td>Koşul önce kontrol edilir</td>
-				</tr>
-				<tr>
-					<td><code>do-while</code></td>
-					<td>En az bir kez çalışmalıysa</td>
-					<td>Koşul sonra kontrol edilir</td>
-				</tr>
-			</tbody>
-		</table>
+			<h2>Döngü Türleri Karşılaştırması</h2>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Döngü Türü</th>
+						<th>Kullanım Durumu</th>
+						<th>İlk Kontrol</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><code>for</code></td>
+						<td>Döngü sayısı biliniyorsa</td>
+						<td>Koşul önce kontrol edilir</td>
+					</tr>
+					<tr>
+						<td><code>while</code></td>
+						<td>Döngü sayısı bilinmiyorsa</td>
+						<td>Koşul önce kontrol edilir</td>
+					</tr>
+					<tr>
+						<td><code>do-while</code></td>
+						<td>En az bir kez çalışmalıysa</td>
+						<td>Koşul sonra kontrol edilir</td>
+					</tr>
+				</tbody>
+			</table>
 
-		<div class="warning-box">
-			<h3><i class="bi bi-exclamation-triangle"></i> SINAV BİLGİLERİ</h3>
-			<ul>
-				<li><strong>Vize:</strong> %20</li>
-				<li><strong>Final:</strong> %80</li>
-				<li><strong>Geçme Notu:</strong> 60</li>
+			<div class="warning-box">
+				<h3><i class="bi bi-exclamation-triangle"></i> SINAV BİLGİLERİ</h3>
+				<ul>
+					<li><strong>Vize:</strong> %20</li>
+					<li><strong>Final:</strong> %80</li>
+					<li><strong>Geçme Notu:</strong> 60</li>
+				</ul>
+			</div>
+		</article>
+
+		<article class="content-card">
+			<h1><i class="bi bi-6-circle"></i> İleri Algoritma Örnekleri (Hafta 7)</h1>
+
+			<h2>İç İçe Döngüler (Nested Loops)</h2>
+			<p>Bir döngü içerisinde başka bir döngünün çalıştırılmasıdır. Özellikle tablolar, matrisler veya karmaşık
+				matematiksel problemler için kullanılır.</p>
+
+			<div class="info-box">
+				<h3><i class="bi bi-info-circle"></i> Mükemmel Sayı Nedir?</h3>
+				<p>Kendisi hariç pozitif tam bölenlerinin toplamı kendisine eşit olan sayılara <strong>mükemmel
+						sayı</strong> denir.</p>
+				<p>Örnek: 6 (1 + 2 + 3 = 6)</p>
+			</div>
+
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek 1: İlk 100 Mükemmel Sayıyı Bulma</h3>
+				<div class="code-block">
+					<code><span class="syntax-keyword">int</span> <span class="syntax-variable">sayi</span> = <span class="syntax-number">1</span>;<br>
+<span class="syntax-keyword">while</span>(<span class="syntax-variable">sayi</span> <= <span class="syntax-number">100</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">i</span> = <span class="syntax-number">1</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">toplam</span> = <span class="syntax-number">0</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">while</span> (<span class="syntax-variable">i</span> < <span class="syntax-variable">sayi</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">if</span> (<span class="syntax-variable">sayi</span> % <span class="syntax-variable">i</span> == <span class="syntax-number">0</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">toplam</span> += <span class="syntax-variable">i</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">i</span> += <span class="syntax-number">1</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">if</span> (<span class="syntax-variable">toplam</span> == <span class="syntax-variable">sayi</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">sayi</span> + <span class="syntax-string">" mükemmel bir sayıdır."</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">sayi</span> += <span class="syntax-number">1</span>;<br>
+}</code>
+				</div>
+			</div>
+
+			<div class="info-box">
+				<h3><i class="bi bi-info-circle"></i> Asal Sayı Nedir?</h3>
+				<p>Sadece 1'e ve kendisine bölünebilen, 1'den büyük doğal sayılara <strong>asal sayı</strong> denir.</p>
+			</div>
+
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek 2: İlk 50 Asal Sayıyı Listeleme</h3>
+				<div class="code-block">
+					<code><span class="syntax-type">int</span> <span class="syntax-variable">sayi</span> = <span class="syntax-number">2</span>;<br>
+<span class="syntax-type">int</span> <span class="syntax-variable">say</span> = <span class="syntax-number">0</span>;<br>
+<span class="syntax-type">int</span> <span class="syntax-variable">sutun</span> = <span class="syntax-number">0</span>;<br>
+<br>
+<span class="syntax-keyword">while</span> (<span class="syntax-keyword">true</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">if</span> (<span class="syntax-variable">say</span> == <span class="syntax-number">50</span>) <span class="syntax-keyword">break</span>;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">int</span> <span class="syntax-variable">kontrol</span> = <span class="syntax-number">0</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">for</span> (<span class="syntax-type">int</span> <span class="syntax-variable">i</span> = <span class="syntax-number">2</span>; <span class="syntax-variable">i</span> < <span class="syntax-variable">sayi</span>; <span class="syntax-variable">i</span>++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">if</span> (<span class="syntax-variable">sayi</span> % <span class="syntax-variable">i</span> == <span class="syntax-number">0</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">kontrol</span>++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">break</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">if</span> (<span class="syntax-variable">kontrol</span> == <span class="syntax-number">0</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">sutun</span>++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">Write</span>(<span class="syntax-variable">sayi</span> + <span class="syntax-string">"\t"</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">if</span> (<span class="syntax-variable">sutun</span> % <span class="syntax-number">10</span> == <span class="syntax-number">0</span>) <span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">say</span>++;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">sayi</span>++;<br>
+}</code>
+				</div>
+			</div>
+		</article>
+
+		<article class="content-card">
+			<h1><i class="bi bi-7-circle"></i> Diziler (Arrays)</h1>
+			<p>Dizi (Array), aynı tipteki verileri tek bir isim altında toplamak ve bu verilere indis numaralarıyla
+				erişmek için kullanılan yapıdır.</p>
+
+			<div class="info-box">
+				<h3><i class="bi bi-info-circle"></i> Neden Dizi Kullanırız?</h3>
+				<p>Örneğin 50 öğrencinin notunu saklamak için 50 tane ayrı değişken (not1, not2, ...not50) tanımlamak
+					yerine, tek bir dizi tanımlayarak tüm notları bunun içinde tutabiliriz.</p>
+			</div>
+
+			<h2>Dizi Tanımlama ve Değer Atama</h2>
+			<p>C#'ta diziler <code>new</code> anahtar kelimesi ile oluşturulur ve boyutları sabittir.</p>
+			<div class="code-block">
+				<code><span class="syntax-comment">// 5 elemanlı bir tam sayı dizisi tanımlama</span><br>
+<span class="syntax-type">int</span>[] <span class="syntax-variable">sayilar</span> = <span class="syntax-keyword">new</span> <span class="syntax-type">int</span>[<span class="syntax-number">5</span>];<br>
+<br>
+<span class="syntax-comment">// Tanımlama anında değer atama</span><br>
+<span class="syntax-type">string</span>[] <span class="syntax-variable">gunler</span> = {<span class="syntax-string">"Pazartesi"</span>, <span class="syntax-string">"Salı"</span>, <span class="syntax-string">"Çarşamba"</span>};</code>
+			</div>
+
+			<h2>Elemanlara Erişim</h2>
+			<p>Dizilerde indisleme <strong>0'dan başlar</strong>. Yani ilk elemanın indisi 0, ikinci elemanın indisi
+				1'dir.</p>
+			<div class="code-block">
+				<code><span class="syntax-variable">sayilar</span>[<span class="syntax-number">0</span>] = <span class="syntax-number">10</span>; <span class="syntax-comment">// İlk elemana 10 değerini ata</span><br>
+<span class="syntax-type">int</span> <span class="syntax-variable">ilkEleman</span> = <span class="syntax-variable">sayilar</span>[<span class="syntax-number">0</span>]; <span class="syntax-comment">// İlk elemanı oku</span></code>
+			</div>
+
+			<h2>Dizi Döngüleri</h2>
+
+			<h3>1. for Döngüsü ile Erişim:</h3>
+			<div class="code-block">
+				<code><span class="syntax-keyword">for</span> (<span class="syntax-type">int</span> <span class="syntax-variable">i</span> = <span class="syntax-number">0</span>; <span class="syntax-variable">i</span> < <span class="syntax-variable">sayilar</span>.<span class="syntax-variable">Length</span>; <span class="syntax-variable">i</span>++)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">sayilar</span>[<span class="syntax-variable">i</span>]);<br>
+}</code>
+			</div>
+
+			<h3>2. foreach Döngüsü ile Erişim:</h3>
+			<p>Dizi elemanlarını sadece okumak için en pratik yöntemdir.</p>
+			<div class="code-block">
+				<code><span class="syntax-keyword">foreach</span> (<span class="syntax-type">int</span> <span class="syntax-variable">s</span> <span class="syntax-keyword">in</span> <span class="syntax-variable">sayilar</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-variable">s</span>);<br>
+}</code>
+			</div>
+
+			<div class="example-box">
+				<h3><i class="bi bi-code"></i> Örnek: Dizideki En Büyük İkinci Sayıyı Bulma</h3>
+				<div class="code-block">
+					<code><span class="syntax-type">int</span>[] <span class="syntax-variable">dizi</span> = { <span class="syntax-number">10</span>, <span class="syntax-number">25</span>, <span class="syntax-number">45</span>, <span class="syntax-number">30</span>, <span class="syntax-number">45</span>, <span class="syntax-number">15</span> };<br>
+<span class="syntax-type">int</span> <span class="syntax-variable">enBuyuk</span> = <span class="syntax-number">0</span>, <span class="syntax-variable">ikinciBuyuk</span> = <span class="syntax-number">0</span>;<br>
+<br>
+<span class="syntax-keyword">foreach</span> (<span class="syntax-type">int</span> <span class="syntax-variable">sayi</span> <span class="syntax-keyword">in</span> <span class="syntax-variable">dizi</span>)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">if</span> (<span class="syntax-variable">sayi</span> > <span class="syntax-variable">enBuyuk</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">ikinciBuyuk</span> = <span class="syntax-variable">enBuyuk</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">enBuyuk</span> = <span class="syntax-variable">sayi</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-keyword">else</span> <span class="syntax-keyword">if</span> (<span class="syntax-variable">sayi</span> > <span class="syntax-variable">ikinciBuyuk</span> <span class="syntax-operator">&&</span> <span class="syntax-variable">sayi</span> != <span class="syntax-variable">enBuyuk</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="syntax-variable">ikinciBuyuk</span> = <span class="syntax-variable">sayi</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"En Büyük: "</span> + <span class="syntax-variable">enBuyuk</span>);<br>
+<span class="syntax-type">Console</span>.<span class="syntax-method">WriteLine</span>(<span class="syntax-string">"İkinci Büyük: "</span> + <span class="syntax-variable">ikinciBuyuk</span>);</code>
+				</div>
+			</div>
+		</article>
+
+
+		<footer class="main-header mt-5">
+			<h3 style="color:#764ba2;margin-bottom:20px"><i class="bi bi-lightbulb"></i> Önemli Notlar</h3>
+			<ul style="list-style:none;padding:0;text-align:left;max-width:600px;margin:0 auto">
+				<li style="margin:10px 0">✅ Algoritma yazmayı öğrenmek programlamanın temelidir</li>
+				<li style="margin:10px 0">✅ Akış diyagramları algoritmaları görselleştirir</li>
+				<li style="margin:10px 0">✅ Değişken isimlendirmede kurallara dikkat edin</li>
+				<li style="margin:10px 0">✅ Döngülerde sonsuz döngüye düşmemeye dikkat edin</li>
+				<li style="margin:10px 0">✅ for, while ve do-while arasındaki farkları iyi öğrenin</li>
+				<li style="margin:10px 0">✅ Her zaman test edin ve hata kontrolü yapın</li>
+				<li style="margin:10px 0">✅ Pratik yaparak öğrenin - kod yazın!</li>
 			</ul>
-		</div>
-	</article>
+			<p style="margin-top:30px;color:#6c757d">&copy; 2025 İslam ERGÜN - Tüm Hakları Saklıdır</p>
+		</footer>
+	</div>
 
-	<footer class="main-header mt-5">
-		<h3 style="color:#764ba2;margin-bottom:20px"><i class="bi bi-lightbulb"></i> Önemli Notlar</h3>
-		<ul style="list-style:none;padding:0;text-align:left;max-width:600px;margin:0 auto">
-			<li style="margin:10px 0">✅ Algoritma yazmayı öğrenmek programlamanın temelidir</li>
-			<li style="margin:10px 0">✅ Akış diyagramları algoritmaları görselleştirir</li>
-			<li style="margin:10px 0">✅ Değişken isimlendirmede kurallara dikkat edin</li>
-			<li style="margin:10px 0">✅ Döngülerde sonsuz döngüye düşmemeye dikkat edin</li>
-			<li style="margin:10px 0">✅ for, while ve do-while arasındaki farkları iyi öğrenin</li>
-			<li style="margin:10px 0">✅ Her zaman test edin ve hata kontrolü yapın</li>
-			<li style="margin:10px 0">✅ Pratik yaparak öğrenin - kod yazın!</li>
-		</ul>
-		<p style="margin-top:30px;color:#6c757d">&copy; 2025 İslam ERGÜN - Tüm Hakları Saklıdır</p>
-	</footer>
-</div>
-
-<!-- Bootstrap 5 JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<!-- Bootstrap 5 JS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
 
 </body>
-</html>
 
+</html>
